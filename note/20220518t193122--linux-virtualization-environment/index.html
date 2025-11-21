@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="PK Pages" href="https://pk-kampanart.github.io/rss.xml"><meta name="generator" content="Astro v5.15.3"><!-- Canonical URL --><link rel="canonical" href="https://pk-kampanart.github.io/note/20220518t193122--linux-virtualization-environment/"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><!-- Primary Meta Tags --><title>PK Pages</title><meta name="title" content="PK Pages"><meta name="description" content="Welcome to my website!"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://pk-kampanart.github.io/note/20220518t193122--linux-virtualization-environment/"><meta property="og:title" content="PK Pages"><meta property="og:description" content="Welcome to my website!"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://pk-kampanart.github.io/note/20220518t193122--linux-virtualization-environment/"><meta property="twitter:title" content="PK Pages"><meta property="twitter:description" content="Welcome to my website!"><script type="module">let n=null,p=null,u=null;const w=new Map;function g(){const e=document.createElement("div");return e.className="note-preview",document.body.appendChild(e),e}function m(e,t){const o=e.getBoundingClientRect(),i=t.getBoundingClientRect();let l=o.bottom+window.scrollY+8,r=o.left+window.scrollX;r+i.width>window.innerWidth&&(r=window.innerWidth-i.width-16),o.bottom+i.height>window.innerHeight&&(l=o.top+window.scrollY-i.height-8),t.style.top=`${l}px`,t.style.left=`${r}px`}async function L(e){if(w.has(e))return w.get(e);try{const o=await(await fetch(e)).text(),r=new DOMParser().parseFromString(o,"text/html").querySelector(".note-card");if(r){const h=r.querySelector(".close-btn");h&&h.remove();let c=r.innerHTML;const s=document.createElement("div");s.innerHTML=c;const a=s.querySelectorAll("p");if(a.length>3){for(let d=3;d<a.length;d++)a[d].remove();s.innerHTML+="<p>...</p>"}return c=s.innerHTML,w.set(e,c),c}}catch(t){return console.error("Failed to fetch preview:",t),'<p class="note-preview-loading">Failed to load preview</p>'}return'<p class="note-preview-loading">No preview available</p>'}function T(e){n||(n=g()),u=e;const t=e.getAttribute("href");!t||t.startsWith("http")||(n.innerHTML='<p class="note-preview-loading">Loading...</p>',n.classList.add("show"),m(e,n),L(t).then(o=>{u===e&&(n.innerHTML=o,m(e,n))}))}function v(){n&&(n.classList.remove("show"),u=null)}function f(){document.querySelectorAll(".note-internal-link").forEach(e=>{e.addEventListener("mouseenter",t=>{clearTimeout(p),p=setTimeout(()=>T(t.target),300)}),e.addEventListener("mouseleave",()=>{clearTimeout(p),v()})})}f();document.body.addEventListener("htmx:afterSwap",()=>{f(),setTimeout(()=>v(),300)});</script><script type="module" src="/_astro/BaseHead.astro_astro_type_script_index_1_lang.CHb5F0mE.js"></script><link rel="stylesheet" href="/_astro/index.DT9d6-GI.css">
+<style>a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}
+</style></head> <body> <canvas id="particle-canvas" data-astro-cid-qmqexpae></canvas> <script>(function(){const particleCount = 50;
+const particleColor = "#2337ff";
+const connectionDistance = 150;
+const particleSpeed = 0.5;
+
+  class Particle {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * particleSpeed;
+      this.vy = (Math.random() - 0.5) * particleSpeed;
+      this.radius = Math.random() * 2 + 1;
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Bounce off edges
+      if (this.x < 0 || this.x > this.canvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > this.canvas.height) this.vy *= -1;
+
+      // Keep within bounds
+      this.x = Math.max(0, Math.min(this.canvas.width, this.x));
+      this.y = Math.max(0, Math.min(this.canvas.height, this.y));
+    }
+
+    draw(ctx) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = particleColor;
+      ctx.fill();
+    }
+  }
+
+  class ParticleSystem {
+    constructor() {
+      this.canvas = document.getElementById('particle-canvas');
+      this.ctx = this.canvas.getContext('2d');
+      this.particles = [];
+      this.mouse = { x: null, y: null, radius: 150 };
+
+      this.init();
+      this.animate();
+      this.setupEventListeners();
+    }
+
+    init() {
+      this.resizeCanvas();
+      this.particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        this.particles.push(new Particle(this.canvas));
+      }
+    }
+
+    resizeCanvas() {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+    }
+
+    setupEventListeners() {
+      window.addEventListener('resize', () => {
+        this.resizeCanvas();
+        this.init();
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        this.mouse.x = e.x;
+        this.mouse.y = e.y;
+      });
+
+      window.addEventListener('mouseout', () => {
+        this.mouse.x = null;
+        this.mouse.y = null;
+      });
+    }
+
+    connectParticles() {
+      for (let i = 0; i < this.particles.length; i++) {
+        for (let j = i + 1; j < this.particles.length; j++) {
+          const dx = this.particles[i].x - this.particles[j].x;
+          const dy = this.particles[i].y - this.particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < connectionDistance) {
+            const opacity = 1 - distance / connectionDistance;
+            this.ctx.strokeStyle = `${particleColor}${Math.floor(opacity * 255).toString(16).padStart(2, '0')}`;
+            this.ctx.lineWidth = 0.5;
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+            this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+            this.ctx.stroke();
+          }
+        }
+      }
+    }
+
+    handleMouseInteraction() {
+      if (this.mouse.x !== null && this.mouse.y !== null) {
+        this.particles.forEach((particle) => {
+          const dx = this.mouse.x - particle.x;
+          const dy = this.mouse.y - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < this.mouse.radius) {
+            const force = (this.mouse.radius - distance) / this.mouse.radius;
+            const angle = Math.atan2(dy, dx);
+            particle.vx -= Math.cos(angle) * force * 0.2;
+            particle.vy -= Math.sin(angle) * force * 0.2;
+          }
+        });
+      }
+    }
+
+    animate() {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      this.particles.forEach((particle) => {
+        particle.update();
+        particle.draw(this.ctx);
+      });
+
+      this.connectParticles();
+      this.handleMouseInteraction();
+
+      requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  // Initialize particle system when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new ParticleSystem();
+    });
+  } else {
+    new ParticleSystem();
+  }
+})();</script>  <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>🖧 PK Pages</a></h2> <button class="mobile-menu-toggle" aria-label="Toggle menu" data-astro-cid-3ef6ksr2> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" data-astro-cid-3ef6ksr2> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-3ef6ksr2></path> </svg> </button> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <!-- <HeaderLink href="/blog">Blog</HeaderLink> --> <!-- <HeaderLink href="/about">About</HeaderLink> --> <a href="/projects" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Projects </a>  <a href="/note" class="active" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Notes </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/pk-kampanart" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to My's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="mailto:kumpanat.kawa@gmail.com" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Contact me via Email</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M20 18h-2V9.25L12 13L6 9.25V18H4V6h1.2l6.8 4.25L18.8 6H20m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://www.linkedin.com/in/kampanart-kawachakul-26656220a/" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>My LinkedIn</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-3ef6ksr2><path fill="currentColor" fill-rule="evenodd" d="M5 1a4 4 0 0 0-4 4v14a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4zm1.205 6.91a1.705 1.705 0 1 0 0-3.41a1.705 1.705 0 0 0 0 3.41M7.909 19.5V9.273H4.5V19.5h3.41Zm4.432-10.227H9.273V19.5h3.068v-6.17c.395-.642 1.077-1.33 2.045-1.33c1.364 0 1.705 1.364 1.705 2.046V19.5H19.5v-5.454c0-1.828-.797-4.773-3.75-4.773c-1.878 0-2.92.685-3.41 1.327z" clip-rule="evenodd" data-astro-cid-3ef6ksr2></path></svg></a> <a class="localization-button" href="th" data-astro-cid-3ef6ksr2>
+🇹🇭
+</a> </div> </nav> </header> <script type="module">const e=document.querySelector(".mobile-menu-toggle"),o=document.querySelector("nav");e?.addEventListener("click",()=>{o?.classList.toggle("mobile-menu-open")});</script>  <main> <div class="note-card" id="note-card-20220518t193122--linux-virtualization-environment"> <!-- prettier-ignore --> <button class="close-btn" onclick="this.closest('div').remove();">&times;</button> <hr>
+<h2 id="title-linux-virtualization-environmentid-20220518t193122date-2022-05-18-193122-07tags">title: Linux Virtualization Environment
+id: 20220518T193122
+date: 2022-05-18 19:31:22 +07
+tags:</h2>
+<h1 id="linux-virtualization-environment">Linux Virtualization Environment</h1>
+<p>After almost 3 months of living in Linux, I decide to create my virtual machine workflow that not VirtualBox like the old Windows time.</p>
+<h2 id="libvirt">libvirt</h2>
+<p>to use <code>libvirt</code> to manage <code>qemu/kvm</code>, install and start this servies.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">pacman</span><span style="color:#79B8FF"> -S</span><span style="color:#9ECBFF"> libvirt</span><span style="color:#9ECBFF"> virt-manager</span><span style="color:#9ECBFF"> qemu-base</span><span style="color:#9ECBFF"> iptables-nft</span><span style="color:#9ECBFF"> dnsmasq</span><span style="color:#9ECBFF"> dmidecode</span><span style="color:#9ECBFF"> bridge-utils</span><span style="color:#9ECBFF"> openbsd-netcat</span></span>
+<span class="line"><span style="color:#B392F0">systemctl</span><span style="color:#9ECBFF"> start</span><span style="color:#9ECBFF"> libvirtd.service</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">systemctl</span><span style="color:#9ECBFF"> start</span><span style="color:#9ECBFF"> libvirtd.service</span></span></code></pre>
+<h2 id="docker">Docker</h2>
+<p>install docker to manage container.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">systemctl</span><span style="color:#9ECBFF"> start</span><span style="color:#9ECBFF"> docker.service</span><span style="color:#E1E4E8"> &#x26;&#x26; </span><span style="color:#B392F0">systemctl</span><span style="color:#9ECBFF"> start</span><span style="color:#9ECBFF"> docker.service</span></span>
+<span class="line"><span style="color:#B392F0">usermod</span><span style="color:#79B8FF"> -aG</span><span style="color:#9ECBFF"> docker</span><span style="color:#9ECBFF"> USER</span><span style="color:#6A737D"> # for run docker without root permission</span></span></code></pre>
+<h1 id="vagrant">Vagrant</h1>
+<p>install binary.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">pacman</span><span style="color:#79B8FF"> -S</span><span style="color:#9ECBFF"> vagrant</span></span>
+<span class="line"><span style="color:#6A737D"># and install libvirt plugin</span></span>
+<span class="line"><span style="color:#B392F0">vagrant</span><span style="color:#9ECBFF"> plugin</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> vagrant-libvirt</span></span></code></pre>
+<p>or use docker like in <a href="https://github.com/vagrant-libvirt/vagrant-libvirt#using-docker" target="_blank" rel="noopener noreferrer">https://github.com/vagrant-libvirt/vagrant-libvirt#using-docker</a>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">docker</span><span style="color:#9ECBFF"> pull</span><span style="color:#9ECBFF"> vagrantlibvirt/vagrant-libvirt:latest</span></span></code></pre>
+<p>and run <code>vagrant</code> by define this in profile.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">vagrant</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#B392F0">  docker</span><span style="color:#9ECBFF"> run</span><span style="color:#79B8FF"> -i</span><span style="color:#79B8FF"> --rm</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    -e</span><span style="color:#9ECBFF"> LIBVIRT_DEFAULT_URI</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    -v</span><span style="color:#9ECBFF"> /var/run/libvirt/:/var/run/libvirt/</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    -v</span><span style="color:#9ECBFF"> ~/.vagrant.d:/.vagrant.d</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">    -v</span><span style="color:#E1E4E8"> $(</span><span style="color:#B392F0">realpath</span><span style="color:#9ECBFF"> "${</span><span style="color:#E1E4E8">PWD</span><span style="color:#9ECBFF">}"</span><span style="color:#E1E4E8">)</span><span style="color:#9ECBFF">:</span><span style="color:#E1E4E8">${PWD} </span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#79B8FF">    -w</span><span style="color:#E1E4E8"> $(</span><span style="color:#B392F0">realpath</span><span style="color:#9ECBFF"> "${</span><span style="color:#E1E4E8">PWD</span><span style="color:#9ECBFF">}"</span><span style="color:#E1E4E8">) </span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#79B8FF">    --network</span><span style="color:#9ECBFF"> host</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#9ECBFF">    vagrantlibvirt/vagrant-libvirt:latest</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#9ECBFF">      vagrant</span><span style="color:#FFAB70"> $@</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="vagrantfile"><code>Vagrantfile</code></h2>
+<p>Example of <code>Vagrantfile</code> that create multiple virtual machine.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ruby"><code><span class="line"><span style="color:#79B8FF">Vagrant</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">require_version</span><span style="color:#9ECBFF"> ">= 2.2.19"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"&#x3C; 2.3.0"</span></span>
+<span class="line"><span style="color:#79B8FF">Vagrant</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">configure</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"2"</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">do</span><span style="color:#E1E4E8"> |config|</span></span>
+<span class="line"><span style="color:#E1E4E8">  config.</span><span style="color:#B392F0">vagrant</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">plugins</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "vagrant-libvirt"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  # disable default</span></span>
+<span class="line"><span style="color:#E1E4E8">  config.</span><span style="color:#B392F0">vm</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">synced_folder</span><span style="color:#9ECBFF"> "."</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"/vagrant"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">disabled:</span><span style="color:#79B8FF"> true</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">  N</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 3</span></span>
+<span class="line"><span style="color:#E1E4E8">  (</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">..</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">each</span><span style="color:#F97583"> do</span><span style="color:#E1E4E8"> |i|</span></span>
+<span class="line"><span style="color:#E1E4E8">    config.</span><span style="color:#B392F0">vm</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">define</span><span style="color:#9ECBFF"> "rpi</span><span style="color:#9ECBFF">#{i}</span><span style="color:#9ECBFF">"</span><span style="color:#F97583"> do</span><span style="color:#E1E4E8"> |node|</span></span>
+<span class="line"><span style="color:#E1E4E8">      node.</span><span style="color:#B392F0">vm</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">box</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "debian/bullseye64"</span></span>
+<span class="line"><span style="color:#E1E4E8">      node.</span><span style="color:#B392F0">vm</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">hostname</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "rpi</span><span style="color:#9ECBFF">#{i}</span><span style="color:#9ECBFF">.local"</span></span>
+<span class="line"><span style="color:#FFAB70">      node_ip</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "192.168.2.</span><span style="color:#9ECBFF">#{</span><span style="color:#79B8FF">10</span><span style="color:#F97583">+</span><span style="color:#9ECBFF">i}</span><span style="color:#9ECBFF">"</span></span>
+<span class="line"><span style="color:#E1E4E8">      node.</span><span style="color:#B392F0">vm</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">network</span><span style="color:#79B8FF"> :private_network</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">ip:</span><span style="color:#E1E4E8"> node_ip, </span><span style="color:#79B8FF">hostname:</span><span style="color:#79B8FF"> true</span></span>
+<span class="line"><span style="color:#6A737D">      # node.ssh.host = node_ip</span></span>
+<span class="line"><span style="color:#6A737D">      # node.vm.provision "file", source: "keys/.ssh/vagrant_key.pub", destination: "~/.ssh/authorized_keys"</span></span>
+<span class="line"><span style="color:#6A737D">      # node.ssh.insert_key = false</span></span>
+<span class="line"><span style="color:#6A737D">      # node.ssh.private_key_path = "keys/.ssh/vagrant_key"</span></span>
+<span class="line"><span style="color:#E1E4E8">      node.</span><span style="color:#B392F0">vm</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">provider</span><span style="color:#79B8FF"> :libvirt</span><span style="color:#F97583"> do</span><span style="color:#E1E4E8"> |virt|</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#E1E4E8">          virt.</span><span style="color:#B392F0">memory</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 1024</span></span>
+<span class="line"><span style="color:#F97583">        else</span></span>
+<span class="line"><span style="color:#E1E4E8">          virt.</span><span style="color:#B392F0">memory</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 512</span></span>
+<span class="line"><span style="color:#F97583">        end</span></span>
+<span class="line"><span style="color:#E1E4E8">        virt.</span><span style="color:#B392F0">cpus</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#F97583">      end</span></span>
+<span class="line"><span style="color:#F97583">    end</span></span>
+<span class="line"><span style="color:#F97583">  end</span></span>
+<span class="line"><span style="color:#F97583">end</span></span></code></pre>
+<p>To use custome ssh-keypair create ssh keys in folder <code>keys/.ssh</code>, My key’s name is <em>vagrant_key</em></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">ssh-keygen</span><span style="color:#79B8FF"> -C</span><span style="color:#9ECBFF"> "vagrant"</span></span></code></pre>
+<p>and add this config to <code>Vagrantfile</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ruby"><code><span class="line"><span style="color:#E1E4E8">      node.</span><span style="color:#B392F0">ssh</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">host</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> node_ip</span></span>
+<span class="line"><span style="color:#E1E4E8">      node.</span><span style="color:#B392F0">vm</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">provision</span><span style="color:#9ECBFF"> "file"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">source:</span><span style="color:#9ECBFF"> "keys/.ssh/vagrant_key.pub"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">destination:</span><span style="color:#9ECBFF"> "~/.ssh/authorized_keys"</span></span>
+<span class="line"><span style="color:#E1E4E8">      node.</span><span style="color:#B392F0">ssh</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">insert_key</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span></span>
+<span class="line"><span style="color:#E1E4E8">      node.</span><span style="color:#B392F0">ssh</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">private_key_path</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "keys/.ssh/vagrant_key"</span></span></code></pre>
+<h1 id="packer">Packer</h1>
+<p>use Packer to create immutable images</p>
+<h1 id="cloud-init">Cloud-init</h1>
+<h1 id="references">References</h1>
+<p><a href="https://wiki.archlinux.org/title/Libvirt" target="_blank" rel="noopener noreferrer">https://wiki.archlinux.org/title/Libvirt</a></p> </div> <br> <div class="links"> <h3>Internal Links</h3> <ul> <li>No internal links</li> </ul> </div> <div class="backlinks"> <h3>Backlinks</h3> <ul> <li>No backlinks</li> </ul> </div> </main> <footer data-astro-cid-sz7xmlte> <div class="footer-content" data-astro-cid-sz7xmlte> <div class="social-links" data-astro-cid-sz7xmlte> <a href="https://github.com/pk-kampanart" target="_blank" aria-label="GitHub" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to My's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="mailto:kumpanat.kawa@gmail.com" target="_blank" aria-label="Email" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Contact me via Email</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-sz7xmlte><path fill="currentColor" d="M20 18h-2V9.25L12 13L6 9.25V18H4V6h1.2l6.8 4.25L18.8 6H20m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://www.linkedin.com/in/kampanart-kawachakul-26656220a/" target="_blank" aria-label="LinkedIn" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>My LinkedIn</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-sz7xmlte><path fill="currentColor" fill-rule="evenodd" d="M5 1a4 4 0 0 0-4 4v14a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4zm1.205 6.91a1.705 1.705 0 1 0 0-3.41a1.705 1.705 0 0 0 0 3.41M7.909 19.5V9.273H4.5V19.5h3.41Zm4.432-10.227H9.273V19.5h3.068v-6.17c.395-.642 1.077-1.33 2.045-1.33c1.364 0 1.705 1.364 1.705 2.046V19.5H19.5v-5.454c0-1.828-.797-4.773-3.75-4.773c-1.878 0-2.92.685-3.41 1.327z" clip-rule="evenodd" data-astro-cid-sz7xmlte></path></svg></a> </div> <p class="copyright" data-astro-cid-sz7xmlte>&copy; 2026 Kampanart Kawachakul. All rights reserved.</p> </div> </footer>  </body></html>

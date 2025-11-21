@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="PK Pages" href="https://pk-kampanart.github.io/rss.xml"><meta name="generator" content="Astro v5.15.3"><!-- Canonical URL --><link rel="canonical" href="https://pk-kampanart.github.io/note/20240718t231300--arch-linux-installation-guide/"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><!-- Primary Meta Tags --><title>PK Pages</title><meta name="title" content="PK Pages"><meta name="description" content="Welcome to my website!"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://pk-kampanart.github.io/note/20240718t231300--arch-linux-installation-guide/"><meta property="og:title" content="PK Pages"><meta property="og:description" content="Welcome to my website!"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://pk-kampanart.github.io/note/20240718t231300--arch-linux-installation-guide/"><meta property="twitter:title" content="PK Pages"><meta property="twitter:description" content="Welcome to my website!"><script type="module">let n=null,p=null,u=null;const w=new Map;function g(){const e=document.createElement("div");return e.className="note-preview",document.body.appendChild(e),e}function m(e,t){const o=e.getBoundingClientRect(),i=t.getBoundingClientRect();let l=o.bottom+window.scrollY+8,r=o.left+window.scrollX;r+i.width>window.innerWidth&&(r=window.innerWidth-i.width-16),o.bottom+i.height>window.innerHeight&&(l=o.top+window.scrollY-i.height-8),t.style.top=`${l}px`,t.style.left=`${r}px`}async function L(e){if(w.has(e))return w.get(e);try{const o=await(await fetch(e)).text(),r=new DOMParser().parseFromString(o,"text/html").querySelector(".note-card");if(r){const h=r.querySelector(".close-btn");h&&h.remove();let c=r.innerHTML;const s=document.createElement("div");s.innerHTML=c;const a=s.querySelectorAll("p");if(a.length>3){for(let d=3;d<a.length;d++)a[d].remove();s.innerHTML+="<p>...</p>"}return c=s.innerHTML,w.set(e,c),c}}catch(t){return console.error("Failed to fetch preview:",t),'<p class="note-preview-loading">Failed to load preview</p>'}return'<p class="note-preview-loading">No preview available</p>'}function T(e){n||(n=g()),u=e;const t=e.getAttribute("href");!t||t.startsWith("http")||(n.innerHTML='<p class="note-preview-loading">Loading...</p>',n.classList.add("show"),m(e,n),L(t).then(o=>{u===e&&(n.innerHTML=o,m(e,n))}))}function v(){n&&(n.classList.remove("show"),u=null)}function f(){document.querySelectorAll(".note-internal-link").forEach(e=>{e.addEventListener("mouseenter",t=>{clearTimeout(p),p=setTimeout(()=>T(t.target),300)}),e.addEventListener("mouseleave",()=>{clearTimeout(p),v()})})}f();document.body.addEventListener("htmx:afterSwap",()=>{f(),setTimeout(()=>v(),300)});</script><script type="module" src="/_astro/BaseHead.astro_astro_type_script_index_1_lang.CHb5F0mE.js"></script><link rel="stylesheet" href="/_astro/index.DT9d6-GI.css">
+<style>a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}
+</style></head> <body> <canvas id="particle-canvas" data-astro-cid-qmqexpae></canvas> <script>(function(){const particleCount = 50;
+const particleColor = "#2337ff";
+const connectionDistance = 150;
+const particleSpeed = 0.5;
+
+  class Particle {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * particleSpeed;
+      this.vy = (Math.random() - 0.5) * particleSpeed;
+      this.radius = Math.random() * 2 + 1;
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Bounce off edges
+      if (this.x < 0 || this.x > this.canvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > this.canvas.height) this.vy *= -1;
+
+      // Keep within bounds
+      this.x = Math.max(0, Math.min(this.canvas.width, this.x));
+      this.y = Math.max(0, Math.min(this.canvas.height, this.y));
+    }
+
+    draw(ctx) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = particleColor;
+      ctx.fill();
+    }
+  }
+
+  class ParticleSystem {
+    constructor() {
+      this.canvas = document.getElementById('particle-canvas');
+      this.ctx = this.canvas.getContext('2d');
+      this.particles = [];
+      this.mouse = { x: null, y: null, radius: 150 };
+
+      this.init();
+      this.animate();
+      this.setupEventListeners();
+    }
+
+    init() {
+      this.resizeCanvas();
+      this.particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        this.particles.push(new Particle(this.canvas));
+      }
+    }
+
+    resizeCanvas() {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+    }
+
+    setupEventListeners() {
+      window.addEventListener('resize', () => {
+        this.resizeCanvas();
+        this.init();
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        this.mouse.x = e.x;
+        this.mouse.y = e.y;
+      });
+
+      window.addEventListener('mouseout', () => {
+        this.mouse.x = null;
+        this.mouse.y = null;
+      });
+    }
+
+    connectParticles() {
+      for (let i = 0; i < this.particles.length; i++) {
+        for (let j = i + 1; j < this.particles.length; j++) {
+          const dx = this.particles[i].x - this.particles[j].x;
+          const dy = this.particles[i].y - this.particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < connectionDistance) {
+            const opacity = 1 - distance / connectionDistance;
+            this.ctx.strokeStyle = `${particleColor}${Math.floor(opacity * 255).toString(16).padStart(2, '0')}`;
+            this.ctx.lineWidth = 0.5;
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+            this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+            this.ctx.stroke();
+          }
+        }
+      }
+    }
+
+    handleMouseInteraction() {
+      if (this.mouse.x !== null && this.mouse.y !== null) {
+        this.particles.forEach((particle) => {
+          const dx = this.mouse.x - particle.x;
+          const dy = this.mouse.y - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < this.mouse.radius) {
+            const force = (this.mouse.radius - distance) / this.mouse.radius;
+            const angle = Math.atan2(dy, dx);
+            particle.vx -= Math.cos(angle) * force * 0.2;
+            particle.vy -= Math.sin(angle) * force * 0.2;
+          }
+        });
+      }
+    }
+
+    animate() {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      this.particles.forEach((particle) => {
+        particle.update();
+        particle.draw(this.ctx);
+      });
+
+      this.connectParticles();
+      this.handleMouseInteraction();
+
+      requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  // Initialize particle system when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new ParticleSystem();
+    });
+  } else {
+    new ParticleSystem();
+  }
+})();</script>  <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>🖧 PK Pages</a></h2> <button class="mobile-menu-toggle" aria-label="Toggle menu" data-astro-cid-3ef6ksr2> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" data-astro-cid-3ef6ksr2> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-3ef6ksr2></path> </svg> </button> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <!-- <HeaderLink href="/blog">Blog</HeaderLink> --> <!-- <HeaderLink href="/about">About</HeaderLink> --> <a href="/projects" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Projects </a>  <a href="/note" class="active" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Notes </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/pk-kampanart" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to My's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="mailto:kumpanat.kawa@gmail.com" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Contact me via Email</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M20 18h-2V9.25L12 13L6 9.25V18H4V6h1.2l6.8 4.25L18.8 6H20m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://www.linkedin.com/in/kampanart-kawachakul-26656220a/" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>My LinkedIn</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-3ef6ksr2><path fill="currentColor" fill-rule="evenodd" d="M5 1a4 4 0 0 0-4 4v14a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4zm1.205 6.91a1.705 1.705 0 1 0 0-3.41a1.705 1.705 0 0 0 0 3.41M7.909 19.5V9.273H4.5V19.5h3.41Zm4.432-10.227H9.273V19.5h3.068v-6.17c.395-.642 1.077-1.33 2.045-1.33c1.364 0 1.705 1.364 1.705 2.046V19.5H19.5v-5.454c0-1.828-.797-4.773-3.75-4.773c-1.878 0-2.92.685-3.41 1.327z" clip-rule="evenodd" data-astro-cid-3ef6ksr2></path></svg></a> <a class="localization-button" href="th" data-astro-cid-3ef6ksr2>
+🇹🇭
+</a> </div> </nav> </header> <script type="module">const e=document.querySelector(".mobile-menu-toggle"),o=document.querySelector("nav");e?.addEventListener("click",()=>{o?.classList.toggle("mobile-menu-open")});</script>  <main> <div class="note-card" id="note-card-20240718t231300--arch-linux-installation-guide"> <!-- prettier-ignore --> <button class="close-btn" onclick="this.closest('div').remove();">&times;</button> <h1 id="create-arch-laptop">Create Arch Laptop</h1>
+<h2 id="partitions">Partitions</h2>
+<ul>
+<li>
+<p><a href="https://wiki.archlinux.org/title/EFI_system_partition#Mount_the_partition" target="_blank" rel="noopener noreferrer">EFI<sub>system</sub><sub>partition</sub>#Mount<sub>the</sub><sub>partition</sub></a></p>
+<p>Device           Start       End   Sectors  Size Type
+/dev/nvme0n1p1    2048      4095      2048    1M BIOS boot
+/dev/nvme0n1p2    4096   2101247   2097152    1G EFI System
+/dev/nvme0n1p3 2101248 935333887 933232640  445G Linux filesystem</p>
+</li>
+</ul>
+<h2 id="encrytion">Encrytion</h2>
+<ul>
+<li>
+<p><a href="https://wiki.archlinux.org/title/Data-at-rest_encryption" target="_blank" rel="noopener noreferrer">Data-at-rest encryption - ArchWiki</a></p>
+</li>
+<li>
+<p><a href="https://wiki.archlinux.org/title/Dm-crypt" target="_blank" rel="noopener noreferrer">dm-crypt - ArchWiki</a></p>
+</li>
+<li>
+<p><a href="https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS" target="_blank" rel="noopener noreferrer">dm-crypt/Encrypting an entire system#LVM<sub>on</sub><sub>LUKS</sub> - ArchWiki</a></p>
+<h1 id="cryptsetup-luksformat-devnvme0n1p3">cryptsetup luksFormat /dev/nvme0n1p3</h1>
+<h1 id="cryptsetup-open-devnvme0n1p3-cryptroot">cryptsetup open /dev/nvme0n1p3 cryptroot</h1>
+</li>
+</ul>
+<p>Now decrypted partition mount to /dev/mapper/cryptroot</p>
+<h2 id="lvm">LVM</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># pvcreate /dev/mapper/cryptroot     # create phisical volume</span></span>
+<span class="line"><span># vgcreate vg0 /dev/mapper/cryptroot # create volume group</span></span>
+<span class="line"><span># lvcreate -L 20G vg0 -n swap        # create logical volumes</span></span>
+<span class="line"><span># lvcreate -L 40G vg0 -n root</span></span>
+<span class="line"><span># lvcreate -l 100%FREE vg0 -n data</span></span>
+<span class="line"><span># lsblk</span></span>
+<span class="line"><span>NAME           MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS</span></span>
+<span class="line"><span>nvme0n1        259:0    0 465.8G  0 disk</span></span>
+<span class="line"><span>├─nvme0n1p1    259:1    0     1M  0 part</span></span>
+<span class="line"><span>├─nvme0n1p2    259:2    0     1G  0 part</span></span>
+<span class="line"><span>└─nvme0n1p3    259:3    0   445G  0 part</span></span>
+<span class="line"><span>  └─cryptroot  254:1    0   445G  0 crypt</span></span>
+<span class="line"><span>    ├─vg0-swap 254:2    0    20G  0 lvm</span></span>
+<span class="line"><span>    ├─vg0-root 254:3    0    40G  0 lvm</span></span>
+<span class="line"><span>    └─vg0-data 254:4    0   385G  0 lvm</span></span></code></pre>
+<blockquote>
+<p>[!TIP] use <code>pvs</code>, <code>vgs</code>, <code>lvs</code>, <code>pvdisplay</code>, <code>vgdisplay</code>, <code>lvdisplay</code> to
+check LVM status</p>
+</blockquote>
+<blockquote>
+<p>[!NOTE] I intend to hibernate my laptop - According to
+<a href="https://itsfoss.com/swap-size/" target="_blank" rel="noopener noreferrer">How Much Swap Should You Use in Linux?</a>, We have 16GB ram so we should
+use 20 GB(for hibernation) swap
+size.</p>
+</blockquote>
+<h2 id="filesystem">Filesystem</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># mkfs.ext4 /dev/vg0/root</span></span>
+<span class="line"><span># mkfs.btrfs /dev/vg0/data</span></span>
+<span class="line"><span># mkfswap /dev/vg0/swap</span></span></code></pre>
+<blockquote>
+<p>[!NOTE] <strong>Btrfs</strong> - copy reflink: the mechanic to copy file efficiently,
+the change happen to the copies will not impact the original.</p>
+<p><strong>See also</strong>:</p>
+<ul>
+<li><a href="https://dev.to/robogeek/reflinks-vs-symlinks-vs-hard-links-and-how-they-can-help-machine-learning-projects-1cj4#Conclusion" target="_blank" rel="noopener noreferrer">Reflinks vs symlinks vs hard links, and how they can help machine learning projects - DEV Community</a></li>
+<li><strong>Should we use btrfs on LVM?:</strong> <a href="https://unix.stackexchange.com/questions/254286/does-it-make-sense-to-put-btrfs-on-lvm" target="_blank" rel="noopener noreferrer">linux - Does it make sense to put btrfs on lvm? - Unix &#x26; Linux Stack Exchange</a></li>
+</ul>
+</blockquote>
+<h2 id="mount">Mount</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># mount --mkdir /dev/vg0/root /mnt/root</span></span>
+<span class="line"><span># mount --mkdir /dev/vg0/data /mnt/root/data</span></span>
+<span class="line"><span># btrfs subvolume create /mnt/root/data/home</span></span>
+<span class="line"><span># btrfs subvolume create /mnt/root/data/var</span></span>
+<span class="line"><span># mount --bind --mkdir /mnt/root/data/home /mnt/root/home</span></span>
+<span class="line"><span># mount --bind --mkdir /mnt/root/data/var /mnt/root/var</span></span>
+<span class="line"><span># lsblk</span></span>
+<span class="line"><span>NAME           MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS</span></span>
+<span class="line"><span>loop0            7:0    0 682.6M  1 loop  /run/archiso/airootfs</span></span>
+<span class="line"><span>sdb              8:16   1 114.6G  0 disk</span></span>
+<span class="line"><span>nvme0n1        259:0    0 465.8G  0 disk</span></span>
+<span class="line"><span>├─nvme0n1p1    259:1    0     1M  0 part</span></span>
+<span class="line"><span>├─nvme0n1p2    259:2    0     1G  0 part</span></span>
+<span class="line"><span>└─nvme0n1p3    259:3    0   445G  0 part</span></span>
+<span class="line"><span>  └─cryptroot  254:1    0   445G  0 crypt</span></span>
+<span class="line"><span>    ├─vg0-swap 254:2    0    20G  0 lvm</span></span>
+<span class="line"><span>    ├─vg0-root 254:3    0    40G  0 lvm   /mnt/root</span></span>
+<span class="line"><span>    └─vg0-data 254:4    0   385G  0 lvm   /mnt/root/var</span></span>
+<span class="line"><span>                                          /mnt/root/home</span></span>
+<span class="line"><span>                                          /mnt/root/data</span></span></code></pre>
+<blockquote>
+<p>[!TIP] <code>btrfs subvolume list /mnt/root/data</code></p>
+</blockquote>
+<h2 id="boot">Boot</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># mkfs.fat -F32 /dev/nvme0n1p2</span></span>
+<span class="line"><span># mount --mkdir /dev/nvme0n1p2 /mnt/root/efi</span></span></code></pre>
+<blockquote>
+<p>[!WARNING] GRUB has limited support for LUKS2 setup
+<code>cryptsetup luksFormat --type luks1 /dev/nvme0n1p3</code> or convert exist
+encrypted drive.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cryptsetup luksConvertKey --pbkdf pbkdf2 /dev/nvme0n1p3</span></span>
+<span class="line"><span>cryptsetup convert --type luks1 /dev/nvme0n1p3</span></span></code></pre>
+</blockquote>
+<blockquote>
+<p>[!NOTE] <strong>MBR</strong> - old(also know as DOS-partitions) <strong>GPT</strong> - More widespread
+(window must install into <code>/boot/EFI/Microsoft/</code>) Soure:
+<a href="https://wiki.gentoo.org/wiki/Partition" target="_blank" rel="noopener noreferrer">Partition - Gentoo wiki</a></p>
+</blockquote>
+<ul>
+<li>Encrypt boot partition(whole disk) with <code>ssh</code>?</li>
+</ul>
+<h2 id="install-packages">Install Packages</h2>
+<ul>
+<li>
+<p>Install Base linux:</p>
+<h1 id="reflector--a-6--n-20-sort-score--c-thailand-save-etcpacmandmirrorlist">reflector -a 6 -n 20 —sort score -c Thailand —save /etc/pacman.d/mirrorlist</h1>
+<h1 id="pacman--sy-archlinux-keyring">pacman -Sy archlinux-keyring</h1>
+<h1 id="pacstrap--k-mntroot-base-linux-linux-firmware">pacstrap -K /mnt/root base linux linux-firmware`</h1>
+<h1 id="arch-chroot-mntroot">arch-chroot /mnt/root</h1>
+</li>
+</ul>
+<blockquote>
+<p>[!NOTE] for Zen kernel replace <code>linux</code> with <code>linux-zen</code></p>
+</blockquote>
+<ul>
+<li>
+<p>Install <code>/etc</code> version control: > [!NOTE] > <code>/etc/hostname</code> file must
+created before this step</p>
+<h1 id="pacman--s-etckeeper">pacman -S etckeeper</h1>
+<h1 id="cd-etc">cd /etc</h1>
+<h1 id="etckeeper-init">etckeeper init</h1>
+<h1 id="etckeeper-commit-first-commit">etckeeper commit “first commit”</h1>
+</li>
+<li>
+<p>Install essential packages</p>
+<h1 id="pacman--s-lvm2-btrfs-progs-intel-ucode-grub-efibootmgr">pacman -S lvm2 btrfs-progs intel-ucode grub efibootmgr</h1>
+</li>
+</ul>
+<h2 id="system-config">System config</h2>
+<h3 id="timezone">Timezone</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># ln -sf /usr/share/zoneinfo/Region/City /etc/localtime</span></span>
+<span class="line"><span># hwclock --systohc</span></span></code></pre>
+<h3 id="locale">Locale</h3>
+<p>Make programs aware of language. Uncomment <code>en_US.UTF-8 UTF-8</code> in
+<code>/etc/locale.gen</code> file, and run</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># locale-gen</span></span></code></pre>
+<p>Set Environment variable <code>LANG</code> by create file <code>/etc/locale.conf</code></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>LANG=en_US.UTF-8</span></span></code></pre>
+<h2 id="mkinitcpio">Mkinitcpio</h2>
+<ul>
+<li>
+<p>Edit <code>mkinitcpio.conf</code>.</p>
+<p>HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems fsck)</p>
+</li>
+<li>
+<p>Regenerate initramfs</p>
+<h1 id="mkinitcpio--p">mkinitcpio -P</h1>
+</li>
+</ul>
+<h2 id="grub">GRUB</h2>
+<ul>
+<li>
+<p>Install grub</p>
+<p>genfstab -U / > /etc/fstab
+grub-install —target=x86_64-efi —efi-directory=/boot —bootloader-id=GRUB —recheck
+grub-install —target=i386-pc —recheck /dev/nvme0n1</p>
+</li>
+<li>
+<p>Set <a href="https://wiki.archlinux.org/title/Kernel_parameters#GRUB" target="_blank" rel="noopener noreferrer">Kernel parameters</a> in <code>/etc/default/grub</code></p>
+<p>cryptdevice=UUID=<device-uuid>:cryptlvm root=/dev/MyVolGroup/root</device-uuid></p>
+</li>
+</ul>
+<p>when <code>&#x3C;device-UUID></code> is LUKS partision UUID</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>grub-mkconfig -o /boot/grub/grub.cfg</span></span></code></pre>
+<h1 id="post-installed">Post-Installed</h1>
+<ul>
+<li>
+<p>Install remote connect packages</p>
+<h1 id="pacman--s-networkmanager-openssh">pacman -S networkmanager openssh</h1>
+</li>
+<li>
+<p>Install utilities packages</p>
+<h1 id="pacman--s-doas-man-db-neovim">pacman -S doas man-db neovim</h1>
+</li>
+</ul>
+<h2 id="dm-crypt-remote-unlock"><a href="https://wiki.archlinux.org/title/Dm-crypt/Specialties#Remote_unlocking_of_root_(or_other)_partition" target="_blank" rel="noopener noreferrer">Dm-crypt Remote unlock</a></h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># pacman -S mkinitcpio-dropbear mkinitcpio-utils mkinitcpio-netconf</span></span></code></pre>
+<ul>
+<li>In file <code>/etc/mkinitcpio.conf</code> add hooks <code>netconf dropbear encryptssh</code>
+before <code>filesystem</code> hook, note that <code>encryptssh</code> is replace <code>encrypt</code>.</li>
+<li>Add kernel parameters in bootloader config <code>ip=dhcp</code>; optional
+<code>netconf_timeout=</code></li>
+<li>Reboot and ssh into it as <code>root</code> user.</li>
+</ul>
+<h2 id="graphic">Graphic</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># pacman -S xf86-video-intel mesa nvtop nvidia nvidia-utils xorg-server xorg-xinit bspwm sxhkd picom stow wezterm tmux polybar feh</span></span>
+<span class="line"><span># # for AUR</span></span>
+<span class="line"><span># pacman -S base-devel</span></span>
+<span class="line"><span># # edit /etc/sudoers</span></span>
+<span class="line"><span># git clone https://aur.archlinux.org/paru-bin.git</span></span>
+<span class="line"><span># cd paru &#x26;&#x26; makepkg -si</span></span>
+<span class="line"><span># paru -S optimus-manager</span></span></code></pre>
+<blockquote>
+<p>[!NOTE] <code>linux-zen</code> kernel use <code>nvidia-dkms</code> instead of <code>nvidia</code> and
+install <code>linux-zen-headers</code> too > [!NOTE] > <code>dkms</code>: Dynamic Kernel
+Module Support – it need <code>linux-headers=(or in this case =linux-zen-headers</code>) to install > kernel modules > > [!NOTE] > > After
+this step my nvidia gpu start it fans aggressively :-) > >
+<a href="https://www.reddit.com/r/archlinux/comments/ta4ndk/linuxzen_did_the_nvidia_modules_get_removed_from/" target="_blank" rel="noopener noreferrer">(linux-zen) Did the nvidia modules get removed from the Zen kernel? : r/archlinux</a>
+[!NOTE] I change <code>optimus-manager</code> to <code>envycontrol</code></p>
+</blockquote>
+<h3 id="hardware-acceleration">Hardware Acceleration</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># pacman -S ffmpeg mpv yt-dlp</span></span>
+<span class="line"><span>$ mpv --hwdec=auto '&#x3C;youtube-link>' # for testing</span></span></code></pre>
+<h3 id="gpu-power-management">GPU Power management</h3>
+<ul>
+<li><a href="https://github.com/Askannz/optimus-manager/wiki/A-guide--to-power-management-options" target="_blank" rel="noopener noreferrer">A guide to power management options · Askannz/optimus-manager Wiki · GitHub</a></li>
+<li><a href="https://github.com/bayasdev/envycontrol/wiki/Frequently-Asked-Questions" target="_blank" rel="noopener noreferrer">Frequently Asked Questions · bayasdev/envycontrol Wiki · GitHub</a></li>
+</ul>
+<h2 id="power-management">Power management</h2>
+<h2 id="audio">Audio</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># pacman -S pipewire pipewire-audio pipewire-pulse wireplumber</span></span>
+<span class="line"><span>$ systemctl enable --now --user pipewire-pulse.service</span></span></code></pre>
+<h2 id="disk-improvement">Disk Improvement</h2>
+<h3 id="btrfs-compression">Btrfs compression</h3>
+<ul class="contains-task-list">
+<li>Reduce write amplifications</li>
+<li>Example directory to compress:
+<code>/usr, /var/lib/flatpak, ~/.local/share/flatpak</code></li>
+<li>command: <code>chattr -R +c /dir</code> or
+<code>btrfs property set /dir commpression zstd</code> to specify algorithm</li>
+<li>force existing directory to compress right away:
+<code>btrfs filesystem defragmentation -r -f -c zstd /dir</code></li>
+<li>Defragmentation(<code>autodefrag</code>)</li>
+<li>TRIM/discard
+<ul>
+<li>Use periodic trim (fstrim) over continuous trim (mount options
+<code>discard[=async]</code>)</li>
+<li><code>systemctl enable --now fstrim.timer</code>: run <code>fstrim</code> every weeks</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> Deduplication</li>
+</ul>
+<h2 id="virtualisation">Virtualisation</h2>
+<ul>
+<li>minimal qemu setup packages
+<ul>
+<li><code>qemu-base</code>: contain <code>qemu-image</code>, x86 and i386 qemu system version</li>
+<li><code>qemu-ui-curses</code>: use <code>-display curses</code> to qemu in terminal</li>
+<li><code>qemu-ui-spice-app</code> and <code>virt-viewer=/=spice-gtk</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="containerlisation">Containerlisation</h2>
+<ul>
+<li><code>podman</code> and <code>distrobox</code></li>
+<li>On create shared image store:
+<a href="https://www.redhat.com/sysadmin/image-stores-podman" target="_blank" rel="noopener noreferrer">Exploring additional image stores in Podman | Enable Sysadmin</a></li>
+</ul>
+<h2 id="keyboard-utilities">Keyboard utilities</h2>
+<h2 id="software-debouncing">Software debouncing</h2>
+<ul>
+<li><a href="https://github.com/finkrer/KeyboardChatteringFix-Linux?tab=readme-ov-file" target="_blank" rel="noopener noreferrer">GitHub - finkrer/KeyboardChatteringFix-Linux: A tool for blocking mechanical keyboard chattering on Linux</a></li>
+<li>Use <code>libevdev</code> python binding (need <code>python-libevdev</code>) to capture
+filter keyboard and output result via <code>/dev/uinput</code></li>
+</ul> </div> <br> <div class="links"> <h3>Internal Links</h3> <ul> <li>No internal links</li> </ul> </div> <div class="backlinks"> <h3>Backlinks</h3> <ul> <li> <a class="note-internal-link" href="/note/20250105t200725--arch-linux"> arch-linux </a> </li> </ul> </div> </main> <footer data-astro-cid-sz7xmlte> <div class="footer-content" data-astro-cid-sz7xmlte> <div class="social-links" data-astro-cid-sz7xmlte> <a href="https://github.com/pk-kampanart" target="_blank" aria-label="GitHub" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to My's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="mailto:kumpanat.kawa@gmail.com" target="_blank" aria-label="Email" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Contact me via Email</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-sz7xmlte><path fill="currentColor" d="M20 18h-2V9.25L12 13L6 9.25V18H4V6h1.2l6.8 4.25L18.8 6H20m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://www.linkedin.com/in/kampanart-kawachakul-26656220a/" target="_blank" aria-label="LinkedIn" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>My LinkedIn</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-sz7xmlte><path fill="currentColor" fill-rule="evenodd" d="M5 1a4 4 0 0 0-4 4v14a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4zm1.205 6.91a1.705 1.705 0 1 0 0-3.41a1.705 1.705 0 0 0 0 3.41M7.909 19.5V9.273H4.5V19.5h3.41Zm4.432-10.227H9.273V19.5h3.068v-6.17c.395-.642 1.077-1.33 2.045-1.33c1.364 0 1.705 1.364 1.705 2.046V19.5H19.5v-5.454c0-1.828-.797-4.773-3.75-4.773c-1.878 0-2.92.685-3.41 1.327z" clip-rule="evenodd" data-astro-cid-sz7xmlte></path></svg></a> </div> <p class="copyright" data-astro-cid-sz7xmlte>&copy; 2026 Kampanart Kawachakul. All rights reserved.</p> </div> </footer>  </body></html>

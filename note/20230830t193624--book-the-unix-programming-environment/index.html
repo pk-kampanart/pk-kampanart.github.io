@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="PK Pages" href="https://pk-kampanart.github.io/rss.xml"><meta name="generator" content="Astro v5.15.3"><!-- Canonical URL --><link rel="canonical" href="https://pk-kampanart.github.io/note/20230830t193624--book-the-unix-programming-environment/"><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><!-- Primary Meta Tags --><title>PK Pages</title><meta name="title" content="PK Pages"><meta name="description" content="Welcome to my website!"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://pk-kampanart.github.io/note/20230830t193624--book-the-unix-programming-environment/"><meta property="og:title" content="PK Pages"><meta property="og:description" content="Welcome to my website!"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://pk-kampanart.github.io/note/20230830t193624--book-the-unix-programming-environment/"><meta property="twitter:title" content="PK Pages"><meta property="twitter:description" content="Welcome to my website!"><script type="module">let n=null,p=null,u=null;const w=new Map;function g(){const e=document.createElement("div");return e.className="note-preview",document.body.appendChild(e),e}function m(e,t){const o=e.getBoundingClientRect(),i=t.getBoundingClientRect();let l=o.bottom+window.scrollY+8,r=o.left+window.scrollX;r+i.width>window.innerWidth&&(r=window.innerWidth-i.width-16),o.bottom+i.height>window.innerHeight&&(l=o.top+window.scrollY-i.height-8),t.style.top=`${l}px`,t.style.left=`${r}px`}async function L(e){if(w.has(e))return w.get(e);try{const o=await(await fetch(e)).text(),r=new DOMParser().parseFromString(o,"text/html").querySelector(".note-card");if(r){const h=r.querySelector(".close-btn");h&&h.remove();let c=r.innerHTML;const s=document.createElement("div");s.innerHTML=c;const a=s.querySelectorAll("p");if(a.length>3){for(let d=3;d<a.length;d++)a[d].remove();s.innerHTML+="<p>...</p>"}return c=s.innerHTML,w.set(e,c),c}}catch(t){return console.error("Failed to fetch preview:",t),'<p class="note-preview-loading">Failed to load preview</p>'}return'<p class="note-preview-loading">No preview available</p>'}function T(e){n||(n=g()),u=e;const t=e.getAttribute("href");!t||t.startsWith("http")||(n.innerHTML='<p class="note-preview-loading">Loading...</p>',n.classList.add("show"),m(e,n),L(t).then(o=>{u===e&&(n.innerHTML=o,m(e,n))}))}function v(){n&&(n.classList.remove("show"),u=null)}function f(){document.querySelectorAll(".note-internal-link").forEach(e=>{e.addEventListener("mouseenter",t=>{clearTimeout(p),p=setTimeout(()=>T(t.target),300)}),e.addEventListener("mouseleave",()=>{clearTimeout(p),v()})})}f();document.body.addEventListener("htmx:afterSwap",()=>{f(),setTimeout(()=>v(),300)});</script><script type="module" src="/_astro/BaseHead.astro_astro_type_script_index_1_lang.CHb5F0mE.js"></script><link rel="stylesheet" href="/_astro/index.DT9d6-GI.css">
+<style>a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}
+</style></head> <body> <canvas id="particle-canvas" data-astro-cid-qmqexpae></canvas> <script>(function(){const particleCount = 50;
+const particleColor = "#2337ff";
+const connectionDistance = 150;
+const particleSpeed = 0.5;
+
+  class Particle {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * particleSpeed;
+      this.vy = (Math.random() - 0.5) * particleSpeed;
+      this.radius = Math.random() * 2 + 1;
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Bounce off edges
+      if (this.x < 0 || this.x > this.canvas.width) this.vx *= -1;
+      if (this.y < 0 || this.y > this.canvas.height) this.vy *= -1;
+
+      // Keep within bounds
+      this.x = Math.max(0, Math.min(this.canvas.width, this.x));
+      this.y = Math.max(0, Math.min(this.canvas.height, this.y));
+    }
+
+    draw(ctx) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = particleColor;
+      ctx.fill();
+    }
+  }
+
+  class ParticleSystem {
+    constructor() {
+      this.canvas = document.getElementById('particle-canvas');
+      this.ctx = this.canvas.getContext('2d');
+      this.particles = [];
+      this.mouse = { x: null, y: null, radius: 150 };
+
+      this.init();
+      this.animate();
+      this.setupEventListeners();
+    }
+
+    init() {
+      this.resizeCanvas();
+      this.particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        this.particles.push(new Particle(this.canvas));
+      }
+    }
+
+    resizeCanvas() {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+    }
+
+    setupEventListeners() {
+      window.addEventListener('resize', () => {
+        this.resizeCanvas();
+        this.init();
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        this.mouse.x = e.x;
+        this.mouse.y = e.y;
+      });
+
+      window.addEventListener('mouseout', () => {
+        this.mouse.x = null;
+        this.mouse.y = null;
+      });
+    }
+
+    connectParticles() {
+      for (let i = 0; i < this.particles.length; i++) {
+        for (let j = i + 1; j < this.particles.length; j++) {
+          const dx = this.particles[i].x - this.particles[j].x;
+          const dy = this.particles[i].y - this.particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < connectionDistance) {
+            const opacity = 1 - distance / connectionDistance;
+            this.ctx.strokeStyle = `${particleColor}${Math.floor(opacity * 255).toString(16).padStart(2, '0')}`;
+            this.ctx.lineWidth = 0.5;
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+            this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+            this.ctx.stroke();
+          }
+        }
+      }
+    }
+
+    handleMouseInteraction() {
+      if (this.mouse.x !== null && this.mouse.y !== null) {
+        this.particles.forEach((particle) => {
+          const dx = this.mouse.x - particle.x;
+          const dy = this.mouse.y - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < this.mouse.radius) {
+            const force = (this.mouse.radius - distance) / this.mouse.radius;
+            const angle = Math.atan2(dy, dx);
+            particle.vx -= Math.cos(angle) * force * 0.2;
+            particle.vy -= Math.sin(angle) * force * 0.2;
+          }
+        });
+      }
+    }
+
+    animate() {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      this.particles.forEach((particle) => {
+        particle.update();
+        particle.draw(this.ctx);
+      });
+
+      this.connectParticles();
+      this.handleMouseInteraction();
+
+      requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  // Initialize particle system when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new ParticleSystem();
+    });
+  } else {
+    new ParticleSystem();
+  }
+})();</script>  <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>🖧 PK Pages</a></h2> <button class="mobile-menu-toggle" aria-label="Toggle menu" data-astro-cid-3ef6ksr2> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" data-astro-cid-3ef6ksr2> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-3ef6ksr2></path> </svg> </button> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <!-- <HeaderLink href="/blog">Blog</HeaderLink> --> <!-- <HeaderLink href="/about">About</HeaderLink> --> <a href="/projects" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Projects </a>  <a href="/note" class="active" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Notes </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://github.com/pk-kampanart" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to My's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="mailto:kumpanat.kawa@gmail.com" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Contact me via Email</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M20 18h-2V9.25L12 13L6 9.25V18H4V6h1.2l6.8 4.25L18.8 6H20m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://www.linkedin.com/in/kampanart-kawachakul-26656220a/" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>My LinkedIn</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-3ef6ksr2><path fill="currentColor" fill-rule="evenodd" d="M5 1a4 4 0 0 0-4 4v14a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4zm1.205 6.91a1.705 1.705 0 1 0 0-3.41a1.705 1.705 0 0 0 0 3.41M7.909 19.5V9.273H4.5V19.5h3.41Zm4.432-10.227H9.273V19.5h3.068v-6.17c.395-.642 1.077-1.33 2.045-1.33c1.364 0 1.705 1.364 1.705 2.046V19.5H19.5v-5.454c0-1.828-.797-4.773-3.75-4.773c-1.878 0-2.92.685-3.41 1.327z" clip-rule="evenodd" data-astro-cid-3ef6ksr2></path></svg></a> <a class="localization-button" href="th" data-astro-cid-3ef6ksr2>
+🇹🇭
+</a> </div> </nav> </header> <script type="module">const e=document.querySelector(".mobile-menu-toggle"),o=document.querySelector("nav");e?.addEventListener("click",()=>{o?.classList.toggle("mobile-menu-open")});</script>  <main> <div class="note-card" id="note-card-20230830t193624--book-the-unix-programming-environment"> <!-- prettier-ignore --> <button class="close-btn" onclick="this.closest('div').remove();">&times;</button> <hr>
+<h2 id="title-bookthe-unix-programming-environmentid-20230830t193624date-2023-08-30-193624-07type-book">title: Book:The Unix Programming Environment
+id: 20230830T193624
+date: 2023-08-30 19:36:24 +07
+type: book</h2>
+<h1 id="bookthe-unix-programming-environment">Book:The Unix Programming Environment</h1>
+<h2 id="chapter-1-basic">Chapter 1: Basic</h2>
+<ul>
+<li>
+<p><code>date</code></p>
+</li>
+<li>
+<p><code>who</code>: list who using machine.</p>
+<p><code>who am i</code> or <code>whoami</code> is you.
+<code>tty</code>(“teletype”)</p>
+</li>
+<li>
+<p><code>mail</code></p>
+</li>
+<li>
+<p><code>stty</code>(“set terminal options”)</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="console"><code><span class="line"><span style="color:#E1E4E8">$ stty- tabs</span></span></code></pre>
+<p>See also <code>man tabs</code></p>
+</li>
+<li>
+<p><kbd>ctrl-d</kbd>: to input <code>EOF</code>(“end of file”)</p>
+</li>
+<li>
+<p><code>man</code>: example: <code>man man</code></p>
+</li>
+<li>
+<p><code>ed</code>: Ancestor of <code>vim</code>.</p>
+</li>
+<li>
+<p><code>ls</code>, <code>wc</code>, <code>sort</code>, <code>grep</code></p>
+</li>
+<li>
+<p>stdin, stdout, stderr.</p>
+</li>
+<li>
+<p><code>*program* &#x26;</code> for run in the background.</p>
+</li>
+<li>
+<p><code>wait</code>: wait for all background process. <code>wart *process-id*</code> for wait to specific process.</p>
+</li>
+<li>
+<p><code>kill *process-id*</code></p>
+</li>
+<li>
+<p><code>ps</code></p>
+</li>
+<li>
+<p>To run long process in background even if the terminal turn off, use <code>nohup</code>(“no hang up”)</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="console"><code><span class="line"><span style="color:#E1E4E8">$ nohup </span><span style="color:#F97583">*</span><span style="color:#E1E4E8">command</span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> &#x26;</span></span></code></pre>
+</li>
+<li>
+<p>If process take a lot of resource use <code>nice</code> to lower priority of program.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="console"><code><span class="line"><span style="color:#E1E4E8">$ nice </span><span style="color:#F97583">*</span><span style="color:#E1E4E8">command</span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> &#x26;</span></span></code></pre>
+<p><strong>Note</strong>: For running process use <code>renice</code>.</p>
+</li>
+</ul>
+<h2 id="chapter-2-file-system">Chapter 2: File System</h2>
+<ul>
+<li>
+<p>File is the sequence of byte(typically 8 bits).</p>
+</li>
+<li>
+<p>For the system, file have no meaning or structure, just a sequence of byte.</p>
+</li>
+<li>
+<p>The meaning of file depend on program that use that file type.</p>
+</li>
+<li>
+<p><code>od</code>(“octal dump”) print bytes and visual representation of that file</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="console"><code><span class="line"><span style="color:#E1E4E8">$ od -cb </span><span style="color:#F97583">*</span><span style="color:#E1E4E8">file</span><span style="color:#F97583">*</span></span></code></pre>
+</li>
+<li>
+<p>In Unix every thing is a file(sequence of byte), keyboard input is also a file(sequence of bytes), data flow in pipes is also a file(sequence of byte).</p>
+</li>
+<li>
+<p>newline(\n), backspace(\b), tab(\t) and carriage return(\r) is special characters. each of them has 1 byte long like other characters.</p>
+<ul>
+<li>
+<p>if \b is in the file the system assume that you want to delete previous character like you press <kbd>BackSpace</kbd> on keyboard.</p>
+</li>
+<li>
+<p>how \t is interpreted depend on your program like terminal to display it.</p>
+</li>
+<li>
+<p>When you press <kbd>Return</kbd> key, you send the \r and \n, but store only \n.</p>
+</li>
+<li>
+<p>Unix use \n (“LF”(“line feed”)) to terminate line, but some system like Windows use \r\n (“CRLF”).</p>
+<p><strong>Note</strong>: “line feed” is synonym for “new line”</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Programs use system call (a subroutine in the kernel) called <code>read</code> to retrieve the data on file.</p>
+<ul>
+<li>
+<p><code>read</code> return the next part a file and how many byte of the file were returned, so “zero byte returned mean EOF”</p>
+<p><strong>Note</strong>: Notice how EOF don’t have any special character representation, it make sense because all system can agree that zero byte mean it end(“EOF”).</p>
+<p><strong>Note</strong>: In the book it’s explained that <code>cat</code> buffered in put to show all of it in single output, you can use <code>cat -u</code> to unbuffered it (print immediately after you press enter), but flag <code>-u</code> in present day <code>cat</code> is ignored (See <code>man cat</code>) cause <code>cat</code> work like <code>cat -u</code> by default.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>file</code> command use to “guess” the usage of the file(file type).</p>
+</li>
+<li>
+<p>Runnable file is the file that start with magic numbers that difference depend on system.</p>
+</li>
+<li>
+<p>Usually program that use text as the input like <code>sort</code> or <code>grep</code> don’t behave properly when the input is 30,000 byte of text file without new line. This is because most program have maximum length of line.</p>
+</li>
+<li>
+<p>Every process have <strong>current directory</strong> (use <code>pwd</code>), if the process create child process it inherit current directory, but child process can change current directory without affect parent process. The purpose is to organize related file in the same directory.</p>
+</li>
+<li>
+<p><code>du</code> show disk usage in that directory</p>
+</li>
+<li>
+<p>Directories is similar to regular file that can’t write on like regular file, they contain their permission and directory name</p>
+</li>
+<li>
+<p>The modification date is also contain in the file.</p>
+</li>
+<li>
+<p><code>chmod</code></p>
+</li>
+<li>
+<p>Permission like <code>-rwxr-xr-x</code>, not contain in the file itself but in the system structure called index node(<strong>inode</strong>).</p>
+</li>
+<li>
+<p>Both permission and modification time store in inode.</p>
+</li>
+<li>
+<p>inode contain 3 times</p>
+<ul>
+<li>time that the file was modified.</li>
+<li>time that the file was last used (read or executed).</li>
+<li>time that the inode it self modified (like change permission).</li>
+</ul>
+</li>
+<li>
+<p><code>ls -t</code> sort file by modified time, use <code>ls -ut</code> to sort it again by last changed inode information or last read.</p>
+</li>
+<li>
+<p><code>ls -i</code> list i-number (inode number) of files in decimal, it’s the real name of file in system</p>
+</li>
+<li>
+<p>The filenames in directory is call link, because it contain link of filename to i-number. When delete file with <code>rm</code> it’s not delete the inodes itself but delete the link to the inodes.</p>
+</li>
+<li>
+<p>The same i-number can appear in more than one directory.</p>
+</li>
+<li>
+<p>When you use <code>ln</code> to create link to a file (hard link), the i-number of that new file is the same as linked file, so <code>ln</code> actually give two name to the same file.</p>
+</li>
+<li>
+<p>With <code>cp</code> you can create 2 file with difference inode.</p>
+</li>
+<li>
+<p>You can’t link file across file system (<code>df</code> to report free space of mounted subsystem)</p>
+</li>
+</ul>
+<h2 id="chapter-3-shell">Chapter 3: Shell</h2>
+<ul>
+<li><code>date; whoami</code></li>
+<li><code>(date; whoami) | wc -l</code></li>
+<li><code>(date; whoami) | tee save | wc -l</code></li>
+<li><code>(sleep 5; date) &#x26; date</code>: run date and delay date in the background show up 5 second later.</li>
+<li><code>echo hello > junkfile</code> is the same as <code>>junkfile echo hello</code>.</li>
+<li><code>( ... )</code> run commands in sub-shell.</li>
+<li><code>{ ... }</code> run commands in current shell.</li>
+<li>glob basic characters <code>*</code>, <code>?</code>, <code>[ccc]</code>.</li>
+<li><code>>file</code>, <code>>>file</code> direct or append standard output to file</li>
+<li><code>&#x3C;file</code> take standard input from file</li>
+<li><code>n>file</code>, <code>n>>file</code> direct or append output to file descriptor n</li>
+<li><code>n>&#x26;m</code> merge output form fd n to fd m</li>
+<li><code>n&#x3C;&#x26;m</code> merge input from fd n to fd m</li>
+</ul>
+<h2 id="chapter-4-filters">Chapter 4: Filters</h2>
+<ul>
+<li><code>tail</code>, <code>sort</code>, <code>wc</code>, <code>grep</code>, <code>awk</code>, <code>uniq</code>, <code>tr</code>, <code>sed</code></li>
+</ul>
+<h2 id="chapter-5-shell-programming">Chapter 5: Shell Programming</h2>
+<ul>
+<li>
+<p><code>case</code>, <code>for</code>, <code>which</code>, <code>if-else</code>, <code>test</code>, <code>while-until</code></p>
+</li>
+<li>
+<p><a href="20230905t025812-shell-trap" class="note-internal-link" hx-get="20230905t025812-shell-trap" hx-swap="afterend" hx-push-url="true" hx-select=".note-card"><code>trap</code></a>: to catch interrupt</p>
+</li>
+<li>
+<p><code>$-</code> list of options apply to the shell.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="console"><code><span class="line"><span style="color:#E1E4E8">$ echo </span><span style="color:#79B8FF">$-</span></span>
+<span class="line"><span style="color:#79B8FF">himBHs</span></span>
+<span class="line"><span style="color:#E1E4E8">$ set -e</span></span>
+<span class="line"><span style="color:#E1E4E8">$ echo </span><span style="color:#79B8FF">$-</span></span>
+<span class="line"><span style="color:#79B8FF">ehimBHs</span></span></code></pre>
+</li>
+<li>
+<p><code>$$</code> process-id of current shell</p>
+</li>
+<li>
+<p><code>$!</code> process-id of last background process (start with <code>*command* &#x26;</code>)</p>
+</li>
+<li>
+<p><code>$@</code> and <code>$*</code> blank in argument are rescanned.</p>
+</li>
+<li>
+<p><code>"$*"</code> is single word composed of all arguments.</p>
+</li>
+<li>
+<p><code>"$@"</code> blanks in argument are ignored like original arguments.
+<strong>Conclusion</strong>: only <code>"$*"</code> are behave differently.</p>
+</li>
+</ul>
+<h2 id="chapter-6-standard-io">Chapter 6: Standard I/O</h2>
+<p><strong>Prerequisite</strong>: [@kernighanProgrammingLanguage1988]</p>
+<ul>
+<li><code>NULL</code> usually 0</li>
+<li><code>BUFSIZ</code> is the size of I/O buffer (example 1024 or 8192)</li>
+</ul>
+<h2 id="chapter-7-unix-system-calls">Chapter 7: UNIX System Calls</h2>
+<ul>
+<li>What is file descriptors</li>
+<li><code>&#x3C;sys/types.h></code>, <code>&#x3C;sys/dir.h></code>, <code>&#x3C;sys/stat.h></code></li>
+<li><code>execvp</code>, <code>execlp</code></li>
+</ul>
+<h2 id="chapter-8-program-development">Chapter 8: Program Development</h2>
+<p>This about <code>yacc</code>, <code>lex</code> and <code>make</code>.</p>
+<h2 id="chapter-9-document-preparation">Chapter 9: Document Preparation</h2> </div> <br> <div class="links"> <h3>Internal Links</h3> <ul> <li>No internal links</li> </ul> </div> <div class="backlinks"> <h3>Backlinks</h3> <ul> <li>No backlinks</li> </ul> </div> </main> <footer data-astro-cid-sz7xmlte> <div class="footer-content" data-astro-cid-sz7xmlte> <div class="social-links" data-astro-cid-sz7xmlte> <a href="https://github.com/pk-kampanart" target="_blank" aria-label="GitHub" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to My's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="mailto:kumpanat.kawa@gmail.com" target="_blank" aria-label="Email" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Contact me via Email</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-sz7xmlte><path fill="currentColor" d="M20 18h-2V9.25L12 13L6 9.25V18H4V6h1.2l6.8 4.25L18.8 6H20m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://www.linkedin.com/in/kampanart-kawachakul-26656220a/" target="_blank" aria-label="LinkedIn" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>My LinkedIn</span> <svg width="32" height="32" viewBox="0 0 24 24" data-astro-cid-sz7xmlte><path fill="currentColor" fill-rule="evenodd" d="M5 1a4 4 0 0 0-4 4v14a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V5a4 4 0 0 0-4-4zm1.205 6.91a1.705 1.705 0 1 0 0-3.41a1.705 1.705 0 0 0 0 3.41M7.909 19.5V9.273H4.5V19.5h3.41Zm4.432-10.227H9.273V19.5h3.068v-6.17c.395-.642 1.077-1.33 2.045-1.33c1.364 0 1.705 1.364 1.705 2.046V19.5H19.5v-5.454c0-1.828-.797-4.773-3.75-4.773c-1.878 0-2.92.685-3.41 1.327z" clip-rule="evenodd" data-astro-cid-sz7xmlte></path></svg></a> </div> <p class="copyright" data-astro-cid-sz7xmlte>&copy; 2026 Kampanart Kawachakul. All rights reserved.</p> </div> </footer>  </body></html>

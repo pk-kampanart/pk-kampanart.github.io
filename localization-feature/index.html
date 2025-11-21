@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Localization Tester</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Game Localization Tester</h1>
+        </header>
+
+        <main>
+            <section class="localization-table">
+                <h2>Localization Data</h2>
+                <table id="locTable">
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>English</th>
+                            <th>Thai</th>
+                        </tr>
+                    </thead>
+                    <tbody id="locTableBody">
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="test-section">
+                <h2>Test Examples</h2>
+                <div class="test-controls">
+                    <h3>Variable Substitution</h3>
+                    <div class="test-item">
+                        <label>Subject:</label>
+                        <input type="text" id="subject" value="Goblin">
+                        <label>Object:</label>
+                        <input type="text" id="object" value="Ogre">
+                        <button onclick="testVariableSubstitution()">Test</button>
+                        <div class="result" id="varResult"></div>
+                    </div>
+                </div>
+
+                <div class="test-controls">
+                    <h3>Plural/Singular</h3>
+                    <div class="test-item">
+                        <label>Quantity:</label>
+                        <input type="number" id="quantity" value="3" min="0">
+                        <label>Item:</label>
+                        <input type="text" id="item" value="pen">
+                        <button onclick="testPlural()">Test</button>
+                        <div class="result" id="pluralResult"></div>
+                    </div>
+                </div>
+
+                <div class="test-controls">
+                    <h3>Gender Pronouns</h3>
+                    <div class="test-item">
+                        <label>Gender:</label>
+                        <select id="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="neutral">Neutral</option>
+                        </select>
+                        <label>Name:</label>
+                        <input type="text" id="name" value="Alex">
+                        <button onclick="testGender()">Test</button>
+                        <div class="result" id="genderResult"></div>
+                    </div>
+                </div>
+
+                <div class="test-controls">
+                    <h3>List Formatting</h3>
+                    <div class="test-item">
+                        <label>Items (comma separated):</label>
+                        <input type="text" id="items" value="apple,banana,orange">
+                        <button onclick="testList()">Test</button>
+                        <div class="result" id="listResult"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en">🇺🇸 English</button>
+        <button class="lang-btn" data-lang="th">🇹🇭 ไทย</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
