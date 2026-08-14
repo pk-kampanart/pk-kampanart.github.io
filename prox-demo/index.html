@@ -1,0 +1,1376 @@
+<!-- Spec §6.1's name="mode" is this group: name="planner-selection".
+     "Mode" in this codebase is the DERIVED status-bar string (the selected
+     entity's kind) — the radio group is the selection itself.
+     One catcher per ROW, not per workspace: spec §6.2 records the prototype's
+     ADR-037, superseded by its ADR-039 ("ADR-037 misread the mode-catcher
+     rule"). The shipped prototype the stakeholder approved has the row form. -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mesh Planner</title>
+    <link rel="stylesheet" href="styles.css?v=3fbcf15f" />
+    <!-- scripts: one tag per file, alphabetical. Order must never matter. -->
+    <script defer src="app.js?v=a871af1b"></script>
+    <script defer src="application.js?v=2a8bd791"></script>
+    <script defer src="autosave.js?v=aaedde98"></script>
+    <script defer src="binding-intent.js?v=b6c4cb73"></script>
+    <script defer src="binding-render.js?v=524454f3"></script>
+    <script defer src="binding-vocabulary.js?v=d2114978"></script>
+    <script defer src="boot.js?v=0d356e45"></script>
+    <script defer src="codec.js?v=9b7874a5"></script>
+    <script defer src="command-registry.js?v=f0929a0e"></script>
+    <script defer src="commands.js?v=f924940c"></script>
+    <script defer src="db.js?v=317c0b8b"></script>
+    <script defer src="devices.js?v=8876f72b"></script>
+    <script defer src="floor.js?v=55097b1d"></script>
+    <script defer src="geo.js?v=5b2adb0c"></script>
+    <script defer src="group.js?v=a48aec9e"></script>
+    <script defer src="history.js?v=d5170098"></script>
+    <script defer src="keymap.js?v=9aa0c3c7"></script>
+    <script defer src="link-view.js?v=1aa859d2"></script>
+    <script defer src="links.js?v=24186590"></script>
+    <script defer src="panel-application.js?v=986229ad"></script>
+    <script defer src="panel-devices.js?v=af657b02"></script>
+    <script defer src="panel-floor.js?v=d5d235a1"></script>
+    <script defer src="panel-group.js?v=56556be2"></script>
+    <script defer src="project-panel.js?v=db366aa6"></script>
+    <script defer src="render.js?v=7c9f335d"></script>
+    <script defer src="restore-from-dom.js?v=8d75c1c0"></script>
+    <script defer src="schema-validate.js?v=0ce58554"></script>
+    <script defer src="selection.js?v=e32cc156"></script>
+    <script defer src="shortcuts.js?v=c830a77a"></script>
+    <script defer src="status.js?v=752c1c7d"></script>
+    <script defer src="store-rails.js?v=969318ac"></script>
+    <script defer src="surface-cursor.js?v=4f2b359d"></script>
+    <script defer src="surface-hover.js?v=732a3649"></script>
+    <script defer src="surface-select.js?v=67490a1d"></script>
+    <script defer src="surface-viewport.js?v=73a96c92"></script>
+    <script defer src="toolbar.js?v=aed6c668"></script>
+    <script defer src="tree.js?v=a6c220bd"></script>
+    <script type="application/json" data-part="schema">
+      {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "$id": "https://mesh-planner.local/schema/plan.schema.json",
+        "title": "Plan document",
+        "description": "The persisted plan. Hierarchy describes the domain, not the DOM.",
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["formatVersion", "project", "floors"],
+        "properties": {
+          "formatVersion": { "const": 1, "persisted": true },
+          "project": {
+            "$ref": "#/$defs/project",
+            "persisted": true
+          },
+          "floors": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/floor" },
+            "persisted": true
+          }
+        },
+        "$defs": {
+          "id": { "type": "string", "minLength": 1 },
+          "project": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "name"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id", "persisted": true },
+              "name": { "type": "string", "persisted": true }
+            }
+          },
+          "floor": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "name", "applications"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id", "persisted": true },
+              "name": { "type": "string", "persisted": true },
+              "background": {
+                "$ref": "#/$defs/background",
+                "persisted": true
+              },
+              "applications": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "$ref": "#/$defs/application" },
+                "persisted": true
+              }
+            }
+          },
+          "background": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "required": ["src", "opacity"],
+            "properties": {
+              "src": { "type": "string", "persisted": true },
+              "opacity": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100,
+                "persisted": true
+              }
+            }
+          },
+          "application": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "name", "groups", "deviceTypes"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id", "persisted": true },
+              "name": { "type": "string", "persisted": true },
+              "groups": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/group" },
+                "persisted": true
+              },
+              "deviceTypes": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/deviceType" },
+                "persisted": true
+              }
+            }
+          },
+          "group": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "name", "color"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id", "persisted": true },
+              "name": { "type": "string", "persisted": true },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$",
+                "persisted": true
+              },
+              "rect": {
+                "$ref": "#/$defs/rect",
+                "persisted": true
+              }
+            }
+          },
+          "rect": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "required": ["x", "y", "width", "height"],
+            "properties": {
+              "x": { "type": "number", "persisted": true },
+              "y": { "type": "number", "persisted": true },
+              "width": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "persisted": true
+              },
+              "height": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "persisted": true
+              }
+            }
+          },
+          "deviceType": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "name", "instances"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id", "persisted": true },
+              "name": { "type": "string", "persisted": true },
+              "instances": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/deviceInstance" },
+                "persisted": true
+              }
+            }
+          },
+          "deviceInstance": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "x", "y"],
+            "properties": {
+              "id": { "$ref": "#/$defs/id", "persisted": true },
+              "x": { "type": "number", "persisted": true },
+              "y": { "type": "number", "persisted": true }
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div data-part="app">
+      <header data-part="toolbar" aria-label="Planner toolbar">
+      </header>
+
+      <main data-part="workspace">
+        <nav data-part="workflow" aria-label="Planning workflow"></nav>
+        <div
+          data-part="splitter"
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="Resize the workflow panel"
+          tabindex="0"
+        ></div>
+        <section data-part="surface-region" aria-label="Floor plan">
+          <svg
+            data-part="surface"
+            role="application"
+            tabindex="0"
+            aria-label="Floor plan work surface"
+            aria-describedby="surface-help"
+          >
+            <!-- Pans and zooms for free: the pattern is anchored to world
+                 coordinates and the viewBox is what moves. Inert to the
+                 pointer, so click resolution and panning are unaffected. -->
+            <g data-part="grid-layer" aria-hidden="true">
+              <pattern
+                id="surface-grid"
+                patternUnits="userSpaceOnUse"
+                x="0"
+                y="0"
+                width="50"
+                height="50"
+              >
+                <path data-part="grid-line" d="M 50 0 L 0 0 L 0 50" />
+              </pattern>
+              <rect
+                data-part="grid-field"
+                x="-1000"
+                y="-1000"
+                width="3000"
+                height="2500"
+                fill="url(#surface-grid)"
+              />
+            </g>
+            <g data-part="background-layer"></g>
+            <g data-part="group-layer"></g>
+            <g data-part="link-layer"></g>
+            <g data-part="device-layer"></g>
+            <g data-part="cursor-layer"></g>
+          </svg>
+          <p data-part="surface-help" id="surface-help">
+            The floor plan work surface. Arrow keys move the placement cursor or
+            nudge the selection, Enter commits, and Escape cancels.
+          </p>
+          <p
+            data-part="surface-announcer"
+            id="surface-announcer"
+            aria-live="polite"
+          ></p>
+        </section>
+      </main>
+
+      <footer data-part="status" aria-label="Project status">
+        <span data-part="status-mode" aria-live="polite">
+          Mode: <span data-part="status-mode-value">Idle</span>
+        </span>
+        <span data-part="status-devices" aria-live="polite">
+          Devices: <span data-part="status-device-count">0</span>
+        </span>
+        <span data-part="status-floor" aria-live="polite">
+          Floor: <span data-part="status-floor-name">&mdash;</span>
+        </span>
+        <span data-part="status-application" aria-live="polite">
+          Application: <span data-part="status-application-name">&mdash;</span>
+        </span>
+      </footer>
+    </div>
+
+    <template data-part="application-add-template">
+      <button
+        type="button"
+        data-part="application-add"
+        data-action="add-application"
+        title="Add an application"
+      >
+        +
+      </button>
+    </template>
+
+    <template data-entity="application">
+      <details data-anchor="application" data-part="application-branch" open>
+        <summary data-part="application-summary">
+          <label data-part="application-select" data-act="select">
+            <input
+              type="radio"
+              name="planner-selection"
+              data-part="application-radio"
+              data-act="select"
+              data-slot="id"
+              data-slot-as="pair"
+              tabindex="-1"
+            />
+            <strong
+              data-slot="name"
+              data-slot-as="text"
+              data-slot-type="string"
+            ></strong>
+          </label>
+          <input
+            type="text"
+            data-part="application-name"
+            data-act="rename"
+            data-slot="name"
+            data-slot-as="value"
+            aria-label="Rename application"
+          />
+          <button
+            type="button"
+            data-part="application-delete"
+            data-act="delete"
+            data-slot="name"
+            data-slot-as="attr:title"
+            data-slot-template="Delete application: {name}"
+          >
+            ×
+          </button>
+        </summary>
+        <section
+          data-region="groups"
+          data-part="application-groups"
+          aria-label="Groups"
+        ></section>
+        <section
+          data-region="deviceTypes"
+          data-part="application-device-types"
+          aria-label="Device types"
+        ></section>
+      </details>
+    </template>
+
+    <template data-part="device-type-add-template">
+      <button
+        type="button"
+        data-part="device-type-add"
+        data-action="add-device-type"
+        aria-label="Add device type"
+      >
+        +
+      </button>
+    </template>
+
+    <template data-entity="deviceType">
+      <article
+        data-anchor="deviceType"
+        data-part="device-type"
+        draggable="true"
+      >
+        <label data-part="selection-catcher" class="mode-catcher">
+          <input
+            type="radio"
+            name="planner-selection"
+            data-part="selection-radio"
+            data-act="select"
+            data-slot="id"
+            data-slot-as="pair"
+            tabindex="-1"
+          />
+          <span
+            data-part="device-type-name"
+            data-slot="name"
+            data-slot-as="text"
+            data-slot-type="string"
+          ></span>
+        </label>
+        <input
+          type="text"
+          data-part="device-type-rename"
+          data-act="rename"
+          data-slot="name"
+          data-slot-as="value"
+          aria-label="Rename device type"
+        />
+        <span data-part="device-type-count" aria-label="Instances">0</span>
+        <button
+          type="button"
+          data-part="device-type-delete"
+          data-act="delete"
+          data-slot="name"
+          data-slot-as="attr:title"
+          data-slot-template="Delete device type: {name}"
+        >
+          ×
+        </button>
+        <div
+          data-region="instances"
+          data-part="device-type-instances"
+          aria-label="Instances"
+        ></div>
+      </article>
+    </template>
+
+    <template data-entity="deviceInstance">
+      <article data-anchor="deviceInstance" data-part="device-instance">
+        <input
+          type="radio"
+          name="planner-selection"
+          data-part="selection-radio"
+          data-act="select"
+          data-state="rowless"
+          tabindex="-1"
+        />
+        <span data-part="device-instance-name"></span>
+        <span
+          data-slot="x"
+          data-slot-as="attr:data-x"
+          data-slot-type="number"
+        ></span>
+        <span
+          data-slot="y"
+          data-slot-as="attr:data-y"
+          data-slot-type="number"
+        ></span>
+      </article>
+    </template>
+
+    <template data-entity="floor">
+      <details data-anchor="floor" data-part="floor-branch" open>
+        <summary data-part="floor-summary">
+          <label data-part="floor-select" data-act="select">
+            <input
+              type="radio"
+              name="planner-scope"
+              data-part="floor-radio"
+              data-act="select"
+              data-slot="id"
+              data-slot-as="pair"
+              tabindex="-1"
+            />
+            <span
+              data-slot="name"
+              data-slot-as="text"
+              data-slot-type="string"
+            ></span>
+          </label>
+          <input
+            type="text"
+            data-part="floor-name"
+            data-act="rename"
+            data-slot="name"
+            data-slot-as="value"
+            aria-label="Rename floor"
+          />
+          <button
+            type="button"
+            data-part="background-pick"
+            data-action="background-pick"
+            aria-label="Set floor background"
+          >
+            <img data-part="background-thumbnail" alt="" />
+          </button>
+          <input
+            type="file"
+            data-part="background-image"
+            data-action="background-image"
+            accept="image/*"
+            hidden
+          />
+          <label data-part="opacity-toggle" data-action="opacity-toggle">
+            <input
+              type="checkbox"
+              data-part="opacity-checkbox"
+              data-action="opacity-toggle"
+            />
+            <span data-part="opacity-badge">100%</span>
+          </label>
+          <input
+            type="range"
+            data-part="opacity-slider"
+            data-action="background-opacity"
+            min="0"
+            max="100"
+            step="5"
+            value="100"
+          />
+          <button type="button" data-part="floor-undo" data-action="undo">
+            Undo
+          </button>
+          <button type="button" data-part="floor-redo" data-action="redo">
+            Redo
+          </button>
+          <button type="button" data-part="floor-add" data-action="add-floor">
+            +
+          </button>
+          <button
+            type="button"
+            data-part="floor-delete"
+            data-action="delete"
+            data-act="delete"
+          >
+            ×
+          </button>
+        </summary>
+        <span
+          data-slot="background"
+          data-slot-as="attr:data-background"
+          style="display: none"
+          aria-hidden="true"
+        ></span>
+        <div
+          data-region="applications"
+          data-part="floor-applications"
+          aria-label="Applications"
+        ></div>
+      </details>
+    </template>
+
+    <template data-part="surface-background-template">
+      <svg>
+        <image
+          data-part="surface-background"
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+        />
+      </svg>
+    </template>
+
+    <template data-part="surface-group-template">
+      <svg><rect data-part="surface-group" tabindex="0" role="button" /></svg>
+    </template>
+
+    <template data-part="surface-link-template">
+      <svg><line data-part="surface-link" /></svg>
+    </template>
+
+    <template data-part="surface-device-template">
+      <svg>
+        <circle data-part="surface-device" tabindex="0" role="button" r="8" />
+      </svg>
+    </template>
+
+    <template data-part="group-list-template">
+      <ul data-part="group-list">
+        <li data-part="group-placeholder">No groups yet.</li>
+      </ul>
+    </template>
+
+    <template data-part="group-add-template">
+      <button type="button" data-part="group-add" data-action="add-group">
+        Add group
+      </button>
+    </template>
+
+    <template data-part="surface-group-handle-template">
+      <svg>
+        <rect data-part="group-handle" tabindex="-1" role="presentation" />
+      </svg>
+    </template>
+
+    <template data-part="surface-group-preview-template">
+      <svg><rect data-part="group-preview" aria-hidden="true" /></svg>
+    </template>
+
+    <template data-entity="group">
+      <li data-anchor="group" data-part="group-row" draggable="true">
+        <label
+          data-part="group-select"
+          data-act="select"
+          class="mode-catcher"
+          tabindex="0"
+        >
+          <input
+            type="radio"
+            name="planner-selection"
+            class="mode-input"
+            tabindex="-1"
+            data-slot="id"
+            data-slot-as="pair"
+          />
+          <span
+            data-part="group-name-label"
+            data-slot="name"
+            data-slot-as="text"
+          ></span>
+        </label>
+        <input
+          type="text"
+          data-part="group-name"
+          data-act="rename"
+          data-slot="name"
+          data-slot-as="value"
+          aria-label="Rename group"
+        />
+        <input
+          type="color"
+          data-part="group-color"
+          data-act="recolor"
+          data-slot="color"
+          data-slot-as="value"
+          data-slot-type="string"
+          title="Change group color"
+        />
+        <span
+          data-part="group-color-mark"
+          data-slot="color"
+          data-slot-as="attr:data-group-color"
+        ></span>
+        <span
+          data-part="group-color-style"
+          data-slot="color"
+          data-slot-as="style:--group-color"
+        ></span>
+        <button
+          type="button"
+          data-part="group-delete"
+          data-act="delete"
+          data-slot="name"
+          data-slot-as="attr:title"
+          data-slot-template="Delete group: {name}"
+        >
+          ×
+        </button>
+        <span data-slot="rect" data-slot-as="attr:data-rect"></span>
+      </li>
+    </template>
+
+    <template data-part="project-dialog-template">
+      <dialog data-part="project-dialog" aria-label="Open project">
+        <h2 data-part="project-heading">Open project</h2>
+        <form data-part="project-form">
+          <label data-part="project-name-label">
+            Project name
+            <input
+              type="text"
+              name="name"
+              data-part="project-name"
+              autocomplete="off"
+              required
+            />
+          </label>
+          <button type="submit" data-part="project-create">
+            Create project
+          </button>
+        </form>
+        <p data-part="project-empty" hidden>No projects yet.</p>
+        <ul
+          data-part="project-list"
+          aria-live="polite"
+          aria-label="Your projects"
+        ></ul>
+        <button
+          type="button"
+          data-part="project-close"
+          data-action="close-project"
+          title="Close project dialog"
+        >
+          Close
+        </button>
+      </dialog>
+    </template>
+
+    <template data-part="project-exchange-dialog-template">
+      <dialog data-part="project-exchange-dialog" aria-label="Project exchange">
+        <h2>Project exchange</h2>
+        <nav
+          data-part="project-exchange-modes"
+          aria-label="Project exchange modes"
+        >
+          <button
+            type="button"
+            data-part="project-exchange-export-mode"
+            aria-pressed="true"
+          >
+            Export
+          </button>
+          <button
+            type="button"
+            data-part="project-exchange-import-mode"
+            aria-pressed="false"
+          >
+            Import
+          </button>
+        </nav>
+        <form data-part="project-exchange-form">
+          <label data-part="project-exchange-label">
+            Project JSON
+            <textarea
+              data-part="project-exchange-text"
+              rows="16"
+              spellcheck="false"
+              readonly
+            ></textarea>
+          </label>
+          <p data-part="project-exchange-error" role="alert" hidden></p>
+          <button type="submit" data-part="project-exchange-import" hidden>
+            Import project
+          </button>
+        </form>
+        <button
+          type="button"
+          data-part="project-exchange-close"
+          title="Close project exchange"
+        >
+          Close
+        </button>
+      </dialog>
+    </template>
+
+    <template data-part="project-item-template">
+      <li data-part="project-item">
+        <span data-part="project-name"></span>
+        <time data-part="project-updated"></time>
+        <button
+          type="button"
+          data-part="project-open-item"
+          data-action="open-project"
+        >
+          Open
+        </button>
+        <button
+          type="button"
+          data-part="project-delete"
+          data-action="delete-project"
+        >
+          Delete
+        </button>
+      </li>
+    </template>
+
+    <template data-entity="plan">
+      <main data-anchor="plan" class="plan-document">
+        <meta
+          data-slot="formatVersion"
+          data-slot-as="attr:data-format-version"
+          data-slot-type="integer"
+        />
+        <section data-region="project" aria-label="Project"></section>
+        <section data-region="floors" aria-label="Floors"></section>
+      </main>
+    </template>
+
+    <template data-entity="project">
+      <article data-anchor="project" class="project-record">
+        <span data-slot="id" data-slot-as="attr:data-project-id"></span>
+        <h1 data-slot="name" data-slot-as="text" data-slot-type="string"></h1>
+      </article>
+    </template>
+
+    <template data-part="shortcuts-dialog-template">
+      <dialog data-part="shortcuts-dialog" aria-labelledby="shortcuts-title">
+        <form method="dialog">
+          <h2 id="shortcuts-title">Keyboard shortcuts</h2>
+          <dl data-part="shortcut-list"></dl>
+          <button type="submit" data-part="shortcuts-close">Close</button>
+        </form>
+      </dialog>
+    </template>
+
+    <template data-part="shortcut-row-template">
+      <div>
+        <dt data-part="shortcut-keys"></dt>
+        <dd data-part="shortcut-description"></dd>
+      </div>
+    </template>
+
+    <template data-part="surface-device-type-selection-template">
+      <label class="mode-catcher" data-part="selection-catcher" tabindex="0">
+        <input
+          class="mode-input"
+          type="radio"
+          name="planner-selection"
+          data-part="selection-radio"
+          tabindex="-1"
+        />
+      </label>
+    </template>
+
+    <template data-part="surface-device-instance-selection-template">
+      <input
+        class="mode-input"
+        type="radio"
+        name="planner-selection"
+        data-part="selection-radio"
+        data-state="rowless"
+        tabindex="-1"
+      />
+    </template>
+
+    <template data-part="surface-cursor-template">
+      <svg><path data-part="surface-cursor" /></svg>
+    </template>
+
+    <template data-part="tree-root-template">
+      <div data-part="tree-list" aria-live="polite" aria-label="Project">
+        <div data-part="screen-project"></div>
+      </div>
+    </template>
+
+    <template data-part="tree-project-template">
+      <div data-anchor="project" data-part="tree-project">
+        <span data-slot="id" data-slot-as="attr:data-project-id" hidden></span>
+        <div data-part="tree-project-row">
+          <span
+            data-slot="name"
+            data-slot-as="text"
+            data-slot-type="string"
+            data-part="tree-project-name"
+          ></span>
+        </div>
+        <div data-part="tree-floors"></div>
+      </div>
+    </template>
+
+    <template data-part="tree-floor-template">
+      <details
+        data-anchor="floor"
+        data-slot="background.src"
+        data-slot-as="attr:data-background"
+        data-part="tree-floor-branch"
+        open
+      >
+        <summary data-part="tree-summary">
+          <span data-part="tree-chevron" aria-hidden="true"></span>
+          <span data-part="tree-summary-content">
+            <label
+              data-part="tree-row"
+              data-act="select"
+              data-slot="ariaLabel"
+              data-slot-derived
+              data-slot-as="attr:aria-label"
+              tabindex="0"
+            >
+              <input
+                type="radio"
+                name="planner-scope"
+                data-part="tree-radio"
+                data-act="select"
+                data-slot="id"
+                data-slot-as="value"
+                data-slot-type="string"
+                tabindex="-1"
+              />
+              <span
+                data-part="tree-name"
+                data-slot="name"
+                data-slot-as="attr:title"
+                data-slot-template="Double-click to rename {name}"
+                ><span
+                  data-slot="name"
+                  data-slot-as="text"
+                  data-slot-type="string"
+                ></span
+              ></span>
+            </label>
+            <input
+              type="text"
+              data-part="tree-name-input"
+              data-slot="name"
+              data-slot-as="value"
+              aria-label="Rename floor"
+              hidden
+            />
+            <button
+              type="button"
+              data-part="tree-background"
+              title="Set floor background"
+            >
+              <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <rect
+                  x="2"
+                  y="3"
+                  width="12"
+                  height="10"
+                  rx="1.5"
+                  fill="none"
+                  stroke="currentColor"
+                />
+                <path
+                  d="M2.5 11 L6 7.5 L8.5 10 L11 8 L13.5 10.5"
+                  fill="none"
+                  stroke="currentColor"
+                />
+                <circle cx="6" cy="6" r="1" fill="currentColor" />
+              </svg>
+            </button>
+            <input
+              type="file"
+              data-part="tree-background-input"
+              accept="image/*"
+              hidden
+            />
+            <label
+              data-part="tree-opacity-toggle"
+              title="Show floor opacity controls"
+            >
+              <input
+                type="checkbox"
+                data-part="tree-opacity-checkbox"
+                aria-label="Show floor opacity controls"
+              />
+              <span data-part="tree-opacity-badge">
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                  <circle
+                    cx="8"
+                    cy="8"
+                    r="5.5"
+                    fill="none"
+                    stroke="currentColor"
+                  />
+                  <path
+                    d="M8 2.5 A5.5 5.5 0 0 1 8 13.5 Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+            </label>
+            <input
+              type="range"
+              data-part="tree-opacity-slider"
+              data-act="set-opacity"
+              data-slot="background.opacity"
+              data-slot-as="value"
+              min="0"
+              max="100"
+              step="5"
+              aria-label="Floor opacity"
+              hidden
+            />
+            <button
+              type="button"
+              data-part="tree-delete"
+              data-act="delete"
+              data-slot="name"
+              data-slot-as="attr:title"
+              data-slot-template="Delete floor: {name}"
+              title="Delete floor"
+            >
+              ×
+            </button>
+            <button
+              type="button"
+              data-part="tree-add-application"
+              data-act="add-application"
+              title="Add application to floor"
+            >
+              +
+            </button>
+          </span>
+        </summary>
+        <div data-part="tree-children" aria-label="Applications"></div>
+      </details>
+    </template>
+
+    <template data-part="tree-application-template">
+      <details
+        data-anchor="application"
+        data-slot="id"
+        data-slot-as="attr:data-id"
+        data-part="tree-application-branch"
+        open
+      >
+        <summary data-part="tree-summary">
+          <span data-part="tree-chevron" aria-hidden="true"></span>
+          <span data-part="tree-summary-content">
+            <label
+              data-part="tree-row"
+              data-act="select"
+              data-slot="ariaLabel"
+              data-slot-derived
+              data-slot-as="attr:aria-label"
+              tabindex="0"
+            >
+              <input
+                type="radio"
+                name="planner-selection"
+                data-part="tree-radio"
+                data-act="select"
+                data-kind="application"
+                data-slot="id"
+                data-slot-as="value"
+                data-slot-type="string"
+                tabindex="-1"
+              />
+              <span
+                data-part="tree-name"
+                data-slot="name"
+                data-slot-as="attr:title"
+                data-slot-template="Double-click to rename {name}"
+                ><span
+                  data-slot="name"
+                  data-slot-as="text"
+                  data-slot-type="string"
+                ></span
+              ></span>
+            </label>
+            <input
+              type="text"
+              data-part="tree-name-input"
+              data-slot="name"
+              data-slot-as="value"
+              aria-label="Rename application"
+              hidden
+            />
+            <button
+              type="button"
+              data-part="tree-delete"
+              data-act="delete"
+              data-slot="name"
+              data-slot-as="attr:title"
+              data-slot-template="Delete application: {name}"
+              title="Delete application"
+            >
+              ×
+            </button>
+          </span>
+        </summary>
+        <div
+          data-part="tree-children"
+          aria-label="Groups and device types"
+        ></div>
+      </details>
+    </template>
+
+    <template data-part="tree-section-template">
+      <details data-part="tree-section" open>
+        <summary data-part="tree-summary">
+          <span data-part="tree-chevron" aria-hidden="true"></span>
+          <span data-part="tree-summary-content">
+            <span data-part="tree-row">
+              <span data-part="tree-section-label"></span>
+              <span data-part="tree-section-empty" hidden></span>
+              <button type="button" data-part="tree-section-add"></button>
+            </span>
+          </span>
+        </summary>
+        <div data-part="tree-children"></div>
+      </details>
+    </template>
+
+    <template data-part="tree-group-template">
+      <div
+        data-anchor="group"
+        data-slot="id"
+        data-slot-as="attr:data-id"
+        data-part="tree-leaf"
+        draggable="true"
+      >
+        <label
+          data-part="tree-row"
+          data-act="select"
+          data-slot="ariaLabel"
+          data-slot-derived
+          data-slot-as="attr:aria-label"
+          tabindex="0"
+        >
+          <input
+            type="radio"
+            name="planner-selection"
+            data-part="tree-radio"
+            data-act="select"
+            data-kind="group"
+            data-slot="id"
+            data-slot-as="value"
+            data-slot-type="string"
+            tabindex="-1"
+          />
+          <input
+            type="color"
+            data-part="tree-group-color"
+            data-act="recolor"
+            data-slot="color"
+            data-slot-as="value"
+            data-slot-type="string"
+            title="Change group color"
+          />
+          <span
+            data-part="tree-name"
+            data-slot="name"
+            data-slot-as="attr:title"
+            data-slot-template="Double-click to rename {name}"
+            ><span
+              data-slot="name"
+              data-slot-as="text"
+              data-slot-type="string"
+            ></span
+          ></span>
+          <span
+            data-slot="detail"
+            data-slot-derived
+            data-slot-as="text"
+            data-slot-template="({detail})"
+            data-part="tree-count"
+          ></span>
+        </label>
+        <input
+          type="text"
+          data-part="tree-name-input"
+          data-slot="name"
+          data-slot-as="value"
+          aria-label="Rename group"
+          hidden
+        />
+        <button
+          type="button"
+          data-part="tree-delete"
+          data-act="delete"
+          data-slot="name"
+          data-slot-as="attr:title"
+          data-slot-template="Delete group: {name}"
+          title="Delete group"
+        >
+          ×
+        </button>
+      </div>
+    </template>
+
+    <template data-part="tree-device-type-template">
+      <details
+        data-anchor="deviceType"
+        data-slot="id"
+        data-slot-as="attr:data-id"
+        data-part="tree-device-type-branch"
+        draggable="true"
+        open
+      >
+        <summary data-part="tree-summary">
+          <span data-part="tree-chevron" aria-hidden="true"></span>
+          <span data-part="tree-summary-content">
+            <label
+              data-part="tree-row"
+              data-act="select"
+              data-slot="ariaLabel"
+              data-slot-derived
+              data-slot-as="attr:aria-label"
+              tabindex="0"
+            >
+              <input
+                type="radio"
+                name="planner-selection"
+                data-part="tree-radio"
+                data-act="select"
+                data-kind="device-type"
+                data-slot="id"
+                data-slot-as="value"
+                data-slot-type="string"
+                tabindex="-1"
+              />
+              <span
+                data-part="tree-name"
+                data-slot="name"
+                data-slot-as="attr:title"
+                data-slot-template="Double-click to rename {name}"
+                ><span
+                  data-slot="name"
+                  data-slot-as="text"
+                  data-slot-type="string"
+                ></span
+              ></span>
+              <span
+                data-slot="detail"
+                data-slot-derived
+                data-slot-as="text"
+                data-slot-template="({detail})"
+                data-part="tree-count"
+              ></span>
+            </label>
+            <input
+              type="text"
+              data-part="tree-name-input"
+              data-slot="name"
+              data-slot-as="value"
+              aria-label="Rename device type"
+              hidden
+            />
+            <button
+              type="button"
+              data-part="tree-delete"
+              data-act="delete"
+              data-slot="name"
+              data-slot-as="attr:title"
+              data-slot-template="Delete device type: {name}"
+              title="Delete device type"
+            >
+              ×
+            </button>
+            <button
+              type="button"
+              data-part="tree-add-instance"
+              data-act="add-instance"
+              title="Add device instance"
+            >
+              +
+            </button>
+          </span>
+        </summary>
+        <div data-part="tree-children" aria-label="Device instances"></div>
+      </details>
+    </template>
+
+    <template data-part="tree-device-instance-template">
+      <div
+        data-anchor="deviceInstance"
+        data-slot="id"
+        data-slot-as="attr:data-id"
+        data-part="tree-instance"
+      >
+        <span
+          data-slot="label"
+          data-slot-derived
+          data-slot-as="text"
+          data-part="tree-instance-label"
+        ></span>
+        <span
+          data-slot="x"
+          data-slot-as="attr:data-x"
+          data-slot-type="number"
+        ></span>
+        <span
+          data-slot="y"
+          data-slot-as="attr:data-y"
+          data-slot-type="number"
+        ></span>
+      </div>
+    </template>
+
+    <template data-part="tree-toolbar-template">
+      <div data-part="tree-toolbar" role="group" aria-label="Planner actions">
+        <button
+          type="button"
+          data-part="toolbar-open"
+          title="Open or create a project (Ctrl+O)"
+          aria-label="Open or create a project"
+        >
+          <svg
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          >
+            <path d="M2.5 5.5h4l1.5 1.5h5.5v6.5h-11z" />
+            <path d="M8 2.5v6m0 0 2-2m-2 2-2-2" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          data-part="toolbar-save"
+          title="Save now (Ctrl+S)"
+          aria-label="Save now"
+        >
+          <svg
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          >
+            <path d="M3 2.5h7l3 3v8H3z" />
+            <path d="M5.5 2.5v4h5v-4m-5 8h5" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          data-part="toolbar-undo"
+          title="Undo the last edit (Ctrl+Z)"
+          aria-label="Undo the last edit"
+        >
+          <svg
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          >
+            <path d="M6 4 2.5 7.5 6 11" />
+            <path d="M3 7.5h6a4.5 4.5 0 0 1 4.5 4.5" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          data-part="toolbar-redo"
+          title="Redo the last undone edit (Ctrl+Y)"
+          aria-label="Redo the last undone edit"
+        >
+          <svg
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          >
+            <path d="m10 4 3.5 3.5L10 11" />
+            <path d="M13 7.5H7A4.5 4.5 0 0 0 2.5 12" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          data-part="toolbar-export"
+          title="Export project as JSON text"
+          aria-label="Export project as JSON text"
+        >
+          <svg
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          >
+            <path d="M3 6.5h10v7H3z" />
+            <path d="M8 10V2.5m0 0L5.5 5M8 2.5 10.5 5" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          data-part="toolbar-import"
+          title="Import project from JSON text"
+          aria-label="Import project from JSON text"
+        >
+          <svg
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          >
+            <path d="M3 6.5h10v7H3z" />
+            <path d="M8 2.5V10m0 0L5.5 7.5M8 10l2.5-2.5" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          data-part="toolbar-shortcuts"
+          title="Keyboard shortcuts (?)"
+          aria-label="Show keyboard shortcuts"
+          aria-haspopup="dialog"
+        >
+          <svg
+            viewBox="0 0 16 16"
+            aria-hidden="true"
+            focusable="false"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+          >
+            <circle cx="8" cy="8" r="5.5" />
+            <path d="M6.5 6.5a1.5 1.5 0 1 1 2.6 1c-.7.7-1.1.8-1.1 2" />
+            <path d="M8 12h.01" />
+          </svg>
+        </button>
+      </div>
+    </template>
+  </body>
+</html>

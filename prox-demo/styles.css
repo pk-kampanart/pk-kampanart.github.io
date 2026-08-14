@@ -1,0 +1,1123 @@
+/*
+ * Presentation only. Sections in order: tokens, base, shell, controls, tree,
+ * surface, dialogs, state and motion.
+ *
+ * Every design value is a token in section 1. A literal colour, radius, or
+ * spacing below section 1 is a fork of a number that already has a home.
+ * docs/architecture/styling.md names the values that are test contracts.
+ */
+
+/* ---- 1. Tokens ---------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  /* Accent. The 50% step is pinned by tests/browser/styles.spec.js, which
+     reads it back off the add-application border. */
+  --accent-h: 214;
+  --accent-s: 82%;
+  --accent: hsl(var(--accent-h) var(--accent-s) 50%);
+  --accent-strong: hsl(var(--accent-h) var(--accent-s) 42%);
+  --accent-soft: hsl(var(--accent-h) var(--accent-s) 68%);
+  --accent-surface: hsl(var(--accent-h) var(--accent-s) 94%);
+  --accent-ancestor-surface: color-mix(
+    in srgb,
+    var(--accent-surface) 50%,
+    var(--surface-raised)
+  );
+  --danger-h: 4;
+  --danger-s: 71%;
+  --danger: hsl(var(--danger-h) var(--danger-s) 50%);
+  --notice-h: 39;
+  --notice-s: 100%;
+  --notice: hsl(var(--notice-h) var(--notice-s) 45%);
+
+  /* Neutrals. The body pair is pinned by tests/browser/styles.spec.js. */
+  --surface-sunken: hsl(0 0% 97%);
+  --surface-raised: hsl(0 0% 100%);
+  --surface-inset: hsl(0 0% 98%);
+  --control-surface: hsl(0 0% 97%);
+  --control-surface-hover: hsl(0 0% 93%);
+  --control-surface-active: hsl(0 0% 88%);
+  --row-hover-surface: hsl(0 0% 95%);
+  --text: hsl(0 0% 10%);
+  --text-muted: hsl(0 0% 40%);
+  --text-faint: hsl(0 0% 58%);
+  --border: hsl(0 0% 88%);
+  --border-strong: hsl(0 0% 76%);
+  --scrim: hsl(0 0% 8% / 0.38);
+
+  /* Space */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 12px;
+  --space-6: 16px;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 10px;
+
+  /* Elevation */
+  --shadow-1: 0 1px 2px hsl(0 0% 0% / 0.07);
+  --shadow-2: 0 2px 10px hsl(0 0% 0% / 0.09);
+  --shadow-dialog: 0 16px 48px hsl(0 0% 0% / 0.22);
+
+  /* Type */
+  --font-ui:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --size-1: 11px;
+  --size-2: 13px;
+  --size-3: 15px;
+
+  /* Focus. Wide enough to read on a tinted row, inset so it never clips. */
+  --focus-color: var(--accent);
+  --focus-width: 2px;
+
+  /* Structure. The splitter width is read by both the splitter and the
+     workspace grid track, so the divider has one width, not two. */
+  --workflow-width: 20rem;
+  --workflow-min-width: 220px;
+  --surface-min-width: 320px;
+  --splitter-width: 8px;
+  --tree-indent: 16px;
+  --row-height: 26px;
+
+  /* Motion */
+  --motion-fast: 120ms;
+  --motion-emphasis: 240ms;
+
+  /* Selection */
+  --state-selected-background: var(--accent-surface);
+  --state-selected-outline: var(--accent-strong);
+}
+
+/* ---- 2. Base ------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  color: var(--text);
+  background: var(--surface-sunken);
+  font-family: var(--font-ui);
+  font-size: var(--size-2);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: 1px;
+}
+
+/* ---- 3. Shell ----------------------------------------------------------- */
+
+/*
+ * A fixed frame, not a growing page: the toolbar and the status bar sit on the
+ * viewport edges at every window size and zoom level, and only the panes
+ * between them scroll.
+ */
+[data-part="app"] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Wraps rather than clips: a control the window is too narrow to show is a
+   control the keyboard can still reach but the pointer cannot. */
+[data-part="toolbar"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-raised);
+}
+
+/* The tracks carry the two minimum widths, so a window too narrow for both
+   scrolls the workspace rather than dragging the header and footer off with
+   it. */
+[data-part="workspace"] {
+  display: grid;
+  grid-template-columns:
+    minmax(var(--workflow-min-width), var(--workflow-width))
+    var(--splitter-width)
+    minmax(var(--surface-min-width), 1fr);
+  min-width: 0;
+  min-height: 0;
+  overflow-x: auto;
+}
+
+[data-part="workflow"] {
+  display: block;
+  min-width: 0;
+  overflow: auto;
+  padding-block: var(--space-4);
+  padding-inline: 0;
+  background: var(--surface-raised);
+}
+
+[data-part="splitter"] {
+  display: flex;
+  width: var(--splitter-width);
+  align-items: stretch;
+  justify-content: center;
+  background: var(--surface-sunken);
+  cursor: col-resize;
+}
+
+[data-part="splitter"]::before {
+  content: "";
+  width: 1px;
+  background: var(--border);
+  transition: background-color var(--motion-fast);
+}
+
+[data-part="splitter"]:hover::before,
+[data-part="splitter"]:focus-visible::before {
+  width: 2px;
+  background: var(--accent);
+}
+
+[data-part="splitter"]:focus-visible {
+  background: var(--accent-surface);
+  outline: none;
+}
+
+[data-part="surface-region"] {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-width: var(--surface-min-width);
+  min-height: 0;
+  overflow: hidden;
+  padding: var(--space-5);
+}
+
+[data-part="surface-help"],
+[data-part="surface-announcer"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+[data-part="status"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-3) var(--space-5);
+  border-top: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="status"] > [data-part^="status-"] {
+  white-space: nowrap;
+}
+
+/* A rule rather than a "·" character: these are live regions, and injected
+   text is announced. */
+[data-part="status"] > [data-part^="status-"] + [data-part^="status-"] {
+  padding-inline-start: var(--space-5);
+  border-inline-start: 1px solid var(--border);
+}
+
+body[data-screen="project"] [data-part="screen-project"] {
+  display: block;
+}
+
+body[data-screen]:not([data-screen="project"]) [data-part="screen-project"] {
+  display: none;
+}
+
+/* ---- 4. Controls -------------------------------------------------------- */
+
+button {
+  display: inline-flex;
+  min-height: var(--row-height);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-1);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--size-2);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast),
+    border-color var(--motion-fast);
+}
+
+button:hover {
+  background: var(--control-surface-hover);
+}
+
+button:active {
+  background: var(--control-surface-active);
+  box-shadow: none;
+}
+
+button:disabled {
+  box-shadow: none;
+  color: var(--text-faint);
+  cursor: default;
+}
+
+/* The header's action cluster reads as one segmented control. */
+[data-part="tree-toolbar"] {
+  display: inline-flex;
+  align-items: center;
+}
+
+[data-part="tree-toolbar"] button {
+  width: var(--row-height);
+  height: var(--row-height);
+  min-height: var(--row-height);
+  padding: 0;
+  margin-inline-start: -1px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+[data-part="tree-toolbar"] svg {
+  display: block;
+  width: var(--space-6);
+  height: var(--space-6);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+[data-part="tree-toolbar"] button:first-child {
+  margin-inline-start: 0;
+  border-start-start-radius: var(--radius);
+  border-end-start-radius: var(--radius);
+}
+
+[data-part="tree-toolbar"] button:last-child {
+  border-start-end-radius: var(--radius);
+  border-end-end-radius: var(--radius);
+}
+
+[data-part="tree-toolbar"] button:hover,
+[data-part="tree-toolbar"] button:focus-visible {
+  position: relative;
+}
+
+input[type="text"] {
+  min-height: var(--row-height);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--size-2);
+}
+
+input[type="text"]:focus-visible {
+  border-color: var(--accent);
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+input[type="file"] {
+  font-size: var(--size-1);
+}
+
+/* Row controls stay in the layout and accessibility tree while quiet at rest. */
+[data-act="delete"],
+[data-act^="add-"],
+[data-part="tree-background"],
+[data-part="tree-opacity-toggle"] {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--row-height);
+  height: var(--row-height);
+  min-height: var(--row-height);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  box-shadow: none;
+  color: var(--text-muted);
+  font-size: var(--size-3);
+  line-height: 1;
+  cursor: pointer;
+}
+
+[data-act="delete"]:hover,
+[data-act^="add-"]:hover,
+[data-part="tree-background"]:hover,
+[data-part="tree-opacity-toggle"]:hover {
+  background: var(--control-surface-hover);
+  color: var(--text);
+}
+
+[data-act="delete"]:hover {
+  color: var(--danger);
+}
+
+[data-part="tree-background"] svg,
+[data-part="tree-opacity-badge"] svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+[data-part="tree-opacity-toggle"] {
+  position: relative;
+}
+
+[data-part="tree-opacity-checkbox"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+[data-part="tree-opacity-toggle"]:has(
+  [data-part="tree-opacity-checkbox"]:checked
+) {
+  background: var(--accent-surface);
+  color: var(--accent-strong);
+}
+
+/* Add is an invitation, not a selection; every add role shares this treatment. */
+[data-act^="add-"] {
+  order: 1;
+  border: 1px dashed var(--accent);
+  color: var(--accent);
+}
+
+[data-act^="add-"]:hover {
+  background: var(--accent-surface);
+}
+
+[data-act="delete"] {
+  order: 2;
+}
+
+/* Opacity keeps action controls tabbable and announced without reserving a gutter. */
+[data-act="delete"],
+[data-act^="add-"],
+[data-part="tree-opacity-toggle"] {
+  opacity: 0;
+}
+
+[data-part="tree-summary"]:is(:hover, :focus-within)
+  :is([data-act="delete"], [data-act^="add-"], [data-part="tree-opacity-toggle"]),
+[data-part="tree-leaf"]:is(:hover, :focus-within)
+  :is([data-act="delete"], [data-act^="add-"], [data-part="tree-opacity-toggle"]),
+[data-state~="selected"]
+  :is([data-act="delete"], [data-act^="add-"], [data-part="tree-opacity-toggle"]) {
+  opacity: 1;
+}
+
+[data-part="tree-background-input"][hidden],
+[data-part="tree-name-input"][hidden],
+[data-part="tree-opacity-slider"][hidden] {
+  display: none;
+}
+
+[data-part="tree-row"][hidden],
+[data-part="tree-list"] [data-part="selection-catcher"][hidden] {
+  display: none;
+}
+
+[data-part="tree-name-input"] {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+[data-part="tree-opacity-slider"] {
+  flex: 0 0 auto;
+  width: 6rem;
+}
+
+[data-part="tree-group-color"] {
+  flex: 0 0 var(--row-height);
+  width: var(--row-height);
+  height: var(--row-height);
+  min-height: var(--row-height);
+  margin: 0;
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  cursor: pointer;
+}
+
+[data-part="tree-floor-branch"][data-background=""]
+  [data-part="tree-opacity-toggle"],
+[data-part="tree-floor-branch"][data-background=""]
+  [data-part="tree-opacity-slider"] {
+  opacity: 0;
+}
+
+[data-part="background-pick"] {
+  padding: var(--space-1);
+}
+
+[data-part="background-thumbnail"] {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+[data-part="opacity-slider"] {
+  display: none;
+  width: 7rem;
+}
+
+[data-part="opacity-slider"][data-state~="open"] {
+  display: flex;
+}
+
+/* ---- 5. Tree ------------------------------------------------------------ */
+
+[data-part="tree-list"],
+[data-part="tree-project"],
+[data-part="tree-floors"],
+[data-part="tree-children"] {
+  min-width: 0;
+  width: 100%;
+}
+
+[data-part="tree-children"] {
+  padding-inline-start: 0;
+}
+
+[data-part="tree-project-row"] {
+  display: flex;
+  height: var(--row-height);
+  align-items: center;
+  padding-inline: var(--space-5);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/*
+ * One band per row. The tint is carried by an inherited custom property so
+ * the line owner and the row inside it paint the same colour: hover, focus,
+ * selection and the ancestor tint each cover the whole visual line, from the
+ * indent guides through the trailing controls.
+ */
+[data-part="tree-summary"],
+[data-part="tree-leaf"],
+[data-part="tree-instance-row"],
+[data-part="tree-row"],
+[data-part="tree-list"] [data-part="selection-catcher"] {
+  background: var(--row-tint, transparent);
+}
+
+[data-part="tree-summary"],
+[data-part="tree-leaf"],
+[data-part="tree-instance-row"] {
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+}
+
+[data-part="tree-summary"],
+[data-part="tree-leaf"],
+[data-part="tree-instance"] {
+  display: flex;
+  min-width: 0;
+  width: 100%;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+[data-part="tree-summary"]::marker {
+  content: "";
+}
+
+[data-part="tree-chevron"] {
+  display: flex;
+  flex: 0 0 var(--tree-indent);
+  width: var(--tree-indent);
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  color: var(--text-faint);
+  font-size: 9px;
+}
+
+[data-part="tree-chevron"]::before {
+  content: "▸";
+}
+
+[data-part="tree-floor-branch"][open]
+  > [data-part="tree-summary"]
+  [data-part="tree-chevron"]::before,
+[data-part="tree-application-branch"][open]
+  > [data-part="tree-summary"]
+  [data-part="tree-chevron"]::before,
+[data-part="tree-section"][open]
+  > [data-part="tree-summary"]
+  [data-part="tree-chevron"]::before,
+[data-part="tree-device-type-branch"][open]
+  > [data-part="tree-summary"]
+  [data-part="tree-chevron"]::before {
+  content: "▾";
+}
+
+[data-part="tree-device-type-branch"]
+  > [data-part="tree-summary"]
+  [data-part="tree-chevron"] {
+  display: none;
+}
+
+[data-part="tree-summary-content"] {
+  display: flex;
+  min-width: 0;
+  width: 100%;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+[data-part="tree-row"],
+[data-part="tree-list"] [data-part="selection-catcher"],
+[data-part="tree-instance-row"] {
+  display: flex;
+  min-width: 0;
+  height: var(--row-height);
+  flex: 1 1 auto;
+  width: 100%;
+  position: relative;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: default;
+}
+
+/*
+ * The checked radio *is* the selection (docs/requirements/interaction.md), so
+ * it stays operable and hit-testable. It is taken out of flow and made
+ * invisible rather than removed: the row's own band is the visible affordance,
+ * and the chevron then sits directly in front of the name.
+ */
+[data-part="tree-radio"] {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 0;
+  width: 11px;
+  height: auto;
+  margin: 0;
+  opacity: 0;
+}
+
+/*
+ * Depth indents the whole line, so a branch's chevron sits with its own row
+ * rather than stacking at the panel edge. Indentation alone carries depth:
+ * ruled guides at every level read as noise beside a row's hover band.
+ */
+[data-part="tree-floor-branch"] {
+  --tree-level: 0;
+}
+
+[data-part="tree-application-branch"] {
+  --tree-level: 1;
+}
+
+[data-part="tree-section"] {
+  --tree-level: 2;
+}
+
+[data-part="tree-leaf"],
+[data-part="tree-device-type-branch"] {
+  --tree-level: 3;
+}
+
+[data-part="tree-summary"],
+[data-part="tree-leaf"],
+[data-part="tree-instance-row"] {
+  padding-inline-start: calc(var(--tree-indent) * var(--tree-level, 0));
+}
+
+[data-part="tree-device-type-branch"]
+  > [data-part="tree-summary"]
+  :is([data-part="tree-row"], [data-part="selection-catcher"])::before {
+  content: "";
+  flex: 0 0 var(--row-height);
+  width: var(--row-height);
+  height: var(--row-height);
+}
+
+[data-part="tree-name"],
+[data-part="tree-instance-label"] {
+  display: block;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-part="tree-count"] {
+  flex: 0 0 auto;
+  color: var(--text-faint);
+  font-size: var(--size-1);
+  font-variant-numeric: tabular-nums;
+}
+
+[data-part="tree-section-label"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-faint);
+  font-size: var(--size-1);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+[data-part="tree-section-empty"] {
+  flex: 0 1 auto;
+  overflow: hidden;
+  color: var(--text-faint);
+  font-size: var(--size-1);
+  font-style: italic;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-part="tree-floor-branch"][data-state~="controls-open"] {
+  width: max-content;
+  min-width: 300px;
+}
+
+/*
+ * Coordinate-bearing instance rows stay in the saved markup: they carry the
+ * only data-x / data-y slots a saved page reads back (ADR-0016). Hidden here,
+ * never deleted. Move the slots to the surface device before removing them.
+ */
+[data-part="tree-instance"] {
+  display: none;
+  font-size: var(--size-1);
+}
+
+[data-part="tree-instance"] [data-part="tree-instance-row"] {
+  padding-block: var(--space-1);
+}
+
+/* Hover and keyboard focus are different states and must look different:
+   a tint means "the pointer is here", a ring means "the keyboard is here". */
+[data-part="tree-summary"]:hover,
+[data-part="tree-leaf"]:hover,
+[data-part="tree-instance-row"]:hover {
+  --row-tint: var(--row-hover-surface);
+}
+
+[data-part="tree-summary"]:has(:focus-visible),
+[data-part="tree-leaf"]:has(:focus-visible) {
+  --row-tint: var(--row-hover-surface);
+}
+
+[data-part="tree-row"]:focus-visible,
+[data-part="tree-list"] [data-part="selection-catcher"]:focus-visible,
+[data-part="tree-instance-row"]:focus-visible,
+[data-part="tree-summary"]:focus-visible {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: -2px;
+}
+
+[data-part="tree-floor-branch"]:has(
+    [data-part="tree-children"] [data-part="tree-radio"]:checked
+  )
+  > [data-part="tree-summary"],
+[data-part="tree-application-branch"]:has(
+    [data-part="tree-children"] [data-part="tree-radio"]:checked
+  )
+  > [data-part="tree-summary"],
+[data-part="tree-section"]:has(
+    [data-part="tree-children"] [data-part="tree-radio"]:checked
+  )
+  > [data-part="tree-summary"] {
+  --row-tint: var(--accent-ancestor-surface);
+}
+
+[data-drop="true"]
+  > [data-part="tree-summary"]
+  :is([data-part="tree-row"], [data-part="selection-catcher"]),
+[data-drop="true"] > [data-part="tree-row"] {
+  outline: 2px dashed var(--accent);
+  outline-offset: -2px;
+}
+
+/* ---- 6. Surface --------------------------------------------------------- */
+
+/* The hairline is a ring, not a border: src/surface-viewport.js maps pointer
+   coordinates through getBoundingClientRect(), which is the border box, so a
+   real border would offset every click by its own width. */
+[data-part="surface"] {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--surface-inset);
+  box-shadow:
+    0 0 0 1px var(--border),
+    var(--shadow-1);
+}
+
+[data-part="surface"][data-drawing="true"] {
+  cursor: crosshair;
+}
+
+[data-part="grid-layer"] {
+  pointer-events: none;
+}
+
+[data-part="grid-line"] {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-part="surface-group"] {
+  fill-opacity: 0.18;
+  stroke: currentColor;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-part="group-handle"] {
+  fill: var(--surface-raised);
+  stroke: var(--accent);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-part="group-preview"] {
+  fill: currentColor;
+  fill-opacity: 0.1;
+  stroke: currentColor;
+  stroke-dasharray: 6 4;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-part="surface-link"] {
+  stroke: var(--text-faint);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}
+
+[data-part="surface-device"] {
+  fill: var(--accent);
+  stroke: var(--surface-raised);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-part="surface-cursor"] {
+  fill: none;
+  stroke: var(--accent-strong);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+[data-part="surface-cursor"][data-state="idle"] {
+  opacity: 0;
+}
+
+[data-part="surface-cursor"][data-state="entity"],
+[data-part="surface-cursor"][data-state="empty"],
+[data-part="surface-cursor"][data-state="armed"] {
+  opacity: 1;
+}
+
+/* ---- 7. Dialogs --------------------------------------------------------- */
+
+dialog {
+  max-width: min(34rem, calc(100vw - var(--space-6) * 2));
+  padding: var(--space-6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin: auto;
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-dialog);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--size-2);
+}
+
+dialog::backdrop {
+  background: var(--scrim);
+}
+
+dialog h2 {
+  margin: 0 0 var(--space-5);
+  font-size: var(--size-3);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+[data-part="project-form"] {
+  display: grid;
+  gap: var(--space-4);
+  padding-block-end: var(--space-5);
+  border-block-end: 1px solid var(--border);
+}
+
+[data-part="project-exchange-modes"] {
+  display: flex;
+  gap: var(--space-2);
+  margin-block-end: var(--space-5);
+}
+
+[data-part="project-exchange-form"] {
+  display: grid;
+  gap: var(--space-4);
+}
+
+[data-part="project-exchange-label"] {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="project-exchange-text"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  color: var(--text);
+  font: var(--font-mono);
+  resize: vertical;
+}
+
+[data-part="project-exchange-import"] {
+  justify-self: start;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface-raised);
+}
+
+[data-part="project-exchange-import"]:hover {
+  background: var(--accent-strong);
+}
+
+[data-part="project-exchange-error"] {
+  margin: 0;
+  color: var(--danger);
+}
+
+[data-part="project-name-label"] {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="project-create"] {
+  justify-self: start;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface-raised);
+}
+
+[data-part="project-create"]:hover {
+  background: var(--accent-strong);
+}
+
+[data-part="project-empty"] {
+  margin: var(--space-5) 0 0;
+  color: var(--text-muted);
+}
+
+[data-part="project-list"] {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+[data-part="project-item"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+[data-part="project-item"] [data-part="project-name"] {
+  overflow: hidden;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-part="project-updated"] {
+  color: var(--text-faint);
+  font-size: var(--size-1);
+  font-variant-numeric: tabular-nums;
+}
+
+[data-part="project-delete"]:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+[data-part="project-close"],
+[data-part="shortcuts-close"] {
+  margin-block-start: var(--space-6);
+}
+
+[data-part="shortcut-list"] {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--space-3) var(--space-6);
+  margin: 0;
+}
+
+[data-part="shortcut-list"] > div {
+  display: contents;
+}
+
+[data-part="shortcut-keys"] {
+  justify-self: start;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-block-end-width: 2px;
+  border-radius: var(--radius-sm);
+  background: var(--control-surface);
+  font-family: var(--font-mono);
+  font-size: var(--size-1);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+[data-part="shortcut-description"] {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* ---- 8. State and motion ------------------------------------------------ */
+
+/*
+ * The selected token owns a transition on both background-color and
+ * outline-color. tests/browser/shell.spec.js tells a mounted element from a
+ * freshly created one by reading colour mid-transition, so dropping either
+ * half — or giving [data-part="workflow"] a resting background equal to the
+ * selected tint — makes that test go red.
+ */
+[data-state~="selected"] {
+  background-color: var(--state-selected-background);
+  outline: 2px solid var(--state-selected-outline);
+  outline-offset: -2px;
+  transition:
+    background-color var(--motion-fast),
+    outline-color var(--motion-fast);
+}
+
+[data-state~="editing"] {
+  transition:
+    background-color var(--motion-emphasis),
+    outline-color var(--motion-emphasis);
+}
+
+[data-anchor][data-state~="selected"] {
+  background: var(--accent-surface);
+  border: 1px solid var(--accent);
+}
+
+/* A branch anchor wraps its whole subtree, so its selection reads on the
+   summary line instead of tinting every descendant behind it. */
+[data-part="tree-floor-branch"][data-state~="selected"],
+[data-part="tree-application-branch"][data-state~="selected"],
+[data-part="tree-device-type-branch"][data-state~="selected"] {
+  border-color: transparent;
+  background: transparent;
+  outline: none;
+}
+
+[data-part="tree-floor-branch"][data-state~="selected"]
+  > [data-part="tree-summary"],
+[data-part="tree-application-branch"][data-state~="selected"]
+  > [data-part="tree-summary"],
+[data-part="tree-device-type-branch"][data-state~="selected"]
+  > [data-part="tree-summary"] {
+  --row-tint: var(--state-selected-background);
+  border-color: var(--accent);
+}
+
+[data-state~="hovered"] {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 1px;
+}
+
+[data-part="surface-group"][data-state~="hovered"],
+[data-part="surface-device"][data-state~="hovered"] {
+  stroke: var(--accent-strong);
+  stroke-width: 3;
+}
+
+[data-part="surface-device"][data-state~="affinity"],
+[data-part="surface-device"][data-state~="selected"],
+[data-part="surface-group"][data-state~="selected"] {
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
