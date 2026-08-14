@@ -1,0 +1,537 @@
+{
+  "name": "Prox Apartment",
+  "plan": {
+    "formatVersion": 1,
+    "project": {
+      "id": "prox-apartment",
+      "name": "Prox Apartment"
+    },
+    "floors": [
+      {
+        "id": "demo-1",
+        "name": "Apartment",
+        "background": {
+          "src": "dev/floorplans/prox-apartment.svg",
+          "opacity": 100
+        },
+        "applications": [
+          {
+            "id": "demo-2",
+            "name": "Lighting",
+            "groups": [
+              {
+                "id": "demo-3",
+                "name": "Group #1",
+                "color": "#ff8787",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 238,
+                  "y": 526,
+                  "width": 257,
+                  "height": 141
+                }
+              },
+              {
+                "id": "demo-4",
+                "name": "Group #2",
+                "color": "#ffa94d",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 79,
+                  "y": 200,
+                  "width": 162,
+                  "height": 265
+                }
+              },
+              {
+                "id": "demo-5",
+                "name": "Group #3",
+                "color": "#ffe066",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 749,
+                  "y": 16,
+                  "width": 187,
+                  "height": 271
+                }
+              },
+              {
+                "id": "demo-6",
+                "name": "Group #4",
+                "color": "#8ce99a",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 744,
+                  "y": 306,
+                  "width": 185,
+                  "height": 370
+                }
+              },
+              {
+                "id": "demo-7",
+                "name": "Group #6",
+                "color": "#74c0fc",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 407,
+                  "y": 28,
+                  "width": 137,
+                  "height": 482
+                }
+              }
+            ],
+            "deviceTypes": [
+              {
+                "id": "demo-8",
+                "name": "LED",
+                "instances": [
+                  {
+                    "id": "demo-9",
+                    "x": 150,
+                    "y": 96
+                  },
+                  {
+                    "id": "demo-10",
+                    "x": 284,
+                    "y": 96
+                  },
+                  {
+                    "id": "demo-11",
+                    "x": 475,
+                    "y": 167
+                  },
+                  {
+                    "id": "demo-12",
+                    "x": 160,
+                    "y": 280
+                  },
+                  {
+                    "id": "demo-13",
+                    "x": 157,
+                    "y": 396
+                  },
+                  {
+                    "id": "demo-14",
+                    "x": 472,
+                    "y": 370
+                  },
+                  {
+                    "id": "demo-15",
+                    "x": 289,
+                    "y": 588
+                  },
+                  {
+                    "id": "demo-16",
+                    "x": 431,
+                    "y": 586
+                  },
+                  {
+                    "id": "demo-17",
+                    "x": 777,
+                    "y": 145
+                  },
+                  {
+                    "id": "demo-18",
+                    "x": 857,
+                    "y": 51
+                  },
+                  {
+                    "id": "demo-19",
+                    "x": 779,
+                    "y": 466
+                  },
+                  {
+                    "id": "demo-20",
+                    "x": 900,
+                    "y": 650
+                  }
+                ]
+              },
+              {
+                "id": "demo-21",
+                "name": "Dimmer",
+                "instances": [
+                  {
+                    "id": "demo-22",
+                    "x": 683,
+                    "y": 43
+                  },
+                  {
+                    "id": "demo-23",
+                    "x": 726,
+                    "y": 43
+                  },
+                  {
+                    "id": "demo-24",
+                    "x": 362,
+                    "y": 101
+                  },
+                  {
+                    "id": "demo-25",
+                    "x": 362,
+                    "y": 142
+                  },
+                  {
+                    "id": "demo-26",
+                    "x": 677,
+                    "y": 325
+                  },
+                  {
+                    "id": "demo-27",
+                    "x": 719,
+                    "y": 325
+                  },
+                  {
+                    "id": "demo-28",
+                    "x": 582,
+                    "y": 401
+                  },
+                  {
+                    "id": "demo-29",
+                    "x": 582,
+                    "y": 448
+                  }
+                ]
+              },
+              {
+                "id": "demo-30",
+                "name": "Switch",
+                "instances": [
+                  {
+                    "id": "demo-31",
+                    "x": 282,
+                    "y": 440
+                  },
+                  {
+                    "id": "demo-32",
+                    "x": 325,
+                    "y": 440
+                  },
+                  {
+                    "id": "demo-33",
+                    "x": 282,
+                    "y": 482
+                  },
+                  {
+                    "id": "demo-34",
+                    "x": 325,
+                    "y": 482
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "demo-35",
+            "name": "HVAC",
+            "groups": [],
+            "deviceTypes": []
+          },
+          {
+            "id": "demo-36",
+            "name": "Access",
+            "groups": [],
+            "deviceTypes": []
+          }
+        ]
+      }
+    ]
+  },
+  "sandbox": {
+    "preset": "Prox Apartment",
+    "devices": [
+      {
+        "id": "307B2C5AC4185D209DE39D38CA0D1121",
+        "sku": "PROX-CTLSrv-2ch",
+        "mac": "00:80:E1:27:F4:6A",
+        "name": "Kitchen LED 2ch",
+        "attention": true,
+        "failWrites": ["2/1300"],
+        "scan": [-63, -65, -62, -64, -63]
+      },
+      {
+        "id": "78CBD4F02FF3FB928FC4107623ABECE8",
+        "sku": "PROX-LLSrv-1ch",
+        "mac": "00:80:E1:27:EC:ED",
+        "name": "Living LED",
+        "scan": [-68, -70, -67, -69, -68]
+      },
+      {
+        "id": "08368F679C52807EF0B352D7F7C3DD56",
+        "sku": "PROX-CTLSrv-1ch",
+        "mac": "00:80:E1:27:F6:81",
+        "name": "Bedroom LED",
+        "attention": true,
+        "scan": [-73, -75, -72, -74, -73]
+      },
+      {
+        "id": "F6D2FE26920B750C3C2398C06A52547A",
+        "sku": "PROX-LLSrv-1ch",
+        "mac": "00:80:E1:27:E4:AC",
+        "name": "Guest bedroom LED",
+        "unreachable": true,
+        "scan": [-65, -67, -64, -66, -65]
+      },
+      {
+        "id": "B21A1BA1A5AA522E8FCC8D3CD8ECC942",
+        "sku": "PROX-CTLClt-Enc-2Ch",
+        "mac": "00:80:E1:27:E8:8A",
+        "name": "Bedroom dimmer",
+        "failStep": "appkey",
+        "scan": [-70, -72, -69, -71, -70]
+      },
+      {
+        "id": "73B2D413B35B80AE16F2246BABFF83DE",
+        "sku": "PROX-LLClt-Enc-2Ch",
+        "mac": "00:80:E1:27:F3:59",
+        "name": "Living dimmer",
+        "reset": true,
+        "scan": [-48, -50, -47, -49, -48]
+      },
+      {
+        "id": "AC632897D10F1954F0C9C84392E58D7B",
+        "sku": "PROX-OnOffClt-Btn-4Ch",
+        "mac": "00:80:E1:27:F7:71",
+        "name": "Hall switch",
+        "reset": true,
+        "scan": [-58, -60, -57, -59, -58]
+      }
+    ],
+    "rssi": {
+      "307B2C5AC4185D209DE39D38CA0D1121>78CBD4F02FF3FB928FC4107623ABECE8": {
+        "avg": -65,
+        "min": -69,
+        "max": -62,
+        "secondsSinceLastTx": 7
+      },
+      "307B2C5AC4185D209DE39D38CA0D1121>08368F679C52807EF0B352D7F7C3DD56": {
+        "avg": -96,
+        "min": -98,
+        "max": -94,
+        "secondsSinceLastTx": 9
+      },
+      "307B2C5AC4185D209DE39D38CA0D1121>F6D2FE26920B750C3C2398C06A52547A": {
+        "status": "timeout"
+      },
+      "307B2C5AC4185D209DE39D38CA0D1121>B21A1BA1A5AA522E8FCC8D3CD8ECC942": {
+        "avg": -94,
+        "min": -96,
+        "max": -90,
+        "secondsSinceLastTx": 1
+      },
+      "307B2C5AC4185D209DE39D38CA0D1121>73B2D413B35B80AE16F2246BABFF83DE": {
+        "avg": -62,
+        "min": -65,
+        "max": -60,
+        "secondsSinceLastTx": 2
+      },
+      "307B2C5AC4185D209DE39D38CA0D1121>AC632897D10F1954F0C9C84392E58D7B": {
+        "avg": -50,
+        "min": -55,
+        "max": -45,
+        "secondsSinceLastTx": 2
+      },
+      "78CBD4F02FF3FB928FC4107623ABECE8>307B2C5AC4185D209DE39D38CA0D1121": {
+        "avg": -67,
+        "min": -70,
+        "max": -65,
+        "secondsSinceLastTx": 9
+      },
+      "78CBD4F02FF3FB928FC4107623ABECE8>08368F679C52807EF0B352D7F7C3DD56": {
+        "avg": -100,
+        "min": -105,
+        "max": -98,
+        "secondsSinceLastTx": 2
+      },
+      "78CBD4F02FF3FB928FC4107623ABECE8>F6D2FE26920B750C3C2398C06A52547A": {
+        "status": "timeout"
+      },
+      "78CBD4F02FF3FB928FC4107623ABECE8>B21A1BA1A5AA522E8FCC8D3CD8ECC942": {
+        "avg": -93,
+        "min": -96,
+        "max": -91,
+        "secondsSinceLastTx": 7
+      },
+      "78CBD4F02FF3FB928FC4107623ABECE8>73B2D413B35B80AE16F2246BABFF83DE": {
+        "avg": -76,
+        "min": -78,
+        "max": -73,
+        "secondsSinceLastTx": 1
+      },
+      "78CBD4F02FF3FB928FC4107623ABECE8>AC632897D10F1954F0C9C84392E58D7B": {
+        "avg": -55,
+        "min": -58,
+        "max": -51,
+        "secondsSinceLastTx": 7
+      },
+      "08368F679C52807EF0B352D7F7C3DD56>307B2C5AC4185D209DE39D38CA0D1121": {
+        "avg": -97,
+        "min": -100,
+        "max": -95,
+        "secondsSinceLastTx": 5
+      },
+      "08368F679C52807EF0B352D7F7C3DD56>78CBD4F02FF3FB928FC4107623ABECE8": {
+        "avg": -99,
+        "min": -102,
+        "max": -97,
+        "secondsSinceLastTx": 4
+      },
+      "08368F679C52807EF0B352D7F7C3DD56>F6D2FE26920B750C3C2398C06A52547A": {
+        "status": "timeout"
+      },
+      "08368F679C52807EF0B352D7F7C3DD56>B21A1BA1A5AA522E8FCC8D3CD8ECC942": {
+        "avg": -49,
+        "min": -53,
+        "max": -47,
+        "secondsSinceLastTx": 9
+      },
+      "08368F679C52807EF0B352D7F7C3DD56>73B2D413B35B80AE16F2246BABFF83DE": {
+        "avg": -73,
+        "min": -75,
+        "max": -71,
+        "secondsSinceLastTx": 4
+      },
+      "08368F679C52807EF0B352D7F7C3DD56>AC632897D10F1954F0C9C84392E58D7B": {
+        "avg": -92,
+        "min": -97,
+        "max": -87,
+        "secondsSinceLastTx": 6
+      },
+      "F6D2FE26920B750C3C2398C06A52547A>307B2C5AC4185D209DE39D38CA0D1121": {
+        "status": "timeout"
+      },
+      "F6D2FE26920B750C3C2398C06A52547A>78CBD4F02FF3FB928FC4107623ABECE8": {
+        "status": "timeout"
+      },
+      "F6D2FE26920B750C3C2398C06A52547A>08368F679C52807EF0B352D7F7C3DD56": {
+        "status": "timeout"
+      },
+      "F6D2FE26920B750C3C2398C06A52547A>B21A1BA1A5AA522E8FCC8D3CD8ECC942": {
+        "status": "timeout"
+      },
+      "F6D2FE26920B750C3C2398C06A52547A>73B2D413B35B80AE16F2246BABFF83DE": {
+        "status": "timeout"
+      },
+      "F6D2FE26920B750C3C2398C06A52547A>AC632897D10F1954F0C9C84392E58D7B": {
+        "status": "timeout"
+      },
+      "B21A1BA1A5AA522E8FCC8D3CD8ECC942>307B2C5AC4185D209DE39D38CA0D1121": {
+        "avg": -97,
+        "min": -102,
+        "max": -92,
+        "secondsSinceLastTx": 6
+      },
+      "B21A1BA1A5AA522E8FCC8D3CD8ECC942>78CBD4F02FF3FB928FC4107623ABECE8": {
+        "avg": -94,
+        "min": -98,
+        "max": -91,
+        "secondsSinceLastTx": 3
+      },
+      "B21A1BA1A5AA522E8FCC8D3CD8ECC942>08368F679C52807EF0B352D7F7C3DD56": {
+        "avg": -51,
+        "min": -54,
+        "max": -49,
+        "secondsSinceLastTx": 5
+      },
+      "B21A1BA1A5AA522E8FCC8D3CD8ECC942>F6D2FE26920B750C3C2398C06A52547A": {
+        "status": "timeout"
+      },
+      "B21A1BA1A5AA522E8FCC8D3CD8ECC942>73B2D413B35B80AE16F2246BABFF83DE": {
+        "avg": -75,
+        "min": -80,
+        "max": -71,
+        "secondsSinceLastTx": 8
+      },
+      "B21A1BA1A5AA522E8FCC8D3CD8ECC942>AC632897D10F1954F0C9C84392E58D7B": {
+        "avg": -90,
+        "min": -94,
+        "max": -88,
+        "secondsSinceLastTx": 2
+      },
+      "73B2D413B35B80AE16F2246BABFF83DE>307B2C5AC4185D209DE39D38CA0D1121": {
+        "avg": -61,
+        "min": -66,
+        "max": -58,
+        "secondsSinceLastTx": 6
+      },
+      "73B2D413B35B80AE16F2246BABFF83DE>78CBD4F02FF3FB928FC4107623ABECE8": {
+        "avg": -73,
+        "min": -76,
+        "max": -68,
+        "secondsSinceLastTx": 7
+      },
+      "73B2D413B35B80AE16F2246BABFF83DE>08368F679C52807EF0B352D7F7C3DD56": {
+        "avg": -71,
+        "min": -73,
+        "max": -69,
+        "secondsSinceLastTx": 9
+      },
+      "73B2D413B35B80AE16F2246BABFF83DE>F6D2FE26920B750C3C2398C06A52547A": {
+        "status": "timeout"
+      },
+      "73B2D413B35B80AE16F2246BABFF83DE>B21A1BA1A5AA522E8FCC8D3CD8ECC942": {
+        "avg": -71,
+        "min": -75,
+        "max": -67,
+        "secondsSinceLastTx": 6
+      },
+      "73B2D413B35B80AE16F2246BABFF83DE>AC632897D10F1954F0C9C84392E58D7B": {
+        "avg": -60,
+        "min": -65,
+        "max": -55,
+        "secondsSinceLastTx": 2
+      },
+      "AC632897D10F1954F0C9C84392E58D7B>307B2C5AC4185D209DE39D38CA0D1121": {
+        "avg": -52,
+        "min": -54,
+        "max": -48,
+        "secondsSinceLastTx": 8
+      },
+      "AC632897D10F1954F0C9C84392E58D7B>78CBD4F02FF3FB928FC4107623ABECE8": {
+        "avg": -55,
+        "min": -57,
+        "max": -53,
+        "secondsSinceLastTx": 5
+      },
+      "AC632897D10F1954F0C9C84392E58D7B>08368F679C52807EF0B352D7F7C3DD56": {
+        "avg": -93,
+        "min": -98,
+        "max": -89,
+        "secondsSinceLastTx": 7
+      },
+      "AC632897D10F1954F0C9C84392E58D7B>F6D2FE26920B750C3C2398C06A52547A": {
+        "status": "timeout"
+      },
+      "AC632897D10F1954F0C9C84392E58D7B>B21A1BA1A5AA522E8FCC8D3CD8ECC942": {
+        "status": "no-record"
+      },
+      "AC632897D10F1954F0C9C84392E58D7B>73B2D413B35B80AE16F2246BABFF83DE": {
+        "avg": -63,
+        "min": -67,
+        "max": -61,
+        "secondsSinceLastTx": 8
+      }
+    },
+    "vary": true
+  },
+  "add": [
+    "307B2C5AC4185D209DE39D38CA0D1121",
+    "78CBD4F02FF3FB928FC4107623ABECE8",
+    "08368F679C52807EF0B352D7F7C3DD56"
+  ]
+}

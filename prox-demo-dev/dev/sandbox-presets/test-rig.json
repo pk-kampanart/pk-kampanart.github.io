@@ -1,0 +1,36 @@
+{
+  "preset": "Test rig",
+  "devices": [
+    {
+      "id": "2CE52A0127E18000F0FF2CE527E18000",
+      "sku": "PROX-CTLSrv-2ch",
+      "mac": "2C:E5:27:E1:80:00",
+      "name": "PROX CTL Server 2ch",
+      "scan": [
+        -65, -65, -65, -67, -66, -66, -70, -68, -67, -65, -65, -65, -64, -65,
+        -65
+      ]
+    },
+    {
+      "id": "89F42A0127E18000F0FF89F427E18000",
+      "sku": "PROX-CTLClt-Enc-2Ch",
+      "mac": "89:F4:27:E1:80:00",
+      "name": "",
+      "scan": [-67]
+    }
+  ],
+  "rssi": {
+    "2CE52A0127E18000F0FF2CE527E18000>89F42A0127E18000F0FF89F427E18000": {
+      "avg": -62,
+      "min": -66,
+      "max": -58,
+      "secondsSinceLastTx": 3
+    },
+    "89F42A0127E18000F0FF89F427E18000>2CE52A0127E18000F0FF2CE527E18000": {
+      "avg": -64,
+      "min": -69,
+      "max": -60,
+      "secondsSinceLastTx": 5
+    }
+  }
+}

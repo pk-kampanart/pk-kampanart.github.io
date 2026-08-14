@@ -1,0 +1,1053 @@
+{
+  "name": "Demo Residence",
+  "plan": {
+    "formatVersion": 1,
+    "project": {
+      "id": "demo-residence",
+      "name": "Demo Residence"
+    },
+    "floors": [
+      {
+        "id": "demo-1",
+        "name": "Ground floor",
+        "background": {
+          "src": "dev/floorplans/floor-plan-big.webp",
+          "opacity": 100
+        },
+        "applications": [
+          {
+            "id": "demo-2",
+            "name": "Lighting",
+            "groups": [
+              {
+                "id": "demo-3",
+                "name": "Master bedroom",
+                "color": "#1772e8",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 302,
+                  "y": 82,
+                  "width": 161,
+                  "height": 177
+                }
+              },
+              {
+                "id": "demo-4",
+                "name": "Ensuite",
+                "color": "#0c8599",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 467,
+                  "y": 117,
+                  "width": 68,
+                  "height": 105
+                }
+              },
+              {
+                "id": "demo-5",
+                "name": "Kitchen",
+                "color": "#e8590c",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 540,
+                  "y": 79,
+                  "width": 166,
+                  "height": 154
+                }
+              },
+              {
+                "id": "demo-6",
+                "name": "Dining",
+                "color": "#f08c00",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 561,
+                  "y": 259,
+                  "width": 117,
+                  "height": 111
+                }
+              },
+              {
+                "id": "demo-7",
+                "name": "Living room",
+                "color": "#2f9e44",
+                "strokeType": "solid",
+                "strokeWidth": 3,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 561,
+                  "y": 401,
+                  "width": 147,
+                  "height": 205
+                }
+              },
+              {
+                "id": "demo-8",
+                "name": "Twin bedroom",
+                "color": "#7048e8",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 304,
+                  "y": 266,
+                  "width": 161,
+                  "height": 107
+                }
+              },
+              {
+                "id": "demo-9",
+                "name": "Bathroom",
+                "color": "#0ca678",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 302,
+                  "y": 397,
+                  "width": 140,
+                  "height": 61
+                }
+              },
+              {
+                "id": "demo-10",
+                "name": "Guest bedroom",
+                "color": "#c2255c",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 309,
+                  "y": 464,
+                  "width": 156,
+                  "height": 140
+                }
+              },
+              {
+                "id": "demo-11",
+                "name": "Hallway",
+                "color": "#495057",
+                "strokeType": "none",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 467,
+                  "y": 229,
+                  "width": 89,
+                  "height": 378
+                }
+              },
+              {
+                "id": "demo-12",
+                "name": "Loft hatch",
+                "color": "#5c940d",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": null
+              }
+            ],
+            "deviceTypes": [
+              {
+                "id": "demo-13",
+                "name": "Ceiling light",
+                "instances": [
+                  {
+                    "id": "demo-14",
+                    "x": 382,
+                    "y": 170
+                  },
+                  {
+                    "id": "demo-15",
+                    "x": 501,
+                    "y": 169
+                  },
+                  {
+                    "id": "demo-16",
+                    "x": 623,
+                    "y": 156
+                  },
+                  {
+                    "id": "demo-17",
+                    "x": 619,
+                    "y": 314
+                  },
+                  {
+                    "id": "demo-18",
+                    "x": 634,
+                    "y": 504
+                  },
+                  {
+                    "id": "demo-19",
+                    "x": 385,
+                    "y": 320
+                  },
+                  {
+                    "id": "demo-20",
+                    "x": 372,
+                    "y": 427
+                  },
+                  {
+                    "id": "demo-21",
+                    "x": 387,
+                    "y": 534
+                  },
+                  {
+                    "id": "demo-22",
+                    "x": 512,
+                    "y": 350
+                  }
+                ]
+              },
+              {
+                "id": "demo-23",
+                "name": "Downlight",
+                "instances": [
+                  {
+                    "id": "demo-24",
+                    "x": 564,
+                    "y": 111
+                  },
+                  {
+                    "id": "demo-25",
+                    "x": 593,
+                    "y": 111
+                  },
+                  {
+                    "id": "demo-26",
+                    "x": 623,
+                    "y": 111
+                  },
+                  {
+                    "id": "demo-27",
+                    "x": 652,
+                    "y": 111
+                  },
+                  {
+                    "id": "demo-28",
+                    "x": 588,
+                    "y": 443
+                  },
+                  {
+                    "id": "demo-29",
+                    "x": 681,
+                    "y": 443
+                  }
+                ]
+              },
+              {
+                "id": "demo-30",
+                "name": "Wall switch",
+                "instances": [
+                  {
+                    "id": "demo-31",
+                    "x": 459,
+                    "y": 251
+                  },
+                  {
+                    "id": "demo-32",
+                    "x": 547,
+                    "y": 222
+                  },
+                  {
+                    "id": "demo-33",
+                    "x": 570,
+                    "y": 408
+                  },
+                  {
+                    "id": "demo-34",
+                    "x": 459,
+                    "y": 368
+                  },
+                  {
+                    "id": "demo-35",
+                    "x": 459,
+                    "y": 473
+                  },
+                  {
+                    "id": "demo-36",
+                    "x": 436,
+                    "y": 449
+                  },
+                  {
+                    "id": "demo-37",
+                    "x": 477,
+                    "y": 239
+                  }
+                ]
+              },
+              {
+                "id": "demo-38",
+                "name": "Pendant",
+                "instances": [
+                  {
+                    "id": "demo-39",
+                    "x": 599,
+                    "y": 292
+                  },
+                  {
+                    "id": "demo-40",
+                    "x": 640,
+                    "y": 292
+                  }
+                ]
+              },
+              {
+                "id": "demo-41",
+                "name": "Spare fixture",
+                "instances": []
+              }
+            ]
+          },
+          {
+            "id": "demo-42",
+            "name": "Climate",
+            "groups": [
+              {
+                "id": "demo-43",
+                "name": "Heating zone — north",
+                "color": "#e03131",
+                "strokeType": "dashed",
+                "strokeWidth": 3,
+                "strokeOpacity": 45,
+                "strokeColor": null,
+                "rect": {
+                  "x": 297,
+                  "y": 75,
+                  "width": 411,
+                  "height": 163
+                }
+              },
+              {
+                "id": "demo-44",
+                "name": "Heating zone — south",
+                "color": "#1098ad",
+                "strokeType": "dashed",
+                "strokeWidth": 3,
+                "strokeOpacity": 45,
+                "strokeColor": null,
+                "rect": {
+                  "x": 297,
+                  "y": 385,
+                  "width": 411,
+                  "height": 224
+                }
+              }
+            ],
+            "deviceTypes": [
+              {
+                "id": "demo-45",
+                "name": "Thermostat",
+                "instances": [
+                  {
+                    "id": "demo-46",
+                    "x": 500,
+                    "y": 292
+                  },
+                  {
+                    "id": "demo-47",
+                    "x": 576,
+                    "y": 467
+                  }
+                ]
+              },
+              {
+                "id": "demo-48",
+                "name": "Radiator valve",
+                "instances": [
+                  {
+                    "id": "demo-49",
+                    "x": 313,
+                    "y": 251
+                  },
+                  {
+                    "id": "demo-50",
+                    "x": 698,
+                    "y": 222
+                  },
+                  {
+                    "id": "demo-51",
+                    "x": 669,
+                    "y": 362
+                  },
+                  {
+                    "id": "demo-52",
+                    "x": 698,
+                    "y": 595
+                  },
+                  {
+                    "id": "demo-53",
+                    "x": 313,
+                    "y": 365
+                  },
+                  {
+                    "id": "demo-54",
+                    "x": 316,
+                    "y": 595
+                  },
+                  {
+                    "id": "demo-55",
+                    "x": 308,
+                    "y": 449
+                  }
+                ]
+              },
+              {
+                "id": "demo-56",
+                "name": "Temperature sensor",
+                "instances": [
+                  {
+                    "id": "demo-57",
+                    "x": 442,
+                    "y": 93
+                  },
+                  {
+                    "id": "demo-58",
+                    "x": 442,
+                    "y": 583
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "demo-59",
+            "name": "Security",
+            "groups": [
+              {
+                "id": "demo-60",
+                "name": "Perimeter",
+                "color": "#495057",
+                "strokeType": "dotted",
+                "strokeWidth": 4,
+                "strokeOpacity": 60,
+                "strokeColor": null,
+                "rect": {
+                  "x": 292,
+                  "y": 72,
+                  "width": 415,
+                  "height": 534
+                }
+              },
+              {
+                "id": "demo-61",
+                "name": "Entry",
+                "color": "#f59f00",
+                "strokeType": "solid",
+                "strokeWidth": 3,
+                "strokeOpacity": 100,
+                "strokeColor": "#e03131",
+                "rect": {
+                  "x": 479,
+                  "y": 548,
+                  "width": 68,
+                  "height": 58
+                }
+              }
+            ],
+            "deviceTypes": [
+              {
+                "id": "demo-62",
+                "name": "Motion sensor",
+                "instances": [
+                  {
+                    "id": "demo-63",
+                    "x": 512,
+                    "y": 245
+                  },
+                  {
+                    "id": "demo-64",
+                    "x": 512,
+                    "y": 513
+                  },
+                  {
+                    "id": "demo-65",
+                    "x": 506,
+                    "y": 572
+                  },
+                  {
+                    "id": "demo-66",
+                    "x": 698,
+                    "y": 408
+                  }
+                ]
+              },
+              {
+                "id": "demo-67",
+                "name": "Door sensor",
+                "instances": [
+                  {
+                    "id": "demo-68",
+                    "x": 506,
+                    "y": 604
+                  },
+                  {
+                    "id": "demo-69",
+                    "x": 705,
+                    "y": 163
+                  },
+                  {
+                    "id": "demo-70",
+                    "x": 299,
+                    "y": 280
+                  }
+                ]
+              },
+              {
+                "id": "demo-71",
+                "name": "Smoke detector",
+                "instances": [
+                  {
+                    "id": "demo-72",
+                    "x": 500,
+                    "y": 408
+                  },
+                  {
+                    "id": "demo-73",
+                    "x": 605,
+                    "y": 128
+                  },
+                  {
+                    "id": "demo-74",
+                    "x": 383,
+                    "y": 502
+                  }
+                ]
+              },
+              {
+                "id": "demo-75",
+                "name": "Garden light",
+                "instances": [
+                  {
+                    "id": "demo-76",
+                    "x": 220,
+                    "y": 653
+                  },
+                  {
+                    "id": "demo-77",
+                    "x": 780,
+                    "y": 653
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "demo-78",
+        "name": "First floor",
+        "background": {
+          "src": "dev/floorplans/floor-plan-small.webp",
+          "opacity": 55
+        },
+        "applications": [
+          {
+            "id": "demo-79",
+            "name": "Lighting",
+            "groups": [
+              {
+                "id": "demo-80",
+                "name": "Living room",
+                "color": "#2f9e44",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 112,
+                  "y": 69,
+                  "width": 232,
+                  "height": 201
+                }
+              },
+              {
+                "id": "demo-81",
+                "name": "Dining",
+                "color": "#f08c00",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 347,
+                  "y": 75,
+                  "width": 163,
+                  "height": 232
+                }
+              },
+              {
+                "id": "demo-82",
+                "name": "Kitchen",
+                "color": "#e8590c",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 516,
+                  "y": 66,
+                  "width": 144,
+                  "height": 279
+                }
+              },
+              {
+                "id": "demo-83",
+                "name": "Upstairs north-east guest bedroom with ensuite and walk-in wardrobe",
+                "color": "#1772e8",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 667,
+                  "y": 66,
+                  "width": 245,
+                  "height": 311
+                }
+              },
+              {
+                "id": "demo-84",
+                "name": "Main bedroom",
+                "color": "#7048e8",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 108,
+                  "y": 389,
+                  "width": 235,
+                  "height": 248
+                }
+              },
+              {
+                "id": "demo-85",
+                "name": "Stair and wardrobe",
+                "color": "#495057",
+                "strokeType": "none",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 353,
+                  "y": 411,
+                  "width": 88,
+                  "height": 210
+                }
+              },
+              {
+                "id": "demo-86",
+                "name": "Bathroom",
+                "color": "#0ca678",
+                "strokeType": "solid",
+                "strokeWidth": 2,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 447,
+                  "y": 389,
+                  "width": 132,
+                  "height": 242
+                }
+              },
+              {
+                "id": "demo-87",
+                "name": "Utility bathroom",
+                "color": "#c2255c",
+                "strokeType": "solid",
+                "strokeWidth": 3,
+                "strokeOpacity": 100,
+                "strokeColor": null,
+                "rect": {
+                  "x": 661,
+                  "y": 411,
+                  "width": 251,
+                  "height": 226
+                }
+              }
+            ],
+            "deviceTypes": [
+              {
+                "id": "demo-88",
+                "name": "Ceiling light",
+                "instances": [
+                  {
+                    "id": "demo-89",
+                    "x": 225,
+                    "y": 165
+                  },
+                  {
+                    "id": "demo-90",
+                    "x": 425,
+                    "y": 188
+                  },
+                  {
+                    "id": "demo-91",
+                    "x": 586,
+                    "y": 204
+                  },
+                  {
+                    "id": "demo-92",
+                    "x": 730,
+                    "y": 157
+                  },
+                  {
+                    "id": "demo-93",
+                    "x": 225,
+                    "y": 510
+                  },
+                  {
+                    "id": "demo-94",
+                    "x": 510,
+                    "y": 502
+                  },
+                  {
+                    "id": "demo-95",
+                    "x": 785,
+                    "y": 526
+                  },
+                  {
+                    "id": "demo-96",
+                    "x": 397,
+                    "y": 518
+                  }
+                ]
+              },
+              {
+                "id": "demo-97",
+                "name": "Downlight",
+                "instances": [
+                  {
+                    "id": "demo-98",
+                    "x": 538,
+                    "y": 94
+                  },
+                  {
+                    "id": "demo-99",
+                    "x": 578,
+                    "y": 94
+                  },
+                  {
+                    "id": "demo-100",
+                    "x": 625,
+                    "y": 94
+                  },
+                  {
+                    "id": "demo-101",
+                    "x": 146,
+                    "y": 94
+                  },
+                  {
+                    "id": "demo-102",
+                    "x": 319,
+                    "y": 94
+                  }
+                ]
+              },
+              {
+                "id": "demo-103",
+                "name": "Wall switch",
+                "instances": [
+                  {
+                    "id": "demo-104",
+                    "x": 334,
+                    "y": 251
+                  },
+                  {
+                    "id": "demo-105",
+                    "x": 491,
+                    "y": 298
+                  },
+                  {
+                    "id": "demo-106",
+                    "x": 664,
+                    "y": 337
+                  },
+                  {
+                    "id": "demo-107",
+                    "x": 334,
+                    "y": 408
+                  },
+                  {
+                    "id": "demo-108",
+                    "x": 441,
+                    "y": 471
+                  },
+                  {
+                    "id": "demo-109",
+                    "x": 586,
+                    "y": 424
+                  },
+                  {
+                    "id": "demo-110",
+                    "x": 656,
+                    "y": 455
+                  }
+                ]
+              },
+              {
+                "id": "demo-111",
+                "name": "Desk lamp",
+                "instances": [
+                  {
+                    "id": "demo-112",
+                    "x": 837,
+                    "y": 298
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "demo-113",
+            "name": "Climate",
+            "groups": [
+              {
+                "id": "demo-114",
+                "name": "Heating zone — day",
+                "color": "#e03131",
+                "strokeType": "dashed",
+                "strokeWidth": 3,
+                "strokeOpacity": 45,
+                "strokeColor": null,
+                "rect": {
+                  "x": 105,
+                  "y": 60,
+                  "width": 565,
+                  "height": 289
+                }
+              },
+              {
+                "id": "demo-115",
+                "name": "Heating zone — night",
+                "color": "#1098ad",
+                "strokeType": "dashed",
+                "strokeWidth": 3,
+                "strokeOpacity": 45,
+                "strokeColor": null,
+                "rect": {
+                  "x": 105,
+                  "y": 383,
+                  "width": 810,
+                  "height": 261
+                }
+              }
+            ],
+            "deviceTypes": [
+              {
+                "id": "demo-116",
+                "name": "Thermostat",
+                "instances": [
+                  {
+                    "id": "demo-117",
+                    "x": 358,
+                    "y": 337
+                  },
+                  {
+                    "id": "demo-118",
+                    "x": 358,
+                    "y": 612
+                  }
+                ]
+              },
+              {
+                "id": "demo-119",
+                "name": "Radiator valve",
+                "instances": [
+                  {
+                    "id": "demo-120",
+                    "x": 118,
+                    "y": 251
+                  },
+                  {
+                    "id": "demo-121",
+                    "x": 507,
+                    "y": 78
+                  },
+                  {
+                    "id": "demo-122",
+                    "x": 899,
+                    "y": 78
+                  },
+                  {
+                    "id": "demo-123",
+                    "x": 118,
+                    "y": 628
+                  },
+                  {
+                    "id": "demo-124",
+                    "x": 570,
+                    "y": 625
+                  },
+                  {
+                    "id": "demo-125",
+                    "x": 899,
+                    "y": 628
+                  }
+                ]
+              },
+              {
+                "id": "demo-126",
+                "name": "Temperature sensor",
+                "instances": [
+                  {
+                    "id": "demo-127",
+                    "x": 256,
+                    "y": 361
+                  },
+                  {
+                    "id": "demo-128",
+                    "x": 727,
+                    "y": 392
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "demo-129",
+            "name": "Security",
+            "groups": [
+              {
+                "id": "demo-130",
+                "name": "Perimeter",
+                "color": "#495057",
+                "strokeType": "dotted",
+                "strokeWidth": 4,
+                "strokeOpacity": 60,
+                "strokeColor": null,
+                "rect": {
+                  "x": 93,
+                  "y": 57,
+                  "width": 822,
+                  "height": 587
+                }
+              },
+              {
+                "id": "demo-131",
+                "name": "Balcony door",
+                "color": "#f59f00",
+                "strokeType": "solid",
+                "strokeWidth": 3,
+                "strokeOpacity": 100,
+                "strokeColor": "#e03131",
+                "rect": {
+                  "x": 570,
+                  "y": 615,
+                  "width": 126,
+                  "height": 41
+                }
+              }
+            ],
+            "deviceTypes": [
+              {
+                "id": "demo-132",
+                "name": "Motion sensor",
+                "instances": [
+                  {
+                    "id": "demo-133",
+                    "x": 397,
+                    "y": 361
+                  },
+                  {
+                    "id": "demo-134",
+                    "x": 397,
+                    "y": 628
+                  },
+                  {
+                    "id": "demo-135",
+                    "x": 805,
+                    "y": 392
+                  }
+                ]
+              },
+              {
+                "id": "demo-136",
+                "name": "Door sensor",
+                "instances": [
+                  {
+                    "id": "demo-137",
+                    "x": 633,
+                    "y": 634
+                  },
+                  {
+                    "id": "demo-138",
+                    "x": 107,
+                    "y": 188
+                  },
+                  {
+                    "id": "demo-139",
+                    "x": 912,
+                    "y": 235
+                  }
+                ]
+              },
+              {
+                "id": "demo-140",
+                "name": "Smoke detector",
+                "instances": [
+                  {
+                    "id": "demo-141",
+                    "x": 382,
+                    "y": 337
+                  },
+                  {
+                    "id": "demo-142",
+                    "x": 209,
+                    "y": 439
+                  },
+                  {
+                    "id": "demo-143",
+                    "x": 758,
+                    "y": 377
+                  }
+                ]
+              },
+              {
+                "id": "demo-144",
+                "name": "Window contact",
+                "instances": [
+                  {
+                    "id": "demo-145",
+                    "x": 240,
+                    "y": 63
+                  },
+                  {
+                    "id": "demo-146",
+                    "x": 460,
+                    "y": 63
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "demo-147",
+            "name": "Scenes",
+            "groups": [],
+            "deviceTypes": []
+          }
+        ]
+      }
+    ]
+  }
+}

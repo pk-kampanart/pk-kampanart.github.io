@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="807" viewBox="0 0 1050 807">
+  <!-- Dev-only sandbox floor plan redrawn from the Prox apartment reference. Static: no script, no external refs, no text. -->
+  <defs>
+    <g id="plant" fill="#fff" stroke="#000" stroke-width="1.2">
+      <ellipse cx="0" cy="-13" rx="6" ry="13"/>
+      <ellipse cx="0" cy="-13" rx="6" ry="13" transform="rotate(60)"/>
+      <ellipse cx="0" cy="-13" rx="6" ry="13" transform="rotate(120)"/>
+      <ellipse cx="0" cy="-13" rx="6" ry="13" transform="rotate(180)"/>
+      <ellipse cx="0" cy="-13" rx="6" ry="13" transform="rotate(240)"/>
+      <ellipse cx="0" cy="-13" rx="6" ry="13" transform="rotate(300)"/>
+      <circle cx="0" cy="0" r="5"/>
+    </g>
+  </defs>
+
+  <rect x="0" y="0" width="1050" height="807" fill="#fff"/>
+
+  <!-- Walls -->
+  <g fill="#000">
+    <!-- exterior -->
+    <rect x="8" y="8" width="410" height="10"/>
+    <rect x="600" y="8" width="440" height="10"/>
+    <rect x="8" y="8" width="10" height="569"/>
+    <rect x="8" y="567" width="202" height="10"/>
+    <rect x="200" y="567" width="10" height="233"/>
+    <rect x="200" y="790" width="840" height="10"/>
+    <rect x="1030" y="8" width="10" height="792"/>
+    <!-- bathroom / WC block -->
+    <rect x="8" y="203" width="398" height="9"/>
+    <rect x="200" y="120" width="8" height="92"/>
+    <rect x="398" y="105" width="8" height="107"/>
+    <!-- bedrooms -->
+    <rect x="648" y="8" width="8" height="12"/>
+    <rect x="648" y="105" width="8" height="247"/>
+    <rect x="648" y="440" width="8" height="360"/>
+    <rect x="648" y="340" width="392" height="10"/>
+  </g>
+
+  <!-- Windows, glass partition, thresholds -->
+  <g fill="#fff" stroke="#000" stroke-width="1.2">
+    <rect x="8" y="95" width="10" height="105"/>
+    <line x1="13" y1="95" x2="13" y2="200"/>
+    <rect x="8" y="290" width="10" height="190"/>
+    <line x1="13" y1="290" x2="13" y2="480"/>
+    <rect x="1030" y="75" width="10" height="195"/>
+    <line x1="1035" y1="75" x2="1035" y2="270"/>
+    <rect x="1030" y="490" width="10" height="260"/>
+    <line x1="1035" y1="490" x2="1035" y2="750"/>
+    <rect x="518" y="790" width="82" height="10"/>
+    <line x1="518" y1="795" x2="600" y2="795"/>
+    <rect x="418" y="8" width="182" height="10"/>
+    <rect x="418" y="18" width="182" height="12"/>
+    <rect x="201" y="18" width="4" height="56"/>
+    <rect x="199" y="73" width="8" height="7" fill="#000"/>
+  </g>
+
+  <!-- Doors -->
+  <g fill="none" stroke="#000" stroke-width="1.5">
+    <!-- entrance double door -->
+    <line x1="418" y1="30" x2="418" y2="109"/>
+    <path d="M418,109 A91,91 0 0 0 509,18"/>
+    <line x1="600" y1="30" x2="600" y2="109"/>
+    <path d="M600,109 A91,91 0 0 1 509,18"/>
+    <!-- WC door -->
+    <line x1="398" y1="28" x2="322" y2="28"/>
+    <line x1="322" y1="28" x2="322" y2="58"/>
+    <path d="M322,28 A76,76 0 0 0 398,104"/>
+    <!-- top-right bedroom door -->
+    <line x1="656" y1="105" x2="741" y2="105"/>
+    <path d="M741,105 A85,85 0 0 0 656,20"/>
+    <!-- bottom-right bedroom door -->
+    <line x1="656" y1="440" x2="744" y2="440"/>
+    <path d="M744,440 A88,88 0 0 0 656,352"/>
+  </g>
+
+  <!-- Furniture -->
+  <g fill="#fff" stroke="#000" stroke-width="1.2">
+    <!-- bathroom: bathtub -->
+    <rect x="25" y="25" width="55" height="173" rx="4"/>
+    <rect x="31" y="38" width="43" height="154" rx="18"/>
+    <circle cx="55" cy="48" r="3.5" fill="#000"/>
+
+    <!-- WC: basin + toilet -->
+    <path d="M250,22 L290,22 L290,32 A20,18 0 0 1 250,32 Z"/>
+    <ellipse cx="270" cy="36" rx="14" ry="9"/>
+    <circle cx="270" cy="26" r="2.5" fill="#000"/>
+    <rect x="213" y="145" width="15" height="45" rx="3"/>
+    <ellipse cx="253" cy="168" rx="27" ry="21"/>
+    <ellipse cx="256" cy="168" rx="17" ry="13"/>
+    <ellipse cx="247" cy="168" rx="6" ry="5" fill="#000"/>
+
+    <!-- living room: sofa -->
+    <rect x="22" y="325" width="76" height="140" rx="3"/>
+    <rect x="22" y="325" width="16" height="140" rx="3"/>
+    <rect x="38" y="325" width="60" height="15"/>
+    <rect x="38" y="450" width="60" height="15"/>
+    <line x1="38" y1="378" x2="98" y2="378"/>
+    <line x1="38" y1="418" x2="98" y2="418"/>
+    <!-- armchairs -->
+    <rect x="110" y="248" width="72" height="77" rx="3"/>
+    <rect x="110" y="248" width="72" height="15" rx="3"/>
+    <rect x="110" y="263" width="12" height="62"/>
+    <rect x="170" y="263" width="12" height="62"/>
+    <rect x="110" y="467" width="72" height="78" rx="3"/>
+    <rect x="110" y="530" width="72" height="15" rx="3"/>
+    <rect x="110" y="467" width="12" height="63"/>
+    <rect x="170" y="467" width="12" height="63"/>
+    <!-- coffee table -->
+    <rect x="155" y="352" width="48" height="85"/>
+    <rect x="161" y="358" width="36" height="73"/>
+    <!-- TV unit -->
+    <rect x="295" y="337" width="7" height="133"/>
+    <path d="M302,362 L312,372 L312,436 L302,446 Z"/>
+    <line x1="306" y1="380" x2="306" y2="428"/>
+
+    <!-- dining table + chairs -->
+    <circle cx="472" cy="510" r="48"/>
+    <rect x="455" y="446" width="34" height="13" rx="5"/>
+    <line x1="458" y1="451" x2="486" y2="451"/>
+    <rect x="455" y="562" width="34" height="13" rx="5"/>
+    <line x1="458" y1="570" x2="486" y2="570"/>
+    <rect x="407" y="493" width="13" height="34" rx="5"/>
+    <line x1="412" y1="496" x2="412" y2="524"/>
+    <rect x="524" y="493" width="13" height="34" rx="5"/>
+    <line x1="532" y1="496" x2="532" y2="524"/>
+
+    <!-- kitchen: stove, counter, sink, oven -->
+    <rect x="210" y="605" width="52" height="73"/>
+    <rect x="215" y="611" width="14" height="14"/>
+    <path d="M215,611 L229,625 M229,611 L215,625"/>
+    <rect x="241" y="611" width="14" height="14"/>
+    <path d="M241,611 L255,625 M255,611 L241,625"/>
+    <rect x="214" y="632" width="44" height="18" rx="3"/>
+    <rect x="218" y="660" width="8" height="8"/>
+    <path d="M218,660 L226,668 M226,660 L218,668"/>
+    <rect x="244" y="660" width="8" height="8"/>
+    <path d="M244,660 L252,668 M252,660 L244,668"/>
+    <path d="M210,690 L268,690 L268,735 L443,735" fill="none"/>
+    <rect x="272" y="748" width="73" height="34" rx="3"/>
+    <rect x="277" y="753" width="29" height="24" rx="4"/>
+    <rect x="311" y="753" width="29" height="24" rx="4"/>
+    <circle cx="300" cy="765" r="2" fill="#000"/>
+    <circle cx="317" cy="765" r="2" fill="#000"/>
+    <rect x="443" y="732" width="57" height="58"/>
+    <rect x="443" y="732" width="57" height="9"/>
+
+    <!-- top-right bedroom: wardrobe/stair strip -->
+    <rect x="660" y="108" width="28" height="204"/>
+    <path d="M660,117H688M660,126H688M660,135H688M660,144H688M660,153H688M660,162H688M660,171H688M660,180H688M660,189H688M660,198H688M660,234H688M660,243H688M660,252H688M660,261H688M660,270H688M660,279H688M660,288H688M660,297H688M660,306H688"/>
+    <rect x="662" y="205" width="20" height="20" transform="rotate(-12 672 215)"/>
+    <rect x="662" y="314" width="20" height="20" transform="rotate(-12 672 324)"/>
+    <!-- dresser -->
+    <rect x="712" y="272" width="93" height="60"/>
+    <line x1="712" y1="280" x2="805" y2="280"/>
+    <rect x="732" y="268" width="10" height="5"/>
+    <rect x="775" y="268" width="10" height="5"/>
+    <!-- desk + chair -->
+    <rect x="843" y="22" width="62" height="36"/>
+    <rect x="849" y="26" width="50" height="9"/>
+    <rect x="853" y="39" width="28" height="14" rx="2"/>
+    <rect x="884" y="41" width="15" height="10"/>
+    <rect x="855" y="62" width="35" height="20" rx="5"/>
+    <line x1="858" y1="78" x2="887" y2="78"/>
+    <!-- bed -->
+    <rect x="845" y="232" width="165" height="96"/>
+    <rect x="1003" y="232" width="7" height="96"/>
+    <rect x="960" y="240" width="40" height="80" rx="6"/>
+    <line x1="950" y1="232" x2="950" y2="328"/>
+
+    <!-- bottom-right bedroom: corner desk + chair -->
+    <path d="M890,350 L890,382 L950,382 L995,430 L995,485 L1030,485" fill="none"/>
+    <g transform="rotate(40 970 410)">
+      <rect x="955" y="402" width="30" height="16" rx="4"/>
+      <line x1="958" y1="414" x2="982" y2="414"/>
+    </g>
+    <!-- dresser -->
+    <rect x="660" y="460" width="58" height="93"/>
+    <rect x="718" y="477" width="5" height="10"/>
+    <rect x="718" y="520" width="5" height="10"/>
+    <!-- bed -->
+    <rect x="752" y="605" width="188" height="167"/>
+    <line x1="752" y1="720" x2="940" y2="720"/>
+    <rect x="758" y="744" width="85" height="24" rx="5"/>
+    <rect x="852" y="744" width="85" height="24" rx="5"/>
+  </g>
+
+  <!-- Plants -->
+  <use href="#plant" x="60" y="268"/>
+  <use href="#plant" x="55" y="522"/>
+  <use href="#plant" x="995" y="48"/>
+  <use href="#plant" x="585" y="755"/>
+  <use href="#plant" x="710" y="752"/>
+</svg>
