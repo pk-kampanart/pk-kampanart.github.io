@@ -1,0 +1,517 @@
+{
+  "label": "",
+  "capturedAt": "2026-09-25T13:08:30.692Z",
+  "transport": "dongle",
+  "unprovisioned": {
+    "uuid": "2CE52A0127E18000F0FF2CE527E18000",
+    "mac": "2C:E5:27:E1:80:00",
+    "rssi": [],
+    "advertisements": []
+  },
+  "provisioning": null,
+  "composition": null,
+  "compositionBytes": null,
+  "projectState": {
+    "appKeys": [
+      {
+        "aid": 22,
+        "appKeyIndex": 0,
+        "netKeyIndex": 0
+      }
+    ],
+    "default_settings": {},
+    "groups": [],
+    "id": 0,
+    "ivIndex": 0,
+    "ivUpdateFlag": false,
+    "localNode": {
+      "elements": 1,
+      "listenGroups": [],
+      "primary": 1
+    },
+    "netKeys": [
+      {
+        "netKeyIndex": 0,
+        "nid": 47
+      }
+    ],
+    "nodes": [
+      {
+        "appKeyIndexes": [
+          {
+            "appKeyIndex": 0,
+            "netKeyIndex": 0
+          }
+        ],
+        "companyId": 89,
+        "crpl": 256,
+        "deviceUUID": "00000000000000000000000000000000",
+        "elements": [
+          {
+            "models": [
+              {
+                "boundAppKeys": [],
+                "modelId": 0
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 2
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4097
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4869
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 23461889
+              }
+            ],
+            "side": "client",
+            "unicast": 9
+          },
+          {
+            "models": [
+              {
+                "boundAppKeys": [],
+                "modelId": 4097
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4869
+              }
+            ],
+            "side": "client",
+            "unicast": 10
+          }
+        ],
+        "features": 3,
+        "mac": "000000000000",
+        "name": "",
+        "netKeyIndexes": [
+          0
+        ],
+        "numElements": 2,
+        "productId": 1,
+        "side": "",
+        "unicast": 9
+      },
+      {
+        "appKeyIndexes": [
+          {
+            "appKeyIndex": 0,
+            "netKeyIndex": 0
+          }
+        ],
+        "companyId": 89,
+        "crpl": 256,
+        "deviceUUID": "00000000000000000000000000000000",
+        "elements": [
+          {
+            "models": [
+              {
+                "boundAppKeys": [],
+                "modelId": 0
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 2
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4102
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4103
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4100
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4867
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4868
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4864
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4865
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4096
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4352
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4353
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 23461889
+              }
+            ],
+            "side": "server",
+            "unicast": 5
+          },
+          {
+            "models": [
+              {
+                "boundAppKeys": [],
+                "modelId": 4102
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4103
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4870
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4879
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4880
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4352
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4353
+              }
+            ],
+            "side": "server",
+            "unicast": 6
+          },
+          {
+            "models": [
+              {
+                "boundAppKeys": [],
+                "modelId": 4102
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4103
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4100
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4867
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4868
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4864
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4865
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4096
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4352
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4353
+              }
+            ],
+            "side": "server",
+            "unicast": 7
+          },
+          {
+            "models": [
+              {
+                "boundAppKeys": [],
+                "modelId": 4102
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4103
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4870
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4879
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4880
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4352
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4353
+              }
+            ],
+            "side": "server",
+            "unicast": 8
+          }
+        ],
+        "features": 3,
+        "mac": "000000000000",
+        "name": "",
+        "netKeyIndexes": [
+          0
+        ],
+        "numElements": 4,
+        "productId": 1,
+        "side": "",
+        "unicast": 5
+      }
+    ],
+    "project_id": 0,
+    "schemaVersion": 4,
+    "txSeq": 78,
+    "wasmRuntime": {
+      "lastPdus": [],
+      "networkTransmitCount": 2,
+      "networkTransmitIntervalSteps": 2,
+      "replay": [
+        {
+          "ivIndex": 0,
+          "seq": 383,
+          "src": 9
+        }
+      ]
+    }
+  },
+  "states": [
+    {
+      "name": "after-reset",
+      "t": 10915,
+      "seconds": 30,
+      "onOff": {
+        "0005": 0
+      }
+    }
+  ],
+  "frames": [
+    {
+      "t": 1817,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E180000000DA4A4800BF"
+    },
+    {
+      "t": 6815,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E180000000625E4800BF"
+    },
+    {
+      "t": 9905,
+      "dir": "rx",
+      "hex": "002489F427E180002B01008245145240D71B6D00000000035EB931756BD276726A4800C4"
+    },
+    {
+      "t": 11816,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E180000000EA714800BF"
+    },
+    {
+      "t": 16817,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E18000000073854800BD"
+    },
+    {
+      "t": 21817,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E180000000FC984800BE"
+    },
+    {
+      "t": 22579,
+      "dir": "rx",
+      "hex": "002489F427E180002B01008245145240D71B6D00000000035EB931756BD276F79B4800C3"
+    },
+    {
+      "t": 26818,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E18000000084AC4800BE"
+    },
+    {
+      "t": 31816,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E1800000000BC04800BA"
+    },
+    {
+      "t": 35644,
+      "dir": "rx",
+      "hex": "002489F427E180002B01008245145240D71B6D00000000035EB931756BD27600CF4800C4"
+    },
+    {
+      "t": 41818,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E1800000001CE74800BC"
+    },
+    {
+      "t": 46815,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E180000000A3FA4800BD"
+    },
+    {
+      "t": 47697,
+      "dir": "rx",
+      "hex": "002489F427E180002B01008245145240D71B6D00000000035EB931756BD27615FE4800C5"
+    },
+    {
+      "t": 51816,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E1800000002D0E4900BF"
+    },
+    {
+      "t": 56817,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E180000000B5214900BF"
+    },
+    {
+      "t": 59718,
+      "dir": "rx",
+      "hex": "002489F427E180002B01008245145240D71B6D00000000035EB931756BD2760A2D4900C6"
+    },
+    {
+      "t": 61818,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E1800000003D354900BF"
+    },
+    {
+      "t": 66819,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E180000000C6484900C0"
+    },
+    {
+      "t": 71816,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E1800000004D5C4900BF"
+    },
+    {
+      "t": 72224,
+      "dir": "rx",
+      "hex": "002489F427E180002B01008245145240D71B6D00000000035EB931756BD276E45D4900C6"
+    },
+    {
+      "t": 76817,
+      "dir": "rx",
+      "hex": "00212CE527E180002B002CE52A0127E18000F0FF2CE527E180000000D76F4900BF"
+    }
+  ],
+  "log": [
+    {
+      "t": 1817,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-65 rxTime=4737754"
+    },
+    {
+      "t": 6815,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-65 rxTime=4742754"
+    },
+    {
+      "t": 11816,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-65 rxTime=4747754"
+    },
+    {
+      "t": 16817,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-67 rxTime=4752755"
+    },
+    {
+      "t": 21818,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-66 rxTime=4757756"
+    },
+    {
+      "t": 26818,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-66 rxTime=4762756"
+    },
+    {
+      "t": 31816,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-70 rxTime=4767755"
+    },
+    {
+      "t": 41818,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-68 rxTime=4777756"
+    },
+    {
+      "t": 46816,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-67 rxTime=4782755"
+    },
+    {
+      "t": 51816,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-65 rxTime=4787757"
+    },
+    {
+      "t": 56817,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-65 rxTime=4792757"
+    },
+    {
+      "t": 61818,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-65 rxTime=4797757"
+    },
+    {
+      "t": 66819,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-64 rxTime=4802758"
+    },
+    {
+      "t": 71816,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-65 rxTime=4807757"
+    },
+    {
+      "t": 76817,
+      "text": "[SCAN][RAW] uuid=2CE52A0127E18000F0FF2CE527E18000 mac=00:80:E1:27:E5:2C macRaw=2CE527E18000 rssi=-65 rxTime=4812759"
+    }
+  ]
+}

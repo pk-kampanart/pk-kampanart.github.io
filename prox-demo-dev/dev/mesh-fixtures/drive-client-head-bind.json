@@ -1,0 +1,1413 @@
+{
+  "label": "",
+  "capturedAt": "2026-09-25T18:30:04.771Z",
+  "transport": "dongle",
+  "unprovisioned": {
+    "uuid": "00000000000000000000000000000000",
+    "mac": null,
+    "rssi": [],
+    "advertisements": []
+  },
+  "provisioning": {
+    "capabilities": null,
+    "unicast": 2,
+    "numElements": 2,
+    "flags": null,
+    "netKeyIndex": 0,
+    "appKeyIndex": 0,
+    "ivIndex": 0,
+    "startArg5": null
+  },
+  "composition": {
+    "unicast": "0002",
+    "companyId": "0059",
+    "productId": "0001",
+    "features": "0003",
+    "crpl": "0100",
+    "numElements": 2,
+    "appKeys": [
+      {
+        "netKeyIndex": 0,
+        "appKeyIndex": 0
+      }
+    ],
+    "elements": [
+      {
+        "address": "0002",
+        "models": [
+          {
+            "id": "0000",
+            "type": "SIG",
+            "name": "Configuration Server",
+            "boundAppKeys": []
+          },
+          {
+            "id": "0002",
+            "type": "SIG",
+            "name": "Health Server",
+            "boundAppKeys": []
+          },
+          {
+            "id": "1001",
+            "type": "SIG",
+            "name": "Generic OnOff Client",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1305",
+            "type": "SIG",
+            "name": "Light CTL Client",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "01660001",
+            "type": "Vendor",
+            "name": "VENDOR 0x01660001",
+            "boundAppKeys": []
+          }
+        ]
+      },
+      {
+        "address": "0003",
+        "models": [
+          {
+            "id": "1001",
+            "type": "SIG",
+            "name": "Generic OnOff Client",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1305",
+            "type": "SIG",
+            "name": "Light CTL Client",
+            "boundAppKeys": [
+              0
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "compositionBytes": null,
+  "projectState": {
+    "appKeys": [
+      {
+        "aid": 28,
+        "appKeyIndex": 0,
+        "netKeyIndex": 0
+      }
+    ],
+    "default_settings": {},
+    "groups": [],
+    "id": 0,
+    "ivIndex": 0,
+    "ivUpdateFlag": false,
+    "localNode": {
+      "elements": 1,
+      "listenGroups": [],
+      "primary": 1
+    },
+    "netKeys": [
+      {
+        "netKeyIndex": 0,
+        "nid": 122
+      }
+    ],
+    "nodes": [
+      {
+        "appKeyIndexes": [
+          {
+            "appKeyIndex": 0,
+            "netKeyIndex": 0
+          }
+        ],
+        "companyId": 89,
+        "crpl": 256,
+        "deviceUUID": "00000000000000000000000000000000",
+        "elements": [
+          {
+            "models": [
+              {
+                "boundAppKeys": [],
+                "modelId": 0
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 2
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4097
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4869
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 23461889
+              }
+            ],
+            "side": "client",
+            "unicast": 2
+          },
+          {
+            "models": [
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4097
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4869
+              }
+            ],
+            "side": "client",
+            "unicast": 3
+          }
+        ],
+        "features": 3,
+        "mac": "000000000000",
+        "name": "",
+        "netKeyIndexes": [
+          0
+        ],
+        "numElements": 2,
+        "productId": 1,
+        "side": "",
+        "unicast": 2
+      }
+    ],
+    "project_id": 0,
+    "schemaVersion": 4,
+    "txSeq": 29,
+    "wasmRuntime": {
+      "lastPdus": [],
+      "networkTransmitCount": 2,
+      "networkTransmitIntervalSteps": 2,
+      "replay": []
+    }
+  },
+  "states": [],
+  "frames": [
+    {
+      "t": 209,
+      "dir": "tx",
+      "hex": "FD201B0528162A7AF47C15516164549F16AD5122152E8B4C84D1FE3183EB"
+    },
+    {
+      "t": 241,
+      "dir": "tx",
+      "hex": "FD201B0528162A7AF47C15516164549F16AD5122152E8B4C84D1FE3183EB"
+    },
+    {
+      "t": 269,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7AD7F35753CB82DD1F4C3F7D96E354A3F6FEEF635F4C03D64535B1FB6A8AAF6E01C5"
+    },
+    {
+      "t": 298,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7AC93EDDF340AB4A7B3A8F7CB844694C40273F5CB5181CF70C086AA95791AF6E01C6"
+    },
+    {
+      "t": 299,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7AD7F35753CB82DD1F4C3F7D96E354A3F6FEEF635F4C03D64535B1FB6AA3AF6E01C6"
+    },
+    {
+      "t": 299,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7AC93EDDF340AB4A7B3A8F7CB844694C40273F5CB5181CF70C086AA957A9AF6E01C6"
+    },
+    {
+      "t": 299,
+      "dir": "tx",
+      "hex": "FD201B0528162A7AF47C15516164549F16AD5122152E8B4C84D1FE3183EB"
+    },
+    {
+      "t": 307,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7A1471DA816429B53C37D1967197D8846491272D4398583A8E2F7C81BDB0AF6E01C6"
+    },
+    {
+      "t": 316,
+      "dir": "rx",
+      "hex": "002389F427E180002A7A15B6C1B0597BB603CB3FDC39E05DB7050669338EB6AF6E01C6"
+    },
+    {
+      "t": 357,
+      "dir": "tx",
+      "hex": "FD201E0528192A7A2742EBECE5AFD99318BB5C2A02DF1526450E31413AF7BBA30B"
+    },
+    {
+      "t": 436,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7AD7F35753CB82DD1F4C3F7D96E354A3F6FEEF635F4C03D64535B1FB6ABCAF6E01C6"
+    },
+    {
+      "t": 437,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7AC93EDDF340AB4A7B3A8F7CB844694C40273F5CB5181CF70C086AA957C2AF6E01C6"
+    },
+    {
+      "t": 438,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7A1471DA816429B53C37D1967197D8846491272D4398583A8E2F7C81BDC8AF6E01C6"
+    },
+    {
+      "t": 438,
+      "dir": "rx",
+      "hex": "002389F427E180002A7A15B6C1B0597BB603CB3FDC39E05DB7050669338ECEAF6E01C6"
+    },
+    {
+      "t": 538,
+      "dir": "tx",
+      "hex": "FD202005281B2A7ABD5FCB3E1FC6E2247AE8E39C5A3B130B5D04FE5D7C0CD30F139590"
+    },
+    {
+      "t": 568,
+      "dir": "tx",
+      "hex": "FD202005281B2A7ABD5FCB3E1FC6E2247AE8E39C5A3B130B5D04FE5D7C0CD30F139590"
+    },
+    {
+      "t": 599,
+      "dir": "tx",
+      "hex": "FD202005281B2A7ABD5FCB3E1FC6E2247AE8E39C5A3B130B5D04FE5D7C0CD30F139590"
+    },
+    {
+      "t": 695,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7AD7F35753CB82DD1F4C3F7D96E354A3F6FEEF635F4C03D64535B1FB6A36B16E01C6"
+    },
+    {
+      "t": 701,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7A4D9161B54E23F172F1CFF10928FAA09B13523BACCB92447D99458A8A3CB16E01C6"
+    },
+    {
+      "t": 707,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7A7E9FD45210F7A9DA431AAF81F8E1A64EDFC3671EDA95B8D664C8248142B16E01C6"
+    },
+    {
+      "t": 716,
+      "dir": "rx",
+      "hex": "002389F427E180002A7A70CF4242C2D0DB9FE8DA66B87E8F371A29160F0C49B16E01C6"
+    },
+    {
+      "t": 722,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7AD7F35753CB82DD1F4C3F7D96E354A3F6FEEF635F4C03D64535B1FB6A4FB16E01C6"
+    },
+    {
+      "t": 728,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7A4D9161B54E23F172F1CFF10928FAA09B13523BACCB92447D99458A8A55B16E01C6"
+    },
+    {
+      "t": 744,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7AD7F35753CB82DD1F4C3F7D96E354A3F6FEEF635F4C03D64535B1FB6A67B16E01C5"
+    },
+    {
+      "t": 754,
+      "dir": "rx",
+      "hex": "002B89F427E180002A7A4D9161B54E23F172F1CFF10928FAA09B13523BACCB92447D99458A8A6EB16E01C6"
+    },
+    {
+      "t": 1456,
+      "dir": "rx",
+      "hex": "002989F427E180002A7AEBFDD24D0877E912B7D35D549F23863E7D043F5BEE635B7FCA282DB46E01C6"
+    },
+    {
+      "t": 1556,
+      "dir": "tx",
+      "hex": "FD202005281B2A7A504D29EABAE1A18D7A5019AE17836B7A00EE860074209F671837D9"
+    },
+    {
+      "t": 1557,
+      "dir": "rx",
+      "hex": "002989F427E180002A7AEBFDD24D0877E912B7D35D549F23863E7D043F5BEE635B7FCA285FB46E01C6"
+    },
+    {
+      "t": 1586,
+      "dir": "tx",
+      "hex": "FD202005281B2A7A504D29EABAE1A18D7A5019AE17836B7A00EE860074209F671837D9"
+    },
+    {
+      "t": 1617,
+      "dir": "tx",
+      "hex": "FD202005281B2A7A504D29EABAE1A18D7A5019AE17836B7A00EE860074209F671837D9"
+    },
+    {
+      "t": 2135,
+      "dir": "rx",
+      "hex": "002989F427E180002A7A26A239C934561A8AEA5F909463E9F086089759AACB8FD6754FEED5B66E01C6"
+    },
+    {
+      "t": 2202,
+      "dir": "rx",
+      "hex": "002989F427E180002A7A26A239C934561A8AEA5F909463E9F086089759AACB8FD6754FEE08B76E01C6"
+    },
+    {
+      "t": 2266,
+      "dir": "tx",
+      "hex": "FD202005281B2A7AC9E79CD13D5D98910973E28D3496861771A54868C8E591F2C283D5"
+    },
+    {
+      "t": 2296,
+      "dir": "tx",
+      "hex": "FD202005281B2A7AC9E79CD13D5D98910973E28D3496861771A54868C8E591F2C283D5"
+    },
+    {
+      "t": 2327,
+      "dir": "tx",
+      "hex": "FD202005281B2A7AC9E79CD13D5D98910973E28D3496861771A54868C8E591F2C283D5"
+    },
+    {
+      "t": 2941,
+      "dir": "rx",
+      "hex": "002989F427E180002A7A4C345B08FD70F5ADC51359AD2D1D53F8916F2D87D96329122034FBB96E01C6"
+    },
+    {
+      "t": 3062,
+      "dir": "tx",
+      "hex": "FD202005281B2A7ADA4E3B8F114CE884B902671657744DCE2620B37767CDDC91CF470C"
+    },
+    {
+      "t": 3064,
+      "dir": "rx",
+      "hex": "002989F427E180002A7A4C345B08FD70F5ADC51359AD2D1D53F8916F2D87D9632912203414BA6E01C5"
+    },
+    {
+      "t": 3064,
+      "dir": "rx",
+      "hex": "002989F427E180002A7A4C345B08FD70F5ADC51359AD2D1D53F8916F2D87D963291220342DBA6E01C6"
+    },
+    {
+      "t": 3093,
+      "dir": "tx",
+      "hex": "FD202005281B2A7ADA4E3B8F114CE884B902671657744DCE2620B37767CDDC91CF470C"
+    },
+    {
+      "t": 3123,
+      "dir": "tx",
+      "hex": "FD202005281B2A7ADA4E3B8F114CE884B902671657744DCE2620B37767CDDC91CF470C"
+    },
+    {
+      "t": 3191,
+      "dir": "rx",
+      "hex": "00242CE527E180002B0100C39809A36CB8B41E00000000CA1A731F0DAA4286F6BA6E01B8"
+    },
+    {
+      "t": 3750,
+      "dir": "rx",
+      "hex": "002989F427E180002A7AE164192A469E5CA1D7C1FF946AFE34BA8F1866D2049E003721E223BD6E01C6"
+    },
+    {
+      "t": 3827,
+      "dir": "rx",
+      "hex": "002989F427E180002A7AE164192A469E5CA1D7C1FF946AFE34BA8F1866D2049E003721E256BD6E01C6"
+    },
+    {
+      "t": 5450,
+      "dir": "rx",
+      "hex": "002489F427E180002B0100FE66CCD2EDEBE7ED0000000078C60DD38B2663F5C8C36E01C6"
+    },
+    {
+      "t": 16598,
+      "dir": "rx",
+      "hex": "00242CE527E180002B0100C39809A36CB8B41E00000000CA1A731F0DAA428656EF6E01B8"
+    },
+    {
+      "t": 29543,
+      "dir": "rx",
+      "hex": "00242CE527E180002B0100C39809A36CB8B41E00000000CA1A731F0DAA4286E5216F01B9"
+    },
+    {
+      "t": 32710,
+      "dir": "rx",
+      "hex": "002489F427E180002B0100FE66CCD2EDEBE7ED0000000078C60DD38B2663F5452E6F01C6"
+    },
+    {
+      "t": 43006,
+      "dir": "rx",
+      "hex": "00242CE527E180002B0100C39809A36CB8B41E00000000CA1A731F0DAA42867F566F01B9"
+    },
+    {
+      "t": 45766,
+      "dir": "rx",
+      "hex": "002489F427E180002B0100FE66CCD2EDEBE7ED0000000078C60DD38B2663F547616F01C6"
+    },
+    {
+      "t": 55288,
+      "dir": "rx",
+      "hex": "00242CE527E180002B0100C39809A36CB8B41E00000000CA1A731F0DAA428678866F01B9"
+    },
+    {
+      "t": 57912,
+      "dir": "rx",
+      "hex": "002489F427E180002B0100FE66CCD2EDEBE7ED0000000078C60DD38B2663F5B8906F01C6"
+    },
+    {
+      "t": 68877,
+      "dir": "rx",
+      "hex": "00242CE527E180002B0100C39809A36CB8B41E00000000CA1A731F0DAA42868DBB6F01B7"
+    },
+    {
+      "t": 71481,
+      "dir": "rx",
+      "hex": "002489F427E180002B0100FE66CCD2EDEBE7ED0000000078C60DD38B2663F5BAC56F01C5"
+    },
+    {
+      "t": 75946,
+      "dir": "tx",
+      "hex": "FD201C0528172A7AC50AE0A8E0DB1084141965DD9832E8C977A3A278FE3A28"
+    },
+    {
+      "t": 75977,
+      "dir": "tx",
+      "hex": "FD201C0528172A7AC50AE0A8E0DB1084141965DD9832E8C977A3A278FE3A28"
+    },
+    {
+      "t": 76007,
+      "dir": "tx",
+      "hex": "FD201C0528172A7AC50AE0A8E0DB1084141965DD9832E8C977A3A278FE3A28"
+    },
+    {
+      "t": 76943,
+      "dir": "tx",
+      "hex": "FD201C0528172A7AF28A6B6DF3D8AB8183F85FB54F9A6A0A7D4B5A80272CA5"
+    },
+    {
+      "t": 76974,
+      "dir": "tx",
+      "hex": "FD201C0528172A7AF28A6B6DF3D8AB8183F85FB54F9A6A0A7D4B5A80272CA5"
+    },
+    {
+      "t": 77004,
+      "dir": "tx",
+      "hex": "FD201C0528172A7AF28A6B6DF3D8AB8183F85FB54F9A6A0A7D4B5A80272CA5"
+    },
+    {
+      "t": 77943,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A2A5A46F9435B9831C186A8EB8F66552B7E9B78DB2C4F11"
+    },
+    {
+      "t": 77973,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A2A5A46F9435B9831C186A8EB8F66552B7E9B78DB2C4F11"
+    },
+    {
+      "t": 78004,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A2A5A46F9435B9831C186A8EB8F66552B7E9B78DB2C4F11"
+    },
+    {
+      "t": 78943,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A5C1884467E0227982249282302124BB82D23FD907A1121"
+    },
+    {
+      "t": 78974,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A5C1884467E0227982249282302124BB82D23FD907A1121"
+    },
+    {
+      "t": 79004,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A5C1884467E0227982249282302124BB82D23FD907A1121"
+    },
+    {
+      "t": 79969,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A252280CC7BB683B2F3187E7C1815AA86D3544A6DC4BC00"
+    },
+    {
+      "t": 80000,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A252280CC7BB683B2F3187E7C1815AA86D3544A6DC4BC00"
+    },
+    {
+      "t": 80030,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A252280CC7BB683B2F3187E7C1815AA86D3544A6DC4BC00"
+    },
+    {
+      "t": 80979,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A816815D87240429AD1294375D84F8CD685CDD659633830"
+    },
+    {
+      "t": 81010,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A816815D87240429AD1294375D84F8CD685CDD659633830"
+    },
+    {
+      "t": 81040,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A816815D87240429AD1294375D84F8CD685CDD659633830"
+    },
+    {
+      "t": 81458,
+      "dir": "rx",
+      "hex": "00242CE527E180002B0100C39809A36CB8B41E00000000CA1A731F0DAA4286B3EC6F01B4"
+    },
+    {
+      "t": 81974,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A6DB484957331B0369843E738CD91E6BE953CD84CDD5987"
+    },
+    {
+      "t": 82005,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A6DB484957331B0369843E738CD91E6BE953CD84CDD5987"
+    },
+    {
+      "t": 82035,
+      "dir": "tx",
+      "hex": "FD201C0528172A7A6DB484957331B0369843E738CD91E6BE953CD84CDD5987"
+    },
+    {
+      "t": 82976,
+      "dir": "tx",
+      "hex": "FD201C0528172A7ACFD77C712EE1843EE2ADE00F8A34ED7BCB77FA7DD7BC52"
+    },
+    {
+      "t": 83007,
+      "dir": "tx",
+      "hex": "FD201C0528172A7ACFD77C712EE1843EE2ADE00F8A34ED7BCB77FA7DD7BC52"
+    },
+    {
+      "t": 83037,
+      "dir": "tx",
+      "hex": "FD201C0528172A7ACFD77C712EE1843EE2ADE00F8A34ED7BCB77FA7DD7BC52"
+    }
+  ],
+  "log": [
+    {
+      "t": 160,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 161,
+      "text": "[CFG] CompositionGet TX dst=0x0002 src=0x0001 page=0x00 bytes=800800"
+    },
+    {
+      "t": 167,
+      "text": "[CFG] CompositionGet started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 168,
+      "text": "# config {\"kind\":\"config\",\"eventType\":1,\"phase\":1,\"status\":0,\"unicast\":0,\"elementAddr\":0,\"modelId\":0,\"appKeyIndex\":0,\"done\":0,\"total\":0}"
+    },
+    {
+      "t": 173,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 173,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 08 00 "
+    },
+    {
+      "t": 206,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=16 security=device netKeyIndex=0 ttl=3 upperLen=7"
+    },
+    {
+      "t": 207,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 209,
+      "text": "[TX] Sending Segment  len=21"
+    },
+    {
+      "t": 210,
+      "text": "[TX] Unsegmented TX seq=16 len=7"
+    },
+    {
+      "t": 210,
+      "text": ""
+    },
+    {
+      "t": 241,
+      "text": "[TX] Sending Segment  len=21"
+    },
+    {
+      "t": 296,
+      "text": "[RXSEG] NEWRXSEG; SegCount: 4; segIndex: 0"
+    },
+    {
+      "t": 297,
+      "text": "[RXSEG] ADDSEG; segIndex: 0SZER0: 152"
+    },
+    {
+      "t": 298,
+      "text": "[RXSEG] ADDSEG; segIndex: 1SZER0: 152"
+    },
+    {
+      "t": 299,
+      "text": "[TX] Sending Segment  len=21"
+    },
+    {
+      "t": 307,
+      "text": "[RXSEG] ADDSEG; segIndex: 2SZER0: 152"
+    },
+    {
+      "t": 317,
+      "text": "[RXSEG] ADDSEG; segIndex: 3SZER0: 152"
+    },
+    {
+      "t": 317,
+      "text": "[RXSEG] SEG_COMPLETE_________ 3"
+    },
+    {
+      "t": 318,
+      "text": "[ACK] ___________mask=0xf expected=0xf"
+    },
+    {
+      "t": 357,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 357,
+      "text": "[TX] Sending Segment  len=24"
+    },
+    {
+      "t": 357,
+      "text": "[TX] Segment ACK :::: src=0x2 seqZero=98 mask=0xf ttl=0x5"
+    },
+    {
+      "t": 392,
+      "text": "Access RX opcode=0x0002 src=0x0002 dst=0x0001 len=35"
+    },
+    {
+      "t": 396,
+      "text": "[CFG] CompositionGet RX ok dst=0x0002 cid=0x0059 pid=0x0001 elements=2"
+    },
+    {
+      "t": 396,
+      "text": "[CFG] CompositionData proxy feature dst=0x0002 features=0x0003 support=yes enabled=unknown (Config GattProxyGet not read)"
+    },
+    {
+      "t": 398,
+      "text": "[CFG] CompositionGet completed dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 430,
+      "text": "# config {\"kind\":\"config\",\"eventType\":1,\"phase\":2,\"status\":0,\"unicast\":0,\"elementAddr\":0,\"modelId\":0,\"appKeyIndex\":0,\"done\":0,\"total\":0}"
+    },
+    {
+      "t": 434,
+      "text": "# composition ✓ 2 el, 7 models"
+    },
+    {
+      "t": 436,
+      "text": "[RXSEG] FULLDATA 0SZER0: 152; 0"
+    },
+    {
+      "t": 437,
+      "text": "[RXSEG] FULLDATA 1SZER0: 152; 0"
+    },
+    {
+      "t": 438,
+      "text": "[RXSEG] FULLDATA 2SZER0: 152; 0"
+    },
+    {
+      "t": 439,
+      "text": "[RXSEG] FULLDATA 3SZER0: 152; 0"
+    },
+    {
+      "t": 500,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 500,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 500,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 501,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4097,\"appKeyIndex\":0,\"done\":0,\"total\":2}"
+    },
+    {
+      "t": 501,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 501,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 01 10 "
+    },
+    {
+      "t": 537,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=18 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 538,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 538,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 538,
+      "text": "[TX] Unsegmented TX seq=18 len=12"
+    },
+    {
+      "t": 538,
+      "text": ""
+    },
+    {
+      "t": 568,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 599,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 695,
+      "text": "[RXSEG] FULLDATA 0SZER0: 152; 0"
+    },
+    {
+      "t": 701,
+      "text": "[RXSEG] FULLDATA 1SZER0: 152; 0"
+    },
+    {
+      "t": 707,
+      "text": "[RXSEG] FULLDATA 2SZER0: 152; 0"
+    },
+    {
+      "t": 716,
+      "text": "[RXSEG] FULLDATA 3SZER0: 152; 0"
+    },
+    {
+      "t": 722,
+      "text": "[RXSEG] FULLDATA 0SZER0: 152; 0"
+    },
+    {
+      "t": 728,
+      "text": "[RXSEG] FULLDATA 1SZER0: 152; 0"
+    },
+    {
+      "t": 744,
+      "text": "[RXSEG] FULLDATA 0SZER0: 152; 0"
+    },
+    {
+      "t": 754,
+      "text": "[RXSEG] FULLDATA 1SZER0: 152; 0"
+    },
+    {
+      "t": 1490,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 1491,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 1492,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 1524,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4097,\"appKeyIndex\":0,\"done\":1,\"total\":2}"
+    },
+    {
+      "t": 1524,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 1524,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 1524,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 1524,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4869,\"appKeyIndex\":0,\"done\":1,\"total\":2}"
+    },
+    {
+      "t": 1524,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 1525,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 05 13 "
+    },
+    {
+      "t": 1555,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=19 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 1555,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 1556,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 1556,
+      "text": "[TX] Unsegmented TX seq=19 len=12"
+    },
+    {
+      "t": 1556,
+      "text": ""
+    },
+    {
+      "t": 1586,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 1617,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 2170,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 2170,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 2170,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 2202,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4869,\"appKeyIndex\":0,\"done\":2,\"total\":2}"
+    },
+    {
+      "t": 2234,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 2234,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 2234,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 2234,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4097,\"appKeyIndex\":0,\"done\":0,\"total\":2}"
+    },
+    {
+      "t": 2234,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 2235,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 01 10 "
+    },
+    {
+      "t": 2265,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=20 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 2266,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 2266,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 2266,
+      "text": "[TX] Unsegmented TX seq=20 len=12"
+    },
+    {
+      "t": 2266,
+      "text": ""
+    },
+    {
+      "t": 2296,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 2327,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 2975,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 2975,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 2975,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 3013,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4097,\"appKeyIndex\":0,\"done\":1,\"total\":2}"
+    },
+    {
+      "t": 3014,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 3014,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 3015,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 3016,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4869,\"appKeyIndex\":0,\"done\":1,\"total\":2}"
+    },
+    {
+      "t": 3016,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 3016,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 05 13 "
+    },
+    {
+      "t": 3061,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=21 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 3061,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 3062,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 3062,
+      "text": "[TX] Unsegmented TX seq=21 len=12"
+    },
+    {
+      "t": 3063,
+      "text": ""
+    },
+    {
+      "t": 3093,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 3123,
+      "text": "[TX] Sending Segment  len=26"
+    },
+    {
+      "t": 3785,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 3785,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 3785,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 3824,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4869,\"appKeyIndex\":0,\"done\":2,\"total\":2}"
+    },
+    {
+      "t": 3825,
+      "text": "# bind ✓ 2 elements"
+    },
+    {
+      "t": 3881,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":0,\"appKeyIndex\":0,\"done\":0,\"total\":0}"
+    },
+    {
+      "t": 39852,
+      "text": "# bind failed: no reply in 36 s"
+    },
+    {
+      "t": 39884,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":0,\"appKeyIndex\":0,\"done\":0,\"total\":0}"
+    },
+    {
+      "t": 75881,
+      "text": "# bind failed: no reply in 36 s"
+    },
+    {
+      "t": 75910,
+      "text": "# generic {\"kind\":\"generic\",\"eventType\":1,\"phase\":1,\"status\":0,\"src\":0,\"dst\":0,\"presentOnOff\":0,\"targetOnOff\":0,\"hasTarget\":false}"
+    },
+    {
+      "t": 75913,
+      "text": "[RELIABLE] begin reqType=0x2 txOpcode=0x8202 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 paramsLen=2 retry=0"
+    },
+    {
+      "t": 75914,
+      "text": "[TX][KEY_SELECT] security=app dst=0x0002 src=0x0001 appKeyIndex=0 selectedNetKeyIndex=0 aid=0x1c"
+    },
+    {
+      "t": 75914,
+      "text": "[TXDATA  ]____accessPayload>>>> 82 02 01 01 "
+    },
+    {
+      "t": 75946,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=22 security=app netKeyIndex=0 ttl=3 upperLen=8"
+    },
+    {
+      "t": 75946,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 75946,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 75946,
+      "text": "[TX] Unsegmented TX seq=22 len=8"
+    },
+    {
+      "t": 75946,
+      "text": ""
+    },
+    {
+      "t": 75977,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 76007,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 76912,
+      "text": "[RELIABLE] retry reqType=0x2 txOpcode=0x8202 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 paramsLen=2 retry=1"
+    },
+    {
+      "t": 76912,
+      "text": "[TX][KEY_SELECT] security=app dst=0x0002 src=0x0001 appKeyIndex=0 selectedNetKeyIndex=0 aid=0x1c"
+    },
+    {
+      "t": 76912,
+      "text": "[TXDATA  ]____accessPayload>>>> 82 02 01 01 "
+    },
+    {
+      "t": 76943,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=23 security=app netKeyIndex=0 ttl=3 upperLen=8"
+    },
+    {
+      "t": 76943,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 76943,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 76944,
+      "text": "[TX] Unsegmented TX seq=23 len=8"
+    },
+    {
+      "t": 76944,
+      "text": ""
+    },
+    {
+      "t": 76974,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 77004,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 77912,
+      "text": "[RELIABLE] retry reqType=0x2 txOpcode=0x8202 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 paramsLen=2 retry=2"
+    },
+    {
+      "t": 77913,
+      "text": "[TX][KEY_SELECT] security=app dst=0x0002 src=0x0001 appKeyIndex=0 selectedNetKeyIndex=0 aid=0x1c"
+    },
+    {
+      "t": 77913,
+      "text": "[TXDATA  ]____accessPayload>>>> 82 02 01 01 "
+    },
+    {
+      "t": 77942,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=24 security=app netKeyIndex=0 ttl=3 upperLen=8"
+    },
+    {
+      "t": 77943,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 77943,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 77943,
+      "text": "[TX] Unsegmented TX seq=24 len=8"
+    },
+    {
+      "t": 77943,
+      "text": ""
+    },
+    {
+      "t": 77973,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 78004,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 78913,
+      "text": "[RELIABLE] retry reqType=0x2 txOpcode=0x8202 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 paramsLen=2 retry=3"
+    },
+    {
+      "t": 78913,
+      "text": "[TX][KEY_SELECT] security=app dst=0x0002 src=0x0001 appKeyIndex=0 selectedNetKeyIndex=0 aid=0x1c"
+    },
+    {
+      "t": 78913,
+      "text": "[TXDATA  ]____accessPayload>>>> 82 02 01 01 "
+    },
+    {
+      "t": 78943,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=25 security=app netKeyIndex=0 ttl=3 upperLen=8"
+    },
+    {
+      "t": 78943,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 78943,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 78944,
+      "text": "[TX] Unsegmented TX seq=25 len=8"
+    },
+    {
+      "t": 78944,
+      "text": ""
+    },
+    {
+      "t": 78974,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 79004,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 79913,
+      "text": "[RELIABLE] timeout reqType=0x2 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 retries=3"
+    },
+    {
+      "t": 79914,
+      "text": "# generic {\"kind\":\"generic\",\"eventType\":1,\"phase\":3,\"status\":255,\"src\":0,\"dst\":0,\"presentOnOff\":0,\"targetOnOff\":0,\"hasTarget\":false}"
+    },
+    {
+      "t": 79914,
+      "text": "# onOff failed: status 0xFF"
+    },
+    {
+      "t": 79942,
+      "text": "# generic {\"kind\":\"generic\",\"eventType\":1,\"phase\":1,\"status\":0,\"src\":0,\"dst\":0,\"presentOnOff\":0,\"targetOnOff\":0,\"hasTarget\":false}"
+    },
+    {
+      "t": 79942,
+      "text": "[RELIABLE] begin reqType=0x2 txOpcode=0x8202 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 paramsLen=2 retry=0"
+    },
+    {
+      "t": 79942,
+      "text": "[TX][KEY_SELECT] security=app dst=0x0002 src=0x0001 appKeyIndex=0 selectedNetKeyIndex=0 aid=0x1c"
+    },
+    {
+      "t": 79942,
+      "text": "[TXDATA  ]____accessPayload>>>> 82 02 01 02 "
+    },
+    {
+      "t": 79969,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=26 security=app netKeyIndex=0 ttl=3 upperLen=8"
+    },
+    {
+      "t": 79969,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 79969,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 79970,
+      "text": "[TX] Unsegmented TX seq=26 len=8"
+    },
+    {
+      "t": 79970,
+      "text": ""
+    },
+    {
+      "t": 80000,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 80030,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 80942,
+      "text": "[RELIABLE] retry reqType=0x2 txOpcode=0x8202 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 paramsLen=2 retry=1"
+    },
+    {
+      "t": 80942,
+      "text": "[TX][KEY_SELECT] security=app dst=0x0002 src=0x0001 appKeyIndex=0 selectedNetKeyIndex=0 aid=0x1c"
+    },
+    {
+      "t": 80942,
+      "text": "[TXDATA  ]____accessPayload>>>> 82 02 01 02 "
+    },
+    {
+      "t": 80979,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=27 security=app netKeyIndex=0 ttl=3 upperLen=8"
+    },
+    {
+      "t": 80979,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 80979,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 80979,
+      "text": "[TX] Unsegmented TX seq=27 len=8"
+    },
+    {
+      "t": 80979,
+      "text": ""
+    },
+    {
+      "t": 81010,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 81040,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 81942,
+      "text": "[RELIABLE] retry reqType=0x2 txOpcode=0x8202 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 paramsLen=2 retry=2"
+    },
+    {
+      "t": 81943,
+      "text": "[TX][KEY_SELECT] security=app dst=0x0002 src=0x0001 appKeyIndex=0 selectedNetKeyIndex=0 aid=0x1c"
+    },
+    {
+      "t": 81943,
+      "text": "[TXDATA  ]____accessPayload>>>> 82 02 01 02 "
+    },
+    {
+      "t": 81974,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=28 security=app netKeyIndex=0 ttl=3 upperLen=8"
+    },
+    {
+      "t": 81974,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 81974,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 81975,
+      "text": "[TX] Unsegmented TX seq=28 len=8"
+    },
+    {
+      "t": 81975,
+      "text": ""
+    },
+    {
+      "t": 82005,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 82035,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 82943,
+      "text": "[RELIABLE] retry reqType=0x2 txOpcode=0x8202 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 paramsLen=2 retry=3"
+    },
+    {
+      "t": 82943,
+      "text": "[TX][KEY_SELECT] security=app dst=0x0002 src=0x0001 appKeyIndex=0 selectedNetKeyIndex=0 aid=0x1c"
+    },
+    {
+      "t": 82943,
+      "text": "[TXDATA  ]____accessPayload>>>> 82 02 01 02 "
+    },
+    {
+      "t": 82976,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=29 security=app netKeyIndex=0 ttl=3 upperLen=8"
+    },
+    {
+      "t": 82976,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x7a"
+    },
+    {
+      "t": 82976,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 82976,
+      "text": "[TX] Unsegmented TX seq=29 len=8"
+    },
+    {
+      "t": 82976,
+      "text": ""
+    },
+    {
+      "t": 83007,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 83037,
+      "text": "[TX] Sending Segment  len=22"
+    },
+    {
+      "t": 83943,
+      "text": "[RELIABLE] timeout reqType=0x2 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 retries=3"
+    },
+    {
+      "t": 83943,
+      "text": "# generic {\"kind\":\"generic\",\"eventType\":1,\"phase\":3,\"status\":255,\"src\":0,\"dst\":0,\"presentOnOff\":0,\"targetOnOff\":0,\"hasTarget\":false}"
+    },
+    {
+      "t": 83944,
+      "text": "# onOff failed: status 0xFF"
+    }
+  ]
+}

@@ -1,0 +1,5113 @@
+{
+  "label": "server-gatt",
+  "capturedAt": "2026-09-25T19:24:07.287Z",
+  "transport": "gatt",
+  "unprovisioned": {
+    "uuid": "2CE52A0127E18000F0FF2CE527E18000",
+    "mac": null,
+    "rssi": [],
+    "advertisements": []
+  },
+  "provisioning": {
+    "capabilities": "0400030000000000000000",
+    "unicast": 2,
+    "numElements": 4,
+    "flags": 4,
+    "netKeyIndex": 0,
+    "appKeyIndex": 0,
+    "ivIndex": 0,
+    "startArg5": 0
+  },
+  "composition": {
+    "unicast": "0002",
+    "companyId": "0059",
+    "productId": "0001",
+    "features": "0003",
+    "crpl": "0100",
+    "numElements": 4,
+    "appKeys": [
+      {
+        "netKeyIndex": 0,
+        "appKeyIndex": 0
+      }
+    ],
+    "elements": [
+      {
+        "address": "0002",
+        "models": [
+          {
+            "id": "0000",
+            "type": "SIG",
+            "name": "Configuration Server",
+            "boundAppKeys": [
+              2
+            ]
+          },
+          {
+            "id": "0002",
+            "type": "SIG",
+            "name": "Health Server",
+            "boundAppKeys": []
+          },
+          {
+            "id": "1006",
+            "type": "SIG",
+            "name": "Generic Power OnOff Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1007",
+            "type": "SIG",
+            "name": "Generic Power OnOff Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1004",
+            "type": "SIG",
+            "name": "Generic Default Transition Time Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1303",
+            "type": "SIG",
+            "name": "Light CTL Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1304",
+            "type": "SIG",
+            "name": "Light CTL Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1300",
+            "type": "SIG",
+            "name": "Light Lightness Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1301",
+            "type": "SIG",
+            "name": "Light Lightness Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1000",
+            "type": "SIG",
+            "name": "Generic OnOff Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1002",
+            "type": "SIG",
+            "name": "Generic Level Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1100",
+            "type": "SIG",
+            "name": "Sensor Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1101",
+            "type": "SIG",
+            "name": "Sensor Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "01660001",
+            "type": "Vendor",
+            "name": "VENDOR 0x01660001",
+            "boundAppKeys": []
+          }
+        ]
+      },
+      {
+        "address": "0003",
+        "models": [
+          {
+            "id": "1006",
+            "type": "SIG",
+            "name": "Generic Power OnOff Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1007",
+            "type": "SIG",
+            "name": "Generic Power OnOff Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1002",
+            "type": "SIG",
+            "name": "Generic Level Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1002",
+            "type": "SIG",
+            "name": "Generic Level Server",
+            "boundAppKeys": []
+          },
+          {
+            "id": "1306",
+            "type": "SIG",
+            "name": "Light CTL Temperature Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "130F",
+            "type": "SIG",
+            "name": "Light LC Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1310",
+            "type": "SIG",
+            "name": "Light LC Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1100",
+            "type": "SIG",
+            "name": "Sensor Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1101",
+            "type": "SIG",
+            "name": "Sensor Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "address": "0004",
+        "models": [
+          {
+            "id": "1006",
+            "type": "SIG",
+            "name": "Generic Power OnOff Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1007",
+            "type": "SIG",
+            "name": "Generic Power OnOff Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1004",
+            "type": "SIG",
+            "name": "Generic Default Transition Time Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1303",
+            "type": "SIG",
+            "name": "Light CTL Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1304",
+            "type": "SIG",
+            "name": "Light CTL Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1300",
+            "type": "SIG",
+            "name": "Light Lightness Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1301",
+            "type": "SIG",
+            "name": "Light Lightness Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1000",
+            "type": "SIG",
+            "name": "Generic OnOff Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1002",
+            "type": "SIG",
+            "name": "Generic Level Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1100",
+            "type": "SIG",
+            "name": "Sensor Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1101",
+            "type": "SIG",
+            "name": "Sensor Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "address": "0005",
+        "models": [
+          {
+            "id": "1006",
+            "type": "SIG",
+            "name": "Generic Power OnOff Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1007",
+            "type": "SIG",
+            "name": "Generic Power OnOff Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1002",
+            "type": "SIG",
+            "name": "Generic Level Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1002",
+            "type": "SIG",
+            "name": "Generic Level Server",
+            "boundAppKeys": []
+          },
+          {
+            "id": "1306",
+            "type": "SIG",
+            "name": "Light CTL Temperature Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "130F",
+            "type": "SIG",
+            "name": "Light LC Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1310",
+            "type": "SIG",
+            "name": "Light LC Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1100",
+            "type": "SIG",
+            "name": "Sensor Server",
+            "boundAppKeys": [
+              0
+            ]
+          },
+          {
+            "id": "1101",
+            "type": "SIG",
+            "name": "Sensor Setup Server",
+            "boundAppKeys": [
+              0
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "compositionBytes": null,
+  "projectState": {
+    "appKeys": [
+      {
+        "aid": 62,
+        "appKeyIndex": 0,
+        "netKeyIndex": 0
+      }
+    ],
+    "default_settings": {},
+    "groups": [],
+    "id": 0,
+    "ivIndex": 0,
+    "ivUpdateFlag": false,
+    "localNode": {
+      "elements": 1,
+      "listenGroups": [],
+      "primary": 1
+    },
+    "netKeys": [
+      {
+        "netKeyIndex": 0,
+        "nid": 29
+      }
+    ],
+    "nodes": [
+      {
+        "appKeyIndexes": [
+          {
+            "appKeyIndex": 0,
+            "netKeyIndex": 0
+          }
+        ],
+        "companyId": 89,
+        "crpl": 256,
+        "deviceUUID": "00000000000000000000000000000000",
+        "elements": [
+          {
+            "models": [
+              {
+                "boundAppKeys": [
+                  2
+                ],
+                "modelId": 0
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 2
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4102
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4103
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4100
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4867
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4868
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4864
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4865
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4096
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4352
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4353
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 23461889
+              }
+            ],
+            "side": "server",
+            "unicast": 2
+          },
+          {
+            "models": [
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4102
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4103
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4870
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4879
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4880
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4352
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4353
+              }
+            ],
+            "side": "server",
+            "unicast": 3
+          },
+          {
+            "models": [
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4102
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4103
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4100
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4867
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4868
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4864
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4865
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4096
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4352
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4353
+              }
+            ],
+            "side": "server",
+            "unicast": 4
+          },
+          {
+            "models": [
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4102
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4103
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [],
+                "modelId": 4098
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4870
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4879
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4880
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4352
+              },
+              {
+                "boundAppKeys": [
+                  0
+                ],
+                "modelId": 4353
+              }
+            ],
+            "side": "server",
+            "unicast": 5
+          }
+        ],
+        "features": 3,
+        "mac": "000000000000",
+        "name": "",
+        "netKeyIndexes": [
+          0
+        ],
+        "numElements": 4,
+        "productId": 1,
+        "side": "",
+        "unicast": 2
+      }
+    ],
+    "project_id": 0,
+    "schemaVersion": 4,
+    "txSeq": 48,
+    "wasmRuntime": {
+      "lastPdus": [],
+      "networkTransmitCount": 2,
+      "networkTransmitIntervalSteps": 2,
+      "replay": [
+        {
+          "ivIndex": 0,
+          "seq": 189,
+          "src": 2
+        }
+      ]
+    }
+  },
+  "states": [],
+  "frames": [
+    {
+      "t": 62,
+      "dir": "tx",
+      "hex": "FD800300208C"
+    },
+    {
+      "t": 63,
+      "dir": "tx",
+      "hex": "FD01030199CB"
+    },
+    {
+      "t": 6846,
+      "dir": "tx",
+      "hex": "FD800300208C"
+    },
+    {
+      "t": 6846,
+      "dir": "tx",
+      "hex": "FD01030199CB"
+    },
+    {
+      "t": 10354,
+      "dir": "tx",
+      "hex": "FD800300208C"
+    },
+    {
+      "t": 10354,
+      "dir": "tx",
+      "hex": "FD01030199CB"
+    },
+    {
+      "t": 10411,
+      "dir": "tx",
+      "hex": "030000"
+    },
+    {
+      "t": 10492,
+      "dir": "rx",
+      "hex": "03010400030000000000000000"
+    },
+    {
+      "t": 10505,
+      "dir": "tx",
+      "hex": "03020000000000"
+    },
+    {
+      "t": 10505,
+      "dir": "tx",
+      "hex": "4303FDB8315B4D9CF2CA9781F909C44651F082DD"
+    },
+    {
+      "t": 10505,
+      "dir": "tx",
+      "hex": "8374E49A6F71403A64F6DF04C00D58541BC3C0B9"
+    },
+    {
+      "t": 10505,
+      "dir": "tx",
+      "hex": "83C0C48800C5A9A5F0C57154E243DB0908A25892"
+    },
+    {
+      "t": 10505,
+      "dir": "tx",
+      "hex": "C3744934222245BFF2"
+    },
+    {
+      "t": 11433,
+      "dir": "rx",
+      "hex": "030321FD3E6E2A73538908FAE433FB2236785072FD1C598FEEBBC4D28F3877A19E1E880DE1DB4FD1F1E62DB80B7B9D878248EE8C7AF2086C988C68D4A79DEE38384B"
+    },
+    {
+      "t": 11496,
+      "dir": "tx",
+      "hex": "0305FD16056ABE9C3295D72A72D7EC447F88"
+    },
+    {
+      "t": 11566,
+      "dir": "rx",
+      "hex": "03050328CE6318B512FA91052A6143B2CA07"
+    },
+    {
+      "t": 11567,
+      "dir": "tx",
+      "hex": "03069B26A29D07F80C87491DAE417F9DD63B"
+    },
+    {
+      "t": 11656,
+      "dir": "rx",
+      "hex": "03065264119109D6906847441B1085E2332B"
+    },
+    {
+      "t": 11668,
+      "dir": "tx",
+      "hex": "4307FD1CF1C5E42B6603328CA2B115BC69B3FF76"
+    },
+    {
+      "t": 11669,
+      "dir": "tx",
+      "hex": "C3B6DB4560AFED00EBD57BBD49963465"
+    },
+    {
+      "t": 11747,
+      "dir": "rx",
+      "hex": "0308"
+    },
+    {
+      "t": 20512,
+      "dir": "tx",
+      "hex": "021DBDB4C462D39F85DB0175504EFA57F3595FC5"
+    },
+    {
+      "t": 20638,
+      "dir": "tx",
+      "hex": "021D7CBD48A9B6D05E691CB9814C911829B040DB7A3577"
+    },
+    {
+      "t": 20696,
+      "dir": "rx",
+      "hex": "021D6E46F903FB93DAB7ECFEB6FFF8C1340DAA30A467"
+    },
+    {
+      "t": 20913,
+      "dir": "rx",
+      "hex": "021D7D2F0249C567D8E772081B391612E7F1895BC5F3"
+    },
+    {
+      "t": 21400,
+      "dir": "tx",
+      "hex": "001D921E2891459454BA97CB758BB0C1952E37498A14"
+    },
+    {
+      "t": 21460,
+      "dir": "tx",
+      "hex": "001D921E2891459454BA97CB758BB0C1952E37498A14"
+    },
+    {
+      "t": 21494,
+      "dir": "tx",
+      "hex": "001D921E2891459454BA97CB758BB0C1952E37498A14"
+    },
+    {
+      "t": 21771,
+      "dir": "rx",
+      "hex": "001DE2CE4418EED430D1A468B0DB77E968DB1C90F3CD76E5E351C90CB813"
+    },
+    {
+      "t": 21834,
+      "dir": "rx",
+      "hex": "001D5C9FDED42056CFE191BB76ABA7539C76CDF73F657C3E5A482DAAD780"
+    },
+    {
+      "t": 21835,
+      "dir": "rx",
+      "hex": "001DD0A23F496A9993C9266E492DAAA2CECD9F2728DBAC89FACBDAB93478"
+    },
+    {
+      "t": 21836,
+      "dir": "rx",
+      "hex": "001D9B48A90CEC5D1C0C12A81A4D53C2F4ABA773660C0493DC7E6533FF26"
+    },
+    {
+      "t": 21837,
+      "dir": "rx",
+      "hex": "001D2FBD52D7EB16CD62C28DDB759EF62A7FCFAF1DE8277EBE585348D69E"
+    },
+    {
+      "t": 21838,
+      "dir": "rx",
+      "hex": "001D31319EEF77BBD6D4505BD6825DEB61FFCBDF093AAFB09CF1122CDD1E"
+    },
+    {
+      "t": 21839,
+      "dir": "rx",
+      "hex": "001D698259BCB467E4C41AC8DBA3699986F014B85C345DAA426B81D82C57"
+    },
+    {
+      "t": 21840,
+      "dir": "rx",
+      "hex": "001D56520D8545207D8913CD3E0E1224558583EB2CDEA27ECF09A25C54C9"
+    },
+    {
+      "t": 21857,
+      "dir": "rx",
+      "hex": "001D0486BFEDC6FF70F23353984456370EA66BB31C6823D37BCD462F630A"
+    },
+    {
+      "t": 21859,
+      "dir": "rx",
+      "hex": "001DEAC83082C2AE3BF7B4187096E70782B6E492BCB243DD4D26737EE786"
+    },
+    {
+      "t": 22006,
+      "dir": "tx",
+      "hex": "001DA56F851F0A0E3C411CD4F78F95F510DB991F9A3ABBD334"
+    },
+    {
+      "t": 22216,
+      "dir": "rx",
+      "hex": "001DE2CE4418EED430D1A468B0DB77E968DB1C90F3CD76E5E351C90CB813"
+    },
+    {
+      "t": 22217,
+      "dir": "rx",
+      "hex": "001DDB153486C575FBDF4E486A867278976977CEF25E5429CB1915B6EC29"
+    },
+    {
+      "t": 22218,
+      "dir": "rx",
+      "hex": "001DCC5DCDAB3860336191918481633350F3EFFCE0F413AE92167BCE6F6C"
+    },
+    {
+      "t": 22218,
+      "dir": "rx",
+      "hex": "001D95ECD33FCA50ECD70131DC5BFA18DADB5BCFCB492B4449F655E9A177"
+    },
+    {
+      "t": 22219,
+      "dir": "rx",
+      "hex": "001D13A4DF0F879318D9C1F867527F39EBAC03AC6F6624C91E83E9D97707"
+    },
+    {
+      "t": 22220,
+      "dir": "rx",
+      "hex": "001D36B46B7D14E5F44388D6D8DFE9B3C4E2C01A3FA20E166DEF94827963"
+    },
+    {
+      "t": 22307,
+      "dir": "rx",
+      "hex": "001D6B3C81F6B39B5FC2FB7AF247FA0399C773B893CE31A1F4E8F02EE5ED"
+    },
+    {
+      "t": 22308,
+      "dir": "rx",
+      "hex": "001D2CFF7CE58212D92E73698F6A2C6F2EC19024448AA5D9125FDD966C6C"
+    },
+    {
+      "t": 22726,
+      "dir": "tx",
+      "hex": "001DC39EC79EFEE2A39CC49D7DEFF9580A10B51AFABC8CE9E6A905FB9D30"
+    },
+    {
+      "t": 22844,
+      "dir": "tx",
+      "hex": "001DFE6D852CB7C52399EF7A1580D5AF233E0B36AC9C60D73204A27980F9"
+    },
+    {
+      "t": 23030,
+      "dir": "rx",
+      "hex": "001DA7006CACFCCFD00AF5A6011F593449CF098F82B6E5B4CB"
+    },
+    {
+      "t": 23047,
+      "dir": "rx",
+      "hex": "001D94EBF673F318694C5E42A3192CF28F39370990A92D6F5A"
+    },
+    {
+      "t": 25764,
+      "dir": "rx",
+      "hex": "01010070A552D0FE40CAA800000000589EE5D68FEBD92B"
+    },
+    {
+      "t": 29773,
+      "dir": "tx",
+      "hex": "001D5CA3662E5C91C595BD953E58E9A44EB01A27469BAF8D3F270B"
+    },
+    {
+      "t": 29808,
+      "dir": "tx",
+      "hex": "001D5CA3662E5C91C595BD953E58E9A44EB01A27469BAF8D3F270B"
+    },
+    {
+      "t": 29873,
+      "dir": "tx",
+      "hex": "001D5CA3662E5C91C595BD953E58E9A44EB01A27469BAF8D3F270B"
+    },
+    {
+      "t": 29961,
+      "dir": "rx",
+      "hex": "001DF60F10F99F63597BD3E72515F8C85796009E140E3652B9161C6A"
+    },
+    {
+      "t": 30549,
+      "dir": "tx",
+      "hex": "001DA49146CF99FE5322FBAFCC3FF7A6CCB3B170EC708B3EEE36AA"
+    },
+    {
+      "t": 30584,
+      "dir": "tx",
+      "hex": "001DA49146CF99FE5322FBAFCC3FF7A6CCB3B170EC708B3EEE36AA"
+    },
+    {
+      "t": 30617,
+      "dir": "tx",
+      "hex": "001DA49146CF99FE5322FBAFCC3FF7A6CCB3B170EC708B3EEE36AA"
+    },
+    {
+      "t": 30769,
+      "dir": "rx",
+      "hex": "001DEF75A2137107AAE5D36751F7E0C06851B1A86ED3D22C575B4648"
+    },
+    {
+      "t": 31124,
+      "dir": "tx",
+      "hex": "001D5E4B7B23399D64344EC04678CA112F5A5CEA4870B262CEA0B8"
+    },
+    {
+      "t": 31159,
+      "dir": "tx",
+      "hex": "001D5E4B7B23399D64344EC04678CA112F5A5CEA4870B262CEA0B8"
+    },
+    {
+      "t": 31194,
+      "dir": "tx",
+      "hex": "001D5E4B7B23399D64344EC04678CA112F5A5CEA4870B262CEA0B8"
+    },
+    {
+      "t": 31315,
+      "dir": "rx",
+      "hex": "001DDDA337E4928351E7701CBDA2D901976B7BEC3C265A3BDB26D313"
+    },
+    {
+      "t": 31902,
+      "dir": "tx",
+      "hex": "001D0D832C4ED23A918DBD576F7DC12D81D7401B1DAF6DFE4A9A44"
+    },
+    {
+      "t": 31989,
+      "dir": "tx",
+      "hex": "001D0D832C4ED23A918DBD576F7DC12D81D7401B1DAF6DFE4A9A44"
+    },
+    {
+      "t": 32020,
+      "dir": "tx",
+      "hex": "001D0D832C4ED23A918DBD576F7DC12D81D7401B1DAF6DFE4A9A44"
+    },
+    {
+      "t": 32121,
+      "dir": "rx",
+      "hex": "001D8C7192CAB07B4BCA67637D60C9DAB95260111CD64BA15E988602"
+    },
+    {
+      "t": 32715,
+      "dir": "tx",
+      "hex": "001D56980F8C85D258DBCE43EBBC198E7EE1A62E7EA6EBCCC2BD56"
+    },
+    {
+      "t": 32749,
+      "dir": "tx",
+      "hex": "001D56980F8C85D258DBCE43EBBC198E7EE1A62E7EA6EBCCC2BD56"
+    },
+    {
+      "t": 32784,
+      "dir": "tx",
+      "hex": "001D56980F8C85D258DBCE43EBBC198E7EE1A62E7EA6EBCCC2BD56"
+    },
+    {
+      "t": 32931,
+      "dir": "rx",
+      "hex": "001D79D9763448DA7237DCB416E9212CF484AB8F9FCC0FECC6DE5796"
+    },
+    {
+      "t": 33541,
+      "dir": "tx",
+      "hex": "001D13011DB7F7BE096326DDEA9E369C36475C49434DCF153CC5F9"
+    },
+    {
+      "t": 33575,
+      "dir": "tx",
+      "hex": "001D13011DB7F7BE096326DDEA9E369C36475C49434DCF153CC5F9"
+    },
+    {
+      "t": 33610,
+      "dir": "tx",
+      "hex": "001D13011DB7F7BE096326DDEA9E369C36475C49434DCF153CC5F9"
+    },
+    {
+      "t": 33695,
+      "dir": "rx",
+      "hex": "001D0E8C36B4679746CCC61EAA29E0ED6489D11C1F8C06D5F02FFB74"
+    },
+    {
+      "t": 34307,
+      "dir": "tx",
+      "hex": "001D0B1C548F126D33808C2B66C41E145DCD714D30F4D24B706B8A"
+    },
+    {
+      "t": 34348,
+      "dir": "tx",
+      "hex": "001D0B1C548F126D33808C2B66C41E145DCD714D30F4D24B706B8A"
+    },
+    {
+      "t": 34381,
+      "dir": "tx",
+      "hex": "001D0B1C548F126D33808C2B66C41E145DCD714D30F4D24B706B8A"
+    },
+    {
+      "t": 34459,
+      "dir": "rx",
+      "hex": "001D15B54A4CA83FD63E6DFBB13F51C0D38EDC1EE4C59C7427E7B880"
+    },
+    {
+      "t": 34982,
+      "dir": "tx",
+      "hex": "001D1037A3AAEFBF8D455596ED998811E01F1D72178288FFA7E850"
+    },
+    {
+      "t": 35015,
+      "dir": "tx",
+      "hex": "001D1037A3AAEFBF8D455596ED998811E01F1D72178288FFA7E850"
+    },
+    {
+      "t": 35049,
+      "dir": "tx",
+      "hex": "001D1037A3AAEFBF8D455596ED998811E01F1D72178288FFA7E850"
+    },
+    {
+      "t": 35194,
+      "dir": "rx",
+      "hex": "001D0F55B48E5710660C4E2F7F4102F16E2F9B73A0B5AF3FD33891E5"
+    },
+    {
+      "t": 35667,
+      "dir": "tx",
+      "hex": "001D4A2D8B78F87E89EE4598EB56CA7E7E39B04A8BA1DFB7796E0E"
+    },
+    {
+      "t": 35701,
+      "dir": "tx",
+      "hex": "001D4A2D8B78F87E89EE4598EB56CA7E7E39B04A8BA1DFB7796E0E"
+    },
+    {
+      "t": 35735,
+      "dir": "tx",
+      "hex": "001D4A2D8B78F87E89EE4598EB56CA7E7E39B04A8BA1DFB7796E0E"
+    },
+    {
+      "t": 35899,
+      "dir": "rx",
+      "hex": "001DCEF0A1271B2A66221C058141C6D9422677B07A5225A42AC4FC6D"
+    },
+    {
+      "t": 36413,
+      "dir": "tx",
+      "hex": "001DD82BAAADAC2349D4133FDE76382D9D4C333E9353FE88C1D516"
+    },
+    {
+      "t": 36451,
+      "dir": "tx",
+      "hex": "001DD82BAAADAC2349D4133FDE76382D9D4C333E9353FE88C1D516"
+    },
+    {
+      "t": 36484,
+      "dir": "tx",
+      "hex": "001DD82BAAADAC2349D4133FDE76382D9D4C333E9353FE88C1D516"
+    },
+    {
+      "t": 36622,
+      "dir": "rx",
+      "hex": "001D7309C73FE2D08806CA512BC44E35257C64E847DC6773849D7273"
+    },
+    {
+      "t": 37280,
+      "dir": "tx",
+      "hex": "001D65877D5951CB4C4C5B03EA7D9A1BA051A548D3E63583BDB956"
+    },
+    {
+      "t": 37314,
+      "dir": "tx",
+      "hex": "001D65877D5951CB4C4C5B03EA7D9A1BA051A548D3E63583BDB956"
+    },
+    {
+      "t": 37354,
+      "dir": "tx",
+      "hex": "001D65877D5951CB4C4C5B03EA7D9A1BA051A548D3E63583BDB956"
+    },
+    {
+      "t": 37521,
+      "dir": "rx",
+      "hex": "001D25325D12E8077D947D610AC9D9BCF3AE11FE628B9693DBB91817"
+    },
+    {
+      "t": 38226,
+      "dir": "tx",
+      "hex": "001DAFDAAA413FDC5D973B6DB301E75ED03FA8987E47BA863C2080"
+    },
+    {
+      "t": 38258,
+      "dir": "tx",
+      "hex": "001DAFDAAA413FDC5D973B6DB301E75ED03FA8987E47BA863C2080"
+    },
+    {
+      "t": 38292,
+      "dir": "tx",
+      "hex": "001DAFDAAA413FDC5D973B6DB301E75ED03FA8987E47BA863C2080"
+    },
+    {
+      "t": 38421,
+      "dir": "rx",
+      "hex": "001DF312D3A19E34842CD8A48FC4795B8493D3192AFAC1B26388349F"
+    },
+    {
+      "t": 38687,
+      "dir": "rx",
+      "hex": "01010070A552D0FE40CAA800000000589EE5D68FEBD92B"
+    },
+    {
+      "t": 39039,
+      "dir": "tx",
+      "hex": "001D46DA5FB075B7D7434DA3CA80AC7C4FE5652DA6A0A5B6CF51F9"
+    },
+    {
+      "t": 39072,
+      "dir": "tx",
+      "hex": "001D46DA5FB075B7D7434DA3CA80AC7C4FE5652DA6A0A5B6CF51F9"
+    },
+    {
+      "t": 39107,
+      "dir": "tx",
+      "hex": "001D46DA5FB075B7D7434DA3CA80AC7C4FE5652DA6A0A5B6CF51F9"
+    },
+    {
+      "t": 39230,
+      "dir": "rx",
+      "hex": "001D563FB8C1FE948E03DF540C3A0F7320D7A77B8D0D41150756F234"
+    },
+    {
+      "t": 39704,
+      "dir": "tx",
+      "hex": "001D67C7FC278701526C795C9B695E53E9ACE222BB8887B27113AB"
+    },
+    {
+      "t": 39757,
+      "dir": "tx",
+      "hex": "001D67C7FC278701526C795C9B695E53E9ACE222BB8887B27113AB"
+    },
+    {
+      "t": 39789,
+      "dir": "tx",
+      "hex": "001D67C7FC278701526C795C9B695E53E9ACE222BB8887B27113AB"
+    },
+    {
+      "t": 39862,
+      "dir": "rx",
+      "hex": "001D0B26FD72A740D4A9C83B15C1B3BBE44C2E313CF3644CD6012BA3"
+    },
+    {
+      "t": 40472,
+      "dir": "tx",
+      "hex": "001D8C3090DB77E08CBC3FEF27E0D856610001D583B9921E5DADF3"
+    },
+    {
+      "t": 40506,
+      "dir": "tx",
+      "hex": "001D8C3090DB77E08CBC3FEF27E0D856610001D583B9921E5DADF3"
+    },
+    {
+      "t": 40541,
+      "dir": "tx",
+      "hex": "001D8C3090DB77E08CBC3FEF27E0D856610001D583B9921E5DADF3"
+    },
+    {
+      "t": 40671,
+      "dir": "rx",
+      "hex": "001D5F44D77B9C9ACD09BB2BB3C640D47976298A7DEB2B8EA159210A"
+    },
+    {
+      "t": 40923,
+      "dir": "tx",
+      "hex": "001DCFC9153122649736C76D2FC95A1C9AA8FE125F5D0D6F67440B"
+    },
+    {
+      "t": 40954,
+      "dir": "tx",
+      "hex": "001DCFC9153122649736C76D2FC95A1C9AA8FE125F5D0D6F67440B"
+    },
+    {
+      "t": 40987,
+      "dir": "tx",
+      "hex": "001DCFC9153122649736C76D2FC95A1C9AA8FE125F5D0D6F67440B"
+    },
+    {
+      "t": 41074,
+      "dir": "rx",
+      "hex": "001DA9F440DA5768F3337F82B119FFB7338294F1AF51A5B5AAC89618"
+    },
+    {
+      "t": 41661,
+      "dir": "tx",
+      "hex": "001DD12B9477981D2787DE57D32AB087495E398FC9C2F1BAF4668A"
+    },
+    {
+      "t": 41696,
+      "dir": "tx",
+      "hex": "001DD12B9477981D2787DE57D32AB087495E398FC9C2F1BAF4668A"
+    },
+    {
+      "t": 41731,
+      "dir": "tx",
+      "hex": "001DD12B9477981D2787DE57D32AB087495E398FC9C2F1BAF4668A"
+    },
+    {
+      "t": 41884,
+      "dir": "rx",
+      "hex": "001D25A2F6599781D09A88F7886D0EF44BBDD179FD66426B1FAD2434"
+    },
+    {
+      "t": 42409,
+      "dir": "tx",
+      "hex": "001D7B7947417D124226814052997E261A52C58EFA0F714CBD6F9E"
+    },
+    {
+      "t": 42471,
+      "dir": "tx",
+      "hex": "001D7B7947417D124226814052997E261A52C58EFA0F714CBD6F9E"
+    },
+    {
+      "t": 42502,
+      "dir": "tx",
+      "hex": "001D7B7947417D124226814052997E261A52C58EFA0F714CBD6F9E"
+    },
+    {
+      "t": 42611,
+      "dir": "rx",
+      "hex": "001D6DADD23C31904A34EDC590C2EEAA7744101B53A83BE104D979C5"
+    },
+    {
+      "t": 43119,
+      "dir": "tx",
+      "hex": "001D3B23ABE26F87E80D833EA2A7D1C26FBF6BB93B088ADE04DB5E"
+    },
+    {
+      "t": 43152,
+      "dir": "tx",
+      "hex": "001D3B23ABE26F87E80D833EA2A7D1C26FBF6BB93B088ADE04DB5E"
+    },
+    {
+      "t": 43186,
+      "dir": "tx",
+      "hex": "001D3B23ABE26F87E80D833EA2A7D1C26FBF6BB93B088ADE04DB5E"
+    },
+    {
+      "t": 43283,
+      "dir": "rx",
+      "hex": "001DCA3547597B62BE4D57A3BAB8C26CE792A061130BA5672850B335"
+    },
+    {
+      "t": 43832,
+      "dir": "tx",
+      "hex": "001D53E2602963F45911FE4A2032893FD5EF2CC0BE527125F21B76"
+    },
+    {
+      "t": 43866,
+      "dir": "tx",
+      "hex": "001D53E2602963F45911FE4A2032893FD5EF2CC0BE527125F21B76"
+    },
+    {
+      "t": 43901,
+      "dir": "tx",
+      "hex": "001D53E2602963F45911FE4A2032893FD5EF2CC0BE527125F21B76"
+    },
+    {
+      "t": 43985,
+      "dir": "rx",
+      "hex": "001D2E840CF5AC702D3D8BCD71283ED43500E84F89B7EFA2E8A1471C"
+    },
+    {
+      "t": 44492,
+      "dir": "tx",
+      "hex": "001DF7B9279226A6E4A106374C85213775FB79A15BB27D36550315"
+    },
+    {
+      "t": 44526,
+      "dir": "tx",
+      "hex": "001DF7B9279226A6E4A106374C85213775FB79A15BB27D36550315"
+    },
+    {
+      "t": 44572,
+      "dir": "tx",
+      "hex": "001DF7B9279226A6E4A106374C85213775FB79A15BB27D36550315"
+    },
+    {
+      "t": 44675,
+      "dir": "rx",
+      "hex": "001DAE40F31611DBA8EFAA118F9A641EF7278B1F98DD20888B7E1523"
+    },
+    {
+      "t": 45253,
+      "dir": "tx",
+      "hex": "001DBFDABD41E980611A5A6A4973CC3B7A6A849CB8B03461EEA5AB"
+    },
+    {
+      "t": 45286,
+      "dir": "tx",
+      "hex": "001DBFDABD41E980611A5A6A4973CC3B7A6A849CB8B03461EEA5AB"
+    },
+    {
+      "t": 45320,
+      "dir": "tx",
+      "hex": "001DBFDABD41E980611A5A6A4973CC3B7A6A849CB8B03461EEA5AB"
+    },
+    {
+      "t": 45482,
+      "dir": "rx",
+      "hex": "001D89D9FF7CEDFD203241B5BF95C7FC2C5F8A3730C6F2F8C6000284"
+    },
+    {
+      "t": 45990,
+      "dir": "tx",
+      "hex": "001D8852EFF3066074B6C08F5F22FA9388B851184DFFF168F79769"
+    },
+    {
+      "t": 46025,
+      "dir": "tx",
+      "hex": "001D8852EFF3066074B6C08F5F22FA9388B851184DFFF168F79769"
+    },
+    {
+      "t": 46090,
+      "dir": "tx",
+      "hex": "001D8852EFF3066074B6C08F5F22FA9388B851184DFFF168F79769"
+    },
+    {
+      "t": 46160,
+      "dir": "rx",
+      "hex": "001DB69224723CF9E12B05D5BB207B7C3887EA5588BDB8E9C5A294EB"
+    },
+    {
+      "t": 46999,
+      "dir": "tx",
+      "hex": "001D42BDBC848B6676BD8B9C96300302C15EE8D6D40DB0545F2917"
+    },
+    {
+      "t": 47033,
+      "dir": "tx",
+      "hex": "001D42BDBC848B6676BD8B9C96300302C15EE8D6D40DB0545F2917"
+    },
+    {
+      "t": 47067,
+      "dir": "tx",
+      "hex": "001D42BDBC848B6676BD8B9C96300302C15EE8D6D40DB0545F2917"
+    },
+    {
+      "t": 47196,
+      "dir": "rx",
+      "hex": "001D4538B853D0D0130930091DDA85A3DBDDC10D22DB8764367CCAA0"
+    },
+    {
+      "t": 47700,
+      "dir": "tx",
+      "hex": "001DB758A98B72AA69D3835DB023BDA2B41A6B85B043665B0B353F"
+    },
+    {
+      "t": 47733,
+      "dir": "tx",
+      "hex": "001DB758A98B72AA69D3835DB023BDA2B41A6B85B043665B0B353F"
+    },
+    {
+      "t": 47767,
+      "dir": "tx",
+      "hex": "001DB758A98B72AA69D3835DB023BDA2B41A6B85B043665B0B353F"
+    },
+    {
+      "t": 47826,
+      "dir": "rx",
+      "hex": "001D1DC028B874AEDBCCA53ABD257EC4A19F53CBC295F58B3DE5ACD3"
+    },
+    {
+      "t": 48507,
+      "dir": "tx",
+      "hex": "001D440C2F1101D328C0C3BAF2547885B364775A2FE89B528A2B35"
+    },
+    {
+      "t": 48541,
+      "dir": "tx",
+      "hex": "001D440C2F1101D328C0C3BAF2547885B364775A2FE89B528A2B35"
+    },
+    {
+      "t": 48574,
+      "dir": "tx",
+      "hex": "001D440C2F1101D328C0C3BAF2547885B364775A2FE89B528A2B35"
+    },
+    {
+      "t": 48727,
+      "dir": "rx",
+      "hex": "001D8F47128260460D4BDA0B4BF72EF64323C82EF5E37F0DE58CD813"
+    },
+    {
+      "t": 49411,
+      "dir": "tx",
+      "hex": "001D95CF47780E5767D8325C6F8CD2F6F2CC682BEEC29A3EA00A36"
+    },
+    {
+      "t": 49445,
+      "dir": "tx",
+      "hex": "001D95CF47780E5767D8325C6F8CD2F6F2CC682BEEC29A3EA00A36"
+    },
+    {
+      "t": 49478,
+      "dir": "tx",
+      "hex": "001D95CF47780E5767D8325C6F8CD2F6F2CC682BEEC29A3EA00A36"
+    },
+    {
+      "t": 49707,
+      "dir": "rx",
+      "hex": "001D073F91C5F4F6DAEF42FF4700FCCF336B0B866A4B08DD18E7CAFF"
+    },
+    {
+      "t": 50276,
+      "dir": "tx",
+      "hex": "001D888944879A71C4BDA1AB61FB42729DE33EC2BCEB62F6C7497C"
+    },
+    {
+      "t": 50309,
+      "dir": "tx",
+      "hex": "001D888944879A71C4BDA1AB61FB42729DE33EC2BCEB62F6C7497C"
+    },
+    {
+      "t": 50343,
+      "dir": "tx",
+      "hex": "001D888944879A71C4BDA1AB61FB42729DE33EC2BCEB62F6C7497C"
+    },
+    {
+      "t": 50529,
+      "dir": "rx",
+      "hex": "001D48192C85A4279A357E38D5D0A0ED87D84F06970E6BAC31EAF524"
+    },
+    {
+      "t": 51289,
+      "dir": "tx",
+      "hex": "001D05492D68CB9D16044CD1CB24B1B6AEC735907AD13EBB153433"
+    },
+    {
+      "t": 51323,
+      "dir": "tx",
+      "hex": "001D05492D68CB9D16044CD1CB24B1B6AEC735907AD13EBB153433"
+    },
+    {
+      "t": 51357,
+      "dir": "tx",
+      "hex": "001D05492D68CB9D16044CD1CB24B1B6AEC735907AD13EBB153433"
+    },
+    {
+      "t": 51512,
+      "dir": "rx",
+      "hex": "001DD089EC69FA404A71F4CE284D0D0F55349894F9C12100817B4216"
+    },
+    {
+      "t": 52018,
+      "dir": "tx",
+      "hex": "001D85C737D9676FACD4BE49D769FBD8DD159E7C040F66D099EBD6"
+    },
+    {
+      "t": 52060,
+      "dir": "tx",
+      "hex": "001D85C737D9676FACD4BE49D769FBD8DD159E7C040F66D099EBD6"
+    },
+    {
+      "t": 52093,
+      "dir": "tx",
+      "hex": "001D85C737D9676FACD4BE49D769FBD8DD159E7C040F66D099EBD6"
+    },
+    {
+      "t": 52239,
+      "dir": "rx",
+      "hex": "001D802FC7B086F2B1C1BB0E4F8C16811D1F9C37151CDB2B1F53BA66"
+    },
+    {
+      "t": 52684,
+      "dir": "rx",
+      "hex": "01010070A552D0FE40CAA800000000589EE5D68FEBD92B"
+    },
+    {
+      "t": 52835,
+      "dir": "tx",
+      "hex": "001DDEA116A741665ACA7E5776078200DDCADF823DE64E91E85E3C"
+    },
+    {
+      "t": 52868,
+      "dir": "tx",
+      "hex": "001DDEA116A741665ACA7E5776078200DDCADF823DE64E91E85E3C"
+    },
+    {
+      "t": 52901,
+      "dir": "tx",
+      "hex": "001DDEA116A741665ACA7E5776078200DDCADF823DE64E91E85E3C"
+    },
+    {
+      "t": 53141,
+      "dir": "rx",
+      "hex": "001D1E3F0B60998777135F63E24E00BC6518AD7C83A9963275C963EB"
+    },
+    {
+      "t": 53888,
+      "dir": "tx",
+      "hex": "001D0AEFE5C728A7764388263D2F7D0A2C8FBE96FF2C34B20A8C0E"
+    },
+    {
+      "t": 53922,
+      "dir": "tx",
+      "hex": "001D0AEFE5C728A7764388263D2F7D0A2C8FBE96FF2C34B20A8C0E"
+    },
+    {
+      "t": 53956,
+      "dir": "tx",
+      "hex": "001D0AEFE5C728A7764388263D2F7D0A2C8FBE96FF2C34B20A8C0E"
+    },
+    {
+      "t": 54129,
+      "dir": "rx",
+      "hex": "001DC14418F404125F2686EE747DC71E3F5B634CC0E812B6ED5BD28A"
+    },
+    {
+      "t": 54686,
+      "dir": "tx",
+      "hex": "001D1DD808C856B727165CC915DFE066A223B028E14A55D62EABC3"
+    },
+    {
+      "t": 54719,
+      "dir": "tx",
+      "hex": "001D1DD808C856B727165CC915DFE066A223B028E14A55D62EABC3"
+    },
+    {
+      "t": 54779,
+      "dir": "tx",
+      "hex": "001D1DD808C856B727165CC915DFE066A223B028E14A55D62EABC3"
+    },
+    {
+      "t": 54845,
+      "dir": "rx",
+      "hex": "001D35E841A9EF3D38A503314401E1F5CE5E466C387F7C143AABD765"
+    },
+    {
+      "t": 55416,
+      "dir": "tx",
+      "hex": "001DF124EBDFBC6559B2121720C79DFBEFE7A414E8E4ACDE640550"
+    },
+    {
+      "t": 55450,
+      "dir": "tx",
+      "hex": "001DF124EBDFBC6559B2121720C79DFBEFE7A414E8E4ACDE640550"
+    },
+    {
+      "t": 55484,
+      "dir": "tx",
+      "hex": "001DF124EBDFBC6559B2121720C79DFBEFE7A414E8E4ACDE640550"
+    },
+    {
+      "t": 55614,
+      "dir": "rx",
+      "hex": "001D520295C8F5E06D6733EDF5EEA26CC45E425EB6EA22855C0A0D49"
+    },
+    {
+      "t": 56294,
+      "dir": "tx",
+      "hex": "001DE340433B5EB7DA3A6CAEA312BD75580984E87AD5912B40DA7E"
+    },
+    {
+      "t": 56328,
+      "dir": "tx",
+      "hex": "001DE340433B5EB7DA3A6CAEA312BD75580984E87AD5912B40DA7E"
+    },
+    {
+      "t": 56362,
+      "dir": "tx",
+      "hex": "001DE340433B5EB7DA3A6CAEA312BD75580984E87AD5912B40DA7E"
+    },
+    {
+      "t": 56511,
+      "dir": "rx",
+      "hex": "001DB8CA648265EEB5A8C5A7A1693CD03FBB19463CDB52E09711AD3E"
+    },
+    {
+      "t": 56959,
+      "dir": "tx",
+      "hex": "001D10B9E7D18C3A592AFEF70B8295BEE77E20E31BA309FD1F0079"
+    },
+    {
+      "t": 56993,
+      "dir": "tx",
+      "hex": "001D10B9E7D18C3A592AFEF70B8295BEE77E20E31BA309FD1F0079"
+    },
+    {
+      "t": 57027,
+      "dir": "tx",
+      "hex": "001D10B9E7D18C3A592AFEF70B8295BEE77E20E31BA309FD1F0079"
+    },
+    {
+      "t": 57209,
+      "dir": "rx",
+      "hex": "001D65C7C7E3C48AA6E4E2102590DA688A1BC7B1115B4574AB0945A7"
+    },
+    {
+      "t": 57725,
+      "dir": "tx",
+      "hex": "001DAD73E9AAA41CF180FD884949EFD3FCBA2FDBD502B960EEDDED"
+    },
+    {
+      "t": 57756,
+      "dir": "tx",
+      "hex": "001DAD73E9AAA41CF180FD884949EFD3FCBA2FDBD502B960EEDDED"
+    },
+    {
+      "t": 57790,
+      "dir": "tx",
+      "hex": "001DAD73E9AAA41CF180FD884949EFD3FCBA2FDBD502B960EEDDED"
+    },
+    {
+      "t": 57949,
+      "dir": "rx",
+      "hex": "001DDE1144A5E6A391B8399AEDEAC666CA25178DE43B071C7A9A4EC5"
+    },
+    {
+      "t": 58411,
+      "dir": "tx",
+      "hex": "001D33A6935611EEED6088E3EA771C21CC395D721C404CDE175F5A"
+    },
+    {
+      "t": 58445,
+      "dir": "tx",
+      "hex": "001D33A6935611EEED6088E3EA771C21CC395D721C404CDE175F5A"
+    },
+    {
+      "t": 58479,
+      "dir": "tx",
+      "hex": "001D33A6935611EEED6088E3EA771C21CC395D721C404CDE175F5A"
+    },
+    {
+      "t": 58583,
+      "dir": "rx",
+      "hex": "001D33A3FE09BA08666611C41ACEB078F2C89041E47EB594A9B416BF"
+    },
+    {
+      "t": 59114,
+      "dir": "tx",
+      "hex": "001D4CA5DA8C73FA07A4D6CBE300D8482BC38F41333DDF06541F19"
+    },
+    {
+      "t": 59149,
+      "dir": "tx",
+      "hex": "001D4CA5DA8C73FA07A4D6CBE300D8482BC38F41333DDF06541F19"
+    },
+    {
+      "t": 59183,
+      "dir": "tx",
+      "hex": "001D4CA5DA8C73FA07A4D6CBE300D8482BC38F41333DDF06541F19"
+    },
+    {
+      "t": 59302,
+      "dir": "rx",
+      "hex": "001DAB8975A6855A63BCBE66C0C77AE7972C7F38ACC6735034DD3816"
+    },
+    {
+      "t": 59782,
+      "dir": "tx",
+      "hex": "001DA7C62A288269A992F8B3E093F461F9BE8EEF73C5670858D351"
+    },
+    {
+      "t": 59816,
+      "dir": "tx",
+      "hex": "001DA7C62A288269A992F8B3E093F461F9BE8EEF73C5670858D351"
+    },
+    {
+      "t": 59873,
+      "dir": "tx",
+      "hex": "001DA7C62A288269A992F8B3E093F461F9BE8EEF73C5670858D351"
+    },
+    {
+      "t": 60025,
+      "dir": "rx",
+      "hex": "001D01E99F4C1C7967E17689CA729358CC44F795F3DB061A4BB5CC9C"
+    },
+    {
+      "t": 60974,
+      "dir": "tx",
+      "hex": "001D3CFF073D7FFB0EE19D390420BB5EDA4B0D5BD1C6D0D2667BD4"
+    },
+    {
+      "t": 61008,
+      "dir": "tx",
+      "hex": "001D3CFF073D7FFB0EE19D390420BB5EDA4B0D5BD1C6D0D2667BD4"
+    },
+    {
+      "t": 61062,
+      "dir": "tx",
+      "hex": "001D3CFF073D7FFB0EE19D390420BB5EDA4B0D5BD1C6D0D2667BD4"
+    },
+    {
+      "t": 61191,
+      "dir": "rx",
+      "hex": "001D8CAE765BB5F8A7FFAC461814E31C31E2BD50289AE765B54172B1"
+    },
+    {
+      "t": 61979,
+      "dir": "tx",
+      "hex": "001DDC110D032B680BA1EF448E63B579C275310D7254E7"
+    },
+    {
+      "t": 62013,
+      "dir": "tx",
+      "hex": "001DDC110D032B680BA1EF448E63B579C275310D7254E7"
+    },
+    {
+      "t": 62046,
+      "dir": "tx",
+      "hex": "001DDC110D032B680BA1EF448E63B579C275310D7254E7"
+    },
+    {
+      "t": 62331,
+      "dir": "rx",
+      "hex": "001DE002E16BF73E6305E122F00FD9D257AA6B4F6275"
+    },
+    {
+      "t": 65724,
+      "dir": "rx",
+      "hex": "01010070A552D0FE40CAA800000000589EE5D68FEBD92B"
+    }
+  ],
+  "log": [
+    {
+      "t": 64,
+      "text": "# scan stopped"
+    },
+    {
+      "t": 66,
+      "text": "# scan stopped"
+    },
+    {
+      "t": 69,
+      "text": "# serial write failed: TX dropped, serial not connected"
+    },
+    {
+      "t": 69,
+      "text": "# serial write failed: TX dropped, serial not connected"
+    },
+    {
+      "t": 91,
+      "text": "# provision failed: GATT operation not authorized.; press again to pick the device in the chooser"
+    },
+    {
+      "t": 6847,
+      "text": "# scan stopped"
+    },
+    {
+      "t": 6849,
+      "text": "# serial write failed: TX dropped, serial not connected"
+    },
+    {
+      "t": 6849,
+      "text": "# serial write failed: TX dropped, serial not connected"
+    },
+    {
+      "t": 10407,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 10414,
+      "text": "# serial write failed: TX dropped, serial not connected"
+    },
+    {
+      "t": 10414,
+      "text": "# serial write failed: TX dropped, serial not connected"
+    },
+    {
+      "t": 10508,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 11749,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 12410,
+      "text": "# provision ✓ 0002"
+    },
+    {
+      "t": 20284,
+      "text": "GATT proxy transport enabled"
+    },
+    {
+      "t": 20497,
+      "text": "[GATT][TX][PROXY_CONFIG_PLAIN] netKeyIndex=0 ctlttl=0x80 seq=0x1 src=0x1 dst=0x0 opcode=set_filter_type(0x0) filter=accept_list(0x0) proxy_transport: 00 00 network_plain: 00 00 00 00"
+    },
+    {
+      "t": 20502,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 20506,
+      "text": "[GATT][TX] type=proxy_config(0x2) payloadLen=19 logicalLen=20 data: 2 1d bd b4 c4 62 d3 9f 85 db 1 75 50 4e fa 57 f3 59 5f c5"
+    },
+    {
+      "t": 20637,
+      "text": "[GATT][TX][PROXY_CONFIG_PLAIN] netKeyIndex=0 ctlttl=0x80 seq=0x2 src=0x1 dst=0x0 opcode=add_addresses(0x1) addresses: 0x1 0x2 proxy_transport: 01 00 01 00 02 network_plain: 00 00 01 00 01 00 02"
+    },
+    {
+      "t": 20637,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 20638,
+      "text": "[GATT][TX] type=proxy_config(0x2) payloadLen=22 logicalLen=23 data: 2 1d 7c bd 48 a9 b6 d0 5e 69 1c b9 81 4c 91 18 29 b0 40 db 7a 35 77"
+    },
+    {
+      "t": 20639,
+      "text": "GATT proxy filter requested addresses=2 expectedStatus=2"
+    },
+    {
+      "t": 20639,
+      "text": "# GATT proxy PROX CTL Server 2ch connected, proxy filter sent (2 statuses expected)"
+    },
+    {
+      "t": 20739,
+      "text": "[GATT][RX] type=proxy_config(0x2) payloadLen=21 data: 1d 6e 46 f9 3 fb 93 da b7 ec fe b6 ff f8 c1 34 d aa 30 a4 67"
+    },
+    {
+      "t": 20763,
+      "text": "# proxy is node 0002 (Filter Status source)"
+    },
+    {
+      "t": 20915,
+      "text": "# proxy is node 0002 (Filter Status source)"
+    },
+    {
+      "t": 20962,
+      "text": "[GATT][RX] type=proxy_config(0x2) payloadLen=21 data: 1d 7d 2f 2 49 c5 67 d8 e7 72 8 1b 39 16 12 e7 f1 89 5b c5 f3"
+    },
+    {
+      "t": 21216,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 21219,
+      "text": "[CFG] CompositionGet TX dst=0x0002 src=0x0001 page=0x00 bytes=800800"
+    },
+    {
+      "t": 21238,
+      "text": "[CFG] CompositionGet started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 21243,
+      "text": "# config {\"kind\":\"config\",\"eventType\":1,\"phase\":1,\"status\":0,\"unicast\":0,\"elementAddr\":0,\"modelId\":0,\"appKeyIndex\":0,\"done\":0,\"total\":0}"
+    },
+    {
+      "t": 21250,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 21251,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 08 00 "
+    },
+    {
+      "t": 21391,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=3 security=device netKeyIndex=0 ttl=3 upperLen=7"
+    },
+    {
+      "t": 21394,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 21399,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=21 logicalLen=22 data: 0 1d 92 1e 28 91 45 94 54 ba 97 cb 75 8b b0 c1 95 2e 37 49 8a 14"
+    },
+    {
+      "t": 21403,
+      "text": "[TX] Unsegmented TX seq=3 len=7"
+    },
+    {
+      "t": 21405,
+      "text": ""
+    },
+    {
+      "t": 21458,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=21 logicalLen=22 data: 0 1d 92 1e 28 91 45 94 54 ba 97 cb 75 8b b0 c1 95 2e 37 49 8a 14"
+    },
+    {
+      "t": 21493,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=21 logicalLen=22 data: 0 1d 92 1e 28 91 45 94 54 ba 97 cb 75 8b b0 c1 95 2e 37 49 8a 14"
+    },
+    {
+      "t": 21829,
+      "text": "[RXSEG] NEWRXSEG; SegCount: 10; segIndex: 0"
+    },
+    {
+      "t": 21832,
+      "text": "[RXSEG] ADDSEG; segIndex: 0SZER0: 129"
+    },
+    {
+      "t": 21834,
+      "text": "[RXSEG] ADDSEG; segIndex: 1SZER0: 129"
+    },
+    {
+      "t": 21835,
+      "text": "[RXSEG] ADDSEG; segIndex: 2SZER0: 129"
+    },
+    {
+      "t": 21836,
+      "text": "[RXSEG] ADDSEG; segIndex: 3SZER0: 129"
+    },
+    {
+      "t": 21837,
+      "text": "[RXSEG] ADDSEG; segIndex: 4SZER0: 129"
+    },
+    {
+      "t": 21838,
+      "text": "[RXSEG] ADDSEG; segIndex: 5SZER0: 129"
+    },
+    {
+      "t": 21839,
+      "text": "[RXSEG] ADDSEG; segIndex: 6SZER0: 129"
+    },
+    {
+      "t": 21840,
+      "text": "[RXSEG] ADDSEG; segIndex: 7SZER0: 129"
+    },
+    {
+      "t": 21858,
+      "text": "[RXSEG] ADDSEG; segIndex: 8SZER0: 129"
+    },
+    {
+      "t": 21859,
+      "text": "[RXSEG] ADDSEG; segIndex: 9SZER0: 129"
+    },
+    {
+      "t": 21861,
+      "text": "[RXSEG] SEG_COMPLETE_________ 9"
+    },
+    {
+      "t": 21865,
+      "text": "[ACK] ___________mask=0x3ff expected=0x3ff"
+    },
+    {
+      "t": 22005,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 22005,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=24 logicalLen=25 data: 0 1d a5 6f 85 1f a e 3c 41 1c d4 f7 8f 95 f5 10 db 99 1f 9a 3a bb d3 34"
+    },
+    {
+      "t": 22006,
+      "text": "[TX] Segment ACK :::: src=0x2 seqZero=81 mask=0x3ff ttl=0x5"
+    },
+    {
+      "t": 22128,
+      "text": "Access RX opcode=0x0002 src=0x0002 dst=0x0001 len=115"
+    },
+    {
+      "t": 22139,
+      "text": "[CFG] CompositionGet RX ok dst=0x0002 cid=0x0059 pid=0x0001 elements=4"
+    },
+    {
+      "t": 22141,
+      "text": "[CFG] CompositionData proxy feature dst=0x0002 features=0x0003 support=yes enabled=unknown (Config GattProxyGet not read)"
+    },
+    {
+      "t": 22149,
+      "text": "[CFG] CompositionGet completed dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 22248,
+      "text": "# config {\"kind\":\"config\",\"eventType\":1,\"phase\":2,\"status\":0,\"unicast\":0,\"elementAddr\":0,\"modelId\":0,\"appKeyIndex\":0,\"done\":0,\"total\":0}"
+    },
+    {
+      "t": 22261,
+      "text": "# firmware lists 0003/1002 Generic Level Server more than once in one element; one bind covers every copy"
+    },
+    {
+      "t": 22261,
+      "text": "# firmware lists 0005/1002 Generic Level Server more than once in one element; one bind covers every copy"
+    },
+    {
+      "t": 22261,
+      "text": "# composition ✓ 4 el, 43 models"
+    },
+    {
+      "t": 22278,
+      "text": "[RXSEG] FULLDATA 0SZER0: 129; 0"
+    },
+    {
+      "t": 22283,
+      "text": "[RXSEG] FULLDATA 1SZER0: 129; 0"
+    },
+    {
+      "t": 22285,
+      "text": "[RXSEG] FULLDATA 2SZER0: 129; 0"
+    },
+    {
+      "t": 22286,
+      "text": "[RXSEG] FULLDATA 3SZER0: 129; 0"
+    },
+    {
+      "t": 22287,
+      "text": "[RXSEG] FULLDATA 4SZER0: 129; 0"
+    },
+    {
+      "t": 22288,
+      "text": "[RXSEG] FULLDATA 5SZER0: 129; 0"
+    },
+    {
+      "t": 22307,
+      "text": "[RXSEG] FULLDATA 6SZER0: 129; 0"
+    },
+    {
+      "t": 22308,
+      "text": "[RXSEG] FULLDATA 7SZER0: 129; 0"
+    },
+    {
+      "t": 22553,
+      "text": "AppKeyAdd attempt 1/1 timeout=8000ms retries=0"
+    },
+    {
+      "t": 22555,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 22557,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 22558,
+      "text": "[CFG] AppKeyAdd started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 22559,
+      "text": "# config {\"kind\":\"config\",\"eventType\":2,\"phase\":1,\"status\":0,\"unicast\":0,\"elementAddr\":0,\"modelId\":0,\"appKeyIndex\":0,\"done\":0,\"total\":0}"
+    },
+    {
+      "t": 22559,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 22561,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 22715,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=5 security=device netKeyIndex=0 ttl=3 upperLen=24"
+    },
+    {
+      "t": 22718,
+      "text": "[TX] data.size=24"
+    },
+    {
+      "t": 22721,
+      "text": "[TX] segIdx=0 offset=12 len=12"
+    },
+    {
+      "t": 22722,
+      "text": "[TX] segIdx=1 offset=24 len=12"
+    },
+    {
+      "t": 22725,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 22726,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=29 logicalLen=30 data: 0 1d c3 9e c7 9e fe e2 a3 9c c4 9d 7d ef f9 58 a 10 b5 1a fa bc 8c e9 e6 a9 5 fb 9d 30"
+    },
+    {
+      "t": 22842,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 22843,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=29 logicalLen=30 data: 0 1d fe 6d 85 2c b7 c5 23 99 ef 7a 15 80 d5 af 23 3e b 36 ac 9c 60 d7 32 4 a2 79 80 f9"
+    },
+    {
+      "t": 23276,
+      "text": "Access RX opcode=0x8003 src=0x0002 dst=0x0001 len=4"
+    },
+    {
+      "t": 23279,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 23281,
+      "text": "[CFG] AppKeyAdd completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 23306,
+      "text": "# config {\"kind\":\"config\",\"eventType\":2,\"phase\":2,\"status\":0,\"unicast\":0,\"elementAddr\":0,\"modelId\":0,\"appKeyIndex\":0,\"done\":0,\"total\":0}"
+    },
+    {
+      "t": 23307,
+      "text": "# appKeyAdd ✓ "
+    },
+    {
+      "t": 23451,
+      "text": "[TX] SAR TX COMPLETE seq=5"
+    },
+    {
+      "t": 23461,
+      "text": "[RX] SegmentAck src=0x2 seqZero=0x5 mask=0x3"
+    },
+    {
+      "t": 25766,
+      "text": "[GATT][RX] type=beacon(0x1) payloadLen=22 data: 1 0 70 a5 52 d0 fe 40 ca a8 0 0 0 0 58 9e e5 d6 8f eb d9 2b"
+    },
+    {
+      "t": 29665,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 29665,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 29667,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 29668,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4102,\"appKeyIndex\":0,\"done\":0,\"total\":11}"
+    },
+    {
+      "t": 29668,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 29669,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 06 10 "
+    },
+    {
+      "t": 29770,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=7 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 29772,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 29773,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 5c a3 66 2e 5c 91 c5 95 bd 95 3e 58 e9 a4 4e b0 1a 27 46 9b af 8d 3f 27 b"
+    },
+    {
+      "t": 29774,
+      "text": "[TX] Unsegmented TX seq=7 len=12"
+    },
+    {
+      "t": 29775,
+      "text": ""
+    },
+    {
+      "t": 29806,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 5c a3 66 2e 5c 91 c5 95 bd 95 3e 58 e9 a4 4e b0 1a 27 46 9b af 8d 3f 27 b"
+    },
+    {
+      "t": 29871,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 5c a3 66 2e 5c 91 c5 95 bd 95 3e 58 e9 a4 4e b0 1a 27 46 9b af 8d 3f 27 b"
+    },
+    {
+      "t": 30237,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 30240,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 30242,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 30401,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4102,\"appKeyIndex\":0,\"done\":1,\"total\":11}"
+    },
+    {
+      "t": 30401,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 30402,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 30403,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 30404,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4103,\"appKeyIndex\":0,\"done\":1,\"total\":11}"
+    },
+    {
+      "t": 30404,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 30406,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 07 10 "
+    },
+    {
+      "t": 30546,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=8 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 30547,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 30549,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d a4 91 46 cf 99 fe 53 22 fb af cc 3f f7 a6 cc b3 b1 70 ec 70 8b 3e ee 36 aa"
+    },
+    {
+      "t": 30550,
+      "text": "[TX] Unsegmented TX seq=8 len=12"
+    },
+    {
+      "t": 30550,
+      "text": ""
+    },
+    {
+      "t": 30582,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d a4 91 46 cf 99 fe 53 22 fb af cc 3f f7 a6 cc b3 b1 70 ec 70 8b 3e ee 36 aa"
+    },
+    {
+      "t": 30615,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d a4 91 46 cf 99 fe 53 22 fb af cc 3f f7 a6 cc b3 b1 70 ec 70 8b 3e ee 36 aa"
+    },
+    {
+      "t": 30899,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 30899,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 30900,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 30996,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4103,\"appKeyIndex\":0,\"done\":2,\"total\":11}"
+    },
+    {
+      "t": 30996,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 30997,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 30998,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 30999,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4100,\"appKeyIndex\":0,\"done\":2,\"total\":11}"
+    },
+    {
+      "t": 31000,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 31001,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 04 10 "
+    },
+    {
+      "t": 31120,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=9 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 31121,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 31123,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 5e 4b 7b 23 39 9d 64 34 4e c0 46 78 ca 11 2f 5a 5c ea 48 70 b2 62 ce a0 b8"
+    },
+    {
+      "t": 31124,
+      "text": "[TX] Unsegmented TX seq=9 len=12"
+    },
+    {
+      "t": 31125,
+      "text": ""
+    },
+    {
+      "t": 31158,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 5e 4b 7b 23 39 9d 64 34 4e c0 46 78 ca 11 2f 5a 5c ea 48 70 b2 62 ce a0 b8"
+    },
+    {
+      "t": 31192,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 5e 4b 7b 23 39 9d 64 34 4e c0 46 78 ca 11 2f 5a 5c ea 48 70 b2 62 ce a0 b8"
+    },
+    {
+      "t": 31582,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 31583,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 31584,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 31763,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4100,\"appKeyIndex\":0,\"done\":3,\"total\":11}"
+    },
+    {
+      "t": 31763,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 31764,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 31765,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 31765,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4867,\"appKeyIndex\":0,\"done\":3,\"total\":11}"
+    },
+    {
+      "t": 31765,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 31766,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 03 13 "
+    },
+    {
+      "t": 31899,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=10 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 31900,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 31902,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d d 83 2c 4e d2 3a 91 8d bd 57 6f 7d c1 2d 81 d7 40 1b 1d af 6d fe 4a 9a 44"
+    },
+    {
+      "t": 31903,
+      "text": "[TX] Unsegmented TX seq=10 len=12"
+    },
+    {
+      "t": 31903,
+      "text": ""
+    },
+    {
+      "t": 31988,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d d 83 2c 4e d2 3a 91 8d bd 57 6f 7d c1 2d 81 d7 40 1b 1d af 6d fe 4a 9a 44"
+    },
+    {
+      "t": 32020,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d d 83 2c 4e d2 3a 91 8d bd 57 6f 7d c1 2d 81 d7 40 1b 1d af 6d fe 4a 9a 44"
+    },
+    {
+      "t": 32416,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 32416,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 32417,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 32579,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4867,\"appKeyIndex\":0,\"done\":4,\"total\":11}"
+    },
+    {
+      "t": 32579,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 32581,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 32582,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 32582,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4868,\"appKeyIndex\":0,\"done\":4,\"total\":11}"
+    },
+    {
+      "t": 32583,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 32583,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 04 13 "
+    },
+    {
+      "t": 32713,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=11 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 32714,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 32715,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 56 98 f 8c 85 d2 58 db ce 43 eb bc 19 8e 7e e1 a6 2e 7e a6 eb cc c2 bd 56"
+    },
+    {
+      "t": 32716,
+      "text": "[TX] Unsegmented TX seq=11 len=12"
+    },
+    {
+      "t": 32717,
+      "text": ""
+    },
+    {
+      "t": 32748,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 56 98 f 8c 85 d2 58 db ce 43 eb bc 19 8e 7e e1 a6 2e 7e a6 eb cc c2 bd 56"
+    },
+    {
+      "t": 32782,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 56 98 f 8c 85 d2 58 db ce 43 eb bc 19 8e 7e e1 a6 2e 7e a6 eb cc c2 bd 56"
+    },
+    {
+      "t": 33237,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 33238,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 33239,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 33377,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4868,\"appKeyIndex\":0,\"done\":5,\"total\":11}"
+    },
+    {
+      "t": 33377,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 33378,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 33380,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 33381,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4864,\"appKeyIndex\":0,\"done\":5,\"total\":11}"
+    },
+    {
+      "t": 33381,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 33382,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 00 13 "
+    },
+    {
+      "t": 33538,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=12 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 33539,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 33540,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 13 1 1d b7 f7 be 9 63 26 dd ea 9e 36 9c 36 47 5c 49 43 4d cf 15 3c c5 f9"
+    },
+    {
+      "t": 33542,
+      "text": "[TX] Unsegmented TX seq=12 len=12"
+    },
+    {
+      "t": 33542,
+      "text": ""
+    },
+    {
+      "t": 33574,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 13 1 1d b7 f7 be 9 63 26 dd ea 9e 36 9c 36 47 5c 49 43 4d cf 15 3c c5 f9"
+    },
+    {
+      "t": 33608,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 13 1 1d b7 f7 be 9 63 26 dd ea 9e 36 9c 36 47 5c 49 43 4d cf 15 3c c5 f9"
+    },
+    {
+      "t": 33967,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 33968,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 33969,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 34184,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4864,\"appKeyIndex\":0,\"done\":6,\"total\":11}"
+    },
+    {
+      "t": 34184,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 34185,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 34185,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 34186,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4865,\"appKeyIndex\":0,\"done\":6,\"total\":11}"
+    },
+    {
+      "t": 34186,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 34187,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 01 13 "
+    },
+    {
+      "t": 34305,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=13 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 34306,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 34307,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d b 1c 54 8f 12 6d 33 80 8c 2b 66 c4 1e 14 5d cd 71 4d 30 f4 d2 4b 70 6b 8a"
+    },
+    {
+      "t": 34307,
+      "text": "[TX] Unsegmented TX seq=13 len=12"
+    },
+    {
+      "t": 34308,
+      "text": ""
+    },
+    {
+      "t": 34347,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d b 1c 54 8f 12 6d 33 80 8c 2b 66 c4 1e 14 5d cd 71 4d 30 f4 d2 4b 70 6b 8a"
+    },
+    {
+      "t": 34380,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d b 1c 54 8f 12 6d 33 80 8c 2b 66 c4 1e 14 5d cd 71 4d 30 f4 d2 4b 70 6b 8a"
+    },
+    {
+      "t": 34683,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 34683,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 34684,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 34801,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4865,\"appKeyIndex\":0,\"done\":7,\"total\":11}"
+    },
+    {
+      "t": 34802,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 34803,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 34805,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 34806,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4096,\"appKeyIndex\":0,\"done\":7,\"total\":11}"
+    },
+    {
+      "t": 34806,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 34808,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 00 10 "
+    },
+    {
+      "t": 34979,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=14 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 34980,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 34981,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 10 37 a3 aa ef bf 8d 45 55 96 ed 99 88 11 e0 1f 1d 72 17 82 88 ff a7 e8 50"
+    },
+    {
+      "t": 34982,
+      "text": "[TX] Unsegmented TX seq=14 len=12"
+    },
+    {
+      "t": 34982,
+      "text": ""
+    },
+    {
+      "t": 35014,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 10 37 a3 aa ef bf 8d 45 55 96 ed 99 88 11 e0 1f 1d 72 17 82 88 ff a7 e8 50"
+    },
+    {
+      "t": 35048,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 10 37 a3 aa ef bf 8d 45 55 96 ed 99 88 11 e0 1f 1d 72 17 82 88 ff a7 e8 50"
+    },
+    {
+      "t": 35403,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 35403,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 35404,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 35544,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4096,\"appKeyIndex\":0,\"done\":8,\"total\":11}"
+    },
+    {
+      "t": 35544,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 35545,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 35545,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 35546,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4098,\"appKeyIndex\":0,\"done\":8,\"total\":11}"
+    },
+    {
+      "t": 35546,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 35547,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 02 10 "
+    },
+    {
+      "t": 35665,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=15 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 35665,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 35666,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 4a 2d 8b 78 f8 7e 89 ee 45 98 eb 56 ca 7e 7e 39 b0 4a 8b a1 df b7 79 6e e"
+    },
+    {
+      "t": 35667,
+      "text": "[TX] Unsegmented TX seq=15 len=12"
+    },
+    {
+      "t": 35667,
+      "text": ""
+    },
+    {
+      "t": 35699,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 4a 2d 8b 78 f8 7e 89 ee 45 98 eb 56 ca 7e 7e 39 b0 4a 8b a1 df b7 79 6e e"
+    },
+    {
+      "t": 35733,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 4a 2d 8b 78 f8 7e 89 ee 45 98 eb 56 ca 7e 7e 39 b0 4a 8b a1 df b7 79 6e e"
+    },
+    {
+      "t": 36119,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 36120,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 36123,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 36303,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4098,\"appKeyIndex\":0,\"done\":9,\"total\":11}"
+    },
+    {
+      "t": 36303,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 36304,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 36306,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 36307,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4352,\"appKeyIndex\":0,\"done\":9,\"total\":11}"
+    },
+    {
+      "t": 36307,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 36309,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 00 11 "
+    },
+    {
+      "t": 36411,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=16 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 36412,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 36413,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d d8 2b aa ad ac 23 49 d4 13 3f de 76 38 2d 9d 4c 33 3e 93 53 fe 88 c1 d5 16"
+    },
+    {
+      "t": 36414,
+      "text": "[TX] Unsegmented TX seq=16 len=12"
+    },
+    {
+      "t": 36414,
+      "text": ""
+    },
+    {
+      "t": 36451,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d d8 2b aa ad ac 23 49 d4 13 3f de 76 38 2d 9d 4c 33 3e 93 53 fe 88 c1 d5 16"
+    },
+    {
+      "t": 36483,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d d8 2b aa ad ac 23 49 d4 13 3f de 76 38 2d 9d 4c 33 3e 93 53 fe 88 c1 d5 16"
+    },
+    {
+      "t": 36912,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 36913,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 36914,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 37113,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4352,\"appKeyIndex\":0,\"done\":10,\"total\":11}"
+    },
+    {
+      "t": 37113,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 37114,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 37115,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 37116,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4353,\"appKeyIndex\":0,\"done\":10,\"total\":11}"
+    },
+    {
+      "t": 37116,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 37117,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 00 00 01 11 "
+    },
+    {
+      "t": 37274,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=17 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 37275,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 37278,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 65 87 7d 59 51 cb 4c 4c 5b 3 ea 7d 9a 1b a0 51 a5 48 d3 e6 35 83 bd b9 56"
+    },
+    {
+      "t": 37280,
+      "text": "[TX] Unsegmented TX seq=17 len=12"
+    },
+    {
+      "t": 37281,
+      "text": ""
+    },
+    {
+      "t": 37311,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 65 87 7d 59 51 cb 4c 4c 5b 3 ea 7d 9a 1b a0 51 a5 48 d3 e6 35 83 bd b9 56"
+    },
+    {
+      "t": 37353,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 65 87 7d 59 51 cb 4c 4c 5b 3 ea 7d 9a 1b a0 51 a5 48 d3 e6 35 83 bd b9 56"
+    },
+    {
+      "t": 37805,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 37805,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 37806,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 38002,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":2,\"modelId\":4353,\"appKeyIndex\":0,\"done\":11,\"total\":11}"
+    },
+    {
+      "t": 38118,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 38119,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 38119,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 38120,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4102,\"appKeyIndex\":0,\"done\":0,\"total\":9}"
+    },
+    {
+      "t": 38120,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 38121,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 06 10 "
+    },
+    {
+      "t": 38224,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=18 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 38225,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 38226,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d af da aa 41 3f dc 5d 97 3b 6d b3 1 e7 5e d0 3f a8 98 7e 47 ba 86 3c 20 80"
+    },
+    {
+      "t": 38227,
+      "text": "[TX] Unsegmented TX seq=18 len=12"
+    },
+    {
+      "t": 38227,
+      "text": ""
+    },
+    {
+      "t": 38257,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d af da aa 41 3f dc 5d 97 3b 6d b3 1 e7 5e d0 3f a8 98 7e 47 ba 86 3c 20 80"
+    },
+    {
+      "t": 38290,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d af da aa 41 3f dc 5d 97 3b 6d b3 1 e7 5e d0 3f a8 98 7e 47 ba 86 3c 20 80"
+    },
+    {
+      "t": 38733,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 38733,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 38735,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 38941,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4102,\"appKeyIndex\":0,\"done\":1,\"total\":9}"
+    },
+    {
+      "t": 38941,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 38942,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 38943,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 38944,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4103,\"appKeyIndex\":0,\"done\":1,\"total\":9}"
+    },
+    {
+      "t": 38944,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 38945,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 07 10 "
+    },
+    {
+      "t": 39037,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=19 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 39037,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 39038,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 46 da 5f b0 75 b7 d7 43 4d a3 ca 80 ac 7c 4f e5 65 2d a6 a0 a5 b6 cf 51 f9"
+    },
+    {
+      "t": 39039,
+      "text": "[TX] Unsegmented TX seq=19 len=12"
+    },
+    {
+      "t": 39040,
+      "text": ""
+    },
+    {
+      "t": 39041,
+      "text": "[GATT][RX] type=beacon(0x1) payloadLen=22 data: 1 0 70 a5 52 d0 fe 40 ca a8 0 0 0 0 58 9e e5 d6 8f eb d9 2b"
+    },
+    {
+      "t": 39071,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 46 da 5f b0 75 b7 d7 43 4d a3 ca 80 ac 7c 4f e5 65 2d a6 a0 a5 b6 cf 51 f9"
+    },
+    {
+      "t": 39105,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 46 da 5f b0 75 b7 d7 43 4d a3 ca 80 ac 7c 4f e5 65 2d a6 a0 a5 b6 cf 51 f9"
+    },
+    {
+      "t": 39492,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 39492,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 39493,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 39597,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4103,\"appKeyIndex\":0,\"done\":2,\"total\":9}"
+    },
+    {
+      "t": 39597,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 39598,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 39599,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 39601,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4098,\"appKeyIndex\":0,\"done\":2,\"total\":9}"
+    },
+    {
+      "t": 39601,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 39602,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 02 10 "
+    },
+    {
+      "t": 39701,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=20 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 39702,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 39703,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 67 c7 fc 27 87 1 52 6c 79 5c 9b 69 5e 53 e9 ac e2 22 bb 88 87 b2 71 13 ab"
+    },
+    {
+      "t": 39704,
+      "text": "[TX] Unsegmented TX seq=20 len=12"
+    },
+    {
+      "t": 39704,
+      "text": ""
+    },
+    {
+      "t": 39755,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 67 c7 fc 27 87 1 52 6c 79 5c 9b 69 5e 53 e9 ac e2 22 bb 88 87 b2 71 13 ab"
+    },
+    {
+      "t": 39788,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 67 c7 fc 27 87 1 52 6c 79 5c 9b 69 5e 53 e9 ac e2 22 bb 88 87 b2 71 13 ab"
+    },
+    {
+      "t": 40163,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 40164,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 40165,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 40325,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4098,\"appKeyIndex\":0,\"done\":3,\"total\":9}"
+    },
+    {
+      "t": 40326,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 40327,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 40328,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 40329,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4098,\"appKeyIndex\":0,\"done\":3,\"total\":9}"
+    },
+    {
+      "t": 40329,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 40329,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 02 10 "
+    },
+    {
+      "t": 40468,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=21 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 40469,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 40471,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 8c 30 90 db 77 e0 8c bc 3f ef 27 e0 d8 56 61 0 1 d5 83 b9 92 1e 5d ad f3"
+    },
+    {
+      "t": 40472,
+      "text": "[TX] Unsegmented TX seq=21 len=12"
+    },
+    {
+      "t": 40473,
+      "text": ""
+    },
+    {
+      "t": 40505,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 8c 30 90 db 77 e0 8c bc 3f ef 27 e0 d8 56 61 0 1 d5 83 b9 92 1e 5d ad f3"
+    },
+    {
+      "t": 40539,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 8c 30 90 db 77 e0 8c bc 3f ef 27 e0 d8 56 61 0 1 d5 83 b9 92 1e 5d ad f3"
+    },
+    {
+      "t": 40795,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 40795,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 40796,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 40806,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4098,\"appKeyIndex\":0,\"done\":4,\"total\":9}"
+    },
+    {
+      "t": 40806,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 40807,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 40808,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 40808,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4870,\"appKeyIndex\":0,\"done\":4,\"total\":9}"
+    },
+    {
+      "t": 40808,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 40809,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 06 13 "
+    },
+    {
+      "t": 40918,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=22 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 40920,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 40921,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d cf c9 15 31 22 64 97 36 c7 6d 2f c9 5a 1c 9a a8 fe 12 5f 5d d 6f 67 44 b"
+    },
+    {
+      "t": 40923,
+      "text": "[TX] Unsegmented TX seq=22 len=12"
+    },
+    {
+      "t": 40924,
+      "text": ""
+    },
+    {
+      "t": 40954,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d cf c9 15 31 22 64 97 36 c7 6d 2f c9 5a 1c 9a a8 fe 12 5f 5d d 6f 67 44 b"
+    },
+    {
+      "t": 40986,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d cf c9 15 31 22 64 97 36 c7 6d 2f c9 5a 1c 9a a8 fe 12 5f 5d d 6f 67 44 b"
+    },
+    {
+      "t": 41374,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 41375,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 41377,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 41522,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4870,\"appKeyIndex\":0,\"done\":5,\"total\":9}"
+    },
+    {
+      "t": 41522,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 41523,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 41524,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 41525,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4879,\"appKeyIndex\":0,\"done\":5,\"total\":9}"
+    },
+    {
+      "t": 41525,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 41526,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 0f 13 "
+    },
+    {
+      "t": 41658,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=23 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 41659,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 41660,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d d1 2b 94 77 98 1d 27 87 de 57 d3 2a b0 87 49 5e 39 8f c9 c2 f1 ba f4 66 8a"
+    },
+    {
+      "t": 41661,
+      "text": "[TX] Unsegmented TX seq=23 len=12"
+    },
+    {
+      "t": 41662,
+      "text": ""
+    },
+    {
+      "t": 41694,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d d1 2b 94 77 98 1d 27 87 de 57 d3 2a b0 87 49 5e 39 8f c9 c2 f1 ba f4 66 8a"
+    },
+    {
+      "t": 41729,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d d1 2b 94 77 98 1d 27 87 de 57 d3 2a b0 87 49 5e 39 8f c9 c2 f1 ba f4 66 8a"
+    },
+    {
+      "t": 42099,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 42100,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 42101,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 42252,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4879,\"appKeyIndex\":0,\"done\":6,\"total\":9}"
+    },
+    {
+      "t": 42252,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 42254,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 42255,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 42257,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4880,\"appKeyIndex\":0,\"done\":6,\"total\":9}"
+    },
+    {
+      "t": 42257,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 42258,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 10 13 "
+    },
+    {
+      "t": 42405,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=24 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 42407,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 42408,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 7b 79 47 41 7d 12 42 26 81 40 52 99 7e 26 1a 52 c5 8e fa f 71 4c bd 6f 9e"
+    },
+    {
+      "t": 42409,
+      "text": "[TX] Unsegmented TX seq=24 len=12"
+    },
+    {
+      "t": 42410,
+      "text": ""
+    },
+    {
+      "t": 42469,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 7b 79 47 41 7d 12 42 26 81 40 52 99 7e 26 1a 52 c5 8e fa f 71 4c bd 6f 9e"
+    },
+    {
+      "t": 42502,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 7b 79 47 41 7d 12 42 26 81 40 52 99 7e 26 1a 52 c5 8e fa f 71 4c bd 6f 9e"
+    },
+    {
+      "t": 42854,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 42855,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 42856,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 42969,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4880,\"appKeyIndex\":0,\"done\":7,\"total\":9}"
+    },
+    {
+      "t": 42969,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 42970,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 42972,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 42973,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4352,\"appKeyIndex\":0,\"done\":7,\"total\":9}"
+    },
+    {
+      "t": 42973,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 42975,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 00 11 "
+    },
+    {
+      "t": 43116,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=25 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 43117,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 43118,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 3b 23 ab e2 6f 87 e8 d 83 3e a2 a7 d1 c2 6f bf 6b b9 3b 8 8a de 4 db 5e"
+    },
+    {
+      "t": 43119,
+      "text": "[TX] Unsegmented TX seq=25 len=12"
+    },
+    {
+      "t": 43120,
+      "text": ""
+    },
+    {
+      "t": 43151,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 3b 23 ab e2 6f 87 e8 d 83 3e a2 a7 d1 c2 6f bf 6b b9 3b 8 8a de 4 db 5e"
+    },
+    {
+      "t": 43184,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 3b 23 ab e2 6f 87 e8 d 83 3e a2 a7 d1 c2 6f bf 6b b9 3b 8 8a de 4 db 5e"
+    },
+    {
+      "t": 43528,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 43529,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 43530,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 43722,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4352,\"appKeyIndex\":0,\"done\":8,\"total\":9}"
+    },
+    {
+      "t": 43722,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 43723,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 43725,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 43725,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4353,\"appKeyIndex\":0,\"done\":8,\"total\":9}"
+    },
+    {
+      "t": 43726,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 43726,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 03 00 00 00 01 11 "
+    },
+    {
+      "t": 43829,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=26 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 43830,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 43831,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 53 e2 60 29 63 f4 59 11 fe 4a 20 32 89 3f d5 ef 2c c0 be 52 71 25 f2 1b 76"
+    },
+    {
+      "t": 43832,
+      "text": "[TX] Unsegmented TX seq=26 len=12"
+    },
+    {
+      "t": 43833,
+      "text": ""
+    },
+    {
+      "t": 43865,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 53 e2 60 29 63 f4 59 11 fe 4a 20 32 89 3f d5 ef 2c c0 be 52 71 25 f2 1b 76"
+    },
+    {
+      "t": 43899,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 53 e2 60 29 63 f4 59 11 fe 4a 20 32 89 3f d5 ef 2c c0 be 52 71 25 f2 1b 76"
+    },
+    {
+      "t": 44124,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 44125,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 44126,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 44256,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":3,\"modelId\":4353,\"appKeyIndex\":0,\"done\":9,\"total\":9}"
+    },
+    {
+      "t": 44379,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 44379,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 44380,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 44381,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4102,\"appKeyIndex\":0,\"done\":0,\"total\":11}"
+    },
+    {
+      "t": 44381,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 44382,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 06 10 "
+    },
+    {
+      "t": 44490,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=27 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 44491,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 44492,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d f7 b9 27 92 26 a6 e4 a1 6 37 4c 85 21 37 75 fb 79 a1 5b b2 7d 36 55 3 15"
+    },
+    {
+      "t": 44492,
+      "text": "[TX] Unsegmented TX seq=27 len=12"
+    },
+    {
+      "t": 44493,
+      "text": ""
+    },
+    {
+      "t": 44525,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d f7 b9 27 92 26 a6 e4 a1 6 37 4c 85 21 37 75 fb 79 a1 5b b2 7d 36 55 3 15"
+    },
+    {
+      "t": 44571,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d f7 b9 27 92 26 a6 e4 a1 6 37 4c 85 21 37 75 fb 79 a1 5b b2 7d 36 55 3 15"
+    },
+    {
+      "t": 44965,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 44965,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 44966,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 45123,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4102,\"appKeyIndex\":0,\"done\":1,\"total\":11}"
+    },
+    {
+      "t": 45124,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 45124,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 45125,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 45126,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4103,\"appKeyIndex\":0,\"done\":1,\"total\":11}"
+    },
+    {
+      "t": 45126,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 45127,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 07 10 "
+    },
+    {
+      "t": 45249,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=28 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 45250,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 45252,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d bf da bd 41 e9 80 61 1a 5a 6a 49 73 cc 3b 7a 6a 84 9c b8 b0 34 61 ee a5 ab"
+    },
+    {
+      "t": 45253,
+      "text": "[TX] Unsegmented TX seq=28 len=12"
+    },
+    {
+      "t": 45254,
+      "text": ""
+    },
+    {
+      "t": 45285,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d bf da bd 41 e9 80 61 1a 5a 6a 49 73 cc 3b 7a 6a 84 9c b8 b0 34 61 ee a5 ab"
+    },
+    {
+      "t": 45318,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d bf da bd 41 e9 80 61 1a 5a 6a 49 73 cc 3b 7a 6a 84 9c b8 b0 34 61 ee a5 ab"
+    },
+    {
+      "t": 45636,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 45637,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 45638,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 45836,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4103,\"appKeyIndex\":0,\"done\":2,\"total\":11}"
+    },
+    {
+      "t": 45837,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 45838,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 45839,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 45839,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4100,\"appKeyIndex\":0,\"done\":2,\"total\":11}"
+    },
+    {
+      "t": 45840,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 45841,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 04 10 "
+    },
+    {
+      "t": 45988,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=29 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 45989,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 45990,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 88 52 ef f3 6 60 74 b6 c0 8f 5f 22 fa 93 88 b8 51 18 4d ff f1 68 f7 97 69"
+    },
+    {
+      "t": 45990,
+      "text": "[TX] Unsegmented TX seq=29 len=12"
+    },
+    {
+      "t": 45991,
+      "text": ""
+    },
+    {
+      "t": 46023,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 88 52 ef f3 6 60 74 b6 c0 8f 5f 22 fa 93 88 b8 51 18 4d ff f1 68 f7 97 69"
+    },
+    {
+      "t": 46089,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 88 52 ef f3 6 60 74 b6 c0 8f 5f 22 fa 93 88 b8 51 18 4d ff f1 68 f7 97 69"
+    },
+    {
+      "t": 46493,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 46494,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 46495,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 46798,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4100,\"appKeyIndex\":0,\"done\":3,\"total\":11}"
+    },
+    {
+      "t": 46798,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 46800,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 46803,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 46804,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4867,\"appKeyIndex\":0,\"done\":3,\"total\":11}"
+    },
+    {
+      "t": 46805,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 46807,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 03 13 "
+    },
+    {
+      "t": 46997,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=30 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 46998,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 46999,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 42 bd bc 84 8b 66 76 bd 8b 9c 96 30 3 2 c1 5e e8 d6 d4 d b0 54 5f 29 17"
+    },
+    {
+      "t": 47000,
+      "text": "[TX] Unsegmented TX seq=30 len=12"
+    },
+    {
+      "t": 47000,
+      "text": ""
+    },
+    {
+      "t": 47032,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 42 bd bc 84 8b 66 76 bd 8b 9c 96 30 3 2 c1 5e e8 d6 d4 d b0 54 5f 29 17"
+    },
+    {
+      "t": 47066,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 42 bd bc 84 8b 66 76 bd 8b 9c 96 30 3 2 c1 5e e8 d6 d4 d b0 54 5f 29 17"
+    },
+    {
+      "t": 47449,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 47450,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 47450,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 47592,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4867,\"appKeyIndex\":0,\"done\":4,\"total\":11}"
+    },
+    {
+      "t": 47592,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 47593,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 47595,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 47595,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4868,\"appKeyIndex\":0,\"done\":4,\"total\":11}"
+    },
+    {
+      "t": 47596,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 47597,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 04 13 "
+    },
+    {
+      "t": 47698,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=31 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 47698,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 47699,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d b7 58 a9 8b 72 aa 69 d3 83 5d b0 23 bd a2 b4 1a 6b 85 b0 43 66 5b b 35 3f"
+    },
+    {
+      "t": 47700,
+      "text": "[TX] Unsegmented TX seq=31 len=12"
+    },
+    {
+      "t": 47701,
+      "text": ""
+    },
+    {
+      "t": 47731,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d b7 58 a9 8b 72 aa 69 d3 83 5d b0 23 bd a2 b4 1a 6b 85 b0 43 66 5b b 35 3f"
+    },
+    {
+      "t": 47765,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d b7 58 a9 8b 72 aa 69 d3 83 5d b0 23 bd a2 b4 1a 6b 85 b0 43 66 5b b 35 3f"
+    },
+    {
+      "t": 48096,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 48097,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 48098,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 48309,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4868,\"appKeyIndex\":0,\"done\":5,\"total\":11}"
+    },
+    {
+      "t": 48309,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 48311,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 48313,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 48314,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4864,\"appKeyIndex\":0,\"done\":5,\"total\":11}"
+    },
+    {
+      "t": 48314,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 48315,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 00 13 "
+    },
+    {
+      "t": 48504,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=32 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 48505,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 48506,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 44 c 2f 11 1 d3 28 c0 c3 ba f2 54 78 85 b3 64 77 5a 2f e8 9b 52 8a 2b 35"
+    },
+    {
+      "t": 48507,
+      "text": "[TX] Unsegmented TX seq=32 len=12"
+    },
+    {
+      "t": 48508,
+      "text": ""
+    },
+    {
+      "t": 48539,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 44 c 2f 11 1 d3 28 c0 c3 ba f2 54 78 85 b3 64 77 5a 2f e8 9b 52 8a 2b 35"
+    },
+    {
+      "t": 48573,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 44 c 2f 11 1 d3 28 c0 c3 ba f2 54 78 85 b3 64 77 5a 2f e8 9b 52 8a 2b 35"
+    },
+    {
+      "t": 49091,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 49091,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 49093,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 49217,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4864,\"appKeyIndex\":0,\"done\":6,\"total\":11}"
+    },
+    {
+      "t": 49217,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 49218,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 49219,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 49220,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4865,\"appKeyIndex\":0,\"done\":6,\"total\":11}"
+    },
+    {
+      "t": 49220,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 49221,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 01 13 "
+    },
+    {
+      "t": 49407,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=33 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 49408,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 49410,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 95 cf 47 78 e 57 67 d8 32 5c 6f 8c d2 f6 f2 cc 68 2b ee c2 9a 3e a0 a 36"
+    },
+    {
+      "t": 49411,
+      "text": "[TX] Unsegmented TX seq=33 len=12"
+    },
+    {
+      "t": 49412,
+      "text": ""
+    },
+    {
+      "t": 49443,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 95 cf 47 78 e 57 67 d8 32 5c 6f 8c d2 f6 f2 cc 68 2b ee c2 9a 3e a0 a 36"
+    },
+    {
+      "t": 49477,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 95 cf 47 78 e 57 67 d8 32 5c 6f 8c d2 f6 f2 cc 68 2b ee c2 9a 3e a0 a 36"
+    },
+    {
+      "t": 49979,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 49980,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 49980,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 50104,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4865,\"appKeyIndex\":0,\"done\":7,\"total\":11}"
+    },
+    {
+      "t": 50104,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 50106,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 50107,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 50108,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4096,\"appKeyIndex\":0,\"done\":7,\"total\":11}"
+    },
+    {
+      "t": 50109,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 50110,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 00 10 "
+    },
+    {
+      "t": 50271,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=34 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 50273,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 50274,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 88 89 44 87 9a 71 c4 bd a1 ab 61 fb 42 72 9d e3 3e c2 bc eb 62 f6 c7 49 7c"
+    },
+    {
+      "t": 50276,
+      "text": "[TX] Unsegmented TX seq=34 len=12"
+    },
+    {
+      "t": 50277,
+      "text": ""
+    },
+    {
+      "t": 50308,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 88 89 44 87 9a 71 c4 bd a1 ab 61 fb 42 72 9d e3 3e c2 bc eb 62 f6 c7 49 7c"
+    },
+    {
+      "t": 50342,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 88 89 44 87 9a 71 c4 bd a1 ab 61 fb 42 72 9d e3 3e c2 bc eb 62 f6 c7 49 7c"
+    },
+    {
+      "t": 50895,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 50895,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 50896,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 51069,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4096,\"appKeyIndex\":0,\"done\":8,\"total\":11}"
+    },
+    {
+      "t": 51070,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 51071,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 51073,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 51075,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4098,\"appKeyIndex\":0,\"done\":8,\"total\":11}"
+    },
+    {
+      "t": 51075,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 51077,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 02 10 "
+    },
+    {
+      "t": 51286,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=35 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 51287,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 51288,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 5 49 2d 68 cb 9d 16 4 4c d1 cb 24 b1 b6 ae c7 35 90 7a d1 3e bb 15 34 33"
+    },
+    {
+      "t": 51290,
+      "text": "[TX] Unsegmented TX seq=35 len=12"
+    },
+    {
+      "t": 51291,
+      "text": ""
+    },
+    {
+      "t": 51322,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 5 49 2d 68 cb 9d 16 4 4c d1 cb 24 b1 b6 ae c7 35 90 7a d1 3e bb 15 34 33"
+    },
+    {
+      "t": 51355,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 5 49 2d 68 cb 9d 16 4 4c d1 cb 24 b1 b6 ae c7 35 90 7a d1 3e bb 15 34 33"
+    },
+    {
+      "t": 51675,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 51675,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 51676,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 51842,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4098,\"appKeyIndex\":0,\"done\":9,\"total\":11}"
+    },
+    {
+      "t": 51842,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 51844,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 51845,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 51846,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4352,\"appKeyIndex\":0,\"done\":9,\"total\":11}"
+    },
+    {
+      "t": 51846,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 51847,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 00 11 "
+    },
+    {
+      "t": 52012,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=36 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 52014,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 52016,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 85 c7 37 d9 67 6f ac d4 be 49 d7 69 fb d8 dd 15 9e 7c 4 f 66 d0 99 eb d6"
+    },
+    {
+      "t": 52018,
+      "text": "[TX] Unsegmented TX seq=36 len=12"
+    },
+    {
+      "t": 52019,
+      "text": ""
+    },
+    {
+      "t": 52059,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 85 c7 37 d9 67 6f ac d4 be 49 d7 69 fb d8 dd 15 9e 7c 4 f 66 d0 99 eb d6"
+    },
+    {
+      "t": 52092,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 85 c7 37 d9 67 6f ac d4 be 49 d7 69 fb d8 dd 15 9e 7c 4 f 66 d0 99 eb d6"
+    },
+    {
+      "t": 52526,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 52526,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 52527,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 52676,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4352,\"appKeyIndex\":0,\"done\":10,\"total\":11}"
+    },
+    {
+      "t": 52677,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 52677,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 52678,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 52679,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4353,\"appKeyIndex\":0,\"done\":10,\"total\":11}"
+    },
+    {
+      "t": 52679,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 52680,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 04 00 00 00 01 11 "
+    },
+    {
+      "t": 52832,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=37 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 52833,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 52834,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d de a1 16 a7 41 66 5a ca 7e 57 76 7 82 0 dd ca df 82 3d e6 4e 91 e8 5e 3c"
+    },
+    {
+      "t": 52835,
+      "text": "[TX] Unsegmented TX seq=37 len=12"
+    },
+    {
+      "t": 52836,
+      "text": ""
+    },
+    {
+      "t": 52838,
+      "text": "[GATT][RX] type=beacon(0x1) payloadLen=22 data: 1 0 70 a5 52 d0 fe 40 ca a8 0 0 0 0 58 9e e5 d6 8f eb d9 2b"
+    },
+    {
+      "t": 52866,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d de a1 16 a7 41 66 5a ca 7e 57 76 7 82 0 dd ca df 82 3d e6 4e 91 e8 5e 3c"
+    },
+    {
+      "t": 52900,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d de a1 16 a7 41 66 5a ca 7e 57 76 7 82 0 dd ca df 82 3d e6 4e 91 e8 5e 3c"
+    },
+    {
+      "t": 53420,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 53421,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 53422,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 53641,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":4,\"modelId\":4353,\"appKeyIndex\":0,\"done\":11,\"total\":11}"
+    },
+    {
+      "t": 53760,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 53762,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 53763,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 53764,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4102,\"appKeyIndex\":0,\"done\":0,\"total\":9}"
+    },
+    {
+      "t": 53764,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 53765,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 05 00 00 00 06 10 "
+    },
+    {
+      "t": 53886,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=38 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 53887,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 53888,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d a ef e5 c7 28 a7 76 43 88 26 3d 2f 7d a 2c 8f be 96 ff 2c 34 b2 a 8c e"
+    },
+    {
+      "t": 53888,
+      "text": "[TX] Unsegmented TX seq=38 len=12"
+    },
+    {
+      "t": 53889,
+      "text": ""
+    },
+    {
+      "t": 53920,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d a ef e5 c7 28 a7 76 43 88 26 3d 2f 7d a 2c 8f be 96 ff 2c 34 b2 a 8c e"
+    },
+    {
+      "t": 53954,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d a ef e5 c7 28 a7 76 43 88 26 3d 2f 7d a 2c 8f be 96 ff 2c 34 b2 a 8c e"
+    },
+    {
+      "t": 54401,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 54401,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 54403,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 54573,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4102,\"appKeyIndex\":0,\"done\":1,\"total\":9}"
+    },
+    {
+      "t": 54573,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 54574,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 54575,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 54576,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4103,\"appKeyIndex\":0,\"done\":1,\"total\":9}"
+    },
+    {
+      "t": 54576,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 54576,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 05 00 00 00 07 10 "
+    },
+    {
+      "t": 54683,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=39 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 54684,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 54685,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 1d d8 8 c8 56 b7 27 16 5c c9 15 df e0 66 a2 23 b0 28 e1 4a 55 d6 2e ab c3"
+    },
+    {
+      "t": 54686,
+      "text": "[TX] Unsegmented TX seq=39 len=12"
+    },
+    {
+      "t": 54687,
+      "text": ""
+    },
+    {
+      "t": 54718,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 1d d8 8 c8 56 b7 27 16 5c c9 15 df e0 66 a2 23 b0 28 e1 4a 55 d6 2e ab c3"
+    },
+    {
+      "t": 54778,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 1d d8 8 c8 56 b7 27 16 5c c9 15 df e0 66 a2 23 b0 28 e1 4a 55 d6 2e ab c3"
+    },
+    {
+      "t": 55158,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 55158,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 55159,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 55294,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4103,\"appKeyIndex\":0,\"done\":2,\"total\":9}"
+    },
+    {
+      "t": 55294,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 55295,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 55296,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 55297,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4098,\"appKeyIndex\":0,\"done\":2,\"total\":9}"
+    },
+    {
+      "t": 55297,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 55298,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 05 00 00 00 02 10 "
+    },
+    {
+      "t": 55414,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=40 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 55415,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 55416,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d f1 24 eb df bc 65 59 b2 12 17 20 c7 9d fb ef e7 a4 14 e8 e4 ac de 64 5 50"
+    },
+    {
+      "t": 55417,
+      "text": "[TX] Unsegmented TX seq=40 len=12"
+    },
+    {
+      "t": 55417,
+      "text": ""
+    },
+    {
+      "t": 55448,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d f1 24 eb df bc 65 59 b2 12 17 20 c7 9d fb ef e7 a4 14 e8 e4 ac de 64 5 50"
+    },
+    {
+      "t": 55482,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d f1 24 eb df bc 65 59 b2 12 17 20 c7 9d fb ef e7 a4 14 e8 e4 ac de 64 5 50"
+    },
+    {
+      "t": 55874,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 55875,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 55876,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 56054,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4098,\"appKeyIndex\":0,\"done\":3,\"total\":9}"
+    },
+    {
+      "t": 56054,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 56054,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 56056,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 56056,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4098,\"appKeyIndex\":0,\"done\":3,\"total\":9}"
+    },
+    {
+      "t": 56057,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 56058,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 05 00 00 00 02 10 "
+    },
+    {
+      "t": 56291,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=41 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 56292,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 56294,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d e3 40 43 3b 5e b7 da 3a 6c ae a3 12 bd 75 58 9 84 e8 7a d5 91 2b 40 da 7e"
+    },
+    {
+      "t": 56295,
+      "text": "[TX] Unsegmented TX seq=41 len=12"
+    },
+    {
+      "t": 56296,
+      "text": ""
+    },
+    {
+      "t": 56326,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d e3 40 43 3b 5e b7 da 3a 6c ae a3 12 bd 75 58 9 84 e8 7a d5 91 2b 40 da 7e"
+    },
+    {
+      "t": 56360,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d e3 40 43 3b 5e b7 da 3a 6c ae a3 12 bd 75 58 9 84 e8 7a d5 91 2b 40 da 7e"
+    },
+    {
+      "t": 56784,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 56785,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 56786,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 56808,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4098,\"appKeyIndex\":0,\"done\":4,\"total\":9}"
+    },
+    {
+      "t": 56809,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 56810,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 56812,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 56813,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4870,\"appKeyIndex\":0,\"done\":4,\"total\":9}"
+    },
+    {
+      "t": 56813,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 56815,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 05 00 00 00 06 13 "
+    },
+    {
+      "t": 56956,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=42 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 56957,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 56958,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 10 b9 e7 d1 8c 3a 59 2a fe f7 b 82 95 be e7 7e 20 e3 1b a3 9 fd 1f 0 79"
+    },
+    {
+      "t": 56959,
+      "text": "[TX] Unsegmented TX seq=42 len=12"
+    },
+    {
+      "t": 56960,
+      "text": ""
+    },
+    {
+      "t": 56992,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 10 b9 e7 d1 8c 3a 59 2a fe f7 b 82 95 be e7 7e 20 e3 1b a3 9 fd 1f 0 79"
+    },
+    {
+      "t": 57026,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 10 b9 e7 d1 8c 3a 59 2a fe f7 b 82 95 be e7 7e 20 e3 1b a3 9 fd 1f 0 79"
+    },
+    {
+      "t": 57499,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 57499,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 57500,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 57596,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4870,\"appKeyIndex\":0,\"done\":5,\"total\":9}"
+    },
+    {
+      "t": 57596,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 57597,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 57598,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 57599,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4879,\"appKeyIndex\":0,\"done\":5,\"total\":9}"
+    },
+    {
+      "t": 57599,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 57600,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 05 00 00 00 0f 13 "
+    },
+    {
+      "t": 57722,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=43 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 57723,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 57724,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d ad 73 e9 aa a4 1c f1 80 fd 88 49 49 ef d3 fc ba 2f db d5 2 b9 60 ee dd ed"
+    },
+    {
+      "t": 57725,
+      "text": "[TX] Unsegmented TX seq=43 len=12"
+    },
+    {
+      "t": 57726,
+      "text": ""
+    },
+    {
+      "t": 57756,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d ad 73 e9 aa a4 1c f1 80 fd 88 49 49 ef d3 fc ba 2f db d5 2 b9 60 ee dd ed"
+    },
+    {
+      "t": 57788,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d ad 73 e9 aa a4 1c f1 80 fd 88 49 49 ef d3 fc ba 2f db d5 2 b9 60 ee dd ed"
+    },
+    {
+      "t": 58158,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 58158,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 58159,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 58263,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4879,\"appKeyIndex\":0,\"done\":6,\"total\":9}"
+    },
+    {
+      "t": 58263,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 58264,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 58266,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 58267,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4880,\"appKeyIndex\":0,\"done\":6,\"total\":9}"
+    },
+    {
+      "t": 58268,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 58269,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 05 00 00 00 10 13 "
+    },
+    {
+      "t": 58408,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=44 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 58408,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 58410,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 33 a6 93 56 11 ee ed 60 88 e3 ea 77 1c 21 cc 39 5d 72 1c 40 4c de 17 5f 5a"
+    },
+    {
+      "t": 58411,
+      "text": "[TX] Unsegmented TX seq=44 len=12"
+    },
+    {
+      "t": 58412,
+      "text": ""
+    },
+    {
+      "t": 58443,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 33 a6 93 56 11 ee ed 60 88 e3 ea 77 1c 21 cc 39 5d 72 1c 40 4c de 17 5f 5a"
+    },
+    {
+      "t": 58477,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 33 a6 93 56 11 ee ed 60 88 e3 ea 77 1c 21 cc 39 5d 72 1c 40 4c de 17 5f 5a"
+    },
+    {
+      "t": 58827,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 58827,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 58828,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 59000,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4880,\"appKeyIndex\":0,\"done\":7,\"total\":9}"
+    },
+    {
+      "t": 59000,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 59001,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 59002,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 59002,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4352,\"appKeyIndex\":0,\"done\":7,\"total\":9}"
+    },
+    {
+      "t": 59003,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 59003,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 05 00 00 00 00 11 "
+    },
+    {
+      "t": 59111,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=45 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 59112,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 59113,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 4c a5 da 8c 73 fa 7 a4 d6 cb e3 0 d8 48 2b c3 8f 41 33 3d df 6 54 1f 19"
+    },
+    {
+      "t": 59114,
+      "text": "[TX] Unsegmented TX seq=45 len=12"
+    },
+    {
+      "t": 59115,
+      "text": ""
+    },
+    {
+      "t": 59148,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 4c a5 da 8c 73 fa 7 a4 d6 cb e3 0 d8 48 2b c3 8f 41 33 3d df 6 54 1f 19"
+    },
+    {
+      "t": 59181,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 4c a5 da 8c 73 fa 7 a4 d6 cb e3 0 d8 48 2b c3 8f 41 33 3d df 6 54 1f 19"
+    },
+    {
+      "t": 59476,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 59476,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 59477,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 59632,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4352,\"appKeyIndex\":0,\"done\":8,\"total\":9}"
+    },
+    {
+      "t": 59632,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 59634,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 59636,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 59637,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4353,\"appKeyIndex\":0,\"done\":8,\"total\":9}"
+    },
+    {
+      "t": 59638,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 59639,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 05 00 00 00 01 11 "
+    },
+    {
+      "t": 59779,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=46 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 59780,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 59781,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d a7 c6 2a 28 82 69 a9 92 f8 b3 e0 93 f4 61 f9 be 8e ef 73 c5 67 8 58 d3 51"
+    },
+    {
+      "t": 59783,
+      "text": "[TX] Unsegmented TX seq=46 len=12"
+    },
+    {
+      "t": 59784,
+      "text": ""
+    },
+    {
+      "t": 59815,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d a7 c6 2a 28 82 69 a9 92 f8 b3 e0 93 f4 61 f9 be 8e ef 73 c5 67 8 58 d3 51"
+    },
+    {
+      "t": 59871,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d a7 c6 2a 28 82 69 a9 92 f8 b3 e0 93 f4 61 f9 be 8e ef 73 c5 67 8 58 d3 51"
+    },
+    {
+      "t": 60412,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 60413,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 60415,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 60614,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":2,\"elementAddr\":5,\"modelId\":4353,\"appKeyIndex\":0,\"done\":9,\"total\":9}"
+    },
+    {
+      "t": 60619,
+      "text": "# bind ✓ 4 elements"
+    },
+    {
+      "t": 60868,
+      "text": "[CFG][KEY_SELECT] buildCfgTx dst=0x0002 src=0x0001 security=device selectedNetKeyIndex=0 nodeNetKeyIndexes=[0]"
+    },
+    {
+      "t": 60869,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 60870,
+      "text": "[CFG] ModelAppBind started dst=0x0002 src=0x0001"
+    },
+    {
+      "t": 60871,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":1,\"status\":0,\"unicast\":0,\"elementAddr\":0,\"modelId\":0,\"appKeyIndex\":0,\"done\":0,\"total\":0}"
+    },
+    {
+      "t": 60871,
+      "text": "[TX][KEY_SELECT] security=device dst=0x0002 src=0x0001 selectedNetKeyIndex=0"
+    },
+    {
+      "t": 60872,
+      "text": "[TXDATA  ]____accessPayload>>>> 80 3d 02 00 02 00 00 00 "
+    },
+    {
+      "t": 60972,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=47 security=device netKeyIndex=0 ttl=3 upperLen=12"
+    },
+    {
+      "t": 60973,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 60974,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 3c ff 7 3d 7f fb e e1 9d 39 4 20 bb 5e da 4b d 5b d1 c6 d0 d2 66 7b d4"
+    },
+    {
+      "t": 60975,
+      "text": "[TX] Unsegmented TX seq=47 len=12"
+    },
+    {
+      "t": 60975,
+      "text": ""
+    },
+    {
+      "t": 61007,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 3c ff 7 3d 7f fb e e1 9d 39 4 20 bb 5e da 4b d 5b d1 c6 d0 d2 66 7b d4"
+    },
+    {
+      "t": 61061,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=26 logicalLen=27 data: 0 1d 3c ff 7 3d 7f fb e e1 9d 39 4 20 bb 5e da 4b d 5b d1 c6 d0 d2 66 7b d4"
+    },
+    {
+      "t": 61492,
+      "text": "Access RX opcode=0x803E src=0x0002 dst=0x0001 len=7"
+    },
+    {
+      "t": 61492,
+      "text": "<line removed: carried a key>"
+    },
+    {
+      "t": 61493,
+      "text": "[CFG] ModelAppBind completed dst=0x0002 src=0x0001 status=0x00 Success"
+    },
+    {
+      "t": 61712,
+      "text": "# config {\"kind\":\"config\",\"eventType\":3,\"phase\":2,\"status\":0,\"unicast\":0,\"elementAddr\":0,\"modelId\":0,\"appKeyIndex\":0,\"done\":0,\"total\":0}"
+    },
+    {
+      "t": 61715,
+      "text": "# bindHealth ✓ 0002 Health Server"
+    },
+    {
+      "t": 61820,
+      "text": "# generic {\"kind\":\"generic\",\"eventType\":1,\"phase\":1,\"status\":0,\"src\":0,\"dst\":0,\"presentOnOff\":0,\"targetOnOff\":0,\"hasTarget\":false}"
+    },
+    {
+      "t": 61823,
+      "text": "[RELIABLE] begin reqType=0x2 txOpcode=0x8202 expectedOpcode=0x8204 expectedSrc=0x2 expectedDst=0x1 paramsLen=2 retry=0"
+    },
+    {
+      "t": 61824,
+      "text": "[TX][KEY_SELECT] security=app dst=0x0002 src=0x0001 appKeyIndex=0 selectedNetKeyIndex=0 aid=0x3e"
+    },
+    {
+      "t": 61825,
+      "text": "[TXDATA  ]____accessPayload>>>> 82 02 01 01 "
+    },
+    {
+      "t": 61977,
+      "text": "[TX][ACCESS_PDU] dst=0x0002 src=0x0001 seq=48 security=app netKeyIndex=0 ttl=3 upperLen=8"
+    },
+    {
+      "t": 61978,
+      "text": "[NET][KEY_SELECT] encrypt netKeyIndex=0 nid=0x1d"
+    },
+    {
+      "t": 61978,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=22 logicalLen=23 data: 0 1d dc 11 d 3 2b 68 b a1 ef 44 8e 63 b5 79 c2 75 31 d 72 54 e7"
+    },
+    {
+      "t": 61979,
+      "text": "[TX] Unsegmented TX seq=48 len=8"
+    },
+    {
+      "t": 61980,
+      "text": ""
+    },
+    {
+      "t": 62011,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=22 logicalLen=23 data: 0 1d dc 11 d 3 2b 68 b a1 ef 44 8e 63 b5 79 c2 75 31 d 72 54 e7"
+    },
+    {
+      "t": 62045,
+      "text": "[GATT][TX] type=network(0x0) payloadLen=22 logicalLen=23 data: 0 1d dc 11 d 3 2b 68 b a1 ef 44 8e 63 b5 79 c2 75 31 d 72 54 e7"
+    },
+    {
+      "t": 62455,
+      "text": "[RX][ACCESS_DECRYPT_OK] security=app src=0x0002 dst=0x0001 netKeyIndex=0 appKeyIndex=0 aid=0x3e seq=189 accessLen=3"
+    },
+    {
+      "t": 62464,
+      "text": "[RX][ACCESS_PDU] src=0x0002 dst=0x0001 opcode=0x8204 netKeyIndex=0 appKeyIndex=0 paramsLen=1"
+    },
+    {
+      "t": 62465,
+      "text": "[RXDATA  ]____accessPayload<<<< 82 04 01 "
+    },
+    {
+      "t": 62466,
+      "text": "Access RX opcode=0x8204 src=0x0002 dst=0x0001 len=1"
+    },
+    {
+      "t": 62467,
+      "text": "# generic {\"kind\":\"generic\",\"eventType\":1,\"phase\":2,\"status\":0,\"src\":2,\"dst\":1,\"presentOnOff\":1,\"targetOnOff\":0,\"hasTarget\":false}"
+    },
+    {
+      "t": 62468,
+      "text": "[RELIABLE] rx matched reqType=0x2 opcode=0x8204 src=0x2 dst=0x1 len=1"
+    },
+    {
+      "t": 62469,
+      "text": "# onOff ✓ 0002 on"
+    },
+    {
+      "t": 65725,
+      "text": "[GATT][RX] type=beacon(0x1) payloadLen=22 data: 1 0 70 a5 52 d0 fe 40 ca a8 0 0 0 0 58 9e e5 d6 8f eb d9 2b"
+    }
+  ]
+}
