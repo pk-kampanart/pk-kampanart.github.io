@@ -1,0 +1,17 @@
+{
+  "name": "ZeMesh",
+  "short_name": "ZeMesh",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "hsl(214 82% 50%)",
+  "background_color": "hsl(0 0% 97%)",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

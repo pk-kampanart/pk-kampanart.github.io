@@ -1,0 +1,1105 @@
+{
+  "families": {
+    "PROX-OnOffSrv": {
+      "name": "PROX-OnOff Server",
+      "role": "server",
+      "shopUrl": "https://prox.sg/products/36-87-prox-onoff-server",
+      "image": "https://prox.sg/142-large_default/prox-onoff-server.jpg"
+    },
+    "PROX-LLSrv": {
+      "name": "PROX-Light Lightness Server",
+      "role": "server",
+      "shopUrl": "https://prox.sg/products/34-103-prox-light-lightness-server",
+      "image": "https://prox.sg/129-large_default/prox-light-lightness-server.jpg"
+    },
+    "PROX-LLSrv-A": {
+      "name": "PROX-Light Lightness Server Analog",
+      "role": "server",
+      "shopUrl": "https://prox.sg/products/35-107-prox-light-lightness-server-analog",
+      "image": "https://prox.sg/135-large_default/prox-light-lightness-server-analog.jpg"
+    },
+    "PROX-CTLSrv": {
+      "name": "PROX-Color Temperature, Lightness Server",
+      "role": "server",
+      "shopUrl": "https://prox.sg/products/37-95-prox-color-temperature-lightness-server",
+      "image": "https://prox.sg/122-large_default/prox-color-temperature-lightness-server.jpg"
+    },
+    "PROX-HSLSrv": {
+      "name": "PROX-Hue, Saturation, Lightness Server",
+      "role": "server",
+      "shopUrl": "https://prox.sg/products/38-99-prox-hue-saturation-lightness-server",
+      "image": "https://prox.sg/146-large_default/prox-hue-saturation-lightness-server.jpg"
+    },
+    "PROX-OnOffClt-Btn": {
+      "name": "PROX-OnOff Client Button",
+      "role": "client",
+      "shopUrl": "https://prox.sg/products/ble-mesh/49-135-prox-onoff-client-button",
+      "image": "https://prox.sg/219-large_default/prox-onoff-client-button.jpg"
+    },
+    "PROX-LLClt-Enc": {
+      "name": "PROX-Light Lightness Client Encoder",
+      "role": "client",
+      "shopUrl": "https://prox.sg/products/ble-mesh/48-134-prox-light-lightness-client-encoder",
+      "image": "https://prox.sg/220-large_default/prox-light-lightness-client-encoder.jpg"
+    },
+    "PROX-CTLClt-Enc": {
+      "name": "PROX-Color Temperature, Lightness Client Encoder",
+      "role": "client",
+      "shopUrl": "https://prox.sg/products/ble-mesh/46-133-prox-color-temperature-lightness-client-encoder",
+      "image": "https://prox.sg/221-large_default/prox-color-temperature-lightness-client-encoder.jpg"
+    }
+  },
+  "sig": {
+    "models": {
+      "1000": {
+        "name": "Generic OnOff Server",
+        "role": "server",
+        "group": "generic",
+        "states": {
+          "Generic OnOff": {
+            "min": 0,
+            "max": 1,
+            "default": 0
+          }
+        }
+      },
+      "1001": {
+        "name": "Generic OnOff Client",
+        "role": "client",
+        "group": "generic"
+      },
+      "1002": {
+        "name": "Generic Level Server",
+        "role": "server",
+        "group": "generic",
+        "states": {
+          "Generic Level": {
+            "min": -32768,
+            "max": 32767,
+            "default": 0
+          }
+        }
+      },
+      "1003": {
+        "name": "Generic Level Client",
+        "role": "client",
+        "group": "generic"
+      },
+      "1004": {
+        "name": "Generic Default Transition Time Server",
+        "role": "server",
+        "group": "generic",
+        "states": {
+          "Generic Default Transition Time": {
+            "min": 0,
+            "max": 255,
+            "default": 0
+          }
+        }
+      },
+      "1005": {
+        "name": "Generic Default Transition Time Client",
+        "role": "client",
+        "group": "generic"
+      },
+      "1006": {
+        "name": "Generic Power OnOff Server",
+        "role": "server",
+        "group": "generic",
+        "states": {
+          "Generic OnPowerUp": {
+            "min": 0,
+            "max": 2,
+            "default": 0
+          }
+        }
+      },
+      "1007": {
+        "name": "Generic Power OnOff Setup Server",
+        "role": "setup",
+        "group": "generic",
+        "states": {
+          "Generic OnPowerUp": {
+            "min": 0,
+            "max": 2,
+            "default": 0
+          }
+        }
+      },
+      "1008": {
+        "name": "Generic Power OnOff Client",
+        "role": "client",
+        "group": "generic"
+      },
+      "1009": {
+        "name": "Generic Power Level Server",
+        "role": "server",
+        "group": "generic"
+      },
+      "1010": {
+        "name": "Generic Location Client",
+        "role": "client",
+        "group": "generic"
+      },
+      "1011": {
+        "name": "Generic Admin Property Server",
+        "role": "server",
+        "group": "generic"
+      },
+      "1012": {
+        "name": "Generic Manufacturer Property Server",
+        "role": "server",
+        "group": "generic"
+      },
+      "1013": {
+        "name": "Generic User Property Server",
+        "role": "server",
+        "group": "generic"
+      },
+      "1014": {
+        "name": "Generic Client Property Server",
+        "role": "server",
+        "group": "generic"
+      },
+      "1015": {
+        "name": "Generic Property Client",
+        "role": "client",
+        "group": "generic"
+      },
+      "1100": {
+        "name": "Sensor Server",
+        "role": "server",
+        "group": "sensor"
+      },
+      "1101": {
+        "name": "Sensor Setup Server",
+        "role": "setup",
+        "group": "sensor"
+      },
+      "1102": {
+        "name": "Sensor Client",
+        "role": "client",
+        "group": "sensor"
+      },
+      "1200": {
+        "name": "Time Server",
+        "role": "server",
+        "group": "scenes"
+      },
+      "1201": {
+        "name": "Time Setup Server",
+        "role": "setup",
+        "group": "scenes"
+      },
+      "1202": {
+        "name": "Time Client",
+        "role": "client",
+        "group": "scenes"
+      },
+      "1203": {
+        "name": "Scene Server",
+        "role": "server",
+        "group": "scenes"
+      },
+      "1204": {
+        "name": "Scene Setup Server",
+        "role": "setup",
+        "group": "scenes"
+      },
+      "1205": {
+        "name": "Scene Client",
+        "role": "client",
+        "group": "scenes"
+      },
+      "1206": {
+        "name": "Scheduler Server",
+        "role": "server",
+        "group": "scenes"
+      },
+      "1207": {
+        "name": "Scheduler Setup Server",
+        "role": "setup",
+        "group": "scenes"
+      },
+      "1208": {
+        "name": "Scheduler Client",
+        "role": "client",
+        "group": "scenes"
+      },
+      "1300": {
+        "name": "Light Lightness Server",
+        "role": "server",
+        "group": "lighting",
+        "states": {
+          "Light Lightness Actual": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light Lightness Last": {
+            "min": 1,
+            "max": 65535,
+            "default": 65535
+          },
+          "Light Lightness Default": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light Lightness Range Min": {
+            "min": 1,
+            "max": 65535,
+            "default": null
+          },
+          "Light Lightness Range Max": {
+            "min": 1,
+            "max": 65535,
+            "default": null
+          }
+        }
+      },
+      "1301": {
+        "name": "Light Lightness Setup Server",
+        "role": "setup",
+        "group": "lighting",
+        "states": {
+          "Light Lightness Default": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light Lightness Range Min": {
+            "min": 1,
+            "max": 65535,
+            "default": null
+          },
+          "Light Lightness Range Max": {
+            "min": 1,
+            "max": 65535,
+            "default": null
+          }
+        }
+      },
+      "1302": {
+        "name": "Light Lightness Client",
+        "role": "client",
+        "group": "lighting"
+      },
+      "1303": {
+        "name": "Light CTL Server",
+        "role": "server",
+        "group": "lighting",
+        "states": {
+          "Light CTL Lightness": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light CTL Temperature": {
+            "min": 800,
+            "max": 20000,
+            "default": 800
+          },
+          "Light CTL Temperature Default": {
+            "min": 800,
+            "max": 20000,
+            "default": 800
+          },
+          "Light CTL Temperature Range Min": {
+            "min": 800,
+            "max": 65535,
+            "default": null
+          },
+          "Light CTL Temperature Range Max": {
+            "min": 800,
+            "max": 65535,
+            "default": null
+          },
+          "Light CTL Delta UV": {
+            "min": -32768,
+            "max": 32767,
+            "default": 0
+          }
+        }
+      },
+      "1304": {
+        "name": "Light CTL Setup Server",
+        "role": "setup",
+        "group": "lighting",
+        "states": {
+          "Light CTL Temperature": {
+            "min": 800,
+            "max": 20000,
+            "default": 800
+          },
+          "Light CTL Temperature Default": {
+            "min": 800,
+            "max": 20000,
+            "default": 800
+          },
+          "Light CTL Temperature Range Min": {
+            "min": 800,
+            "max": 65535,
+            "default": null
+          },
+          "Light CTL Temperature Range Max": {
+            "min": 800,
+            "max": 65535,
+            "default": null
+          },
+          "Light CTL Delta UV": {
+            "min": -32768,
+            "max": 32767,
+            "default": 0
+          }
+        }
+      },
+      "1305": {
+        "name": "Light CTL Client",
+        "role": "client",
+        "group": "lighting"
+      },
+      "1306": {
+        "name": "Light CTL Temperature Server",
+        "role": "server",
+        "group": "lighting",
+        "states": {
+          "Generic Level": {
+            "min": -32768,
+            "max": 32767,
+            "default": 0
+          },
+          "Light CTL Temperature": {
+            "min": 800,
+            "max": 20000,
+            "default": 800
+          }
+        }
+      },
+      "1307": {
+        "name": "Light HSL Server",
+        "role": "server",
+        "group": "lighting",
+        "states": {
+          "Light Lightness Actual": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light Lightness Last": {
+            "min": 1,
+            "max": 65535,
+            "default": 65535
+          },
+          "Light Lightness Default": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light HSL Hue": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light HSL Saturation": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light HSL Hue Range Min": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          },
+          "Light HSL Hue Range Max": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          },
+          "Light HSL Saturation Range Min": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          },
+          "Light HSL Saturation Range Max": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          }
+        }
+      },
+      "1308": {
+        "name": "Light HSL Setup Server",
+        "role": "setup",
+        "group": "lighting",
+        "states": {
+          "Light Lightness Default": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light HSL Hue Default": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light HSL Saturation Default": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          },
+          "Light HSL Hue Range Min": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          },
+          "Light HSL Hue Range Max": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          },
+          "Light HSL Saturation Range Min": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          },
+          "Light HSL Saturation Range Max": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          }
+        }
+      },
+      "1309": {
+        "name": "Light HSL Client",
+        "role": "client",
+        "group": "lighting"
+      },
+      "1310": {
+        "name": "Light LC Setup Server",
+        "role": "setup",
+        "group": "lighting",
+        "states": {
+          "Light LC Property": {}
+        }
+      },
+      "1311": {
+        "name": "Light LC Client",
+        "role": "client",
+        "group": "lighting"
+      },
+      "1312": {
+        "name": "IEC 62386-104 Model",
+        "role": "server",
+        "group": "lighting"
+      },
+      "1400": {
+        "name": "BLOB Transfer Server",
+        "role": "server",
+        "group": "firmware"
+      },
+      "1401": {
+        "name": "BLOB Transfer Client",
+        "role": "client",
+        "group": "firmware"
+      },
+      "1402": {
+        "name": "Firmware Update Server",
+        "role": "server",
+        "group": "firmware"
+      },
+      "1403": {
+        "name": "Firmware Update Client",
+        "role": "client",
+        "group": "firmware"
+      },
+      "1404": {
+        "name": "Firmware Distribution Server",
+        "role": "server",
+        "group": "firmware"
+      },
+      "1405": {
+        "name": "Firmware Distribution Client",
+        "role": "client",
+        "group": "firmware"
+      },
+      "0000": {
+        "name": "Configuration Server",
+        "role": "server",
+        "group": "foundation",
+        "states": {
+          "Company ID": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          },
+          "Product ID": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          },
+          "Version ID": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          },
+          "Features": {
+            "min": 0,
+            "max": 15,
+            "default": null
+          },
+          "CRPL": {
+            "min": 0,
+            "max": 65535,
+            "default": null
+          },
+          "Default TTL": {
+            "min": 0,
+            "max": 127,
+            "default": null
+          }
+        }
+      },
+      "0001": {
+        "name": "Configuration Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "0002": {
+        "name": "Health Server",
+        "role": "server",
+        "group": "foundation",
+        "states": {
+          "Attention Timer": {
+            "min": 0,
+            "max": 255,
+            "default": 0
+          }
+        }
+      },
+      "0003": {
+        "name": "Health Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "0004": {
+        "name": "Remote Provisioning Server",
+        "role": "server",
+        "group": "foundation"
+      },
+      "0005": {
+        "name": "Remote Provisioning Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "0006": {
+        "name": "Directed Forwarding Configuration Server",
+        "role": "server",
+        "group": "foundation"
+      },
+      "0007": {
+        "name": "Directed Forwarding Configuration Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "0008": {
+        "name": "Bridge Configuration Server",
+        "role": "server",
+        "group": "foundation"
+      },
+      "0009": {
+        "name": "Bridge Configuration Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "000A": {
+        "name": "Mesh Private Beacon Server",
+        "role": "server",
+        "group": "foundation"
+      },
+      "000B": {
+        "name": "Mesh Private Beacon Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "000C": {
+        "name": "On-Demand Private Proxy Server",
+        "role": "server",
+        "group": "foundation"
+      },
+      "000D": {
+        "name": "On-Demand Private Proxy Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "000E": {
+        "name": "SAR Configuration Server",
+        "role": "server",
+        "group": "foundation"
+      },
+      "000F": {
+        "name": "SAR Configuration Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "0010": {
+        "name": "Opcodes Aggregator Server",
+        "role": "server",
+        "group": "foundation"
+      },
+      "0011": {
+        "name": "Opcodes Aggregator Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "0012": {
+        "name": "Large Composition Data Server",
+        "role": "server",
+        "group": "foundation"
+      },
+      "0013": {
+        "name": "Large Composition Data Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "0014": {
+        "name": "Solicitation PDU RPL Configuration Server",
+        "role": "server",
+        "group": "foundation"
+      },
+      "0015": {
+        "name": "Solicitation PDU RPL Configuration Client",
+        "role": "client",
+        "group": "foundation"
+      },
+      "100A": {
+        "name": "Generic Power Level Setup Server",
+        "role": "setup",
+        "group": "generic"
+      },
+      "100B": {
+        "name": "Generic Power Level Client",
+        "role": "client",
+        "group": "generic"
+      },
+      "100C": {
+        "name": "Generic Battery Server",
+        "role": "server",
+        "group": "generic"
+      },
+      "100D": {
+        "name": "Generic Battery Client",
+        "role": "client",
+        "group": "generic"
+      },
+      "100E": {
+        "name": "Generic Location Server",
+        "role": "server",
+        "group": "generic"
+      },
+      "100F": {
+        "name": "Generic Location Setup Server",
+        "role": "setup",
+        "group": "generic"
+      },
+      "130A": {
+        "name": "Light HSL Hue Server",
+        "role": "server",
+        "group": "lighting",
+        "states": {
+          "Generic Level": {
+            "min": -32768,
+            "max": 32767,
+            "default": 0
+          },
+          "Light HSL Hue": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          }
+        }
+      },
+      "130B": {
+        "name": "Light HSL Saturation Server",
+        "role": "server",
+        "group": "lighting",
+        "states": {
+          "Generic Level": {
+            "min": -32768,
+            "max": 32767,
+            "default": 0
+          },
+          "Light HSL Saturation": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          }
+        }
+      },
+      "130C": {
+        "name": "Light xyL Server",
+        "role": "server",
+        "group": "lighting"
+      },
+      "130D": {
+        "name": "Light xyL Setup Server",
+        "role": "setup",
+        "group": "lighting"
+      },
+      "130E": {
+        "name": "Light xyL Client",
+        "role": "client",
+        "group": "lighting"
+      },
+      "130F": {
+        "name": "Light LC Server",
+        "role": "server",
+        "group": "lighting",
+        "states": {
+          "Light LC Mode": {
+            "min": 0,
+            "max": 1,
+            "default": 0
+          },
+          "Light LC Occupancy Mode": {
+            "min": 0,
+            "max": 1,
+            "default": 0
+          },
+          "Light LC Light OnOff": {
+            "min": 0,
+            "max": 1,
+            "default": 0
+          },
+          "Light LC Lightness Out": {
+            "min": 0,
+            "max": 65535,
+            "default": 0
+          }
+        }
+      }
+    }
+  },
+  "vendorModels": {
+    "01660001": {
+      "name": "Prox vendor model",
+      "role": "server"
+    }
+  },
+  "elementTemplates": {
+    "primary-extra": {
+      "models": ["0000", "0002", "01660001"]
+    },
+    "ctl": {
+      "models": [
+        "1006",
+        "1007",
+        "1004",
+        "1303",
+        "1304",
+        "1300",
+        "1301",
+        "1000",
+        "1002",
+        "1100",
+        "1101"
+      ]
+    },
+    "ctl-temperature": {
+      "models": ["1006", "1007", "1002", "1306", "130F", "1310", "1100", "1101"]
+    },
+    "lightness": {
+      "models": [
+        "1006",
+        "1007",
+        "1004",
+        "1300",
+        "1301",
+        "1000",
+        "1002",
+        "1100",
+        "1101"
+      ]
+    },
+    "onoff": {
+      "models": ["1006", "1007", "1004", "1000"]
+    },
+    "hsl": {
+      "models": [
+        "1006",
+        "1007",
+        "1004",
+        "1307",
+        "1308",
+        "1300",
+        "1301",
+        "1000",
+        "1002"
+      ]
+    },
+    "hsl-hue": {
+      "models": ["1002", "130A"]
+    },
+    "hsl-saturation": {
+      "models": ["1002", "130B"]
+    },
+    "ctl-client": {
+      "models": ["1001", "1305"]
+    },
+    "onoff-client": {
+      "models": ["1001"]
+    },
+    "lightness-client": {
+      "models": ["1001", "1302"]
+    }
+  },
+  "products": [
+    {
+      "id": "prox-onoffsrv-1ch",
+      "sku": "PROX-OnOffSrv-1ch",
+      "family": "PROX-OnOffSrv",
+      "companyId": "0059",
+      "productId": "F001",
+      "versionId": "0001",
+      "channels": 1,
+      "channelLabels": ["Ch 1"],
+      "elements": ["onoff"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-onoffsrv-2ch",
+      "sku": "PROX-OnOffSrv-2ch",
+      "family": "PROX-OnOffSrv",
+      "companyId": "0059",
+      "productId": "F002",
+      "versionId": "0001",
+      "channels": 2,
+      "channelLabels": ["Ch 1", "Ch 2"],
+      "elements": ["onoff", "onoff"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-onoffsrv-3ch",
+      "sku": "PROX-OnOffSrv-3ch",
+      "family": "PROX-OnOffSrv",
+      "companyId": "0059",
+      "productId": "F003",
+      "versionId": "0001",
+      "channels": 3,
+      "channelLabels": ["Ch 1", "Ch 2", "Ch 3"],
+      "elements": ["onoff", "onoff", "onoff"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-onoffsrv-4ch",
+      "sku": "PROX-OnOffSrv-4ch",
+      "family": "PROX-OnOffSrv",
+      "companyId": "0059",
+      "productId": "F004",
+      "versionId": "0001",
+      "channels": 4,
+      "channelLabels": ["Ch 1", "Ch 2", "Ch 3", "Ch 4"],
+      "elements": ["onoff", "onoff", "onoff", "onoff"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-llsrv-1ch",
+      "sku": "PROX-LLSrv-1ch",
+      "family": "PROX-LLSrv",
+      "companyId": "0059",
+      "productId": "F005",
+      "versionId": "0001",
+      "channels": 1,
+      "channelLabels": ["Ch 1"],
+      "elements": ["lightness"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-llsrv-2ch",
+      "sku": "PROX-LLSrv-2ch",
+      "family": "PROX-LLSrv",
+      "companyId": "0059",
+      "productId": "F006",
+      "versionId": "0001",
+      "channels": 2,
+      "channelLabels": ["Ch 1", "Ch 2"],
+      "elements": ["lightness", "lightness"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-llsrv-3ch",
+      "sku": "PROX-LLSrv-3ch",
+      "family": "PROX-LLSrv",
+      "companyId": "0059",
+      "productId": "F007",
+      "versionId": "0001",
+      "channels": 3,
+      "channelLabels": ["Ch 1", "Ch 2", "Ch 3"],
+      "elements": ["lightness", "lightness", "lightness"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-llsrv-4ch",
+      "sku": "PROX-LLSrv-4ch",
+      "family": "PROX-LLSrv",
+      "companyId": "0059",
+      "productId": "F008",
+      "versionId": "0001",
+      "channels": 4,
+      "channelLabels": ["Ch 1", "Ch 2", "Ch 3", "Ch 4"],
+      "elements": ["lightness", "lightness", "lightness", "lightness"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-llsrv-a-1ch",
+      "sku": "PROX-LLSrv-A-1ch",
+      "family": "PROX-LLSrv-A",
+      "companyId": "0059",
+      "productId": "F009",
+      "versionId": "0001",
+      "channels": 1,
+      "channelLabels": ["Ch 1"],
+      "elements": ["lightness"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-llsrv-a-2ch",
+      "sku": "PROX-LLSrv-A-2ch",
+      "family": "PROX-LLSrv-A",
+      "companyId": "0059",
+      "productId": "F00A",
+      "versionId": "0001",
+      "channels": 2,
+      "channelLabels": ["Ch 1", "Ch 2"],
+      "elements": ["lightness", "lightness"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-llsrv-a-3ch",
+      "sku": "PROX-LLSrv-A-3ch",
+      "family": "PROX-LLSrv-A",
+      "companyId": "0059",
+      "productId": "F00B",
+      "versionId": "0001",
+      "channels": 3,
+      "channelLabels": ["Ch 1", "Ch 2", "Ch 3"],
+      "elements": ["lightness", "lightness", "lightness"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-llsrv-a-4ch",
+      "sku": "PROX-LLSrv-A-4ch",
+      "family": "PROX-LLSrv-A",
+      "companyId": "0059",
+      "productId": "F00C",
+      "versionId": "0001",
+      "channels": 4,
+      "channelLabels": ["Ch 1", "Ch 2", "Ch 3", "Ch 4"],
+      "elements": ["lightness", "lightness", "lightness", "lightness"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-ctlsrv-1ch",
+      "sku": "PROX-CTLSrv-1ch",
+      "family": "PROX-CTLSrv",
+      "companyId": "0059",
+      "productId": "F00D",
+      "versionId": "0001",
+      "channels": 1,
+      "channelLabels": ["Ch 1"],
+      "elements": ["ctl", "ctl-temperature"],
+      "features": "0003",
+      "crpl": "0100",
+      "temperatureRange": {
+        "min": 2700,
+        "max": 6500
+      }
+    },
+    {
+      "id": "prox-ctlsrv-2ch",
+      "sku": "PROX-CTLSrv-2ch",
+      "family": "PROX-CTLSrv",
+      "companyId": "0059",
+      "productId": "F011",
+      "versionId": "0001",
+      "channels": 2,
+      "channelLabels": ["Ch 1", "Ch 2"],
+      "elements": ["ctl", "ctl-temperature", "ctl", "ctl-temperature"],
+      "features": "0003",
+      "crpl": "0100",
+      "temperatureRange": {
+        "min": 2700,
+        "max": 6500
+      }
+    },
+    {
+      "id": "prox-hslsrv-1ch",
+      "sku": "PROX-HSLSrv-1ch",
+      "family": "PROX-HSLSrv",
+      "companyId": "0059",
+      "productId": "F00E",
+      "versionId": "0001",
+      "channels": 1,
+      "channelLabels": ["Ch 1"],
+      "elements": ["hsl", "hsl-hue", "hsl-saturation"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-onoffclt-btn-4ch",
+      "sku": "PROX-OnOffClt-Btn-4Ch",
+      "family": "PROX-OnOffClt-Btn",
+      "companyId": "0059",
+      "productId": "F00F",
+      "versionId": "0001",
+      "channels": 4,
+      "channelLabels": ["Ch 1", "Ch 2", "Ch 3", "Ch 4"],
+      "elements": [
+        "onoff-client",
+        "onoff-client",
+        "onoff-client",
+        "onoff-client"
+      ],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-llclt-enc-2ch",
+      "sku": "PROX-LLClt-Enc-2Ch",
+      "family": "PROX-LLClt-Enc",
+      "companyId": "0059",
+      "productId": "F010",
+      "versionId": "0001",
+      "channels": 2,
+      "channelLabels": ["Ch 1", "Ch 2"],
+      "elements": ["lightness-client", "lightness-client"],
+      "features": "0003",
+      "crpl": "0100"
+    },
+    {
+      "id": "prox-ctlclt-enc-2ch",
+      "sku": "PROX-CTLClt-Enc-2Ch",
+      "family": "PROX-CTLClt-Enc",
+      "companyId": "0059",
+      "productId": "F012",
+      "versionId": "0001",
+      "channels": 2,
+      "channelLabels": ["Ch 1", "Ch 2"],
+      "elements": ["ctl-client", "ctl-client"],
+      "features": "0003",
+      "crpl": "0100"
+    }
+  ]
+}

@@ -1,0 +1,5754 @@
+/*
+ * Presentation only. Sections in order: tokens, base, shell, controls, tree,
+ * surface, dialogs, state and motion.
+ *
+ * Every shared or contractual design value is a token in section 1. A literal
+ * colour, radius, spacing, or layer below section 1 is a fork of a number that
+ * already has a home; a one-off size local to a single part may stay literal.
+ * docs/architecture/styling.md names the values that are test contracts.
+ */
+
+/* ---- 1. Tokens ---------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  /* Accent. The 50% step is pinned by tests/browser/styles.spec.js, which
+     reads it back off the add-application border. */
+  --accent-h: 214;
+  --accent-s: 82%;
+  --accent: hsl(var(--accent-h) var(--accent-s) 50%);
+  --accent-strong: hsl(var(--accent-h) var(--accent-s) 42%);
+  --accent-soft: hsl(var(--accent-h) var(--accent-s) 68%);
+  --accent-surface: hsl(var(--accent-h) var(--accent-s) 94%);
+  /* An accent edge light enough to frame --accent-surface. */
+  --accent-border: hsl(var(--accent-h) var(--accent-s) 86%);
+  --device-icon-border: color-mix(
+    in srgb,
+    var(--accent) 30%,
+    var(--surface-raised)
+  );
+  /* The upload card's note. */
+  --note-border: color-mix(in srgb, var(--accent) 20%, var(--surface-raised));
+  --note-surface: color-mix(
+    in srgb,
+    var(--accent-surface) 60%,
+    var(--surface-raised)
+  );
+  --note-text: color-mix(in srgb, var(--accent-strong) 70%, var(--ink));
+  --danger-h: 4;
+  --danger-s: 71%;
+  --danger: hsl(var(--danger-h) var(--danger-s) 50%);
+  --danger-border: color-mix(in srgb, var(--danger) 40%, transparent);
+  --danger-strong: hsl(var(--danger-h) var(--danger-s) 42%);
+  /* The mark behind a warning. */
+  --danger-surface: color-mix(
+    in srgb,
+    var(--danger) 10%,
+    var(--surface-raised)
+  );
+  /* A destructive menu row under the pointer. */
+  --danger-surface-hover: color-mix(
+    in srgb,
+    var(--danger) 8%,
+    var(--surface-raised)
+  );
+  --notice-h: 39;
+  --notice-s: 100%;
+  --notice: hsl(var(--notice-h) var(--notice-s) 45%);
+  /* The edge of the project's folder, so the amber holds on white. */
+  --notice-strong: hsl(var(--notice-h) var(--notice-s) 30%);
+  /* The Mesh pane's card while no node is in reach. */
+  --notice-border: color-mix(in srgb, var(--notice) 40%, transparent);
+  --notice-surface: color-mix(
+    in srgb,
+    var(--notice) 10%,
+    var(--surface-raised)
+  );
+  /* The active Area's badge. */
+  --success: hsl(161 94% 30%);
+  /* Words in the success hue, dark enough to read at small sizes. */
+  --success-strong: hsl(161 94% 22%);
+  --success-surface: hsl(152 81% 96%);
+  --success-border: hsl(152 76% 80%);
+
+  /* Sandbox signal strengths and simulated device LEDs. */
+  --signal-excellent: hsl(161 72% 30%);
+  --signal-good: hsl(137 54% 34%);
+  --signal-fair: hsl(39 90% 34%);
+  --signal-weak: hsl(19 82% 40%);
+  --signal-unusable: hsl(4 71% 42%);
+  --led-red: hsl(4 71% 50%);
+  --led-blue: hsl(214 82% 50%);
+  --led-off: hsl(220 8% 58%);
+
+  /* Neutrals. The body pair is pinned by tests/browser/styles.spec.js. */
+  --surface-sunken: hsl(0 0% 97%);
+  --surface-raised: hsl(0 0% 100%);
+  --surface-inset: hsl(220 20% 98%);
+  --control-surface: hsl(220 16% 97%);
+  --control-surface-hover: hsl(220 16% 93%);
+  --control-surface-active: hsl(220 16% 88%);
+  /* A quiet control's glyph: the tree's menus and section add buttons. */
+  --control-text-quiet: color-mix(
+    in srgb,
+    var(--text) 75%,
+    var(--surface-raised)
+  );
+  --row-hover-surface: hsl(220 18% 95%);
+  --text: hsl(0 0% 10%);
+  /* Ink is the tree's emphasis: its outlines, the Add Area button and
+     its strongest names. Body copy stays --text. */
+  --ink: hsl(222 47% 11%);
+  --ink-hover: color-mix(in srgb, var(--ink) 85%, var(--surface-raised));
+  --text-muted: hsl(220 8% 42%);
+  --text-faint: hsl(220 8% 58%);
+  --border: hsl(220 14% 89%);
+  --border-strong: hsl(220 12% 78%);
+  --border-width: 1px;
+  --border-active-area: 2px;
+  --scrim: hsl(0 0% 8% / 0.38);
+
+  /* Space */
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 12px;
+  --space-6: 16px;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 10px;
+  --radius-round: 50%;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-1: 0 1px 2px hsl(0 0% 0% / 0.07);
+  --shadow-2: 0 2px 10px hsl(0 0% 0% / 0.09);
+  --shadow-dialog: 0 16px 48px hsl(0 0% 0% / 0.22);
+  /* A sidebar menu: lifted off the cards it opens over, not a modal. */
+  --shadow-menu:
+    0 8px 24px hsl(222 47% 11% / 0.14), 0 1px 2px hsl(222 47% 11% / 0.06);
+
+  /* Type */
+  --font-ui:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --size-1: 11px;
+  --size-2: 13px;
+  --size-3: 15px;
+
+  /* Focus. Wide enough to read on a tinted row, inset so it never clips. */
+  --focus-color: var(--accent);
+  --focus-width: 2px;
+
+  /* Structure. The splitter width is read by both the splitter and the
+     workspace grid track, so the divider has one width, not two. */
+  --workflow-width: 28rem;
+  --workflow-min-width: 220px;
+  --surface-min-width: 320px;
+  --mesh-width: 22rem;
+  --mesh-min-width: 240px;
+  --mesh-rail-width: 32px;
+  /* The Mesh pane's title bar, a device row in its lists, and that row's
+     icon tile. */
+  --mesh-header-height: 52px;
+  --mesh-row-height: 48px;
+  --mesh-tile-size: 22px;
+  --splitter-width: 8px;
+  /* The header, its buttons and their icons, the hairline between its tool
+     groups, and the logo: the icon tile is the logo's height, and the name
+     scales with it. */
+  --header-height: 68px;
+  --header-control-height: 34px;
+  --header-icon-size: 16px;
+  --header-separator-height: 24px;
+  /* The Settings window, its section menu, a switch's track, and the logo
+     About shows. */
+  --settings-width: 760px;
+  --settings-height: 600px;
+  --settings-menu-width: 200px;
+  --switch-width: 40px;
+  --switch-height: 22px;
+  --about-logo-height: 48px;
+  --brand-logo-height: 32px;
+  --tree-indent: 12px;
+  --row-height: 22px;
+  /* An Area's and a device type's own row carry two lines: a name over a
+     placed count. */
+  --two-line-row-height: 40px;
+  /* An application's name fills its header's height, so a press anywhere on
+     it selects and only the arrow's column opens and closes it. */
+  --application-row-height: calc(var(--row-height) + 2 * var(--space-4));
+  /* Row controls are smaller than the row they sit in, so a compact row keeps
+     a hit area that is still square and centred. */
+  --control-size: 18px;
+  /* An icon-only button carries no label to widen it, so its box is the whole
+     target: 24px is the smallest one a pointer is expected to hit. */
+  --control-icon-size: 24px;
+  /* The tree's icons, its icon tiles, and the room a row keeps for its
+     menu at the row's end. */
+  --tree-icon-size: 16px;
+  --tree-tile-size: calc(var(--control-icon-size) + var(--space-4));
+  --tree-menu-gutter: calc(var(--control-icon-size) + var(--space-2));
+  /* A number field holds three digits, so it is sized rather than left to the
+     browser's default width. */
+  --control-number-width: 40px;
+  /* A control that is shown but takes no change, such as a stroke's settings
+     while there is no stroke. */
+  --control-inactive-opacity: 0.45;
+  --layer-actions: 1;
+  /* A focused row or a hovered dot draws over its neighbours and their actions;
+     a focused row's own actions draw over it. */
+  --layer-focus: 2;
+  /* The tree's pinned header draws over the rows that scroll beneath it. */
+  --layer-tree-header: 3;
+  /* A passing message draws over the plan and the panels. */
+  --layer-message: 4;
+
+  /* Motion */
+  --motion-fast: 120ms;
+  --motion-emphasis: 240ms;
+  /* A control changing state in view: the Mesh pane's Via switch and its
+     connection card. */
+  --motion-state: 300ms;
+  /* A status dot: the header pill's and Nearby's scanning light. */
+  --status-dot-size: 8px;
+
+  /* Selection */
+  --state-selected-background: var(--accent-surface);
+  --state-selected-outline: var(--accent-strong);
+  /* A tree row is selected by an outline, not a tint. The active Area's
+     card is outlined too, as a separate state. */
+  --tree-selected-outline: var(--ink);
+  --tree-active-outline: var(--ink);
+}
+
+/* ---- 2. Base ------------------------------------------------------------ */
+
+/* Buttons and parts set their own display, which would outrank the attribute. */
+[hidden] {
+  display: none !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  color: var(--text);
+  background: var(--surface-sunken);
+  font-family: var(--font-ui);
+  font-size: var(--size-2);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: 1px;
+}
+
+/* ---- 3. Shell ----------------------------------------------------------- */
+
+/*
+ * A fixed frame, not a growing page: the toolbar and the status bar sit on the
+ * viewport edges at every window size and zoom level, and only the panes
+ * between them scroll. It is the containing block for visually hidden text, so
+ * a label deep in a long pane is clipped here rather than growing the page.
+ */
+[data-part="app"] {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+[data-part="toolbar"] {
+  display: flex;
+  min-height: var(--header-height);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-raised);
+}
+
+/* The tracks carry the two minimum widths, so a window too narrow for both
+   scrolls the workspace rather than dragging the header and footer off with
+   it. */
+[data-part="workspace"] {
+  display: grid;
+  grid-template-columns:
+    minmax(var(--workflow-min-width), var(--workflow-width))
+    var(--splitter-width)
+    minmax(var(--surface-min-width), 1fr)
+    var(--splitter-width)
+    minmax(var(--mesh-min-width), var(--mesh-width));
+  min-width: 0;
+  min-height: 0;
+  overflow-x: auto;
+}
+
+[data-part="workspace"]:has(> [data-part="mesh"][data-state~="collapsed"]) {
+  grid-template-columns:
+    minmax(var(--workflow-min-width), var(--workflow-width))
+    var(--splitter-width)
+    minmax(var(--surface-min-width), 1fr)
+    var(--mesh-rail-width);
+}
+
+[data-part="workspace"]:has(> [data-part="mesh"][data-state~="collapsed"])
+  > [data-part="mesh-splitter"] {
+  display: none;
+}
+
+[data-part="workflow"] {
+  display: block;
+  min-width: 0;
+  overflow: auto;
+  padding-block: 0 var(--space-2);
+  padding-inline: 0;
+  background: var(--surface-raised);
+}
+
+[data-part="splitter"],
+[data-part="mesh-splitter"] {
+  display: flex;
+  width: var(--splitter-width);
+  align-items: stretch;
+  background: var(--surface-sunken);
+  cursor: col-resize;
+}
+
+/* The workflow panel's line sits on the panel's edge, continuing the header
+   brand area's border above it; the Mesh pane's is centred in its splitter. */
+[data-part="mesh-splitter"] {
+  justify-content: center;
+}
+
+[data-part="splitter"]::before,
+[data-part="mesh-splitter"]::before {
+  content: "";
+  width: 1px;
+  background: var(--border);
+  transition: background-color var(--motion-fast);
+}
+
+[data-part="splitter"]:hover::before,
+[data-part="splitter"]:focus-visible::before,
+[data-part="mesh-splitter"]:hover::before,
+[data-part="mesh-splitter"]:focus-visible::before {
+  width: 2px;
+  background: var(--accent);
+}
+
+[data-part="splitter"]:focus-visible,
+[data-part="mesh-splitter"]:focus-visible {
+  background: var(--accent-surface);
+  outline: none;
+}
+
+[data-part="surface-region"] {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  min-width: var(--surface-min-width);
+  min-height: 0;
+  overflow: hidden;
+}
+
+[data-part="mesh"] {
+  min-width: 0;
+  overflow: auto;
+  background: var(--surface-raised);
+}
+
+[data-part="mesh"][data-state~="collapsed"] > [data-part="mesh-frame"],
+[data-part="mesh"]:not([data-state~="collapsed"]) > [data-part="mesh-rail"] {
+  display: none;
+}
+
+[data-part="mesh-rail"] {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  writing-mode: vertical-rl;
+}
+
+/*
+ * The pane is a stack of blocks, edge to edge, in the order they are used:
+ * its title bar, Connection, the network row, Nearby, Nodes, Forgotten,
+ * removed groups and Log. A hairline parts each block, and each keeps the
+ * same inset from the pane's sides.
+ */
+[data-part="mesh-frame"] {
+  display: grid;
+  align-content: start;
+}
+
+[data-part="mesh-header"],
+[data-part="mesh-frame"] > p,
+[data-part="mesh-connection"],
+[data-part="demo-entry"],
+[data-part="mesh-network-row"],
+[data-part="mesh-nearby"],
+[data-part="mesh-nodes"],
+[data-part="mesh-forgotten"],
+[data-part="mesh-deleted-groups"],
+[data-part="mesh-log"] {
+  padding: var(--space-5) var(--space-6);
+  border-bottom: var(--border-width) solid var(--border);
+}
+
+[data-part="mesh-header"] {
+  display: flex;
+  min-height: var(--mesh-header-height);
+  align-items: center;
+  justify-content: space-between;
+  padding-inline-end: var(--space-5);
+}
+
+/* A Nearby device is parted from the next by a hairline, as the blocks
+   are; the last one, or the only one, sits on the section's own line. */
+[data-part="mesh-nearby-row"] {
+  border-bottom: var(--border-width) solid var(--border);
+}
+
+[data-part="mesh-nearby-row"]:last-child {
+  border-bottom: 0;
+}
+
+/* A node is a card, as an Area is in the workflow tree: its own edge and
+   corners, a gap from the next, and an accent edge while selected. */
+[data-part="mesh-node-list"] {
+  display: grid;
+  gap: var(--space-4);
+}
+
+[data-part="mesh-node"] {
+  container: mesh-node / inline-size;
+  overflow: hidden;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+}
+
+[data-part="mesh-node"][data-state~="selected"] {
+  border-color: var(--accent);
+}
+
+[data-part="mesh-title"] {
+  margin: 0;
+  font-size: var(--size-3);
+}
+
+[data-part="mesh-collapse"] {
+  width: var(--control-icon-size);
+  height: var(--control-icon-size);
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+[data-part="mesh-collapse"] svg {
+  width: var(--space-5);
+  height: var(--space-5);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+[data-part="mesh-frame"] > p {
+  margin: 0;
+  color: var(--text-muted);
+}
+/*
+ * Connection: a heading, one card, and the experimental note under it. The
+ * card's top line is its icon, what the pane says, and Disconnect. Until it
+ * connects, the Via choice, its help line and a full-width Connect follow.
+ * The pane's state tokens colour the card; the pressed Via picks the help
+ * line and the name in Connect, so the script writes none of this text.
+ */
+[data-part="mesh-connection"] {
+  display: grid;
+  gap: var(--space-4);
+  padding-block: var(--space-6);
+}
+
+[data-part="mesh-connection-card"] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "icon says action"
+    "via via via"
+    "help help help"
+    "connect connect connect";
+  align-items: center;
+  column-gap: var(--space-5);
+  padding: var(--space-5);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-inset);
+  transition:
+    background-color var(--motion-state),
+    border-color var(--motion-state);
+}
+
+/* What a state brings into the card arrives rather than appears: the title
+   and its line, the Via choice and its help, the name in Connect, and the
+   action. Each plays as it is shown, since display restarts an animation. */
+@keyframes mesh-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-2));
+  }
+}
+
+[data-part="mesh-transport-gatt"],
+[data-part="mesh-transport-dongle"],
+[data-part="mesh-connection-state"],
+[data-part="mesh-connected-state"],
+[data-part="mesh-unplugged"],
+[data-part="mesh-unreached"],
+[data-part="mesh-loading"],
+[data-part="mesh-connection-hint"],
+[data-part="mesh-via"],
+[data-part="mesh-via-help-gatt"],
+[data-part="mesh-via-help-dongle"],
+[data-part="mesh-via-name-gatt"],
+[data-part="mesh-via-name-dongle"],
+[data-part="mesh-connect"],
+[data-part="mesh-reconnect"],
+[data-part="mesh-disconnect"] {
+  animation: mesh-arrive var(--motion-state) ease-out;
+}
+
+/* The icon tile, the size of the sidebar's upload tile, with a dot in the
+   state's colour at its corner. */
+[data-part="mesh-connection-icon"] {
+  display: grid;
+  grid-area: icon;
+  position: relative;
+  place-items: center;
+  width: var(--tree-tile-size);
+  height: var(--tree-tile-size);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--text-muted);
+  transition:
+    border-color var(--motion-state),
+    color var(--motion-state);
+}
+
+[data-part="mesh-connection-icon"] svg,
+[data-part="mesh-connect"] svg,
+[data-part="mesh-experimental"] svg {
+  flex: none;
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+/* Marks inside a line of text are the size of the sidebar's own. */
+[data-part="mesh-connect"] svg,
+[data-part="mesh-experimental"] svg {
+  width: var(--space-5);
+  height: var(--space-5);
+}
+
+[data-part="mesh-connection-icon"]::after {
+  content: "";
+  position: absolute;
+  inset: auto calc(-1 * var(--space-2)) calc(-1 * var(--space-2)) auto;
+  width: calc(var(--space-5) - var(--space-1));
+  height: calc(var(--space-5) - var(--space-1));
+  border: var(--space-1) solid var(--surface-raised);
+  border-radius: var(--radius-round);
+  background: var(--text-faint);
+  transition: background-color var(--motion-state);
+}
+
+[data-part="mesh-icon-gatt"],
+[data-part="mesh-icon-dongle"],
+[data-part="mesh"][data-state~="connected"] [data-part="mesh-icon-off"],
+[data-part="mesh"]:not([data-state~="connected"])
+  [data-part="mesh-transport-gatt"],
+[data-part="mesh"]:not([data-state~="connected"])
+  [data-part="mesh-transport-dongle"],
+[data-part="mesh"]:not([data-state~="gatt"]) [data-part="mesh-transport-gatt"],
+[data-part="mesh"][data-state~="gatt"] [data-part="mesh-transport-dongle"],
+[data-part="mesh"]:is([data-state~="connected"], [data-state~="loading"])
+  [data-part="mesh-connection-hint"] {
+  display: none;
+}
+
+[data-part="mesh"][data-state~="connected"][data-state~="gatt"]
+  [data-part="mesh-icon-gatt"],
+[data-part="mesh"][data-state~="connected"]:not([data-state~="gatt"])
+  [data-part="mesh-icon-dongle"] {
+  display: block;
+}
+
+/* A title over one line that says more, sized as an Area card's name over
+   its count. The status words keep their marks for readers; the card's dot
+   says them to sight. */
+[data-part="mesh-connection-says"] {
+  display: grid;
+  grid-area: says;
+  min-width: 0;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="mesh-connection-says"] > span > [aria-hidden="true"] {
+  display: none;
+}
+
+[data-part="mesh-transport-gatt"],
+[data-part="mesh-transport-dongle"],
+[data-part="mesh-connection-state"],
+[data-part="mesh-unplugged"],
+[data-part="mesh-unreached"],
+[data-part="mesh-loading"] {
+  color: var(--ink);
+  font-size: var(--size-2);
+  font-weight: 600;
+}
+
+/* Via: two toggle buttons on one track. The raised highlight is the track's
+   own, so it slides to the pressed one; the buttons stay clear over it. USB
+   dongle comes first, so GATT pressed moves it one button along. */
+[data-part="mesh-via"] {
+  display: grid;
+  grid-area: via;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  margin-block-start: var(--space-5);
+  padding: var(--space-1);
+  border-radius: var(--radius);
+  background: var(--control-surface-hover);
+}
+
+[data-part="mesh-via"]::before {
+  content: "";
+  position: absolute;
+  inset-block: var(--space-1);
+  inset-inline-start: var(--space-1);
+  z-index: -1;
+  width: calc(50% - var(--space-1));
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-1);
+  transition: transform var(--motion-state) ease-in-out;
+}
+
+[data-part="mesh-via"]:has(
+    [data-part="mesh-via-gatt"][aria-pressed="true"]
+  )::before {
+  transform: translateX(100%);
+}
+
+[data-part="mesh-via"] > [data-part="mesh-via-dongle"],
+[data-part="mesh-via"] > [data-part="mesh-via-gatt"] {
+  min-height: calc(var(--control-icon-size) + var(--space-4));
+  border-color: transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: color var(--motion-state);
+}
+
+[data-part="mesh-via"] > [data-part="mesh-via-dongle"]:hover,
+[data-part="mesh-via"] > [data-part="mesh-via-gatt"]:hover {
+  color: var(--text);
+}
+
+/* The choice shows in the words too, not only in the highlight. */
+[data-part="mesh-via"] > [data-part="mesh-via-dongle"][aria-pressed="true"],
+[data-part="mesh-via"] > [data-part="mesh-via-gatt"][aria-pressed="true"] {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+[data-part="mesh-via-help-gatt"],
+[data-part="mesh-via-help-dongle"] {
+  grid-area: help;
+  margin: var(--space-4) 0 0;
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="mesh-connection-card"]:has(
+    [data-part="mesh-via-gatt"][aria-pressed="true"]
+  )
+  [data-part="mesh-via-help-dongle"],
+[data-part="mesh-connection-card"]:has(
+    [data-part="mesh-via-gatt"][aria-pressed="true"]
+  )
+  [data-part="mesh-via-name-dongle"],
+[data-part="mesh-connection-card"]:has(
+    [data-part="mesh-via-dongle"][aria-pressed="true"]
+  )
+  [data-part="mesh-via-help-gatt"],
+[data-part="mesh-connection-card"]:has(
+    [data-part="mesh-via-dongle"][aria-pressed="true"]
+  )
+  [data-part="mesh-via-name-gatt"],
+[data-part="mesh"][data-state~="connected"] [data-part="mesh-via"],
+[data-part="mesh"][data-state~="connected"] [data-part="mesh-via-help-gatt"],
+[data-part="mesh"][data-state~="connected"] [data-part="mesh-via-help-dongle"] {
+  display: none;
+}
+
+/* Connect and Reconnect are the card's one action, full width and in ink;
+   Disconnect is a quiet button beside what the card says. */
+[data-part="mesh-connect"],
+[data-part="mesh-reconnect"] {
+  grid-area: connect;
+  gap: var(--space-3);
+  min-height: calc(var(--control-icon-size) + var(--space-5));
+  margin-block-start: var(--space-5);
+  border-color: var(--ink);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--surface-raised);
+  font-size: var(--size-2);
+  font-weight: 600;
+}
+
+[data-part="mesh-connect"]:hover,
+[data-part="mesh-reconnect"]:hover {
+  background: var(--ink-hover);
+}
+
+/* Waiting on the engine: still the action, faded. */
+[data-part="mesh-connect"]:disabled,
+[data-part="mesh-reconnect"]:disabled {
+  background: var(--ink);
+  color: var(--surface-raised);
+  opacity: var(--control-inactive-opacity);
+}
+
+[data-part="mesh-disconnect"] {
+  grid-area: action;
+  min-height: calc(var(--row-height) + var(--space-3));
+  padding-inline: var(--space-5);
+  font-weight: 500;
+}
+
+/* The card in the colour of the state: connected, the dongle gone, no node
+   in reach, and the engine loading. */
+[data-part="mesh"][data-state~="connected"] [data-part="mesh-connection-card"] {
+  border-color: var(--success-border);
+  background: var(--success-surface);
+}
+
+[data-part="mesh"][data-state~="connected"] [data-part="mesh-connection-icon"] {
+  border-color: var(--success-border);
+  color: var(--success);
+}
+
+[data-part="mesh"][data-state~="connected"] [data-part="mesh-connected-state"] {
+  color: var(--success-strong);
+}
+
+[data-part="mesh"][data-state~="connected"]
+  [data-part="mesh-connection-icon"]::after {
+  background: var(--success);
+}
+
+[data-part="mesh"][data-state~="unplugged"]:not([data-state~="gatt"])
+  [data-part="mesh-connection-card"] {
+  border-color: var(--danger-border);
+  background: var(--danger-surface);
+}
+
+[data-part="mesh"][data-state~="unplugged"]:not([data-state~="gatt"])
+  [data-part="mesh-connection-icon"]::after {
+  background: var(--danger);
+}
+
+[data-part="mesh-unplugged"] {
+  color: var(--danger-strong);
+}
+
+[data-part="mesh"][data-state~="unplugged"][data-state~="gatt"]
+  [data-part="mesh-connection-card"] {
+  border-color: var(--notice-border);
+  background: var(--notice-surface);
+}
+
+[data-part="mesh"][data-state~="unplugged"][data-state~="gatt"]
+  [data-part="mesh-connection-icon"]::after {
+  background: var(--notice);
+}
+
+[data-part="mesh-unreached"] {
+  color: var(--notice-strong);
+}
+
+[data-part="mesh"][data-state~="loading"]
+  [data-part="mesh-connection-icon"]::after {
+  background: var(--accent);
+}
+
+/* Demo mode's way in, on a real project: a block of the pane like the
+   others, holding one quiet full-width button. */
+[data-part="demo-try"] {
+  width: 100%;
+  min-height: calc(var(--row-height) + var(--space-4));
+  box-shadow: none;
+  font-weight: 500;
+}
+
+/* The network row: the network's name over its node count and its backup,
+   sized as an Area card's name over its count, with its menu beside them. */
+[data-part="mesh-network"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+}
+
+[data-part="mesh-network-value"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="mesh-network-name"] {
+  flex-basis: 100%;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: var(--size-2);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Written in lower case to read inside the row's one sentence; shown, it
+   starts a phrase of its own. */
+[data-part="mesh-network-backup"] {
+  display: inline-block;
+}
+
+[data-part="mesh-network-backup"]::first-letter {
+  text-transform: uppercase;
+}
+
+/* Not backed up asks for something, so it is a tag: a dot and the words in
+   the notice colours. Backed up, the age stays plain text. */
+[data-part="mesh-network"][data-state~="warning"]
+  [data-part="mesh-network-backup"] {
+  position: relative;
+  padding-inline: calc(var(--space-3) + var(--space-3) + var(--space-2))
+    var(--space-3);
+  border: var(--border-width) solid var(--notice-border);
+  border-radius: var(--radius-pill);
+  background: var(--notice-surface);
+  color: var(--notice-strong);
+  font-weight: 500;
+}
+
+[data-part="mesh-network"][data-state~="warning"]
+  [data-part="mesh-network-backup"]::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: var(--space-3);
+  width: var(--space-3);
+  height: var(--space-3);
+  margin-block: auto;
+  border-radius: var(--radius-round);
+  background: var(--notice);
+}
+
+/*
+ * The network menu is drawn as the project menu is: one card, each action a
+ * row of mark and words that tints under the pointer or the keyboard, and
+ * the note on what a backup holds set apart beneath a hairline. It opens
+ * from the row's far end, so it grows back into the pane.
+ */
+[data-part="mesh-network-row"] [data-part="tree-props-popover"] {
+  width: 17rem;
+  padding: var(--space-2);
+  border-color: var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--ink);
+  box-shadow: var(--shadow-menu);
+  position-area: block-end span-inline-start;
+}
+
+[data-part="mesh-network-actions"] {
+  display: grid;
+}
+
+[data-part="mesh-network-actions"] > [data-part="mesh-export"],
+[data-part="mesh-network-actions"] > [data-part="mesh-import"] {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-5);
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  box-shadow: none;
+  color: var(--ink);
+  font-weight: 500;
+  text-align: start;
+}
+
+[data-part="mesh-network-actions"]
+  > [data-part="mesh-export"]:is(:hover, :focus-visible),
+[data-part="mesh-network-actions"]
+  > [data-part="mesh-import"]:is(:hover, :focus-visible) {
+  background: var(--control-surface-hover);
+  outline: none;
+}
+
+[data-part="mesh-network-actions"] svg {
+  flex: none;
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.3;
+}
+
+[data-part="mesh-network-actions"] > button svg {
+  color: var(--text-muted);
+}
+
+/* The network row selects nothing, so it does not tint; its menu button
+   carries its own hover. */
+[data-part="mesh-network-row"] > [data-part="tree-line"] {
+  background: transparent;
+}
+
+[data-part="mesh-network-note"],
+[data-part="mesh-import-prompt"],
+[data-part="mesh-import-error"],
+[data-part="project-delete-warning"] {
+  margin: 0;
+}
+
+[data-part="mesh-network-note"] {
+  display: flex;
+  align-items: start;
+  gap: var(--space-3);
+  margin: var(--space-2) var(--space-3) 0;
+  padding: var(--space-4) var(--space-2) var(--space-2);
+  border-top: var(--border-width) solid var(--border);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+/* The info mark sits on the note's first line. */
+[data-part="mesh-network-note"] svg {
+  width: var(--space-5);
+  height: var(--space-5);
+  margin-block-start: var(--space-1);
+}
+
+[data-part="mesh-import-confirm"] {
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+[data-part="mesh-import-error"] {
+  color: var(--danger);
+}
+
+[data-part="mesh-experimental"] {
+  display: flex;
+  align-items: start;
+  gap: var(--space-3);
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+/* The info mark sits on the note's first line. */
+[data-part="mesh-experimental"] svg {
+  margin-block-start: var(--space-1);
+}
+
+/*
+ * The pane below the connection header is a tree of the workflow tree's own
+ * rows. Depth is --tree-level, set here per list; parts that are not a
+ * tree-line indent by the same product.
+ */
+[data-part="mesh-tree"] {
+  --tree-level: 0;
+  display: grid;
+  min-width: 0;
+}
+
+[data-part="mesh-tree"] [data-part="tree-line"] {
+  min-height: var(--row-height);
+}
+
+[data-part="mesh-nearby-list"],
+[data-part="mesh-node-list"],
+[data-part="mesh-forgotten-list"] {
+  --tree-level: 1;
+}
+
+[data-part="mesh-channels"],
+[data-part="mesh-models"] {
+  --tree-level: 2;
+}
+
+/* The network row's menu and each node's show at rest, as an Area's does. */
+[data-part="mesh-network-row"] [data-part="tree-props-toggle"],
+[data-part="mesh-node"]
+  > [data-part="tree-line"]
+  > [data-part="tree-props-toggle"] {
+  opacity: 1;
+}
+
+[data-part="mesh-scanning"],
+[data-part="mesh-scan-hint"],
+[data-part="mesh-nodes-empty"],
+[data-part="mesh-node-offline"],
+[data-part="mesh-node-features"],
+[data-part="mesh-remove-prompt"],
+[data-part="mesh-forget-prompt"],
+[data-part="mesh-add-status"] {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/*
+ * The headers of Nearby and Nodes: a drawn chevron, the label in the
+ * section headings' small capitals with its count as a chip, then what acts
+ * on the whole list. A count reads "Nearby (2)"; its brackets are read, not
+ * shown. Nearby ends with its scan and Pick device; Nodes wraps Show onto a
+ * line of its own.
+ */
+:is([data-part="mesh-nearby"], [data-part="mesh-nodes"])
+  > [data-part="tree-line"] {
+  min-height: calc(var(--control-icon-size) + var(--space-4));
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+:is([data-part="mesh-nearby"], [data-part="mesh-nodes"])
+  > [data-part="tree-line"]
+  [data-part="tree-section-label"] {
+  flex: 0 1 auto;
+  color: var(--text-muted);
+}
+
+/* A tint marks the row a press would select. A section header only folds
+   and a Nearby device only offers Add, so neither tints, as the workflow
+   tree's section labels do not; the buttons in them carry their own hover. */
+:is([data-part="mesh-nearby"], [data-part="mesh-nodes"])
+  > [data-part="tree-line"],
+[data-part="mesh-nearby-row"] > [data-part="tree-line"] {
+  background: transparent;
+}
+
+/* A channel sits in its node's card, whose rows do not tint under the
+   pointer: only its Assign or Unassign does. The keyboard's tint stays. */
+[data-part="mesh-channel"] > [data-part="tree-line"]:not(:has(:focus-visible)) {
+  background: transparent;
+}
+
+/* Show takes the Nodes header's second line, its menu the full width, set
+   apart from the label above it and the first node below it. */
+[data-part="mesh-show-label"] {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  gap: var(--space-4);
+  margin-block: var(--space-4) var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--size-2);
+  cursor: default;
+}
+
+/* Show filters the list, so it folds away with it; its choice stays. */
+[data-part="mesh-nodes"]:not([open]) [data-part="mesh-show-label"] {
+  display: none;
+}
+
+[data-part="mesh-show"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: calc(var(--control-icon-size) + var(--space-3));
+  padding-inline: var(--space-4);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--text);
+  font: inherit;
+}
+
+[data-part="mesh-scanning"] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-inline-start: auto;
+  font-size: var(--size-1);
+}
+
+/*
+ * The scanning mark, a live light like the header pill's dot: solid blue,
+ * with a ring of the same blue that swells and fades from it about once a
+ * second. Only the ring moves; reduced motion holds it still.
+ */
+[data-part="mesh-scanning"] > [aria-hidden="true"] {
+  position: relative;
+  flex: none;
+  width: var(--status-dot-size);
+  height: var(--status-dot-size);
+  border-radius: var(--radius-round);
+  background: var(--accent);
+  font-size: 0;
+}
+
+[data-part="mesh-scanning"] > [aria-hidden="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--accent);
+  animation: mesh-scanning 1.2s ease-out infinite;
+}
+
+@keyframes mesh-scanning {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+/* Without a live scan, Pick device keeps the far end on its own. */
+[data-part="mesh-scanning"][hidden] + [data-part="mesh-pick"] {
+  margin-inline-start: auto;
+}
+
+[data-part="mesh-scan-hint"],
+[data-part="mesh-nodes-empty"],
+[data-part="mesh-log-text"] {
+  padding-inline-start: var(--tree-indent);
+}
+
+[data-part="mesh-nearby-list"],
+[data-part="mesh-forgotten-list"],
+[data-part="mesh-steps"],
+[data-part="mesh-channels"] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+[data-part="mesh-nearby-name"],
+[data-part="mesh-forgotten-name"],
+[data-part="mesh-node-name"] {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-part="mesh-nearby-name"],
+[data-part="mesh-forgotten-name"] {
+  flex: 1 1 auto;
+}
+
+/* The node-name button selects its instance, but reads as plain text. */
+[data-part="mesh-node-name"] {
+  flex: 0 1 auto;
+  min-height: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  font-size: inherit;
+}
+
+/*
+ * A node's row: its chevron and icon tile, then two lines, with the row's own
+ * controls at the far end. The name has the first line to itself. The second
+ * holds what sight needs about it: its address and its flags. The
+ * name button carries the address too, read with the name as one text and
+ * hidden from sight; the second line's copy is hidden from readers, so the
+ * address is said once. The second line sits below the button, never over it.
+ */
+[data-part="mesh-node"] > [data-part="tree-line"] {
+  display: grid;
+  grid-template-columns:
+    var(--tree-indent) var(--tree-tile-size) minmax(0, 1fr)
+    auto auto;
+  grid-template-rows: auto auto;
+  min-height: var(--mesh-row-height);
+  align-content: center;
+  align-items: center;
+  column-gap: var(--space-4);
+  padding-block: var(--space-4);
+  padding-inline-end: var(--space-4);
+}
+
+/* A node's tile is the size of the sidebar's device-type tile. */
+[data-part="mesh-node"] > [data-part="tree-line"] > [data-part="mesh-icon"] {
+  grid-column: 2;
+  width: var(--tree-tile-size);
+  height: var(--tree-tile-size);
+  border-radius: var(--radius);
+}
+
+[data-part="mesh-node"]
+  > [data-part="tree-line"]
+  > [data-part="mesh-icon"]
+  svg {
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+}
+
+[data-part="mesh-node"] > [data-part="tree-line"] > [data-part="tree-chevron"],
+[data-part="mesh-node"] > [data-part="tree-line"] > [data-part="mesh-icon"] {
+  grid-row: 1 / 3;
+}
+
+[data-part="mesh-node"]
+  > [data-part="tree-line"]
+  > [data-part="mesh-node-name"] {
+  grid-column: 3;
+  grid-row: 1;
+  max-width: 100%;
+  line-height: inherit;
+  text-align: start;
+}
+
+[data-part="mesh-node-label"] {
+  display: block;
+  overflow: hidden;
+  color: var(--ink);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The address reads as an address: fixed width digits. */
+[data-part="mesh-node-address"] {
+  font-family: var(--font-mono);
+}
+
+[data-part="mesh-node"]
+  > [data-part="tree-line"]
+  > [data-part="mesh-node-meta"] {
+  display: flex;
+  grid-column: 3;
+  grid-row: 2;
+  min-width: 0;
+  gap: var(--space-3);
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: var(--size-1);
+  white-space: nowrap;
+}
+
+[data-part="mesh-node-address"]:empty {
+  display: none;
+}
+
+/* A flag after the address is set off by a drawn dot, not a typed one: the
+   flag's words are what a reader hears. The size is this mark's own. */
+[data-part="mesh-node-address"]:not(:empty) ~ [data-part="mesh-node-offline"],
+[data-part="mesh-node-address"]:not(:empty) ~ [data-part="mesh-node-conflict"] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+[data-part="mesh-node-address"]:not(:empty)
+  ~ [data-part="mesh-node-offline"]::before,
+[data-part="mesh-node-address"]:not(:empty)
+  ~ [data-part="mesh-node-conflict"]::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  border-radius: var(--radius-round);
+  background: currentColor;
+}
+
+[data-part="mesh-node"] > [data-part="tree-line"] > [data-part="mesh-assign"] {
+  grid-column: 4;
+  grid-row: 1 / 3;
+  min-height: calc(var(--row-height) + var(--space-3));
+  padding-inline: var(--space-5);
+  box-shadow: none;
+  font-weight: 500;
+}
+
+[data-part="mesh-node"]
+  > [data-part="tree-line"]
+  > [data-part="tree-props-toggle"] {
+  grid-column: 5;
+  grid-row: 1 / 3;
+}
+
+/*
+ * An opened node: its channels, then its models on a quiet band. A channel
+ * names itself in a tag, marks whether a device holds it (a filled dot) or
+ * it is free (a hollow ring) beside the words that say so, and keeps its
+ * Assign or Unassign; its controls follow in a grid. The controls template
+ * is shared with a dot's card on the plan, so these rules stay in Nodes.
+ * Which mark shows follows which of Assign and Unassign the pane shows.
+ */
+[data-part="mesh-node"] > [data-part="mesh-channels"] {
+  padding-block: var(--space-2);
+  padding-inline-end: var(--space-4);
+  border-top: var(--border-width) solid var(--border);
+}
+
+[data-part="mesh-channel"] + [data-part="mesh-channel"] {
+  border-top: var(--border-width) solid var(--border);
+}
+
+[data-part="mesh-channel"] > [data-part="tree-line"] {
+  min-height: calc(var(--control-icon-size) + var(--space-6));
+  gap: var(--space-4);
+}
+
+[data-part="mesh-channel-name"] {
+  flex: none;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--control-surface-active);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: var(--size-1);
+}
+
+[data-part="mesh-channel-mark"] {
+  flex: none;
+  width: var(--status-dot-size);
+  height: var(--status-dot-size);
+  overflow: hidden;
+  border: 1.5px solid var(--text-faint);
+  border-radius: var(--radius-round);
+  font-size: 0;
+}
+
+[data-part="mesh-channel"]:has([data-part="mesh-unassign"]:not([hidden]))
+  [data-part="mesh-channel-mark"] {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+[data-part="mesh-channel"]:has([data-part="mesh-unassign"]:not([hidden]))
+  [data-part="mesh-channel-holder"] {
+  color: var(--text);
+}
+
+/* Free, the holder line reads "unassigned"; shown, it starts a phrase. */
+[data-part="mesh-channel"]:not(:has([data-part="mesh-unassign"]:not([hidden])))
+  [data-part="mesh-channel-holder"]::first-letter {
+  text-transform: uppercase;
+}
+
+/* A channel's Assign is the node's Assign: the app's own button. Unassign
+   undoes, so it is the same button in grey words. Armed, an Assign holds a
+   blue tint and edge until a dot on the plan is clicked. */
+[data-part="mesh-channel"]
+  > [data-part="tree-line"]
+  > [data-part="mesh-assign"],
+[data-part="mesh-channel"]
+  > [data-part="tree-line"]
+  > [data-part="mesh-unassign"] {
+  min-height: calc(var(--row-height) + var(--space-3));
+  padding-inline: var(--space-5);
+  box-shadow: none;
+  font-weight: 500;
+}
+
+[data-part="mesh-channel"]
+  > [data-part="tree-line"]
+  > [data-part="mesh-unassign"] {
+  color: var(--text-muted);
+}
+
+[data-part="mesh-channel"]
+  > [data-part="tree-line"]
+  > [data-part="mesh-unassign"]:hover {
+  color: var(--text);
+}
+
+[data-part="mesh-node"] [data-part="mesh-assign"][aria-pressed="true"] {
+  border-color: var(--accent-soft);
+  background: var(--accent-surface);
+  color: var(--accent-strong);
+}
+
+/* The controls start where the channel's tag does: at the channel's depth,
+   inside its line's edge. */
+[data-part="mesh-channel"] [data-part="mesh-controls"] {
+  column-gap: var(--space-4);
+  row-gap: var(--space-3);
+  padding-block: var(--space-1) var(--space-4);
+  padding-inline-start: calc(
+    var(--tree-indent) * var(--tree-level, 0) + var(--border-width)
+  );
+}
+
+[data-part="mesh-channel"] [data-part="mesh-control-name"],
+[data-part="mesh-channel"] [data-part="mesh-control-value"],
+[data-part="mesh-channel"] [data-part="mesh-onoff-state"] {
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="mesh-channel"] [data-part="mesh-control-value"] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* A heard state or value may read "unknown"; shown, it is capitalised. */
+[data-part="mesh-channel"] [data-part="mesh-control-value"],
+[data-part="mesh-channel"] [data-part="mesh-onoff-state"] {
+  display: inline-block;
+}
+
+[data-part="mesh-channel"] [data-part="mesh-control-value"]::first-letter,
+[data-part="mesh-channel"] [data-part="mesh-onoff-state"]::first-letter {
+  text-transform: uppercase;
+}
+
+[data-part="mesh-channel"] [data-part="mesh-controls"] input[type="range"] {
+  width: 100%;
+}
+
+/* What the lamp last said is a status, not a control, so it is a tag, as
+   Not backed up is. Its word says it, so the typed mark, which a font draws
+   at uneven sizes, is not shown. Before the lamp says anything the mark is
+   empty, and the tag is dashed and faint. */
+[data-part="mesh-channel"] [data-part="mesh-onoff-heard"] {
+  display: inline-flex;
+  justify-self: end;
+  align-items: center;
+  padding-inline: var(--space-4);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--control-surface);
+  white-space: nowrap;
+}
+
+[data-part="mesh-channel"]
+  [data-part="mesh-onoff-heard"]
+  > [data-part="mesh-onoff-state"] {
+  color: var(--text);
+  font-weight: 500;
+}
+
+[data-part="mesh-channel"]
+  [data-part="mesh-onoff-heard"]:has(> [data-part="mesh-onoff-mark"]:empty) {
+  border-style: dashed;
+  background: transparent;
+}
+
+[data-part="mesh-channel"]
+  [data-part="mesh-onoff-heard"]:has(> [data-part="mesh-onoff-mark"]:empty)
+  > [data-part="mesh-onoff-state"] {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+[data-part="mesh-channel"] [data-part="mesh-onoff-mark"] {
+  display: none;
+}
+
+/* On and Off are one joined pair, as Undo and Redo are in the header. */
+[data-part="mesh-channel"] [data-part="mesh-onoff-buttons"] {
+  display: inline-flex;
+  justify-self: start;
+  overflow: hidden;
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+}
+
+[data-part="mesh-channel"] [data-part="mesh-on"],
+[data-part="mesh-channel"] [data-part="mesh-off"] {
+  min-height: calc(var(--row-height) + var(--space-3));
+  padding-inline: var(--space-5);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-weight: 500;
+}
+
+[data-part="mesh-channel"] [data-part="mesh-on"]:hover,
+[data-part="mesh-channel"] [data-part="mesh-off"]:hover {
+  background: var(--control-surface-hover);
+}
+
+[data-part="mesh-channel"] [data-part="mesh-off"] {
+  border-inline-start: var(--border-width) solid var(--border);
+}
+
+/* The models, on the inset band the upload note's card uses. */
+[data-part="mesh-node"] > [data-part="mesh-models"] {
+  padding-block-end: var(--space-4);
+  padding-inline-end: var(--space-4);
+  border-top: var(--border-width) solid var(--border);
+  background: var(--surface-inset);
+}
+
+[data-part="mesh-models"] > [data-part="tree-line"] {
+  min-height: calc(var(--control-icon-size) + var(--space-5));
+  color: var(--text-muted);
+  font-size: var(--size-1);
+  font-weight: 600;
+}
+
+/* A Nearby row: an icon tile, the name, its signal, and Add. */
+[data-part="mesh-nearby-row"] > [data-part="tree-line"] {
+  min-height: var(--mesh-row-height);
+  gap: var(--space-4);
+}
+
+[data-part="mesh-icon"] {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--mesh-tile-size);
+  height: var(--mesh-tile-size);
+  border: var(--border-width) solid var(--device-icon-border);
+  border-radius: var(--radius-sm);
+  background: var(--accent-surface);
+  color: var(--accent-strong);
+}
+
+[data-part="mesh-icon"] svg {
+  width: calc(var(--mesh-tile-size) - var(--space-4));
+  height: calc(var(--mesh-tile-size) - var(--space-4));
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.3;
+}
+
+[data-part="mesh-signal"] {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Every row's number takes one width, so the bars line up down the list. */
+[data-part="mesh-rssi"] {
+  min-width: 4ch;
+  text-align: end;
+}
+
+/*
+ * Four bars, filled up to the band the script names, which is the band the
+ * bars' own text was drawn from. That text stays out of sight; the number
+ * beside the bars is what is read, so strength never rests on the bars.
+ * Their sizes are this mark's own.
+ */
+[data-part="mesh-bars"] {
+  --bar-1: var(--border-strong);
+  --bar-2: var(--border-strong);
+  --bar-3: var(--border-strong);
+  --bar-4: var(--border-strong);
+  display: inline-block;
+  width: 15px;
+  height: 12px;
+  overflow: hidden;
+  color: transparent;
+  font-size: 0;
+  background:
+    linear-gradient(var(--bar-1), var(--bar-1)) 0 100% / 3px 25% no-repeat,
+    linear-gradient(var(--bar-2), var(--bar-2)) 4px 100% / 3px 50% no-repeat,
+    linear-gradient(var(--bar-3), var(--bar-3)) 8px 100% / 3px 75% no-repeat,
+    linear-gradient(var(--bar-4), var(--bar-4)) 12px 100% / 3px 100% no-repeat;
+}
+
+[data-part="mesh-bars"][data-state] {
+  --bar-1: var(--ink);
+}
+
+[data-part="mesh-bars"]:is(
+  [data-state~="fair"],
+  [data-state~="good"],
+  [data-state~="excellent"]
+) {
+  --bar-2: var(--ink);
+}
+
+[data-part="mesh-bars"]:is([data-state~="good"], [data-state~="excellent"]) {
+  --bar-3: var(--ink);
+}
+
+[data-part="mesh-bars"][data-state~="excellent"] {
+  --bar-4: var(--ink);
+}
+
+/* Add is a quiet button, the height of the pane's other quiet buttons. */
+[data-part="mesh-add"] {
+  min-height: calc(var(--row-height) + var(--space-3));
+  padding-inline: var(--space-5);
+  box-shadow: none;
+  font-weight: 500;
+}
+
+/* Add's steps read as one breadcrumb, and wrap rather than truncate. They
+   and a failure line start under the device's name. */
+[data-part="mesh-steps"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-2);
+  padding-inline-start: calc(
+    var(--tree-indent) * var(--tree-level, 0) + var(--mesh-tile-size) +
+      var(--space-4)
+  );
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="mesh-step"] + [data-part="mesh-step"]::before {
+  content: "›" / "";
+  margin-inline-end: var(--space-2);
+  color: var(--text-faint);
+}
+
+[data-part="mesh-add-failure"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding-block-end: var(--space-4);
+  padding-inline-start: calc(
+    var(--tree-indent) * var(--tree-level, 0) + var(--mesh-tile-size) +
+      var(--space-4)
+  );
+}
+
+/* One row per control: name, control, and last reported value. */
+[data-part="mesh-controls"] {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr) max-content;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline-start: calc(var(--tree-indent) * 3);
+}
+
+:is(
+  [data-part="mesh-onoff"],
+  [data-part="mesh-lightness"],
+  [data-part="mesh-temperature"]
+) {
+  display: contents;
+}
+
+[data-part="mesh-controls-name"] {
+  grid-column: 1 / -1;
+}
+
+[data-part="mesh-channel"] [data-part="mesh-controls-name"],
+[data-part="app"]:has([data-part="mesh"]:not([data-state~="connected"]))
+  :is(
+    [data-part="mesh-controls"],
+    [data-part="mesh-blink"],
+    [data-part="mesh-card-blink"]
+  ) {
+  display: none;
+}
+
+/*
+ * A node's menu is drawn as the network menu is: one card, its features as a
+ * quiet note on top, then Blink, Remove from network and Forget node as rows
+ * of mark and words that tint under the pointer or the keyboard. Remove resets
+ * the device, so it is red, as Delete is in a sidebar menu; (i) sits beside
+ * the two. A confirm takes the rows' place alone: the question, then the red
+ * confirm and Cancel. A state, not the hidden attribute: a Chromium snapshot
+ * drops hidden elements.
+ */
+[data-part="tree-props-popover"]:has([data-part="mesh-node-actions"]) {
+  width: 19rem;
+  padding: var(--space-2);
+  border-color: var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--ink);
+  box-shadow: var(--shadow-menu);
+  position-area: block-end span-inline-start;
+}
+
+[data-part="tree-props-popover"]:has(
+    [data-part="mesh-node-actions"]
+  ):popover-open {
+  gap: 0;
+}
+
+/* Hairlines set the features, Blink and the actions apart. With Blink gone,
+   the actions' line lies on the features' line, so one shows. */
+[data-part="tree-props-popover"] > [data-part="mesh-node-features"] {
+  padding: var(--space-3) var(--space-5) var(--space-4);
+  border-bottom: var(--border-width) solid var(--border);
+  font-size: var(--size-1);
+}
+
+[data-part="mesh-blink"],
+[data-part="mesh-remove-start"],
+[data-part="mesh-forget-start"] {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-5);
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  box-shadow: none;
+  color: var(--ink);
+  font-weight: 500;
+  text-align: start;
+}
+
+[data-part="mesh-blink"]:is(:hover, :focus-visible),
+[data-part="mesh-forget-start"]:is(:hover, :focus-visible) {
+  background: var(--control-surface-hover);
+  outline: none;
+}
+
+[data-part="mesh-remove-start"] {
+  color: var(--danger);
+}
+
+[data-part="mesh-remove-start"]:is(:hover, :focus-visible) {
+  background: var(--danger-surface-hover);
+  outline: none;
+}
+
+:is(
+    [data-part="mesh-blink"],
+    [data-part="mesh-remove-start"],
+    [data-part="mesh-forget-start"]
+  )
+  svg {
+  flex: none;
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.3;
+}
+
+:is([data-part="mesh-blink"], [data-part="mesh-forget-start"]) svg {
+  color: var(--text-muted);
+}
+
+[data-part="tree-props-popover"] > [data-part="mesh-blink"] {
+  margin-block: var(--space-2);
+}
+
+[data-part="mesh-node-actions"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--space-2);
+  margin-block-start: calc(var(--border-width) * -1);
+  padding-block-start: var(--space-2);
+  border-top: var(--border-width) solid var(--border);
+}
+
+[data-part="mesh-node-actions"] > [data-part="mesh-remove"],
+[data-part="mesh-node-actions"] > [data-part="mesh-forget"] {
+  grid-column: 1;
+}
+
+[data-part="mesh-node-actions"] > [data-part="mesh-node-help-toggle"] {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
+[data-part="mesh-node-actions"] > [data-state~="confirming"],
+[data-part="mesh-node-actions"] > [data-part="mesh-remove-alert"] {
+  grid-column: 1 / -1;
+}
+
+[data-part="mesh-remove"],
+[data-part="mesh-forget"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+:is(
+  [data-part="mesh-remove"],
+  [data-part="mesh-forget"]
+)[data-state~="confirming"],
+[data-part="mesh-remove-alert"] {
+  padding: var(--space-3) var(--space-5) var(--space-4);
+}
+
+[data-part="mesh-remove-confirm"],
+[data-part="mesh-remove-cancel"],
+[data-part="mesh-forget-confirm"],
+[data-part="mesh-forget-cancel"] {
+  min-height: calc(var(--row-height) + var(--space-3));
+  padding-inline: var(--space-5);
+  font-weight: 500;
+}
+
+[data-part="mesh-remove-confirm"],
+[data-part="mesh-forget-confirm"] {
+  border-color: var(--danger-border);
+  background: var(--danger-surface);
+}
+
+[data-part="mesh-remove-confirm"]:hover,
+[data-part="mesh-forget-confirm"]:hover {
+  background: var(--danger-surface-hover);
+}
+
+[data-part="mesh-remove-prompt"],
+[data-part="mesh-forget-prompt"],
+[data-part="mesh-remove-alert"],
+:is(
+  [data-part="mesh-remove"],
+  [data-part="mesh-forget"]
+)[data-state~="confirming"] {
+  flex-basis: 100%;
+}
+
+:is([data-part="mesh-remove"], [data-part="mesh-forget"]):not(
+    [data-state~="confirming"]
+  )
+  > :not([data-part="mesh-remove-start"], [data-part="mesh-forget-start"]),
+:is(
+    [data-part="mesh-remove"],
+    [data-part="mesh-forget"]
+  )[data-state~="confirming"]
+  > :is([data-part="mesh-remove-start"], [data-part="mesh-forget-start"]),
+[data-part="mesh-node-actions"]:has(> [data-state~="confirming"])
+  > :not([data-state~="confirming"]),
+[data-part="mesh-remove-alert"]:not([data-state~="alerting"]) {
+  display: none;
+}
+
+[data-part="mesh-remove-confirm"],
+[data-part="mesh-forget-confirm"],
+[data-part="mesh-remove-alert"] {
+  color: var(--danger);
+}
+
+[data-part="mesh-node-help-toggle"] {
+  margin-inline: auto var(--space-2);
+  width: var(--control-icon-size);
+  height: var(--control-icon-size);
+  padding: 0;
+  border-radius: var(--radius-round);
+  font-style: italic;
+}
+
+/* Node and dot conflict badges use the same color. */
+[data-part="mesh-node-conflict"] {
+  color: var(--danger);
+}
+
+/* Keep group Apply below the group name. */
+[data-part="tree-line"]:has(> [data-part="mesh-apply-block"]:not([hidden])) {
+  flex-wrap: wrap;
+}
+
+[data-anchor="group"][data-part="tree-line"] > [data-part="tree-actions"] {
+  inset-block: var(--space-4) auto;
+  height: var(--row-height);
+}
+
+[data-part="mesh-apply-block"] {
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block-end: var(--space-1);
+  padding-inline-start: var(--tree-indent);
+}
+
+[data-part="mesh-apply-results"] {
+  flex-basis: 100%;
+  margin: 0;
+  padding-left: var(--space-4);
+  list-style: none;
+}
+
+/* Every model of a node shares one grid, so its name, keys and pub/sub line
+   up in columns across elements. Each element is a box, as a node is, headed
+   by its name on the control surface; its edges sit in the cells, so the
+   columns stay shared. */
+[data-part="mesh-model-elements"] {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) max-content minmax(0, 1fr);
+  gap: var(--space-3) var(--space-4);
+  margin: 0;
+  padding: 0 0 0 calc(var(--tree-indent) * 3);
+  font-size: var(--size-1);
+}
+
+[data-part="mesh-model-elements"],
+[data-part="mesh-element-models"] {
+  list-style: none;
+}
+
+[data-part="mesh-element"],
+[data-part="mesh-element-models"],
+[data-part="mesh-model"] {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  margin: 0;
+  padding: 0;
+}
+
+[data-part="mesh-element"] {
+  overflow: hidden;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+}
+
+[data-part="mesh-element-name"] {
+  grid-column: 1 / -1;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--border-width) solid var(--border);
+  background: var(--control-surface);
+  color: var(--text);
+  font-weight: 600;
+}
+
+[data-part="mesh-element-models"] {
+  padding-block: var(--space-2);
+  color: var(--text-muted);
+}
+
+[data-part="mesh-model"] {
+  align-items: center;
+  min-height: calc(var(--row-height) + var(--space-3));
+}
+
+[data-part="mesh-model-name"] {
+  overflow: hidden;
+  padding-inline-start: var(--space-4);
+  color: var(--text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-part="mesh-model-routes"] {
+  padding-inline-end: var(--space-4);
+}
+
+/* The keys a model is bound with read as one neutral tag; none, no tag. */
+[data-part="mesh-model-keys"] {
+  justify-self: start;
+  padding: 0 var(--space-3);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--control-surface);
+  white-space: nowrap;
+}
+
+[data-part="mesh-model-keys"]:empty {
+  padding: 0;
+  border: 0;
+}
+
+/* A node card too narrow for its rows, as in a pane dragged to its least:
+   Assign drops under the address, so the name keeps the width to be read;
+   each control takes a line under its name and value; and the models step
+   in less. */
+@container mesh-node (max-width: 290px) {
+  [data-part="mesh-node"] > [data-part="tree-line"] {
+    grid-template-rows: auto auto auto;
+  }
+
+  [data-part="mesh-node"]
+    > [data-part="tree-line"]
+    > [data-part="mesh-assign"] {
+    grid-column: 3 / 5;
+    grid-row: 3;
+    justify-self: start;
+    margin-block-start: var(--space-3);
+  }
+
+  [data-part="mesh-channel"] [data-part="mesh-controls"] {
+    grid-template-columns: minmax(0, 1fr) max-content;
+    grid-auto-flow: row dense;
+  }
+
+  [data-part="mesh-channel"] [data-part="mesh-onoff-buttons"],
+  [data-part="mesh-channel"] [data-part="mesh-controls"] input[type="range"] {
+    grid-column: 1 / -1;
+  }
+
+  [data-part="mesh-model-elements"] {
+    padding-inline-start: var(--tree-indent);
+  }
+}
+
+[data-part="mesh-channel-holder"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The selected dot's card, placed beside dot by Mesh pane. */
+[data-part="mesh-card"] {
+  position: absolute;
+  top: var(--dot-top, 0);
+  left: var(--dot-right, 0);
+  margin-left: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-dialog);
+}
+
+[data-part="mesh-card-held"] {
+  display: grid;
+  gap: var(--space-2);
+}
+
+[data-part="mesh-card"] p {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+/* Keep the dot's visible name above it; the Mesh card opens on the right. */
+[data-part="mesh-dot-detail"] {
+  position: absolute;
+  top: var(--dot-top, 0);
+  left: var(--detail-left, 0);
+  transform: translateY(-100%);
+  margin: calc(-1 * var(--space-2)) 0 0;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--text);
+  color: var(--surface-raised);
+  font-size: var(--size-1);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Dim assigned dots in Assign mode but keep them available for replacement. */
+[data-part="app"]:has([data-part="mesh"][data-state~="assigning"])
+  [data-part="surface-device"] {
+  cursor: pointer;
+}
+
+[data-part="app"]:has([data-part="mesh"][data-state~="assigning"])
+  [data-part="surface-device"][data-state~="assigned"],
+[data-part="app"]:has([data-part="mesh"][data-state~="assigning"])
+  [data-part="surface-device"][data-state~="assigned"]
+  + [data-part="surface-dot"] {
+  opacity: 0.4;
+}
+
+[data-part="mesh-log-text"] {
+  margin: 0;
+  font-size: var(--size-1);
+  white-space: pre-wrap;
+}
+
+[data-part="mesh"][data-state~="connected"] [data-part="mesh-node-offline"],
+[data-part="mesh-nearby-row"]:not([data-state~="adding"]):not(
+    [data-state~="failed"]
+  )
+  [data-part="mesh-steps"],
+[data-part="mesh-nearby-row"]:not([data-state~="failed"])
+  [data-part="mesh-add-failure"],
+[data-part="mesh-nearby-row"]:is([data-state~="adding"], [data-state~="failed"])
+  [data-part="mesh-add"] {
+  display: none;
+}
+
+[data-part="surface-help"],
+[data-part="tree-opacity-label"],
+[data-part="surface-announcer"],
+[data-part="mesh-announcer"],
+[data-part="mesh-via-legend"],
+[data-part="mesh-network-label"],
+[data-part="mesh-separator"],
+[data-part="mesh-node-unicast"],
+[data-part="mesh-count-bracket"],
+[data-part="mesh-step-state"],
+[data-part="mesh-pill-label"],
+[data-part="status-update-description"],
+[data-part="demo-sign"]:not([data-state~="demo"]) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* What the plan refuses, at its top for a moment; the announcer says it to
+   assistive technology. It never takes the pointer. */
+[data-part="surface-notice"] {
+  position: absolute;
+  inset: var(--space-6) 0 auto;
+  z-index: var(--layer-message);
+  width: max-content;
+  max-width: calc(100% - 2 * var(--space-6));
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--surface-raised);
+  font-size: var(--size-2);
+  box-shadow: var(--shadow-dialog);
+  pointer-events: none;
+}
+
+[data-part="status"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  border-top: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="status"] > [data-part^="status-"] {
+  white-space: nowrap;
+}
+
+[data-part="demo-sign"] {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  color: var(--notice-strong);
+  font-weight: 600;
+}
+
+/*
+ * The prompt line names what the armed mode expects next. One mode, one
+ * sentence, and nothing at all when no mode is armed.
+ */
+[data-part="status-hint"] {
+  flex: 1 1 auto;
+  text-align: center;
+  color: var(--text-faint);
+}
+
+:root[data-mode="idle"] [data-part="status-hint"]::after {
+  content: "Select an Area, application, group or device type";
+}
+
+:root[data-mode="area"] [data-part="status-hint"]::after {
+  content: "Set a background, or add an application";
+}
+
+:root[data-mode="application"] [data-part="status-hint"]::after {
+  content: "Add groups and device";
+}
+
+:root[data-mode="group"] [data-part="status-hint"]::after {
+  content: "Enter twice to draw — Esc to stop";
+}
+
+/* A hidden group is not drawn; the mode says so, and the prompt says how. */
+:root[data-mode="group"]
+  [data-part="status-hint"][data-state~="hidden-group"]::after {
+  content: "Show the group with its eye to draw it";
+}
+
+:root[data-mode="device-type"] [data-part="status-hint"]::after {
+  content: "Enter to place — Esc to stop";
+}
+
+:root[data-mode="device"] [data-part="status-hint"]::after {
+  content: "Arrows to move, Shift + Arrows for fine tune — Del to remove";
+}
+
+[data-part="app"]:has([data-part="mesh"][data-state~="assigning"])
+  [data-part="status-hint"]::after {
+  content: "Click or Enter on a device to assign — Esc to stop";
+}
+
+/* A rule rather than a "·" character: these are live regions, and injected
+   text is announced. */
+[data-part="status"] > [data-part^="status-"] + [data-part^="status-"] {
+  padding-inline-start: var(--space-4);
+  border-inline-start: 1px solid var(--border);
+}
+
+body[data-screen="project"] [data-part="screen-project"] {
+  display: block;
+}
+
+body[data-screen]:not([data-screen="project"]) [data-part="screen-project"] {
+  display: none;
+}
+
+/* ---- 4. Controls -------------------------------------------------------- */
+
+button {
+  display: inline-flex;
+  min-height: var(--row-height);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-1);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--size-2);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast),
+    border-color var(--motion-fast);
+}
+
+button:hover {
+  background: var(--control-surface-hover);
+}
+
+button:active {
+  background: var(--control-surface-active);
+  box-shadow: none;
+}
+
+button:disabled {
+  box-shadow: none;
+  color: var(--text-faint);
+  cursor: default;
+}
+
+/* The header is three areas: the brand, as wide as the workflow panel beneath
+   it so their edges meet; the tools; and the status at the far end. They wrap
+   rather than clip, so every control stays reachable as the window narrows. */
+[data-part="tree-toolbar"] {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-6);
+  padding-inline-end: var(--space-6);
+}
+
+[data-part="toolbar-brand"] {
+  display: flex;
+  /* Its border lands on the splitter's line, just past the panel's edge. */
+  flex: 0 0 calc(var(--workflow-width) + var(--border-width));
+  align-items: center;
+  align-self: stretch;
+  padding-inline: var(--space-6);
+  border-inline-end: var(--border-width) solid var(--border);
+}
+
+[data-part="brand-logo"] {
+  display: block;
+  width: auto;
+  height: var(--brand-logo-height);
+}
+
+/* The logo's colours, as the logo kit gives them. */
+[data-part="brand-tile"],
+[data-part="brand-node-empty"] {
+  fill: var(--accent);
+}
+
+[data-part="brand-z"],
+[data-part^="brand-node-"] {
+  stroke: var(--surface-raised);
+}
+
+[data-part="brand-node-light"] {
+  fill: var(--control-surface-active);
+}
+
+[data-part="brand-node-mid"],
+[data-part="brand-name-mesh"] {
+  fill: var(--text-muted);
+}
+
+[data-part="brand-node-dark"],
+[data-part="brand-name-ze"] {
+  fill: var(--ink);
+}
+
+[data-part="toolbar-tools"],
+[data-part="toolbar-status"],
+[data-part="toolbar-group-edit"],
+[data-part="toolbar-group-help"],
+[data-part="view-controls"] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+[data-part="toolbar-tools"],
+[data-part="toolbar-status"] {
+  gap: var(--space-4);
+}
+
+/* Status sits at the far end. Anything a development build adds follows it,
+   so this stylesheet needs no rule for a part production never renders. */
+[data-part="toolbar-status"] {
+  margin-inline-start: auto;
+}
+
+[data-part="tree-toolbar"] button,
+[data-part="view-controls"] button {
+  width: var(--control-icon-size);
+  height: var(--control-icon-size);
+  min-height: var(--control-icon-size);
+  padding: 0;
+  border-color: transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  box-shadow: none;
+}
+
+[data-part="tree-toolbar"] button:hover,
+[data-part="view-controls"] button:hover {
+  background: var(--control-surface-hover);
+}
+
+[data-part="tree-toolbar"] button:active,
+[data-part="view-controls"] button:active,
+[data-part="view-controls"] button[aria-pressed="true"] {
+  background: var(--control-surface-active);
+}
+
+[data-part="tree-toolbar"] button svg,
+[data-part="view-controls"] svg {
+  display: block;
+  width: var(--space-5);
+  height: var(--space-5);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+/* The header's tools are bordered boxes, a mark and often a word in each.
+   Each selector names its button, so it outranks the icon-button rule above. */
+[data-part="toolbar-group-edit"] > button,
+[data-part="toolbar-group-zoom"] > button,
+button[data-part="toolbar-zoom-reset"],
+button[data-part="toolbar-settings"] {
+  width: auto;
+  gap: var(--space-3);
+  padding: 0 var(--space-5);
+  background: var(--surface-raised);
+  font-weight: 500;
+}
+
+[data-part="toolbar-group-edit"] > button svg,
+[data-part="toolbar-group-zoom"] > button svg,
+button[data-part="toolbar-zoom-reset"] svg,
+button[data-part="toolbar-settings"] svg {
+  width: var(--header-icon-size);
+  height: var(--header-icon-size);
+}
+
+button[data-part="toolbar-zoom-reset"],
+button[data-part="toolbar-settings"] {
+  height: var(--header-control-height);
+  min-height: var(--header-control-height);
+  border-color: var(--border-strong);
+}
+
+/* Settings looks pressed while its window is open. */
+button[data-part="toolbar-settings"][aria-expanded="true"] {
+  border-color: var(--device-icon-border);
+  background: var(--accent-surface);
+  color: var(--accent-strong);
+}
+
+/* Undo and Redo, and the zoom controls, each read as one joined control: one
+   border round the group, a hairline between its parts. */
+[data-part="toolbar-group-edit"],
+[data-part="toolbar-group-zoom"] {
+  display: inline-flex;
+  height: var(--header-control-height);
+  align-items: stretch;
+  gap: 0;
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+}
+
+[data-part="toolbar-group-edit"] > button,
+[data-part="toolbar-group-zoom"] > button {
+  height: auto;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+[data-part="toolbar-group-edit"] > button:not(:first-child),
+[data-part="toolbar-group-zoom"] > button:not(:first-child),
+[data-part="toolbar-group-zoom"] > [data-part="view-zoom-value"] {
+  border-inline-start: var(--border-width) solid var(--border);
+}
+
+/* Inside the group's border, so a tint stops at its rounded corners. */
+[data-part="toolbar-group-edit"] > button:first-child,
+[data-part="toolbar-group-zoom"] > button:first-child {
+  border-start-start-radius: calc(var(--radius) - var(--border-width));
+  border-end-start-radius: calc(var(--radius) - var(--border-width));
+}
+
+[data-part="toolbar-group-edit"] > button:last-child,
+[data-part="toolbar-group-zoom"] > button:last-child {
+  border-start-end-radius: calc(var(--radius) - var(--border-width));
+  border-end-end-radius: calc(var(--radius) - var(--border-width));
+}
+
+/* Nothing to undo is a resting button, not one that answers the pointer. */
+[data-part="toolbar-group-edit"] button:disabled {
+  background: var(--surface-raised);
+}
+
+/* The header's zoom readout: the same value the status bar shows. Its digits
+   keep one width, so the group does not shift as the zoom changes. */
+[data-part="toolbar-group-zoom"] [data-part="view-zoom-value"] {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--space-5);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* A hairline between the header's tool groups. */
+[data-part="toolbar-separator"] {
+  width: var(--border-width);
+  height: var(--header-separator-height);
+  background: var(--border);
+}
+
+/* Until the Mesh pane names a state, the pill has nothing to say. */
+[data-part="mesh-pill"]:not([data-state]),
+[data-part="mesh-pill"]:not([data-state]) + [data-part="toolbar-separator"] {
+  display: none;
+}
+
+/* The header's Mesh pill: a dot and words, coloured by its state. The dot
+   carries the state's colour in --dot, and glows softly in it; the words
+   take the darker step of the same hue, so they stay readable on the pill's
+   surface. */
+[data-part="mesh-pill"] {
+  --dot: var(--text-faint);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  padding: var(--space-2) var(--space-5);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface-inset);
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* A size of its own, not a spacing step: nothing else is this dot. */
+[data-part="mesh-pill-dot"] {
+  position: relative;
+  width: var(--status-dot-size);
+  height: var(--status-dot-size);
+  border-radius: var(--radius-round);
+  background: var(--dot);
+}
+
+/* The glow is a layer of its own, so it can fade without the dot fading. */
+[data-part="mesh-pill-dot"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 var(--space-3) var(--dot);
+  opacity: 0.5;
+}
+
+[data-part="mesh-pill-detail"] {
+  display: inline-flex;
+  gap: var(--space-3);
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+[data-part="mesh-pill-detail"]:has([data-part="mesh-pill-detail-text"]:empty) {
+  display: none;
+}
+
+[data-part="mesh-pill"][data-state~="connected"] {
+  --dot: var(--success);
+  border-color: var(--success-border);
+  background: var(--success-surface);
+  color: var(--success-strong);
+}
+
+[data-part="mesh-pill"][data-state~="loading"] {
+  --dot: var(--accent);
+  color: var(--accent-strong);
+}
+
+[data-part="mesh-pill"]:is(
+  [data-state~="unreached"],
+  [data-state~="unreachable"]
+) {
+  --dot: var(--notice);
+  color: var(--notice-strong);
+}
+
+[data-part="mesh-pill"]:is([data-state~="unplugged"], [data-state~="missing"]) {
+  --dot: var(--danger);
+  border-color: var(--danger-border);
+  background: var(--danger-surface);
+  color: var(--danger-strong);
+}
+
+/* The reset control shows the zoom it resets, so its box carries digits rather
+   than a mark. */
+[data-part="view-zoom-reset"] {
+  width: auto;
+  padding: 0 var(--space-2);
+  font-size: var(--size-1);
+  font-variant-numeric: tabular-nums;
+}
+
+[data-part="view-controls"] {
+  margin-inline-start: auto;
+}
+
+[data-part="view-spacing-label"] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+[data-part="view-spacing"] {
+  width: var(--control-number-width);
+  min-height: var(--control-icon-size);
+  padding: 0 0 0 var(--space-2);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--size-1);
+}
+
+[data-part="grid-layer"][data-state~="hidden"] {
+  display: none;
+}
+
+input[type="text"] {
+  min-height: var(--row-height);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--size-2);
+  background: var(--row-tint, transparent);
+}
+
+input[type="text"]:focus-visible {
+  border-color: var(--accent);
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+input[type="file"] {
+  font-size: var(--size-1);
+}
+
+input[type="color"] {
+  width: var(--control-size);
+  height: var(--control-size);
+  padding: var(--space-2);
+  border: none;
+  border-radius: var(--radius-round);
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  z-index: var(--layer-actions);
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch,
+input[type="color"]::-moz-color-swatch {
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-round);
+}
+
+/* Row controls stay in the layout and accessibility tree while quiet at rest. */
+[data-act="delete"],
+[data-act^="add-"],
+[data-part="tree-add-application"],
+[data-part="mesh-pick"],
+[data-part="tree-background"],
+[data-part="tree-props-toggle"] {
+  position: relative;
+  z-index: var(--layer-actions);
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: var(--control-size);
+  height: var(--control-size);
+  min-height: var(--control-size);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: var(--border-width) none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-muted);
+  font-size: var(--size-2);
+  line-height: 1;
+  cursor: pointer;
+}
+
+[data-act="delete"]:hover,
+[data-act^="add-"]:hover,
+[data-part="tree-add-application"]:not([aria-disabled="true"]):hover,
+[data-part="mesh-pick"]:hover,
+[data-part="tree-background"]:hover,
+[data-part="tree-props-toggle"]:hover {
+  background: var(--control-surface-hover);
+  color: var(--text);
+}
+
+[data-act="delete"]:hover {
+  color: var(--danger);
+}
+
+[data-part="tree-background"] svg,
+[data-part="tree-props-toggle"] svg {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+
+/* An Area's background is set from its card in the Area's body, not from its
+   row: the upload card while it has none, the background card once it has one
+   (ADR-0031). */
+[data-part="tree-background"] {
+  overflow: hidden;
+}
+
+/*
+ * Add controls are named by their words and always visible: a tablet has no
+ * hover to reveal them. The plus is decoration.
+ */
+[data-act^="add-"],
+[data-part="tree-add-application"] {
+  order: 1;
+  width: auto;
+  gap: var(--space-1);
+  padding-inline: var(--space-2);
+  font-size: var(--size-1);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+[data-act^="add-"] svg,
+[data-part="tree-add-application"] svg {
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
+/* An Area's Add Application closes its list of applications. With Lighting
+   and HVAC both in the Area it is faint, and still focusable to say why. */
+[data-part="tree-add-application"] {
+  width: calc(100% - 2 * var(--area-inset));
+  height: calc(var(--row-height) + var(--space-5));
+  margin-block: var(--space-5) 0;
+  margin-inline: var(--area-inset);
+  border: var(--border-width) dashed var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: var(--size-2);
+  font-weight: 500;
+}
+
+[data-part="tree-add-application"][aria-disabled="true"] {
+  border-color: var(--border);
+  color: var(--text-faint);
+  cursor: default;
+}
+
+/* Delete is the last action in a row's popover, set apart as destructive;
+   no row carries it but an application's header (ADR-0046). */
+[data-part="tree-props-popover"] [data-act="delete"] {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: var(--control-icon-size);
+  border: var(--border-width) solid var(--danger-border);
+  border-radius: var(--radius);
+  color: var(--danger);
+}
+
+/* On a Mesh-pane row and the project row, opacity hides the properties
+   menu at rest and keeps it tabbable and announced. The tree's anchors
+   show theirs at rest, below. */
+[data-part="tree-props-toggle"] {
+  opacity: 0;
+}
+
+[data-part="tree-line"]:is(
+    :hover,
+    :focus-within,
+    :has(input[name="planner-selection"]:checked)
+  )
+  [data-part="tree-props-toggle"] {
+  opacity: 1;
+}
+
+/* Every Area, application, group and device type shows its menu at rest; a
+   group's row is its own line. */
+:is(
+    [data-anchor="area"],
+    [data-anchor="application"],
+    [data-anchor="deviceType"]
+  )
+  > [data-part="tree-line"]
+  [data-part="tree-props-toggle"],
+[data-anchor="group"][data-part="tree-line"] [data-part="tree-props-toggle"] {
+  opacity: 1;
+}
+
+/*
+ * In the tree the properties menu is a quiet button, like the section add
+ * controls: bare dots at rest, a filled tile on hover and while its menu is
+ * open, so an open menu names its row. Its dots are drawn at the icon's own
+ * size, onto whole pixels, so they stay sharp. The Mesh pane's network row
+ * shares it; the pane's node menus keep their own.
+ */
+:is(
+    [data-part="tree-list"],
+    [data-part="mesh-network-row"],
+    [data-part="mesh-node-list"]
+  )
+  [data-part="tree-props-toggle"] {
+  width: var(--control-icon-size);
+  height: var(--control-icon-size);
+  min-height: var(--control-icon-size);
+  border-radius: var(--radius);
+  color: var(--control-text-quiet);
+}
+
+:is(
+    [data-part="tree-list"],
+    [data-part="mesh-network-row"],
+    [data-part="mesh-node-list"]
+  )
+  [data-part="tree-props-toggle"]:hover,
+[data-part="tree-list"]
+  [data-anchor]:has(> [data-part="tree-props-popover"]:popover-open)
+  > :is([data-part="tree-line"], [data-part="tree-actions"])
+  [data-part="tree-props-toggle"],
+[data-part="mesh-network-row"]:has(
+    > [data-part="tree-props-popover"]:popover-open
+  )
+  [data-part="tree-props-toggle"],
+[data-part="mesh-node"]
+  > [data-part="tree-line"]:has(> [data-part="tree-props-popover"]:popover-open)
+  > [data-part="tree-props-toggle"] {
+  background: var(--control-surface-hover);
+  color: var(--text);
+}
+
+:is(
+    [data-part="tree-list"],
+    [data-part="mesh-network-row"],
+    [data-part="mesh-node-list"]
+  )
+  [data-part="tree-props-toggle"]
+  svg {
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+}
+
+/*
+ * A group's eye, before its menu. Light at rest so the row stays quiet, a
+ * step darker while its row is pointed at or focused, and dark under the
+ * pointer or the keyboard, like the menu. A hidden group's crossed eye keeps
+ * the middle step so it can be found again. At rest it still holds 3:1, the
+ * least a control may show.
+ */
+[data-part="tree-group-eye"] {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: var(--control-icon-size);
+  height: var(--control-icon-size);
+  min-height: var(--control-icon-size);
+  margin-inline-end: var(--space-1);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-faint);
+}
+
+[data-anchor="group"]:is(:hover, :focus-within) [data-part="tree-group-eye"],
+[data-part="tree-group-eye"]:has([data-state~="hidden"]) {
+  color: var(--text-muted);
+}
+
+[data-anchor="group"] [data-part="tree-group-eye"]:is(:hover, :focus-visible) {
+  background: var(--control-surface-hover);
+  color: var(--ink);
+}
+
+[data-part="tree-group-eye-icon"] {
+  display: contents;
+}
+
+[data-part="tree-group-eye"] svg {
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+}
+
+[data-part="tree-group-eye-icon"]:not([data-state~="hidden"])
+  [data-part="tree-eye-shut"],
+[data-part="tree-group-eye-icon"][data-state~="hidden"]
+  [data-part="tree-eye-open"] {
+  display: none;
+}
+
+/* A hidden group's row: its swatch dims and its name turns grey and italic;
+   its device count keeps its own colour, so it stays readable. */
+[data-anchor="group"]:has(
+    [data-part="tree-group-eye-icon"][data-state~="hidden"]
+  )
+  [data-part="tree-row"]
+  [data-part="tree-group-color"] {
+  opacity: var(--control-inactive-opacity);
+}
+
+[data-anchor="group"]:has(
+    [data-part="tree-group-eye-icon"][data-state~="hidden"]
+  )
+  [data-part="tree-row"]
+  [data-part="tree-name"] {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* The Groups label says how many of its groups are hidden. */
+[data-part="tree-section-hidden"] {
+  color: var(--text-muted);
+  font-size: var(--size-1);
+  white-space: nowrap;
+}
+
+[data-part="tree-section-hidden"]:empty {
+  display: none;
+}
+
+/* The tree's one primary action. */
+[data-part="tree-add-area"] {
+  gap: var(--space-3);
+  height: calc(var(--row-height) + var(--space-4));
+  padding-inline: var(--space-5);
+  border: var(--border-width) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--surface-raised);
+  font-size: var(--size-2);
+  font-weight: 500;
+}
+
+[data-part="tree-add-area"]:hover {
+  background: var(--ink-hover);
+  color: var(--surface-raised);
+}
+
+[data-part="tree-add-area"] svg {
+  width: 12px;
+  height: 12px;
+}
+
+[data-part="tree-name-input"] {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* The project's name is renamed where its pill was: the box takes the pill's
+   place, size and type, and Add Area keeps its own. */
+[data-part="tree-project"]
+  > [data-part="tree-line"]
+  > [data-part="tree-name-input"] {
+  flex: 0 1 16rem;
+  height: calc(var(--row-height) + var(--space-4));
+  margin-inline-end: auto;
+  padding: 0 var(--space-5);
+  border: var(--border-width) solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-size: var(--size-3);
+  font-weight: 600;
+}
+
+[data-part="tree-project"]
+  > [data-part="tree-line"]
+  > [data-part="tree-name-input"]:focus-visible {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--space-1);
+}
+
+[data-part="tree-props-popover"],
+[data-part="mesh-node-help"] {
+  position: fixed;
+  inset: auto;
+  width: 17rem;
+  margin: var(--space-2) 0 0;
+  padding: var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--text);
+  box-shadow: var(--shadow-2);
+  position-area: block-end;
+}
+
+@supports not (position-area: block-end) {
+  [data-part="tree-props-popover"],
+  [data-part="mesh-node-help"] {
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+[data-part="tree-props-popover"]:popover-open,
+[data-part="mesh-node-help"]:popover-open {
+  display: grid;
+  gap: var(--space-2);
+}
+
+[data-part="tree-props-field"] {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+[data-part="tree-props-label"] {
+  color: var(--text-muted);
+  font-size: var(--size-2);
+}
+
+[data-part="tree-props-field"] input[type="range"] {
+  width: 100%;
+  min-width: 0;
+}
+
+[data-part="tree-props-field"] input[type="text"] {
+  min-width: 0;
+}
+
+[data-part="tree-props-readout"] {
+  min-width: 2.5rem;
+  color: var(--text-muted);
+  font-size: var(--size-2);
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+/*
+ * A sidebar row's menu is a card like the Area and application cards: a
+ * heading naming what it edits, each label above its control, and Delete as a
+ * red row set apart at the bottom. Only the sidebar's menus carry a heading,
+ * so the Mesh pane's menus keep the plain look above.
+ */
+[data-part="tree-props-popover"]:has(> [data-part="tree-props-heading"]) {
+  padding: 0;
+  overflow: hidden;
+  border-color: var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-menu);
+}
+
+[data-part="tree-props-popover"]:has(
+    > [data-part="tree-props-heading"]
+  ):popover-open {
+  gap: 0;
+}
+
+[data-part="tree-props-heading"] {
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: var(--border-width) solid var(--border);
+  background: var(--surface-inset);
+  color: var(--ink);
+  font-size: var(--size-2);
+  font-weight: 600;
+}
+
+:is(
+  [data-part="tree-props-heading"] ~ [data-part="tree-props-field"],
+  [data-part="tree-props-section"] [data-part="tree-props-field"]
+) {
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: var(--space-2) var(--space-4);
+  margin-block-start: var(--space-5);
+  padding-inline: var(--space-5);
+}
+
+:is(
+    [data-part="tree-props-heading"] ~ [data-part="tree-props-field"],
+    [data-part="tree-props-section"] [data-part="tree-props-field"]
+  )
+  [data-part="tree-props-label"] {
+  grid-column: 1 / -1;
+  font-size: var(--size-1);
+  font-weight: 600;
+}
+
+/* The Name box reads as editable: a full-width field with a pencil inside its
+   end, and a hint saying it saves as you type. */
+[data-part="tree-props-popover"] [data-part="tree-props-name"] {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  height: calc(var(--row-height) + var(--space-4));
+  padding: 0 calc(var(--tree-icon-size) + var(--space-5)) 0 var(--space-4);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-size: var(--size-2);
+  font-weight: 500;
+}
+
+[data-part="tree-props-popover"] [data-part="tree-props-name"]:hover {
+  border-color: var(--text-faint);
+}
+
+[data-part="tree-props-pencil"] {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  justify-self: end;
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+  margin-inline-end: var(--space-4);
+  color: var(--text-faint);
+  pointer-events: none;
+}
+
+/* A preset application's name is fixed, so nothing offers to edit it. */
+[data-part="tree-props-name"]:read-only ~ [data-part="tree-props-pencil"] {
+  display: none;
+}
+
+[data-part="tree-props-popover"] [data-part="tree-props-name"]:read-only {
+  border-color: transparent;
+  background: var(--surface-sunken);
+}
+
+[data-part="tree-props-hint"] {
+  grid-column: 1 / -1;
+  color: var(--text-faint);
+  font-size: var(--size-1);
+}
+
+/* Delete is a red row with a bin, below a divider, tinted under the pointer. */
+[data-part="tree-props-heading"] ~ [data-act="delete"] {
+  justify-content: flex-start;
+  gap: var(--space-4);
+  height: calc(var(--row-height) + var(--space-5));
+  margin-block-start: var(--space-5);
+  padding-inline: var(--space-5);
+  border: 0;
+  border-top: var(--border-width) solid var(--border);
+  border-radius: 0;
+  font-weight: 600;
+}
+
+[data-part="tree-props-heading"] ~ [data-act="delete"]:hover:not(:disabled) {
+  background: var(--danger-surface-hover);
+  color: var(--danger);
+}
+
+[data-part="tree-props-heading"] ~ [data-act="delete"] svg {
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+}
+
+/* A group's settings in the sidebar's language: colours as round dots like the
+   group dot on its row, the stroke style as tall as the Name box, and each
+   slider's value as small secondary text. */
+:is(
+    [data-part="tree-props-heading"] ~ [data-part="tree-props-field"],
+    [data-part="tree-props-section"] [data-part="tree-props-field"]
+  )
+  input[type="color"] {
+  padding: 0;
+}
+
+:is(
+    [data-part="tree-props-heading"] ~ [data-part="tree-props-field"],
+    [data-part="tree-props-section"] [data-part="tree-props-field"]
+  )
+  [data-part="tree-stroke-type"] {
+  grid-column: 1 / -1;
+  /* A customizable select lays its content out from the top; centre it, and
+     inset it like the Name box's text above. */
+  align-items: center;
+  height: calc(var(--row-height) + var(--space-4));
+  padding-inline: var(--space-4);
+  border-color: var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-size: var(--size-2);
+}
+
+:is(
+    [data-part="tree-props-heading"] ~ [data-part="tree-props-field"],
+    [data-part="tree-props-section"] [data-part="tree-props-field"]
+  )
+  [data-part="tree-props-readout"] {
+  font-size: var(--size-1);
+}
+
+/* A group's two colours share one line, side by side, so its menu stays
+   short: each is its label beside its dot, and the stroke colour's link to the
+   group colour keeps its half's end. Every other part spans the card. */
+[data-part="tree-props-popover"]:has(> [data-part="tree-props-heading"]):has(
+    [data-part="tree-group-color"]
+  ):popover-open {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+[data-part="tree-props-popover"]:has([data-part="tree-group-color"])
+  > :not([data-part="tree-props-field"]:has(> input[type="color"])) {
+  grid-column: 1 / -1;
+}
+
+:is(
+  [data-part="tree-props-heading"] ~ [data-part="tree-props-field"],
+  [data-part="tree-props-section"] [data-part="tree-props-field"]
+):has(> input[type="color"]) {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  white-space: nowrap;
+}
+
+/* The halves meet at the card's middle: the right one gives up its inner
+   padding so its label, dot and link fit on its line. */
+[data-part="tree-stroke-color-off"] > [data-part="tree-props-field"] {
+  padding-inline-start: var(--space-2);
+}
+
+:is(
+    [data-part="tree-props-heading"] ~ [data-part="tree-props-field"],
+    [data-part="tree-props-section"] [data-part="tree-props-field"]
+  )
+  [data-part="tree-stroke-inherit"] {
+  margin-inline-start: auto;
+}
+
+/* A group's menu in two named parts, Appearance and Stroke, the second set
+   apart by a rule. Each part lays out its own two columns: the two colors
+   share a line, and everything else spans it. The wrappers that carry a
+   stroke's "unavailable" draw no box of their own. */
+[data-part="tree-props-section"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-content: start;
+}
+
+[data-part="tree-props-section"]
+  > :not([data-part="tree-props-field"]:has(> input[type="color"])):not(
+    [data-part="tree-stroke-color-off"]
+  ),
+[data-part="tree-stroke-detail"] > * {
+  grid-column: 1 / -1;
+}
+
+[data-part="tree-stroke-color-off"],
+[data-part="tree-stroke-detail"] {
+  display: contents;
+}
+
+[data-part="tree-props-section-name"] {
+  margin: var(--space-5) 0 0;
+  padding-inline: var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+[data-part="tree-props-section"] + [data-part="tree-props-section"] {
+  margin-block-start: var(--space-5);
+  border-top: var(--border-width) solid var(--border);
+}
+
+/* Opacity's hint sits under its slider, across the field. */
+[data-part="tree-props-section"] [data-part="tree-props-hint"] {
+  grid-column: 1 / -1;
+}
+
+/* With no stroke, its color, width and opacity are shown greyed, and a note
+   under Style says why. A focused control keeps its full strength, so its
+   focus ring does too. */
+[data-part="tree-stroke-off-note"] {
+  display: none;
+  margin: var(--space-3) 0 0;
+  padding-inline: var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="tree-props-section"][data-state~="no-stroke"]
+  [data-part="tree-stroke-off-note"] {
+  display: block;
+}
+
+[data-part="tree-props-section"][data-state~="no-stroke"]
+  [data-part="tree-stroke-detail"]
+  > [data-part="tree-props-field"]
+  > :not(:focus-visible),
+[data-part="tree-props-popover"]:has(
+    [data-part="tree-props-section"][data-state~="no-stroke"]
+  )
+  [data-part="tree-stroke-color-off"]
+  > [data-part="tree-props-field"]
+  > :not(:focus-visible, [data-part="tree-stroke-inherit"]) {
+  opacity: var(--control-inactive-opacity);
+}
+
+[data-part="tree-props-section"][data-state~="no-stroke"]
+  [data-part="tree-stroke-detail"]
+  :is(input, output),
+[data-part="tree-props-popover"]:has(
+    [data-part="tree-props-section"][data-state~="no-stroke"]
+  )
+  [data-part="tree-stroke-color-off"]
+  input {
+  cursor: default;
+}
+
+/* The project row's menu has no Delete, so its last field closes the card. */
+[data-part="tree-props-heading"] ~ [data-part="tree-props-field"]:last-child {
+  margin-block-end: var(--space-5);
+}
+
+/*
+ * An Area with no background opens with an invitation to upload one; once it
+ * has one, the same place shows the background and a way to change it. Both
+ * buttons are the Area's background control, so they open the same picker.
+ */
+[data-part="tree-upload"],
+[data-part="tree-background-card"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+  margin: var(--space-2) var(--area-inset) var(--space-5);
+  padding: var(--space-5);
+  border: var(--border-width) dashed var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+}
+
+[data-part="tree-area-branch"]:not([data-background=""])
+  :is([data-part="tree-upload"], [data-part="tree-upload-note"]),
+[data-part="tree-area-branch"][data-background=""]
+  [data-part="tree-background-card"] {
+  display: none;
+}
+
+[data-part="tree-background-preview"] {
+  flex: none;
+  width: var(--tree-tile-size);
+  height: var(--tree-tile-size);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
+:is([data-part="tree-upload"], [data-part="tree-background-card"])
+  [data-part="tree-background"] {
+  margin-inline-start: auto;
+}
+
+[data-part="tree-background-card"] [data-part="tree-background"] {
+  width: auto;
+  height: calc(var(--row-height) + var(--space-2));
+  padding-inline: var(--space-4);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--text);
+  font-size: var(--size-2);
+  font-weight: 500;
+}
+
+[data-part="tree-background-card"] [data-part="tree-background"]:hover {
+  background: var(--control-surface-hover);
+}
+
+/* The upload card's note: what still works without a background. */
+[data-part="tree-upload-note"] {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0 var(--area-inset) var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  border: var(--border-width) solid var(--note-border);
+  border-radius: var(--radius);
+  background: var(--note-surface);
+  color: var(--note-text);
+  font-size: var(--size-1);
+  line-height: 1.6;
+}
+
+[data-part="tree-upload-note"] svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-block-start: var(--space-1);
+  color: var(--accent);
+}
+
+[data-part="tree-upload-icon"] {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--tree-tile-size);
+  height: var(--tree-tile-size);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+}
+
+[data-part="tree-upload-icon"] svg {
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+}
+
+/* The text keeps a readable width; on a narrow panel the card's button wraps
+   onto its own line, still at the card's end, rather than covering it. */
+[data-part="tree-upload-text"] {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 5rem;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+[data-part="tree-upload-title"] {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* A file name is cut short on screen; its whole text stays in the page and in
+   the title's hover text. */
+[data-part="tree-background-card"] [data-part="tree-upload-title"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The card's second line is the background's opacity: a short slider, which
+   gives way on a narrow panel, then its percentage. */
+[data-part="tree-background-opacity"] {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* The percentage is the card's secondary text, at the card's smaller size. Its
+   width fits "100%" in characters, so it holds still as the value changes
+   without taking room the slider needs on a narrow panel. */
+[data-part="tree-background-opacity"] [data-part="tree-props-readout"] {
+  min-width: 5ch;
+  font-size: var(--size-1);
+}
+
+[data-part="tree-background-opacity"] [data-part="tree-opacity-slider"] {
+  flex: 0 1 8rem;
+  width: auto;
+  min-width: 0;
+}
+
+/* One slim slider for the Area card's opacity and a sidebar menu's ranges: a
+   slim track and a small thumb, so a slider reads as a line of its card rather
+   than its largest control. Each engine needs its own rule. */
+:is(
+  [data-part="tree-background-opacity"] [data-part="tree-opacity-slider"],
+  [data-part="tree-props-heading"]
+    ~ [data-part="tree-props-field"]
+    input[type="range"],
+  [data-part="tree-props-section"]
+    [data-part="tree-props-field"]
+    input[type="range"]
+) {
+  height: var(--space-5);
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+:is(
+  [data-part="tree-background-opacity"] [data-part="tree-opacity-slider"],
+  [data-part="tree-props-heading"]
+    ~ [data-part="tree-props-field"]
+    input[type="range"],
+  [data-part="tree-props-section"]
+    [data-part="tree-props-field"]
+    input[type="range"]
+)::-webkit-slider-runnable-track {
+  height: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--border-strong);
+}
+
+:is(
+  [data-part="tree-background-opacity"] [data-part="tree-opacity-slider"],
+  [data-part="tree-props-heading"]
+    ~ [data-part="tree-props-field"]
+    input[type="range"],
+  [data-part="tree-props-section"]
+    [data-part="tree-props-field"]
+    input[type="range"]
+)::-webkit-slider-thumb {
+  width: var(--space-5);
+  height: var(--space-5);
+  margin-block-start: calc((var(--space-2) - var(--space-5)) / 2);
+  border: 0;
+  border-radius: var(--radius-round);
+  appearance: none;
+  background: var(--accent);
+}
+
+:is(
+  [data-part="tree-background-opacity"] [data-part="tree-opacity-slider"],
+  [data-part="tree-props-heading"]
+    ~ [data-part="tree-props-field"]
+    input[type="range"],
+  [data-part="tree-props-section"]
+    [data-part="tree-props-field"]
+    input[type="range"]
+)::-moz-range-track {
+  height: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--border-strong);
+}
+
+:is(
+  [data-part="tree-background-opacity"] [data-part="tree-opacity-slider"],
+  [data-part="tree-props-heading"]
+    ~ [data-part="tree-props-field"]
+    input[type="range"],
+  [data-part="tree-props-section"]
+    [data-part="tree-props-field"]
+    input[type="range"]
+)::-moz-range-progress {
+  height: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+}
+
+:is(
+  [data-part="tree-background-opacity"] [data-part="tree-opacity-slider"],
+  [data-part="tree-props-heading"]
+    ~ [data-part="tree-props-field"]
+    input[type="range"],
+  [data-part="tree-props-section"]
+    [data-part="tree-props-field"]
+    input[type="range"]
+)::-moz-range-thumb {
+  width: var(--space-5);
+  height: var(--space-5);
+  border: 0;
+  border-radius: var(--radius-round);
+  background: var(--accent);
+}
+
+:is(
+    [data-part="tree-background-opacity"] [data-part="tree-opacity-slider"],
+    [data-part="tree-props-heading"]
+      ~ [data-part="tree-props-field"]
+      input[type="range"],
+    [data-part="tree-props-section"]
+      [data-part="tree-props-field"]
+      input[type="range"]
+  ):hover::-webkit-slider-thumb {
+  background: var(--accent-strong);
+}
+
+:is(
+    [data-part="tree-background-opacity"] [data-part="tree-opacity-slider"],
+    [data-part="tree-props-heading"]
+      ~ [data-part="tree-props-field"]
+      input[type="range"],
+    [data-part="tree-props-section"]
+      [data-part="tree-props-field"]
+      input[type="range"]
+  ):hover::-moz-range-thumb {
+  background: var(--accent-strong);
+}
+
+/* A background names its image by its file name; one saved before names were
+   kept shows the generic title instead. */
+[data-part="tree-background-name"]:empty,
+[data-part="tree-background-name"]:not(:empty)
+  + [data-part="tree-background-fallback"] {
+  display: none;
+}
+
+[data-part="tree-upload-hint"] {
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+/* The blue call to action: the upload card's Upload, and Nearby's Pick
+   device, which is how a device is added when the browser cannot scan. */
+[data-part="tree-upload"] [data-part="tree-background"],
+[data-part="mesh-nearby"] [data-part="mesh-pick"] {
+  width: auto;
+  height: calc(var(--row-height) + var(--space-3));
+  padding-inline: var(--space-5);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--surface-raised);
+  font-size: var(--size-2);
+  font-weight: 600;
+}
+
+[data-part="tree-upload"] [data-part="tree-background"]:hover,
+[data-part="mesh-nearby"] [data-part="mesh-pick"]:hover {
+  background: var(--accent-strong);
+  color: var(--surface-raised);
+}
+
+[data-part="mesh-nearby"] [data-part="mesh-pick"] {
+  gap: var(--space-2);
+  padding-inline: var(--space-4) var(--space-5);
+  white-space: nowrap;
+}
+
+[data-part="mesh-pick"] svg {
+  width: var(--space-5);
+  height: var(--space-5);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+/* Waiting for an Add to finish: still the action, faded. */
+[data-part="mesh-nearby"] [data-part="mesh-pick"]:disabled {
+  background: var(--accent);
+  color: var(--surface-raised);
+  opacity: var(--control-inactive-opacity);
+}
+
+/* Line styles are drawn, not named, where the browser lets an option carry
+   markup. Everywhere else the same options fall back to their text labels. */
+@supports (appearance: base-select) {
+  [data-part="tree-stroke-type"],
+  [data-part="tree-stroke-type"]::picker(select) {
+    appearance: base-select;
+  }
+
+  [data-part="tree-stroke-type"] {
+    padding: 0 var(--space-2);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+    color: var(--text);
+  }
+
+  [data-part="tree-stroke-type"]::picker(select) {
+    border: var(--border-width) solid var(--border-strong);
+    border-radius: var(--radius);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-2);
+  }
+
+  [data-part="tree-stroke-type"] option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+  }
+
+  [data-part="tree-stroke-type"] svg {
+    width: 24px;
+    height: 16px;
+    flex: none;
+    color: var(--text-muted);
+  }
+}
+
+/* A whole chain reads "this stroke follows the group color"; a broken one
+   reads "this stroke has its own", and pressing it joins the chain again. */
+[data-part="tree-stroke-inherit"] {
+  display: inline-flex;
+  width: var(--control-size);
+  height: var(--control-size);
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+[data-part="tree-stroke-inherit"] svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+[data-part="tree-stroke-inherit"][aria-disabled="true"] {
+  opacity: var(--control-inactive-opacity);
+  cursor: default;
+}
+
+[data-part="tree-stroke-inherit"]:not([aria-disabled="true"]):hover {
+  background: var(--control-surface-hover);
+  color: var(--text);
+}
+
+[data-part="tree-props-field"][data-state="override"]
+  [data-part="tree-link-bar"] {
+  display: none;
+}
+
+[data-part="tree-group-color"] {
+  flex: 0 0 var(--control-size);
+  width: var(--control-size);
+  height: var(--control-size);
+  min-height: var(--control-size);
+  margin: 0;
+  padding: var(--space-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  cursor: pointer;
+}
+
+/*
+ * A group is a bordered row: a round colour dot, its name, and its member
+ * count. Its height is padding around --row-height, and the row keeps room
+ * for its quiet menu so the count never sits under it.
+ */
+/* The groups stand clear of their heading's bordered Add Group by the same
+   step that separates one group from the next. */
+[data-part="tree-section"][data-section-kind="group"]
+  > [data-part="tree-children"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-block-start: var(--space-4);
+}
+
+[data-anchor="group"][data-part="tree-line"] {
+  padding: var(--space-4) var(--space-2) var(--space-4) var(--space-5);
+  border-color: var(--border);
+  border-radius: var(--radius);
+  background: var(--row-tint, var(--surface-raised));
+}
+
+[data-anchor="group"] > [data-part="tree-row"] {
+  gap: var(--space-5);
+  padding-inline-end: var(--tree-menu-gutter);
+}
+
+[data-anchor="group"] > [data-part="tree-row"] [data-part="tree-group-color"] {
+  flex-basis: 10px;
+  width: 10px;
+  height: 10px;
+  min-height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-round);
+}
+
+[data-anchor="group"]
+  > [data-part="tree-row"]
+  [data-part="tree-group-color"]::-webkit-color-swatch {
+  border: none;
+}
+
+/* In a narrow panel the name outlasts the count: the count shrinks first. */
+[data-anchor="group"] [data-part="tree-name"] {
+  min-width: 3rem;
+  font-weight: 500;
+}
+
+/* The count follows the name it counts, a pill like the Active badge. */
+[data-anchor="group"] [data-part="tree-detail"] {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: var(--space-1) var(--space-4);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--control-surface);
+  font-size: var(--size-1);
+}
+
+/*
+ * A device type is a bordered row like a group: an icon tile, its name over
+ * its placed count, and its menu, for which the row keeps room.
+ */
+[data-part="tree-section"][data-section-kind="deviceType"]
+  > [data-part="tree-children"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+[data-anchor="deviceType"] > [data-part="tree-line"] {
+  padding: var(--space-3) var(--space-2) var(--space-3) var(--space-4);
+  border-color: var(--border);
+  border-radius: var(--radius);
+  background: var(--row-tint, var(--surface-raised));
+}
+
+[data-anchor="deviceType"] > [data-part="tree-line"] [data-part="tree-row"] {
+  gap: var(--space-5);
+  padding-inline-end: var(--tree-menu-gutter);
+}
+
+[data-part="tree-device-icon"] {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: calc(var(--control-icon-size) + var(--space-3));
+  height: calc(var(--control-icon-size) + var(--space-3));
+  border: var(--border-width) solid var(--device-icon-border);
+  border-radius: var(--radius);
+  background: var(--accent-surface);
+  color: var(--accent-strong);
+}
+
+[data-part="tree-device-icon"] svg {
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+}
+
+[data-anchor="deviceType"] [data-part="tree-name"] {
+  font-weight: 500;
+}
+
+[data-anchor="deviceType"] [data-part="tree-detail"] strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+[data-part="background-pick"] {
+  padding: var(--space-1);
+}
+
+[data-part="background-thumbnail"] {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+[data-part="opacity-slider"] {
+  display: none;
+  width: 7rem;
+}
+
+[data-part="opacity-slider"][data-state~="open"] {
+  display: flex;
+}
+
+/* ---- 5. Tree ------------------------------------------------------------ */
+
+[data-part="tree-list"],
+[data-part="tree-project"],
+[data-part="tree-areas"],
+[data-part="tree-children"] {
+  min-width: 0;
+  width: 100%;
+}
+
+[data-part="tree-areas"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-inline: var(--space-6);
+}
+
+[data-part="tree-children"] {
+  padding-inline-start: 0;
+}
+
+/*
+ * The project row is the tree's header: pinned while the Areas scroll beneath
+ * it, so Add Area never needs a scroll back up. Its content keeps
+ * --row-height like every row; the padding around it is the header's room.
+ */
+[data-part="tree-project"] > [data-part="tree-line"] {
+  position: sticky;
+  top: 0;
+  z-index: var(--layer-tree-header);
+  box-sizing: content-box;
+  width: auto;
+  height: var(--row-height);
+  margin-block-end: var(--space-6);
+  padding: calc(var(--space-6) + var(--space-1)) var(--space-6);
+  border-width: 0 0 var(--border-width);
+  border-color: var(--border);
+  border-radius: 0;
+  background: var(--surface-raised);
+}
+
+/* At least 20px between the project's name and Add Area, so the two read as
+   different things: the project, and an action on its Areas. */
+[data-part="tree-project"] > [data-part="tree-line"] {
+  column-gap: calc(var(--space-5) + var(--space-4));
+}
+
+[data-part="tree-project"] {
+  container: project-header / inline-size;
+}
+
+/* The project's name is the button that opens its menu: a pill as light as an
+   application card's edge, so it reads as pressable without competing with
+   Add Area. */
+[data-part="tree-project-name"] {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: var(--space-3);
+  height: calc(var(--row-height) + var(--space-4));
+  margin-inline-end: auto;
+  padding: 0 var(--space-4) 0 var(--space-5);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-size: var(--size-3);
+  font-weight: 600;
+  text-align: start;
+}
+
+[data-part="tree-project-name"]:hover,
+:root:has([data-part="project-menu"]:popover-open)
+  [data-part="tree-project-name"] {
+  border-color: var(--border-strong);
+  background: var(--control-surface);
+}
+
+[data-part="tree-project-name"] > [data-slot="name"] {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-part="tree-project-folder"] {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  fill: var(--notice);
+  stroke: var(--notice-strong);
+  stroke-width: 1;
+}
+
+[data-part="tree-project-chevron"] {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
+  transition: transform var(--motion-fast);
+}
+
+:root:has([data-part="project-menu"]:popover-open)
+  [data-part="tree-project-chevron"] {
+  transform: rotate(180deg);
+}
+
+/* Too narrow for both on one line: the name takes the first line whole and
+   Add Area, at its own size, the second, so neither is cut to a few
+   letters. */
+@container project-header (max-width: 320px) {
+  [data-part="tree-project"] > [data-part="tree-line"] {
+    flex-wrap: wrap;
+    row-gap: var(--space-4);
+    height: auto;
+  }
+
+  [data-part="tree-project-name"],
+  [data-part="tree-project"]
+    > [data-part="tree-line"]
+    > [data-part="tree-name-input"] {
+    flex: 1 1 100%;
+    margin-inline-end: 0;
+  }
+
+  [data-part="tree-project-chevron"] {
+    margin-inline-start: auto;
+  }
+}
+
+/* The project menu: the row menus' card, with each item's shortcut at its
+   end. Hints and shortcuts are --text-muted, which holds 4.5:1 on white.
+   An Area's Add Application menu is the same card. */
+[data-part="project-menu"],
+[data-part="application-menu"] {
+  position: fixed;
+  inset: auto;
+  min-width: 15rem;
+  margin: var(--space-3) 0 0;
+  padding: var(--space-2);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+  color: var(--ink);
+  box-shadow: var(--shadow-menu);
+  position-area: block-end span-inline-end;
+}
+
+@supports not (position-area: block-end) {
+  [data-part="project-menu"],
+  [data-part="application-menu"] {
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* An Area's Add Application menu spans its button exactly, edge to edge. */
+@supports (width: anchor-size(width)) {
+  [data-part="application-menu"] {
+    width: anchor-size(width);
+    min-width: 0;
+  }
+}
+
+[data-part="project-menu"]:popover-open,
+[data-part="application-menu"]:popover-open {
+  display: grid;
+}
+
+[data-part="project-menu"] > button,
+[data-part="application-menu"] > button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-5);
+  height: 36px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  box-shadow: none;
+  color: var(--ink);
+  font-size: var(--size-2);
+  font-weight: 500;
+  text-align: start;
+}
+
+/* A menu's item under the pointer or the keyboard takes the accent, on a
+   card that stays white; --accent-strong holds 4.5:1 on --accent-surface,
+   and so does --text-muted, which a shortcut and a saved time keep. */
+[data-part="project-menu"] > button:hover,
+[data-part="project-menu"] > button:focus-visible,
+[data-part="application-menu"] > button:hover,
+[data-part="application-menu"] > button:focus-visible {
+  background: var(--accent-surface);
+  color: var(--accent-strong);
+  outline: none;
+}
+
+/* The item's icon follows its words. */
+[data-part="project-menu"]
+  > button:is(:hover, :focus-visible)
+  [data-part="project-menu-icon"] {
+  color: currentColor;
+}
+
+[data-part="project-menu-icon"] {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+}
+
+[data-part="project-menu-hint"] {
+  margin-inline-start: calc(-1 * var(--space-3));
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+[data-part="project-menu-keys"] {
+  margin-inline-start: auto;
+  color: var(--text-muted);
+  font-size: var(--size-1);
+  font-weight: 400;
+}
+
+[data-part="project-menu-divider"],
+[data-part="application-menu-divider"] {
+  height: var(--border-width);
+  margin: var(--space-2) var(--space-3);
+  background: var(--border);
+}
+
+/* Save's label over when the project last saved. */
+[data-part="project-menu"] > [data-part="project-menu-save"] {
+  height: 44px;
+}
+
+[data-part="project-menu-stack"] {
+  display: grid;
+  gap: var(--space-1);
+  line-height: 1.2;
+}
+
+[data-part="project-menu-saved"] {
+  color: var(--text-muted);
+  font-size: var(--size-1);
+  font-weight: 400;
+}
+
+/* "Project saved", after a save asked for. Empty, it draws nothing but stays
+   in the page as a status, so its words are announced when they arrive. */
+[data-part="project-saved"] {
+  position: fixed;
+  inset: auto auto calc(var(--space-6) * 3) var(--space-6);
+  z-index: var(--layer-message);
+  margin: 0;
+}
+
+[data-part="project-saved"]:not(:empty) {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--surface-raised);
+  font-size: var(--size-2);
+  box-shadow: var(--shadow-dialog);
+}
+
+[data-part="project-saved"]:not(:empty)::before {
+  content: "";
+  width: 8px;
+  height: 4px;
+  margin-block-start: -2px;
+  border-block-end: 1.8px solid var(--success-border);
+  border-inline-start: 1.8px solid var(--success-border);
+  transform: rotate(-45deg);
+}
+
+/*
+ * One band per row. The tint is carried by an inherited custom property so
+ * the line owner and the row inside it paint the same colour: hover and focus
+ * each cover the whole visual line, from the indent guides through the
+ * trailing controls.
+ */
+[data-part="tree-line"],
+[data-part="tree-row"] {
+  background: var(--row-tint, transparent);
+}
+
+[data-part="tree-line"] {
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+}
+
+[data-part="tree-line"],
+[data-part="tree-instance"] {
+  display: flex;
+  min-width: 0;
+  width: 100%;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+summary[data-part="tree-line"]::marker {
+  content: "";
+}
+
+/*
+ * A row's properties popover lives inside its <details>, and a closed
+ * <details> renders none of its content, so a collapsed row's menu would
+ * open at no size. Its content is let render and everything but the popover
+ * hidden instead: the row looks as collapsed as before, and its menu still
+ * opens. A browser without ::details-content
+ * ignores both rules and behaves as it always did.
+ */
+details:is(
+    [data-anchor="area"],
+    [data-anchor="application"],
+    [data-anchor="deviceType"]
+  ):not([open])::details-content {
+  content-visibility: visible;
+}
+
+details:is(
+    [data-anchor="area"],
+    [data-anchor="application"],
+    [data-anchor="deviceType"]
+  ):not([open])
+  > :not(summary, [data-part="tree-props-popover"]) {
+  display: none;
+}
+
+[data-part="tree-chevron"] {
+  display: flex;
+  flex: 0 0 var(--tree-indent);
+  width: var(--tree-indent);
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  color: var(--text-faint);
+  font-size: 9px;
+}
+
+[data-part="tree-chevron"]::before {
+  content: "▸";
+}
+
+details[open] > [data-part="tree-line"] [data-part="tree-chevron"]::before {
+  content: "▾";
+}
+
+[data-part="tree-device-type-branch"]
+  > [data-part="tree-line"]
+  [data-part="tree-chevron"] {
+  display: none;
+}
+
+/* The containing block for the row's action cluster, which is taken out of
+   flow so a revealed control never widens the row. */
+[data-part="tree-summary-content"],
+[data-part="tree-line"] {
+  position: relative;
+}
+
+[data-part="tree-summary-content"] {
+  display: flex;
+  min-width: 0;
+  width: 100%;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/*
+ * Row controls hover over the end of the row rather than standing in it: the
+ * name owns the full width at rest, and revealing a control on hover, focus or
+ * selection moves nothing. The cluster carries the row's own tint, so a name
+ * long enough to reach it slides behind the band instead of through the icons.
+ */
+[data-part="tree-actions"] {
+  display: flex;
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: var(--space-1);
+  align-items: center;
+  gap: var(--space-1);
+  padding-inline-start: var(--space-2);
+}
+
+/* Renaming replaces the row, so its controls step aside with it. */
+[data-part="tree-name-input"]:not([hidden]) ~ [data-part="tree-actions"] {
+  display: none;
+}
+
+[data-part="tree-row"] {
+  display: flex;
+  min-width: 0;
+  height: var(--row-height);
+  flex: 1 1 auto;
+  width: 100%;
+  position: relative;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: default;
+}
+
+[data-part="selection-catcher"] {
+  position: relative;
+}
+
+/* Extend the selection hit area to the panel edge. */
+[data-part="tree-row"]:has(input[name="planner-selection"])::before,
+[data-part="selection-catcher"]::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 100%;
+  width: 100%;
+}
+
+/* Keep the disclosure target above the selection hit area. */
+[data-part="tree-chevron"] {
+  position: relative;
+  z-index: var(--layer-actions);
+}
+
+/*
+ * The checked radio *is* the selection (docs/requirements/interaction.md), so
+ * it stays operable and hit-testable. It is taken out of flow and made
+ * invisible rather than removed: the row's own outline is the visible affordance,
+ * and the chevron then sits directly in front of the name.
+ */
+[data-part="tree-radio"] {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 0;
+  width: 11px;
+  height: auto;
+  margin: 0;
+  opacity: 0;
+}
+
+/*
+ * Areas and applications are cards, and a card's edge carries depth, so the
+ * rows inside them are not indented a step per level. Indentation stays a
+ * tool for the levels that are not cards.
+ */
+[data-part="tree-area-branch"],
+[data-part="tree-application-branch"],
+[data-part="tree-section"],
+[data-anchor="group"][data-part="tree-line"],
+[data-anchor="deviceType"] [data-part="tree-line"] {
+  --tree-level: 0;
+}
+
+[data-part="tree-line"] {
+  padding-inline-start: calc(var(--tree-indent) * var(--tree-level, 0));
+}
+
+[data-part="tree-name"],
+[data-part="tree-instance-label"] {
+  display: block;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* A count belongs to the name it counts, so the name takes only the width it
+   needs and the count follows it instead of drifting to the panel edge. */
+[data-part="tree-name"] {
+  flex: 0 1 auto;
+}
+
+[data-part="tree-section-label"],
+[data-part="mesh-section-heading"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-faint);
+  font-size: var(--size-1);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* A Mesh pane heading stands alone, not on a row, so it takes the darker
+   step. */
+[data-part="mesh-section-heading"] {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/*
+ * A tree section's label is a heading followed by its count. It keeps its
+ * native disclosure, so the label itself is the control and no chevron is
+ * drawn. The count is aria-hidden: the tree is a live region, and the rows
+ * beneath say the same.
+ */
+[data-part="tree-section"]
+  > [data-part="tree-line"]
+  [data-part="tree-section-label"] {
+  flex: 0 1 auto;
+  color: var(--text-muted);
+}
+
+[data-part="tree-section"]
+  > [data-part="tree-line"]
+  [data-part="tree-chevron"] {
+  display: none;
+}
+
+[data-part="tree-section-count"],
+[data-part="mesh-nearby-count"],
+[data-part="mesh-node-count"] {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  height: 16px;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--control-surface-active);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+  font-weight: 500;
+}
+
+/* Inside a Mesh pane label, a count sits clear of the word it counts and
+   keeps its digits unspaced. */
+[data-part="mesh-nearby-count"],
+[data-part="mesh-node-count"] {
+  margin-inline-start: var(--space-3);
+  letter-spacing: 0;
+}
+
+/* A section label is a heading, not a row a press selects, so it never tints;
+   its add button carries its own hover. */
+[data-part="tree-section"] > [data-part="tree-line"],
+[data-part="tree-section"] > [data-part="tree-line"] [data-part="tree-row"] {
+  background: transparent;
+}
+
+[data-part="tree-section-add"] {
+  color: var(--control-text-quiet);
+}
+
+[data-part="tree-section"] > [data-part="tree-children"]:empty::before {
+  display: block;
+  overflow: hidden;
+  color: var(--text-faint);
+  font-size: var(--size-1);
+  font-style: italic;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-inline-start: calc(
+    var(--tree-indent) * var(--tree-level, 0) + var(--tree-indent)
+  );
+}
+
+[data-part="tree-section"][data-section-kind="group"]
+  > [data-part="tree-children"]:empty::before {
+  content: "No groups yet.";
+}
+
+[data-part="tree-section"][data-section-kind="deviceType"]
+  > [data-part="tree-children"]:empty::before {
+  content: "No device types yet.";
+}
+
+/*
+ * Coordinate-bearing instance rows stay in the saved markup: they carry the
+ * only data-x / data-y slots a saved page reads back (ADR-0016). Hidden here,
+ * never deleted. Move the slots to the surface device before removing them.
+ */
+[data-part="tree-instance"] {
+  display: none;
+  font-size: var(--size-1);
+}
+
+/* Hover and keyboard focus are different states and must look different:
+   a tint means "the pointer is here", a ring means "the keyboard is here".
+   A row's menu, and a group's eye, select nothing, so pointing at either
+   leaves the row untinted. */
+[data-part="tree-line"]:hover:not(
+    :has(
+      :is([data-part="tree-props-toggle"], [data-part="tree-group-eye"]):hover
+    )
+  ) {
+  --row-tint: var(--row-hover-surface);
+}
+
+[data-part="tree-line"]:has(:focus-visible) {
+  --row-tint: var(--row-hover-surface);
+}
+
+[data-part="tree-row"]:focus-visible,
+[data-part="tree-line"]:focus-visible {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: -2px;
+  z-index: var(--layer-focus);
+  position: relative;
+}
+
+/* A focused row's own controls draw over it, so the pointer still reaches
+   them. Their band has no fill and they sit inside the ring, which stays
+   whole. */
+[data-part="tree-line"]:is(
+    :focus-visible,
+    :has([data-part="tree-row"]:focus-visible)
+  )
+  [data-part="tree-actions"] {
+  z-index: var(--layer-focus);
+}
+
+/* The pill has its own edge, so its ring sits outside it. */
+[data-part="tree-project-name"]:focus-visible {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--space-1);
+}
+
+/*
+ * The active Area is outlined and named by a badge, so colour is never its
+ * only signal. Every Area keeps room for the outline, so switching Areas
+ * moves nothing. The badge is aria-hidden: aria-current already tells
+ * assistive technology which Area is active, and the tree is a live region.
+ */
+[data-part="tree-area-branch"] {
+  padding: var(--border-active-area);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+}
+
+[data-part="tree-area-branch"][open] {
+  padding-block-end: var(--area-inset);
+}
+
+[data-anchor="area"] > [data-part="tree-line"] {
+  padding-block: var(--space-2);
+}
+
+/* An Area's and a device type's row: a name over a placed count. */
+:is([data-anchor="area"], [data-anchor="deviceType"])
+  > [data-part="tree-line"]
+  [data-part="tree-row"] {
+  height: var(--two-line-row-height);
+}
+
+/* An Area's and an application's menu is always shown, so their row keeps
+   room for it: a long name shortens before it reaches the menu, and the
+   Active badge after it stays whole. */
+:is([data-anchor="area"], [data-anchor="application"])
+  > [data-part="tree-line"]
+  [data-part="tree-row"] {
+  padding-inline-end: var(--tree-menu-gutter);
+}
+
+[data-part="tree-heading"] {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+[data-part="tree-title"] {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 500;
+}
+
+[data-anchor="area"][aria-current="true"] [data-part="tree-title"] {
+  font-weight: 600;
+}
+
+[data-part="tree-detail"] {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: var(--size-1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* A card's disclosure, and every one in the Mesh pane, is one drawn
+   chevron: right when folded, down when open, turning between. A card's sits
+   in a box the size of the card it opens. */
+:is([data-anchor="area"], [data-anchor="application"])
+  > [data-part="tree-line"]
+  [data-part="tree-chevron"] {
+  flex-basis: var(--control-icon-size);
+  width: var(--control-icon-size);
+}
+
+:is(
+    [data-anchor="area"],
+    [data-anchor="application"],
+    [data-part="mesh-nearby"],
+    [data-part="mesh-nodes"],
+    [data-part="mesh-node"],
+    [data-part="mesh-models"]
+  )
+  > [data-part="tree-line"]
+  [data-part="tree-chevron"] {
+  color: var(--text-muted);
+}
+
+:is(
+    [data-anchor="area"],
+    [data-anchor="application"],
+    [data-part="mesh-nearby"],
+    [data-part="mesh-nodes"],
+    [data-part="mesh-node"],
+    [data-part="mesh-models"]
+  )
+  > [data-part="tree-line"]
+  [data-part="tree-chevron"]::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-block-end: 1.5px solid currentColor;
+  border-inline-end: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform var(--motion-fast);
+}
+
+:is(
+    [data-anchor="area"],
+    [data-anchor="application"],
+    [data-part="mesh-nearby"],
+    [data-part="mesh-nodes"],
+    [data-part="mesh-node"],
+    [data-part="mesh-models"]
+  )[open]
+  > [data-part="tree-line"]
+  [data-part="tree-chevron"]::before {
+  content: "";
+  transform: rotate(45deg);
+}
+
+/*
+ * The Area's content sits one inset in from its card's edge, and each
+ * application is a tinted card in it: a header ruled off from its sections.
+ */
+[data-part="tree-area-branch"] {
+  --area-inset: calc(var(--space-6) - var(--border-active-area));
+}
+
+[data-anchor="area"] > [data-part="tree-children"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-inline: var(--area-inset);
+}
+
+[data-part="tree-application-branch"] {
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-inset);
+}
+
+/* The name selects across the header's full height, so only the arrow's
+   column, also full height, opens and closes the application. */
+[data-anchor="application"] > [data-part="tree-line"] {
+  padding-block: 0;
+  padding-inline: var(--space-3) var(--space-2);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+[data-anchor="application"] > [data-part="tree-line"] [data-part="tree-row"] {
+  height: var(--application-row-height);
+}
+
+[data-anchor="application"][open] > [data-part="tree-line"] {
+  border-block-end-color: var(--border);
+}
+
+/* Collapsed, the header is the whole card: rounded all round. */
+[data-anchor="application"]:not([open]) > [data-part="tree-line"] {
+  border-radius: var(--radius-lg);
+}
+
+[data-anchor="application"] > [data-part="tree-line"] [data-part="tree-name"] {
+  font-weight: 600;
+}
+
+[data-anchor="application"] > [data-part="tree-children"] {
+  padding: var(--space-5);
+}
+
+/*
+ * The active application holds the selection: itself, or a group, device
+ * type or device inside it. In an Area of several it is the one being worked
+ * in, so its card takes the accent's edge and its header the accent's
+ * surface, in place of the outline a selected row takes. What it holds keeps
+ * its own outline.
+ */
+[data-part="tree-application-branch"]:has(
+  input[name="planner-selection"]:checked
+) {
+  border-color: var(--accent-border);
+}
+
+[data-part="tree-application-branch"]:has(
+    input[name="planner-selection"]:checked
+  )
+  > [data-part="tree-line"] {
+  border-color: transparent;
+  background: var(--accent-surface);
+  box-shadow: none;
+}
+
+/* Open, its header is ruled off from what it holds in the accent's edge;
+   collapsed, there is nothing beneath to rule off. */
+[data-part="tree-application-branch"][open]:has(
+    input[name="planner-selection"]:checked
+  )
+  > [data-part="tree-line"] {
+  border-block-end-color: var(--accent-border);
+}
+
+/* Its header is already marked, so the pointer adds no grey over it: the
+   line and its row both keep the accent. Keyboard focus still shows a ring. */
+[data-part="tree-application-branch"]:has(
+    input[name="planner-selection"]:checked
+  )
+  > [data-part="tree-line"]:is(:hover, :has(:focus-visible)) {
+  --row-tint: var(--accent-surface);
+}
+
+/* Add Group is a bordered button on the card, not a bare word. */
+[data-section-kind="group"] [data-part="tree-section-add"] {
+  height: var(--control-icon-size);
+  padding-inline: var(--space-4);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+[data-section-kind="group"] [data-part="tree-section-add"]:hover {
+  background: var(--control-surface-hover);
+}
+
+/* Groups and Devices read as two sections, not one list. */
+[data-anchor="application"]
+  > [data-part="tree-children"]
+  > [data-part="tree-section"]
+  + [data-part="tree-section"] {
+  margin-block-start: var(--space-5);
+}
+
+[data-anchor="area"][aria-current="true"] {
+  outline: var(--border-active-area) solid var(--tree-active-outline);
+  outline-offset: calc(-1 * var(--border-active-area));
+}
+
+[data-part="tree-active-badge"] {
+  display: none;
+}
+
+[data-anchor="area"][aria-current="true"]
+  > [data-part="tree-line"]
+  [data-part="tree-active-badge"] {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-2);
+  height: 18px;
+  padding-inline: var(--space-3);
+  border: var(--border-width) solid var(--success-border);
+  border-radius: var(--radius-pill);
+  background: var(--success-surface);
+  color: var(--success);
+  font-size: var(--size-1);
+  font-weight: 500;
+}
+
+[data-anchor="area"][aria-current="true"]
+  > [data-part="tree-line"]
+  [data-part="tree-active-badge"]::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-round);
+  background: currentColor;
+}
+
+[data-drop="true"] > [data-part="tree-line"] [data-part="tree-row"],
+[data-drop="true"] > [data-part="tree-row"] {
+  outline: 2px dashed var(--accent);
+  outline-offset: -2px;
+}
+
+/* ---- 6. Surface --------------------------------------------------------- */
+
+/* The hairline is a ring, not a border: src/surface-viewport.js maps pointer
+   coordinates through getBoundingClientRect(), which is the border box, so a
+   real border would offset every click by its own width. */
+[data-part="surface"] {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--surface-inset);
+  box-shadow:
+    0 0 0 1px var(--border),
+    var(--shadow-1);
+}
+
+[data-part="surface"][data-state~="opacity-preview"]
+  [data-part="surface-background"] {
+  opacity: var(--surface-background-opacity);
+}
+
+[data-part="surface"][data-drawing="true"] {
+  cursor: crosshair;
+}
+
+[data-part="grid-layer"] {
+  pointer-events: none;
+}
+
+[data-part="grid-line"] {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-part="surface-group"] {
+  fill-opacity: 0.18;
+  vector-effect: non-scaling-stroke;
+  cursor: move;
+}
+
+[data-part="group-handle"] {
+  fill: var(--surface-raised);
+  stroke: var(--accent);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-part="group-handle"][data-handle="nw"],
+[data-part="group-handle"][data-handle="se"] {
+  cursor: nwse-resize;
+}
+
+[data-part="group-handle"][data-handle="ne"],
+[data-part="group-handle"][data-handle="sw"] {
+  cursor: nesw-resize;
+}
+
+[data-part="group-handle"][data-handle="n"],
+[data-part="group-handle"][data-handle="s"] {
+  cursor: ns-resize;
+}
+
+[data-part="group-handle"][data-handle="e"],
+[data-part="group-handle"][data-handle="w"] {
+  cursor: ew-resize;
+}
+
+[data-part="group-preview"] {
+  fill: currentColor;
+  fill-opacity: 0.1;
+  stroke: currentColor;
+  stroke-dasharray: 6 4;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-part="surface-link"] {
+  stroke: var(--text-faint);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}
+
+/* The surface-dot overlay follows surface-device state tokens
+ * (provisioning.md, "Dots"). Amber means on and nothing else.
+ */
+[data-part="surface-device"] {
+  fill: var(--surface-raised);
+  stroke: var(--text-faint);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+  cursor: move;
+}
+
+[data-part="surface-device"][data-state~="assigned"] {
+  stroke: var(--accent-strong);
+}
+
+[data-part="surface-device"][data-state~="on"] {
+  fill: var(--notice);
+  stroke: var(--text);
+}
+
+[data-part="surface-device"][data-state~="on"][data-state~="output"] {
+  filter: drop-shadow(0 0 3px var(--notice));
+}
+
+[data-part="surface-device"][data-state~="unheard"] {
+  fill: var(--surface-sunken);
+  stroke: var(--text-faint);
+}
+
+[data-part="surface-dot"] {
+  fill: none;
+  stroke: var(--accent-strong);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+[data-part="surface-device"][data-state~="on"] + [data-part="surface-dot"] {
+  stroke: var(--text);
+}
+
+[data-part="surface-device"][data-state~="unheard"] + [data-part="surface-dot"],
+[data-part="dot-halo"],
+[data-part="dot-slash"] {
+  stroke: var(--text-faint);
+}
+
+[data-part="dot-halo"],
+[data-part="dot-slash"] {
+  stroke-width: 1.5;
+}
+
+[data-part="surface-device"]:not([data-state~="assigned"])
+  + [data-part="surface-dot"]
+  [data-part="dot-halo"] {
+  stroke-width: 1;
+  stroke-dasharray: 1.5 2;
+}
+
+/* Each arc uses its group's plan colour. */
+[data-part="dot-arc"] {
+  stroke-width: 3;
+  stroke-linecap: butt;
+}
+
+/* Pending Link additions dash the dot's arc. */
+[data-part="surface-device"][data-state~="pending"]
+  + [data-part="surface-dot"]
+  [data-part="dot-arc"] {
+  stroke-dasharray: 3 2;
+}
+
+[data-part="dot-ring"] {
+  stroke: var(--text);
+  stroke-width: 1.6;
+}
+
+[data-part="dot-badge"] > circle {
+  fill: var(--danger);
+  stroke: var(--surface-raised);
+  stroke-width: 1;
+}
+
+[data-part="dot-badge"] > path {
+  stroke: var(--surface-raised);
+  stroke-width: 1.4;
+}
+
+[data-part="surface-device"]:not([data-state~="output"])
+  + [data-part="surface-dot"]
+  [data-part="dot-bulb"],
+[data-part="surface-device"]:not([data-state~="input"])
+  + [data-part="surface-dot"]
+  [data-part="dot-switch"],
+[data-part="surface-device"]:not([data-state~="unheard"])
+  + [data-part="surface-dot"]
+  [data-part="dot-slash"],
+[data-part="surface-device"][data-state~="unheard"]
+  + [data-part="surface-dot"]
+  [data-part="dot-arcs"],
+[data-part="surface-device"]:not([data-state~="selected"])
+  + [data-part="surface-dot"]
+  [data-part="dot-ring"],
+[data-part="surface-device"]:not([data-state~="conflict"])
+  + [data-part="surface-dot"]
+  [data-part="dot-badge"] {
+  display: none;
+}
+
+/* ---- 7. Dialogs --------------------------------------------------------- */
+
+dialog {
+  max-width: min(34rem, calc(100vw - var(--space-6) * 2));
+  padding: var(--space-6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin: auto;
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-dialog);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--size-2);
+}
+
+dialog::backdrop {
+  background: var(--scrim);
+}
+
+dialog h2 {
+  margin: 0 0 var(--space-5);
+  font-size: var(--size-3);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+[data-part="demo-dialog"] {
+  width: min(28rem, calc(100vw - var(--space-6) * 2));
+}
+
+[data-part="demo-dialog"] > p {
+  color: var(--text-muted);
+}
+
+[data-part="demo-choices"] {
+  display: grid;
+  gap: var(--space-4);
+  margin-block: var(--space-6);
+}
+
+[data-part="demo-choices"] button {
+  text-align: start;
+}
+
+[data-part="demo-error"] {
+  color: var(--danger);
+}
+
+/*
+ * Settings: a head, a section menu beside its panel, and a foot. The window
+ * keeps one size while its sections change, and shrinks with a small screen.
+ */
+[data-part="settings-dialog"] {
+  width: min(var(--settings-width), calc(100vw - var(--space-6) * 2));
+  max-width: none;
+  height: min(var(--settings-height), calc(100vh - var(--space-6) * 2));
+  padding: 0;
+  overflow: hidden;
+}
+
+[data-part="settings-form"] {
+  display: grid;
+  height: 100%;
+  margin: 0;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+[data-part="settings-head"] {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-6) calc(var(--space-6) + var(--space-4));
+  border-bottom: var(--border-width) solid var(--border);
+}
+
+[data-part="settings-head"] h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 17px;
+}
+
+[data-part="settings-lead"] {
+  margin: var(--space-2) 0 0;
+  color: var(--text-muted);
+}
+
+button[data-part="settings-close"] {
+  width: var(--control-icon-size);
+  height: var(--control-icon-size);
+  min-height: var(--control-icon-size);
+  flex: none;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-muted);
+}
+
+[data-part="settings-close"] svg {
+  width: var(--header-icon-size);
+  height: var(--header-icon-size);
+}
+
+[data-part="settings-body"] {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: var(--settings-menu-width) minmax(0, 1fr);
+}
+
+[data-part="settings-tabs"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border-inline-end: var(--border-width) solid var(--border);
+  background: var(--surface-inset);
+}
+
+[data-part="settings-tabs"] [role="tab"] {
+  justify-content: flex-start;
+  gap: var(--space-4);
+  height: var(--header-control-height);
+  padding: 0 var(--space-5);
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-muted);
+}
+
+[data-part="settings-tabs"] [role="tab"]:hover {
+  background: var(--control-surface-hover);
+}
+
+[data-part="settings-tabs"] [role="tab"][aria-selected="true"] {
+  background: var(--accent-surface);
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+[data-part="settings-tabs"] svg {
+  width: var(--header-icon-size);
+  height: var(--header-icon-size);
+  flex: none;
+}
+
+[role="tabpanel"][data-part^="settings-panel-"] {
+  overflow: auto;
+  padding: var(--space-6) calc(var(--space-6) + var(--space-4));
+}
+
+[data-part^="settings-panel-"] h3 {
+  margin: 0 0 var(--space-4);
+  color: var(--ink);
+  font-size: var(--size-3);
+  font-weight: 600;
+}
+
+[data-part="settings-row"] {
+  display: grid;
+  align-items: center;
+  gap: var(--space-5);
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  padding: 14px 0;
+  border-bottom: var(--border-width) solid var(--border);
+}
+
+[data-part="settings-row-text"] label {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+[data-part="settings-note"] {
+  color: var(--text-muted);
+}
+
+/* The keymap's shortcuts: what each does, then its keys. */
+[data-part="settings-shortcuts"] {
+  margin: 0;
+}
+
+[data-part="settings-shortcut"] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-4) 0;
+  border-bottom: var(--border-width) solid var(--border);
+}
+
+[data-part="settings-shortcut"] dt {
+  color: var(--ink);
+}
+
+[data-part="settings-shortcut"] dd {
+  margin: 0;
+  text-align: end;
+}
+
+/* About: the header's logo, larger, then who made the planner. */
+[data-part="settings-about-logo"] svg {
+  display: block;
+  width: auto;
+  height: var(--about-logo-height);
+}
+
+[data-part="settings-about-facts"] {
+  margin: var(--space-6) 0 0;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+[data-part="settings-about-facts"] > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-6);
+}
+
+[data-part="settings-about-facts"] dt {
+  color: var(--text-muted);
+}
+
+[data-part="settings-about-facts"] dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+/* A panel with nothing else to focus takes focus itself, so its ring shows. */
+[role="tabpanel"][data-part^="settings-panel-"]:focus-visible {
+  outline-offset: calc(var(--focus-width) * -1);
+}
+
+[data-part="settings-key"] {
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--control-surface);
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-1);
+}
+
+/* A switch is a checkbox drawn as a track and a knob; its role says so. Off,
+   its track is dark enough to read as a control against the panel. */
+[data-part="settings-row"] input[role="switch"] {
+  position: relative;
+  width: var(--switch-width);
+  height: var(--switch-height);
+  margin: 0;
+  border-radius: var(--radius-pill);
+  appearance: none;
+  background: var(--text-faint);
+  cursor: pointer;
+  transition: background-color var(--motion-fast);
+}
+
+[data-part="settings-row"] input[role="switch"]::before {
+  position: absolute;
+  inset-block-start: 2px;
+  inset-inline-start: 2px;
+  width: calc(var(--switch-height) - 4px);
+  height: calc(var(--switch-height) - 4px);
+  border-radius: var(--radius-round);
+  background: var(--surface-raised);
+  content: "";
+  transition: transform var(--motion-fast);
+}
+
+[data-part="settings-row"] input[role="switch"]:checked {
+  background: var(--accent);
+}
+
+[data-part="settings-row"] input[role="switch"]:checked::before {
+  transform: translateX(calc(var(--switch-width) - var(--switch-height)));
+}
+
+[data-part="settings-aside"] {
+  margin: var(--space-6) 0 0;
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius);
+  background: var(--control-surface-hover);
+  color: var(--text-muted);
+}
+
+[data-part="settings-foot"] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-5) calc(var(--space-6) + var(--space-4));
+  border-top: var(--border-width) solid var(--border);
+}
+
+[data-part="settings-foot"] p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+button[data-part="settings-done"] {
+  height: var(--header-control-height);
+  padding: 0 var(--space-6);
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--surface-raised);
+  font-weight: 600;
+}
+
+button[data-part="settings-done"]:hover {
+  border-color: var(--ink-hover);
+  background: var(--ink-hover);
+}
+
+/*
+ * The delete confirmation: a card like the sidebar's, what else goes listed as
+ * rows drawn like the tree's own, the undo note like the upload card's, and
+ * Delete a filled red button beside a Cancel like the card's Change.
+ */
+[data-part="delete-confirm"] {
+  width: min(26rem, calc(100vw - var(--space-6) * 2));
+  padding: 0;
+  overflow: hidden;
+}
+
+[data-part="delete-confirm"] form {
+  margin: 0;
+}
+
+[data-part="delete-confirm-head"] {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-6) 0;
+}
+
+[data-part="delete-confirm-warning"] {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--tree-tile-size);
+  height: var(--tree-tile-size);
+  border-radius: var(--radius-pill);
+  background: var(--danger-surface);
+  color: var(--danger);
+}
+
+[data-part="delete-confirm-warning"] svg {
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+}
+
+[data-part="delete-confirm-title"] {
+  margin: 0;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+[data-part="delete-confirm-lead"] {
+  margin: var(--space-1) 0 0;
+  color: var(--text-muted);
+  font-size: var(--size-2);
+}
+
+/* The losses and the note line up with the title, past the warning mark. */
+[data-part="delete-confirm-losses"],
+[data-part="delete-confirm-note"] {
+  margin: var(--space-5) var(--space-6) 0
+    calc(var(--space-6) + var(--tree-tile-size) + var(--space-5));
+}
+
+[data-part="delete-confirm-losses"] {
+  display: grid;
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+[data-part="delete-confirm-row"] {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-size: var(--size-2);
+}
+
+[data-part="delete-confirm-mark"] {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--control-icon-size);
+  height: var(--control-icon-size);
+  overflow: hidden;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--accent-surface);
+  color: var(--accent);
+}
+
+[data-part="delete-confirm-mark"] > * {
+  display: none;
+}
+
+/* A row's state picks its mark: an icon tile, the group dots, or the image. */
+[data-state="applications"] [data-part="delete-confirm-application-icon"],
+[data-state="device-types"] [data-part="delete-confirm-device-icon"] {
+  display: block;
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+}
+
+[data-state="groups"] [data-part="delete-confirm-mark"] {
+  border-color: transparent;
+  background: transparent;
+}
+
+[data-state="groups"] [data-part="delete-confirm-dots"] {
+  display: flex;
+  gap: var(--space-1);
+}
+
+[data-part="delete-confirm-dot"] {
+  width: var(--space-3);
+  height: var(--space-3);
+  border-radius: var(--radius-pill);
+}
+
+[data-state="image"] [data-part="delete-confirm-mark"] {
+  background: var(--surface-raised);
+}
+
+[data-state="image"] [data-part="delete-confirm-thumb"] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+[data-part="delete-confirm-note"] {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: var(--border-width) solid var(--note-border);
+  border-radius: var(--radius);
+  background: var(--note-surface);
+  color: var(--note-text);
+  font-size: var(--size-1);
+  line-height: 1.6;
+}
+
+[data-part="delete-confirm-note"] svg {
+  flex: none;
+  width: var(--tree-icon-size);
+  height: var(--tree-icon-size);
+}
+
+[data-part="delete-confirm-actions"] {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-4);
+  margin-block-start: var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  border-top: var(--border-width) solid var(--border);
+  background: var(--surface-inset);
+}
+
+[data-part="delete-confirm-actions"] button {
+  height: calc(var(--row-height) + var(--space-4));
+  padding-inline: var(--space-6);
+  border-radius: var(--radius);
+  font-size: var(--size-2);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+[data-part="delete-confirm-cancel"] {
+  border: var(--border-width) solid var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--ink);
+}
+
+[data-part="delete-confirm-cancel"]:hover {
+  background: var(--control-surface-hover);
+}
+
+[data-part="delete-confirm-delete"] {
+  border: var(--border-width) solid var(--danger);
+  background: var(--danger);
+  color: var(--surface-raised);
+}
+
+[data-part="delete-confirm-delete"]:hover {
+  border-color: var(--danger-strong);
+  background: var(--danger-strong);
+}
+
+[data-part="project-form"] {
+  display: grid;
+  gap: var(--space-4);
+  padding-block-end: var(--space-5);
+  border-block-end: 1px solid var(--border);
+}
+
+[data-part="project-exchange-modes"] {
+  display: flex;
+  gap: var(--space-2);
+  margin-block-end: var(--space-5);
+}
+
+[data-part="project-exchange-form"] {
+  display: grid;
+  gap: var(--space-4);
+}
+
+[data-part="project-exchange-label"] {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="project-exchange-text"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  color: var(--text);
+  font: var(--font-mono);
+  resize: vertical;
+}
+
+[data-part="project-exchange-import"] {
+  justify-self: start;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface-raised);
+}
+
+[data-part="project-exchange-import"]:hover {
+  background: var(--accent-strong);
+}
+
+[data-part="project-exchange-error"] {
+  margin: 0;
+  color: var(--danger);
+}
+
+[data-part="project-name-label"] {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--size-1);
+}
+
+[data-part="project-create"] {
+  justify-self: start;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface-raised);
+}
+
+[data-part="project-create"]:hover {
+  background: var(--accent-strong);
+}
+
+[data-part="project-empty"] {
+  margin: var(--space-5) 0 0;
+  color: var(--text-muted);
+}
+
+[data-part="project-list"] {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+[data-part="project-item"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+[data-part="project-delete-warning"] {
+  grid-column: 1 / -1;
+  color: var(--notice);
+}
+
+[data-part="project-item"] [data-part="project-name"] {
+  overflow: hidden;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+[data-part="project-updated"] {
+  color: var(--text-faint);
+  font-size: var(--size-1);
+  font-variant-numeric: tabular-nums;
+}
+
+[data-part="project-delete"]:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+[data-part="project-close"],
+[data-part="shortcuts-close"] {
+  margin-block-start: var(--space-6);
+}
+
+[data-part="shortcut-list"] {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: var(--space-3) var(--space-6);
+  margin: 0;
+}
+
+[data-part="shortcut-list"] > div {
+  display: contents;
+}
+
+[data-part="shortcut-keys"] {
+  justify-self: start;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-block-end-width: 2px;
+  border-radius: var(--radius-sm);
+  background: var(--control-surface);
+  font-family: var(--font-mono);
+  font-size: var(--size-1);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+[data-part="shortcut-description"] {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* ---- 8. State and motion ------------------------------------------------ */
+
+/* Demo controls wait for demo-mode.js to name the open project's kind, and an
+   empty error says nothing. Tokens, not `hidden`: a saved page keeps them.
+   The sign itself stays rendered, visually hidden above, so its status region
+   is in the accessibility tree before it speaks. */
+[data-part="demo-entry"]:not([data-state~="real"]),
+[data-part="demo-error"]:empty,
+[data-part="demo-sign-error"]:empty {
+  display: none;
+}
+
+[data-part="demo-sign-error"] {
+  color: var(--danger);
+  font-weight: normal;
+}
+
+/* Native cursor cues follow the interaction state already exposed by the DOM. */
+[data-anchor="group"][draggable="true"],
+[data-anchor="group"][draggable="true"] [data-part="tree-row"],
+[data-anchor="deviceType"][draggable="true"],
+[data-anchor="deviceType"][draggable="true"] [data-part="tree-line"],
+[data-anchor="deviceType"][draggable="true"] [data-part="tree-row"] {
+  cursor: pointer;
+}
+
+[data-anchor="group"][draggable="true"]:active,
+[data-anchor="group"][draggable="true"] [data-part="tree-line"]:active,
+[data-anchor="group"][draggable="true"] [data-part="tree-row"]:active,
+[data-anchor="deviceType"][draggable="true"]:active,
+[data-anchor="deviceType"][draggable="true"] [data-part="tree-line"]:active,
+[data-anchor="deviceType"][draggable="true"] [data-part="tree-row"]:active {
+  cursor: grabbing;
+}
+
+[data-part="surface"]:active,
+[data-part="surface-group"]:active,
+[data-part="surface-device"]:active {
+  cursor: grabbing;
+}
+
+[data-part="surface"][data-active-kind="group"],
+[data-part="surface"][data-drawing="true"],
+[data-part="surface"][data-active-kind="group"] [data-part="surface-group"],
+[data-part="surface"][data-active-kind="group"] [data-part="surface-device"] {
+  cursor: crosshair;
+}
+
+/* A hidden group is not drawn, so nothing on the plan promises a draw. */
+[data-part="surface"][data-active-kind="group"][data-state~="hidden-group"],
+[data-part="surface"][data-active-kind="group"][data-state~="hidden-group"]
+  :is([data-part="surface-group"], [data-part="surface-device"]) {
+  cursor: default;
+}
+
+[data-part="surface"][data-active-kind="device-type"]:not(:active),
+[data-part="surface"][data-active-kind="device-type"]
+  [data-part="surface-group"]:not(:active),
+[data-part="surface"][data-active-kind="device-type"]
+  [data-part="surface-device"]:not(:active) {
+  cursor: crosshair;
+}
+
+[data-drop="true"] > [data-part="tree-line"] [data-part="tree-row"],
+[data-drop="true"] > [data-part="tree-row"] {
+  cursor: move;
+}
+
+/*
+ * The selected token owns a transition on both background-color and
+ * outline-color. tests/browser/shell.spec.js tells a mounted element from a
+ * freshly created one by reading colour mid-transition, so dropping either
+ * half — or giving [data-part="workflow"] a resting background equal to the
+ * selected tint — makes that test go red.
+ */
+[data-state~="selected"] {
+  background-color: var(--state-selected-background);
+  transition: background-color var(--motion-fast);
+}
+
+/*
+ * Selection is a native radio group, so the tree styles it from :checked
+ * rather than from a token JS mirrors onto the row. A surface shape holds no
+ * radio, so it keeps data-state; see docs/architecture/binding.md.
+ */
+[data-part="tree-line"]:has(input[name="planner-selection"]:checked) {
+  border-color: var(--tree-selected-outline);
+  box-shadow: inset 0 0 0 var(--border-width) var(--tree-selected-outline);
+}
+
+/* A selected Area is always the active Area, whose card's outline already
+   marks it: its header takes no second outline. */
+[data-anchor="area"]
+  > [data-part="tree-line"]:has(input[name="planner-selection"]:checked) {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+[data-part="mesh-node"][data-state~="selected"] > [data-part="tree-line"] {
+  background: var(--accent-surface);
+  border-color: var(--accent);
+}
+
+[data-state~="hovered"] {
+  outline: 2px dashed var(--accent-soft);
+  outline-offset: 1px;
+  z-index: var(--layer-focus);
+  position: relative;
+}
+
+[data-part="mesh-node"][data-state~="hovered"] {
+  outline: none;
+}
+
+[data-part="mesh-node"][data-state~="hovered"] > [data-part="tree-line"] {
+  outline: 2px dashed var(--accent-soft);
+  outline-offset: -2px;
+}
+
+[data-part="surface-group"][data-state~="hovered"],
+[data-part="surface-device"][data-state~="hovered"] {
+  outline: 3px dashed var(--accent-soft);
+  outline-offset: 3px;
+}
+
+[data-part="surface-device"][data-state~="hovered"],
+[data-part="app"]:has([data-part="mesh"][data-state~="assigning"])
+  [data-part="surface-device"] {
+  stroke: var(--accent-strong);
+  stroke-width: 3;
+  stroke-opacity: 1;
+}
+
+[data-part="surface-device"][data-state~="affinity"] {
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
